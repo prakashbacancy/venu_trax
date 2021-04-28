@@ -1,0 +1,6 @@
+<b> Welcome to VenuTrax</b><br>
+<%if user_signed_in?%>
+	<%=  link_to destroy_user_session_path, method: :delete  do%>
+	  <i class="fa fa-sign-out m-r-10"></i> Logout
+	<%end%>
+<%end%>
