@@ -1,0 +1,50 @@
+
+@import '../abstract/variables';
+
+.text {
+    &-darkgray1 {
+        color: $color-darkgray1 !important;
+    }
+    &-darkgray2 {
+        color: $color-darkgray2 !important;
+    }
+    &-gray {
+        color: $color-gray !important;
+    }
+    &-offwhite {
+        color: $color-offwhite !important;
+    }
+    &-offwhite2 {
+        color: $color-offwhite2 !important;
+    }
+    &-blue1 {
+        color: $color-blue1 !important;
+    }
+    &-blue2 {
+        color: $color-blue2 !important;
+    }
+}
+
+.bg {
+    &-darkgray1 {
+        background-color: $color-darkgray1 !important;
+    }
+    &-darkgray2 {
+        background-color: $color-darkgray2 !important;
+    }
+    &-gray {
+        background-color: $color-gray !important;
+    }
+    &-offwhite {
+        background-color: $color-offwhite !important;
+    }
+    &-offwhite2 {
+        background-color: $color-offwhite2 !important;
+    }
+    &-blue1 {
+        background-color: $color-blue1 !important;
+    }
+    &-blue2 {
+        background-color: $color-blue2 !important;
+    }
+}
