@@ -56,7 +56,8 @@ node_modules/
 /public/packs
 /public/packs-test
 /public/assets
-
+db/schema.rb
+test/*
 # Ignore yarn files
 /yarn-error.log
 yarn-debug.log*
