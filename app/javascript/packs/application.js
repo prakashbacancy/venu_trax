@@ -10,7 +10,10 @@ import "channels"
 
 import 'stylesheets/application'
 
+require('jquery')
 require("bootstrap")
+// require("packs/app.min.js")
+
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
     $(function () {
@@ -18,6 +21,9 @@ document.addEventListener("turbolinks:load", function() {
         $('[data-toggle="popover"]').popover()
     })
 })
+const images = require.context('../images', true)
+window.jQuery = $;
+window.$ = $;
 
 Rails.start()
 Turbolinks.start()
