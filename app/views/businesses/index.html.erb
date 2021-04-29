@@ -1,0 +1,47 @@
+<section class="content-wrapper">
+  <div class="content position-relative">
+    <h2><b>Business List</b></h2>
+
+    <div class="admin-table bg-white table-responsive">
+      <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+          <th>Name</th>
+          <th>Industry</th>
+          <th>Type</th>
+          <th>Phone No</th>
+          <th>Zip Code</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>No of Employee</th>
+          <th>Annual Revenue</th>
+          <th>Description</th>
+          <th colspan="2">Action</th>
+        </thead>
+        <tbody>
+    		<% @businesses.each do |business| %>
+    			<tr>
+    				<td><%= business.name %></td>
+    				<td><%= business.industry %></td>
+    				<td><%= business.business_type %></td>
+    				<td><%= business.phone_no %></td>
+    				<td><%= business.zip_code %></td>
+    				<td><%= business.address %></td>
+    				<td><%= business.city %></td>
+    				<td><%= business.state %></td>
+    				<td><%= business.no_of_employee %></td>
+    				<td><%= business.annual_revenue %></td>
+    				<td><%= business.description %></td>
+            <td><%= link_to "Edit", edit_business_path(business) %></td>
+            <td><%= link_to "Destroy", business_path(business), method: :delete, data: { confirm: 'Are you sure you want to delete'} %></td>
+
+    			</tr>
+    		<% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="add-item-btn mb-3 d-flex flex-wrap">
+      <%= link_to "Add New Business", new_business_path, class: 'btn btn-admin mb-2 mr-3' %>
+    </div>
+  </div>
+</section>
