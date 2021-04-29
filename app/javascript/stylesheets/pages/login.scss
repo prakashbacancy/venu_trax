@@ -1,0 +1,137 @@
+.user-login{
+  background-image: url('../images/login/ic_bg_img.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.user-login {
+  min-height: calc(100vh - 0px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center
+}
+
+@media (max-width:767px) {
+  .user-login {
+    /* min-height: auto */
+  }
+}
+
+.user-login .content {
+  width: 100%;
+  // padding: 0px;
+}
+
+@media (max-width:767px) {
+  .user-login .content {
+    padding: 0px
+  }
+}
+
+.user-login .content .user-login-inner {
+  /* max-width: 860px; */
+  width: 100%;
+  // border: #e8e8e9 1px solid;
+  padding: 60px 216px
+}
+
+@media (max-width:1440px) {
+  .user-login .content .user-login-inner {
+    max-width: 700px;
+    padding: 50px 120px
+  }
+}
+
+@media (max-width:1366px) {
+  .user-login .content .user-login-inner {
+    max-width: 600px;
+    padding: 30px 80px
+  }
+}
+
+@media (max-width:991px) {
+  .user-login .content .user-login-inner {
+    padding: 30px 50px
+  }
+}
+
+@media (max-width:767px) {
+  .user-login .content .user-login-inner {
+    padding: 20px 15px
+  }
+}
+
+.user-login .content .user-login-inner p {
+  color: #444;
+  line-height: 18px
+}
+
+.user-login .content .user-login-inner .inquiry-form .form-control {
+  color: #444
+}
+
+.user-login .content .user-login-inner .inquiry-form .form-control:focus {
+  border-color: #444
+}
+
+.user-login .content .user-login-inner a:hover {
+  text-decoration: none
+}
+
+.user-login .content .user-login-inner .forgot-password {
+  font-size: 17px
+}
+
+@media (max-width:767px) {
+  .user-login .content .user-login-inner .forgot-password {
+    font-size: 15px
+  }
+}
+
+.border-radius {
+  &-3{
+    border-radius: 3px !important;
+  }
+  &-5{
+    border-radius: 5px !important;
+  }
+}
+
+.right-hr {
+  border-right: 2px solid #444;
+}
+
+.user-login input:-webkit-autofill,
+.user-login input:-webkit-autofill:hover, 
+.user-login input:-webkit-autofill:focus, 
+.user-login input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #534f5e inset !important;
+  box-shadow: 0 0 0 30px #534f5e inset !important;
+}
+
+.user-login input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+
+.textbox-blur-bg{
+  border: 1px solid #15172B;
+  border-radius: 3px;
+  background-size: cover;
+  color: white;
+  background: rgba(255,255,255,0.2)
+}
+
+.textbox-blur-bg:focus {
+  color: white;
+  background: rgba(255,255,255,0.2);
+  border: 0px;
+  outline: 0;
+  -webkit-box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+}

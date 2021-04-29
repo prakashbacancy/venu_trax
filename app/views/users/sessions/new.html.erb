@@ -1,26 +1,78 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<%#= render "users/shared/links" %>
+<section class="content-wrapper user-login ml-0">
+  <div class="content px-0">
+    <div class="row">
+      <div class="col-md-6 right-hr d-flex justify-content-center align-items-center">
+        <div class='p-4'>
+          <%= image_pack_tag 'login/VenuTRAX-WH-2s.png' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="user-login-inner mx-auto text-white">
+          <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Login</h2>
+          <label class="fs-14 fw-600">Let's log in and join the network of VenuTrax.</label>
+          <% flash.each do |key, value| %>
+          <% if key == "alert" and value == "Invalid Email or password." %>
+          <div class="alert-message-top">
+            <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
+          </div>
+          <% end %>
+          <% end %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: ''}) do |f| %>
+          <div class="form-group relative mt-4">
+            <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Email cannot be blank', 'data-parsley-trigger': 'keyup' %>
+          </div>
+          <div class="form-group mb-2 relative mt-4">
+            <label for="user_password" class="fs-14 text-uppercase fw-600">Password</label>
+            <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2', id: "password-field", 'data-parsley-required': 'true', 'data-parsley-required-message': 'Password cannot be blank', 'data-parsley-trigger': 'keyup' %>
+            <span toggle="#password-field" class="fa fa-eye-slash field-icon toggle-password"></span>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-6 col-sm-12">
+              <% if devise_mapping.rememberable? %>
+              <div class="form-group mt-3 relative">
+                <div class="checkbox-area custom-control custom-checkbox">
+                  <%= f.check_box :remember_me,{class: "custom-control-input"}, "1" %>
+                  <%= label_tag :remember_me, "Remember Me", for: "user_remember_me", class: "custom-control-label text-white fs-14 text-uppercase fw-600" %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="form-group mt-3 relative">
+                <%= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password forgot-link-right text-white fs-14 text-uppercase fw-600" %>
+              </div>
+            </div>
+          </div>
+          <%#= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password text-blue1"%>
+          <%= f.submit "Sign In", class: 'btn btn-primary border-radius-3 mb-4 mt-4' %>
+          <% end %>
+          <%#= render "users/shared/links" %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</section>
 
-<%= render "users/shared/links" %>
+<style>
+  .checkbox-area .custom-control-label::before{
+    background: rgba(255,255,255,0.2);
+  }
+</style>
+
+<script type="text/javascript">
+  $(function () {
+    $('input').blur();
+  });
+
+  $(".toggle-password").click(function () {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
+  });
+</script>
