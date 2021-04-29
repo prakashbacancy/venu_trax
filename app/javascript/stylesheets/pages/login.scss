@@ -135,3 +135,40 @@
   -webkit-box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
   box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
 }
+
+.alert-alert {
+  background-color: #eadede;
+  border: #cd071a 1px solid;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  color: #cd071a;
+}
+
+.alert-message-top {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.alert {
+  padding-top: 1 !important
+}
+
+.alert-danger {
+  background-color: #eadede;
+  border: #cd071a 1px solid;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  color: #cd071a;
+}
