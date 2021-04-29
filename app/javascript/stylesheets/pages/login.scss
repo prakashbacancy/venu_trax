@@ -63,7 +63,7 @@
 
 @media (max-width:767px) {
   .user-login .content .user-login-inner {
-    padding: 20px 15px
+    padding: 20px 24px
   }
 }
 
@@ -111,8 +111,8 @@
 .user-login input:-webkit-autofill:hover, 
 .user-login input:-webkit-autofill:focus, 
 .user-login input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #534f5e inset !important;
-  box-shadow: 0 0 0 30px #534f5e inset !important;
+  -webkit-box-shadow: 0 0 0 35px #534f5e inset !important;
+  box-shadow: 0 0 0 35px #534f5e inset !important;
 }
 
 .user-login input:-webkit-autofill {
@@ -171,4 +171,8 @@
   padding-bottom: 0;
   padding-top: 0;
   color: #cd071a;
+}
+
+.user-login input {
+  height: calc(3.25rem + 10px);
 }
