@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   	passwords: 'users/passwords',
   	sessions: 'users/sessions'
   }
+  devise_scope :user do
+    get 'users/password' => 'users/passwords#index'
+  end
   # for business module
   resources :businesses
 end
