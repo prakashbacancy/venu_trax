@@ -185,3 +185,10 @@
 .user-login .alert-message-top {
   max-width: 505px;
 }
+
+.header_flash_message {
+  position: absolute;
+  top: 0;
+  width: inherit;
+  z-index: 50;
+}
