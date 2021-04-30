@@ -28,7 +28,7 @@
             <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2', id: "password-field", 'data-parsley-required': 'true', 'data-parsley-required-message': 'Password cannot be blank', 'data-parsley-trigger': 'keyup' %>
             <span toggle="#password-field" class="fa fa-eye-slash field-icon toggle-password"></span>
           </div>
-          <div class="row mt-4">
+          <div class="row mt-4 login-extra-links">
             <div class="col-lg-6 col-sm-12">
               <% if devise_mapping.rememberable? %>
               <div class="form-group mt-3 relative">

@@ -1,25 +1,39 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+<section class="content-wrapper user-login ml-0">
+  <div class="content px-0">
+    <div class="ml-lg-5">
+      <%= link_to new_user_session_path, class: "text-uppercase text-gray fs-20" do %>
+        <i class="mr-2"><%= image_pack_tag 'login/icon_awesome_arrow_circle_left.svg' %></i>Back
+      <% end %>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 right-hr d-flex justify-content-center align-items-center">
+        <div class='p-4'>
+          <%= image_pack_tag 'login/VenuTRAX-WH-2s.png' %>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="user-login-inner mx-auto text-white">
+          <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Reset Password?</h2>
+          <label class="fs-14 fw-600 d-block"> Please reset your password and make secure your account. </label>
+          <% if resource.errors.any? %>
+            <div class="alert-message-top">
+              <div class="alert alert-alert" id="flashMessage"> <%= resource.errors.full_messages.join(', ') %></div>
+            </div>
+          <% end %>
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.hidden_field :reset_password_token %>
+          <div class="form-group relative mt-5">
+            <%= f.label :password, "New password", class: "fs-14 text-uppercase fw-600" %>
+            <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2' %>
+          </div>
+          <div class="form-group relative mt-5">
+            <%= f.label :password_confirmation, "Confirm new password", class: "fs-14 text-uppercase fw-600" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2' %>
+          </div>
+          <%= f.submit "Reset Now", class: 'btn btn-primary border-radius-3 mb-4 mt-5' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

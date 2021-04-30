@@ -18,9 +18,9 @@
           <label class="fs-14 fw-600 d-block"> No Worries! </label>
           <label class="fs-14 fw-600 d-block"> Please enter your registered email address and we will </label>
           <label class="fs-14 fw-600 d-block"> send you the link to reset your password </label>
-          <% flash.each do |key, value| %>
+          <% if resource.errors.any? %>
             <div class="alert-message-top">
-              <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
+              <div class="alert alert-alert" id="flashMessage"> <%= resource.errors.full_messages.join(', ') %></div>
             </div>
           <% end %>
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
