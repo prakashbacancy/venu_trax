@@ -12,6 +12,8 @@ import 'stylesheets/application'
 
 require('jquery')
 require("bootstrap")
+require("@fortawesome/fontawesome-free/css/all.css")
+
 // require("packs/app.min.js")
 
 // import "../stylesheets/application";
