@@ -124,7 +124,8 @@
   border-radius: 3px;
   background-size: cover;
   color: white;
-  background: rgba(255,255,255,0.2)
+  background: rgba(255,255,255,0.2);
+  max-width: 505px;
 }
 
 .textbox-blur-bg:focus {
@@ -156,7 +157,7 @@
 }
 
 .alert {
-  padding-top: 1 !important
+  padding: 8px
 }
 
 .alert-danger {
@@ -175,4 +176,27 @@
 
 .user-login input {
   height: calc(3.25rem + 10px);
+}
+
+.login-extra-links {
+  max-width: 535px;
+}
+
+.user-login .alert-message-top {
+  max-width: 505px;
+}
+
+.header_flash_message {
+  position: absolute;
+  top: 0;
+  width: inherit;
+  z-index: 50;
+}
+
+.user-login .content {
+  max-width: 1905px;
+}
+
+.user-login .main-content {
+  min-height: calc(100vh - 20rem);
 }

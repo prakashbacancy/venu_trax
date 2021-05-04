@@ -14,6 +14,7 @@ require('jquery')
 require("bootstrap")
 require("chartkick")
 require("chart.js")
+require("@fortawesome/fontawesome-free/css/all.css")
 // require("packs/app.min.js")
 
 // import "../stylesheets/application";

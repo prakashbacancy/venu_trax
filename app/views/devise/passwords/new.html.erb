@@ -1,7 +1,9 @@
-
 <%#= render "users/shared/links" %>
 <section class="content-wrapper user-login ml-0">
   <div class="content px-0">
+    <div class="header_flash_message">
+      <%= render 'layouts/flash_messages' %>
+    </div>
     <div class="ml-lg-5">
       <%= link_to new_user_session_path, class: "text-uppercase text-gray fs-20" do %>
         <i class="mr-2"><%= image_pack_tag 'login/icon_awesome_arrow_circle_left.svg'%></i>Back
@@ -13,22 +15,22 @@
           <%= image_pack_tag 'login/VenuTRAX-WH-2s.png' %>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 d-flex justify-content-center align-items-center">
         <div class="user-login-inner mx-auto text-white">
           <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Forgot your password?</h2>
           <label class="fs-14 fw-600 d-block"> No Worries! </label>
           <label class="fs-14 fw-600 d-block"> Please enter your registered email address and we will </label>
           <label class="fs-14 fw-600 d-block"> send you the link to reset your password </label>
-          <% flash.each do |key, value| %>
-            <div class="alert-message-top">
-              <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
-            </div>
-          <% end %>
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-          <div class="form-group relative mt-5">
-            <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Email cannot be blank', 'data-parsley-trigger': 'keyup' %>
-          </div>
+            <div class="form-group relative mt-5">
+              <% if resource.errors.any? %>
+                <div class="alert-message-top">
+                  <div class="alert alert-alert" id="flashMessage"> <%= resource.errors.full_messages.join(', ') %></div>
+                </div>
+              <% end %>
+              <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Email cannot be blank', 'data-parsley-trigger': 'keyup' %>
+            </div>
           <%#= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password text-blue1"%>
           <%= f.submit "Submit", class: 'btn btn-primary border-radius-3 mb-4 mt-5' %>
           <% end %>

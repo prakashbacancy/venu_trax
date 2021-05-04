@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h5 class="modal-title">Edit Profile</h5>
+</div>
+<div class="modal-body">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <div class="">
+        <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary' %>
+                      <span class="badge badge-edit fa fa-pencil-alt"> </span>
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
+      <%= f.label :full_name, class: 'text-capitalize fs-17' %><br />
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email_address, class: 'text-capitalize fs-17' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :mobile_number, class: 'text-capitalize fs-17' %><br />
+      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :change_password, class: 'text-capitalize fs-17' %><br />  
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Password" value="**********" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+        <div class="input-group-append">
+          <span class="input-group-text"><%= link_to "Change", businesses_path %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer modal-footer-fixed">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    </div>
+  <% end %>
+</div>

@@ -2,12 +2,12 @@
 <section class="content-wrapper user-login ml-0">
   <div class="content px-0">
     <div class="row">
-      <div class="col-md-6 right-hr d-flex justify-content-center align-items-center">
+      <div class="col-lg-6 right-hr d-flex justify-content-center align-items-center">
         <div class='p-4'>
           <%= image_pack_tag 'login/VenuTRAX-WH-2s.png' %>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-6 d-flex justify-content-center align-items-center">
         <div class="user-login-inner mx-auto text-white">
           <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Login</h2>
           <label class="fs-14 fw-600">Let's log in and join the network of VenuTrax.</label>
@@ -26,9 +26,9 @@
           <div class="form-group mb-2 relative mt-4">
             <label for="user_password" class="fs-14 text-uppercase fw-600">Password</label>
             <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2', id: "password-field", 'data-parsley-required': 'true', 'data-parsley-required-message': 'Password cannot be blank', 'data-parsley-trigger': 'keyup' %>
-            <span toggle="#password-field" class="fa fa-eye-slash field-icon toggle-password"></span>
+            <span toggle="#password-field" class="toggle-password"></span>
           </div>
-          <div class="row mt-4">
+          <div class="row mt-4 login-extra-links">
             <div class="col-lg-6 col-sm-12">
               <% if devise_mapping.rememberable? %>
               <div class="form-group mt-3 relative">
