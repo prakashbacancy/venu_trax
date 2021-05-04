@@ -5,6 +5,10 @@ class BusinessesController < ApplicationController
     @businesses = Business.all
   end
 
+  def show
+    business
+  end
+
   def new
     business
   end
