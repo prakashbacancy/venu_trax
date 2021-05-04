@@ -2548,6 +2548,10 @@ pre code {
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
 }
 
+form .form-control{
+  height: calc(3.25rem + 10px) !important;
+}
+
 @media (prefers-reduced-motion:reduce) {
   .form-control {
     -webkit-transition: none;
@@ -13085,7 +13089,8 @@ html {
   transition: transform .3s ease-in-out, margin .3s ease-in-out;
   transition: transform .3s ease-in-out, margin .3s ease-in-out, -webkit-transform .3s ease-in-out;
   /* margin-left: 255px; */
-  z-index: 820
+  z-index: 820;
+  background-color: #fff;
 }
 
 .layout-top-nav .content-wrapper,
