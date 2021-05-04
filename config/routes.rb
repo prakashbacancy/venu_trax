@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   }
   # for business module
   resources :businesses
+  resources :simulations
 end

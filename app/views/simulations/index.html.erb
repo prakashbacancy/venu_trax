@@ -1,0 +1,35 @@
+<h2>Simulation </h2>
+<%= link_to "Add Simulation", new_simulation_path %>
+<section class="content-wrapper">
+  <div class="content position-relative">
+    <div class="col-lg-3 col-md-6">
+      <div class="form-group down-arrow">
+        <%= select_tag :option, options_for_select(Simulation::CHART_OPTIONS, params[:option]), class: 'form-control chart_option' %>
+      </div>
+    </div>
+    <div id="chart-records">
+    	<%= render partial: 'chart_records'%>
+    </div>
+  </div>
+</section>
+<style type="text/css">
+	.content-wrapper, .main-footer, .right-side {
+    transition: transform .3s ease-in-out, margin .3s ease-in-out;
+    margin-left: 0px;
+    z-index: 820;
+}
+</style>
+<script type="text/javascript">
+	$(document).on('change', '.chart_option', function(){
+		selected_options = $('.chart_option option:selected').val()
+		$.ajax({
+	    url: '/simulations',
+	    type: "GET",
+	    data: {"option" : selected_options},
+	    dataType: "script",
+	    success: function (data) { 
+	      console.log("data successfully updated")
+	    }
+	  })
+	})
+</script>

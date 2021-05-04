@@ -12,6 +12,8 @@ import 'stylesheets/application'
 
 require('jquery')
 require("bootstrap")
+require("chartkick")
+require("chart.js")
 // require("packs/app.min.js")
 
 // import "../stylesheets/application";
