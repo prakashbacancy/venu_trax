@@ -12,9 +12,10 @@ import 'stylesheets/application'
 
 require('jquery')
 require("bootstrap")
+require("@fortawesome/fontawesome-free/css/all.css")
 require("chartkick")
 require("chart.js")
-require("@fortawesome/fontawesome-free/css/all.css")
+require("parsleyjs")
 // require("packs/app.min.js")
 
 // import "../stylesheets/application";
@@ -35,6 +36,7 @@ require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
 const dataTables = [];
 
 document.addEventListener("turbolinks:load", () => {
+  $('form').parsley();
   if (dataTables.length === 0 && $('.data-table').length !== 0) {
     $('.data-table').each((_, element) => {
       dataTables.push($(element).DataTable({

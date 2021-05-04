@@ -14,6 +14,7 @@
     "datatables.net": "^1.10.24",
     "datatables.net-bs4": "^1.10.24",
     "jquery": "^3.6.0",
+    "parsleyjs": "^2.9.2",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
