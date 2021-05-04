@@ -2531,7 +2531,7 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(1.5em + .75rem + 2px);
+  height: calc(3.25rem + 10px) !important;
   padding: .375rem .75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -7073,7 +7073,10 @@ a.close.disabled {
   padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(.3rem - 1px);
-  border-top-right-radius: calc(.3rem - 1px)
+  border-top-right-radius: calc(.3rem - 1px);
+  background: transparent linear-gradient(
+    90deg
+    , #007AFF 0%, #006DE4 100%) 0% 0% no-repeat padding-box;
 }
 
 .modal-header .close {
@@ -7083,7 +7086,9 @@ a.close.disabled {
 
 .modal-title {
   margin-bottom: 0;
-  line-height: 1.5
+  line-height: 1.5;
+  color: #fff;
+  font-size: 24px;
 }
 
 .modal-body {
@@ -7105,8 +7110,9 @@ a.close.disabled {
   align-items: center;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: flex-end;
-  padding: .75rem;
+  justify-content: flex-start !important;
+  /* padding: .75rem; */
+  padding: 0px !important;
   border-top: 1px solid #dee2e6;
   border-bottom-right-radius: calc(.3rem - 1px);
   border-bottom-left-radius: calc(.3rem - 1px)
@@ -12422,6 +12428,10 @@ img {
 
 .fs-16 {
   font-size: 16px !important
+}
+
+.fs-17 {
+  font-size: 17px !important
 }
 
 .fs-18 {
@@ -19653,9 +19663,11 @@ table.text-center th {
 }
 
 .admin-table .table .thead-dark th {
-  background-color: #2b3b41;
+  background-color: #F5F8FA;
   font-size: 18px;
-  border-color: #e4e4e4
+  border-color: #e4e4e4;
+  color: #545454;
+  font-weight: 600;
 }
 
 @media (max-width:1366px) {
