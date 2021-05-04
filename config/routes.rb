@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'homes#index'
+  root to: 'businesses#index'
   # for user functionality
   devise_for :users, controllers: { 
   	registrations: 'users/registrations',
