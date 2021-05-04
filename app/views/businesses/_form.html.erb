@@ -55,14 +55,14 @@
           <div class="form-group ">
             <label for="Name">City</label>
             <span class="required"> * </span>
-            <%= f.text_field :zip_code, class:"form-control", placeholder:"City", required: true  %>
+            <%= f.text_field :city, class:"form-control", placeholder:"City", required: true  %>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group ">
             <label for="subject"> State </label>
             <span class="required"> * </span>
-            <%= f.text_field :address, class:"form-control", placeholder: "State", required: true  %>
+            <%= f.text_field :state, class:"form-control", placeholder: "State", required: true  %>
           </div>
         </div>
       </div>
@@ -71,14 +71,14 @@
           <div class="form-group ">
             <label for="Name">No of Employee</label>
             <span class="required"> * </span>
-            <%= f.text_field :zip_code, class:"form-control", placeholder:"No of Employee", required: true  %>
+            <%= f.text_field :no_of_employee, class:"form-control", placeholder:"No of Employee", required: true  %>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group ">
             <label for="subject"> Annual Revenue </label>
             <span class="required"> * </span>
-            <%= f.text_field :address, class:"form-control", placeholder: "Annual Revenue", required: true  %>
+            <%= f.text_field :annual_revenue, class:"form-control", placeholder: "Annual Revenue", required: true  %>
           </div>
         </div>
       </div>
@@ -89,8 +89,15 @@
             <span class="required"> * </span>
             <%= f.text_area :description, class:"form-control", placeholder: "Description", required: true  %>
           </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group ">
+            <label for="subject"> Domain </label>
+            <span class="required"> * </span>
+            <%= f.text_area :domain, class:"form-control", placeholder: "Description", required: true  %>
           </div>
         </div>
+      </div>
       <div class="d-inline-flex flex-column flex-sm-row">
         <%= f.submit :save, class: 'btn btn-admin mb-2 mr-3' %>
         <%= link_to "Cancel", businesses_path, class: 'btn btn-admin-cancel' %>
