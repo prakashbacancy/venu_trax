@@ -200,3 +200,12 @@
 .user-login .main-content {
   min-height: calc(100vh - 20rem);
 }
+.field-icon {
+  right: 0px;
+  padding-right: 244px;
+  position: absolute;
+  color: gray;
+  z-index: 2;
+  cursor: pointer;
+  top: 341px;
+}
