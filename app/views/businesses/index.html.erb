@@ -26,12 +26,12 @@
       </div>
       <div class="col-md-8">
         <div class="add-item-btn mb-3 d-md-flex flex-wrap flex-row-reverse">
-          <%= link_to "Add Business", new_business_path, class: 'btn btn-primary mb-2' %>
+          <%= link_to "Add Business", new_business_path, remote: true, class: 'btn btn-primary mb-2' %>
         </div>
       </div>
     </div>
     <div class="admin-table bg-white table-responsive mt-3">
-      <table class="table table-bordered text-center" id="business_list_table" style="width: 100%;">
+      <table class="table table-bordered text-center" id="business_list_table">
         <thead class="thead-dark">
           <th>Business Name</th>
           <th>Address</th>
@@ -46,14 +46,14 @@
     			<tr>
     				<td><%= link_to business.name, business_path(business.id) %></td>
     				<td><%= business.address %></td>
-            <td><%= business.domain %></td>
+            <td><%= link_to business.domain, url_simplifier(business.domain), target: "_blank" if business.domain %></td>
     				<td><%= business.state %></td>
             <td>0</td>
             <td><%= business.phone_no %></td>
             <td>
               <div class="action-area-buttons">
-                <%= link_to(' ', edit_business_path(business), class: 'fa fa-pencil-alt') %>
-                <%= link_to(' ', business_path(business), method: :delete, class: 'fa fa-trash', data: {confirm: 'Are you sure want to delete this Modifier Group?'}) %>
+                <%= link_to(' ', edit_business_path(business), remote: true, class: 'fa fa-pencil-alt') %>
+                <%= link_to(' ', business_path(business), method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
               </div>
             </td>
     			</tr>
@@ -64,52 +64,8 @@
   </div>
 </section>
 
-<style>
-
-
-</style>
-
 <script>
-  // $('#business_list_table').dataTable();
-    //  dom: 'l<"toolbar">frtip',
-    $(document).ready(function(){
-      var table = $('#business_list_table');
-      // table.DataTable().destroy();
-      // table.DataTable({
-      //     initComplete : function() {
-      //       var input = $('.dataTables_filter input').unbind(),
-      //           self = this.api(),
-      //           $searchButton = $('<button>')
-      //                       .text('Search').addClass('btn btn-primary')
-      //                       .click(function() {
-      //                         self.search(input.val()).draw();
-      //                       }),
-      //           $clearButton = $('<button>')
-      //                       .text('Clear').addClass('btn btn-light bg-light-gray text-dark')
-      //                       .click(function() {
-      //                         input.val('');
-      //                         $searchButton.click(); 
-      //                       }) 
-      //       $('.dataTables_filter').append($searchButton, $clearButton);
-      //       console.log('hello');
-      //     },
-      //   language: {
-      //       search: "",
-      //       searchPlaceholder: "Search Business"
-      //   }          
-      // })
-      var dataTable = table.DataTable({
-        "dom": 't<"dataTable-bottom"lp>',
-         "language": {
-            "paginate": {
-              "previous": "< Back",
-              "next": "Next >"
-            }
-          }
-      });
-      $('.search_btn').on('click', function(){
-        dataTable.search($('#searchbox').val()).draw();
-      })
-    })
-
+  $(document).ready(function(){
+    custom_datatable($('#business_list_table'));
+  })
 </script>

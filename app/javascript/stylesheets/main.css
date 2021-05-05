@@ -2549,7 +2549,7 @@ pre code {
 }
 
 form .form-control{
-  height: calc(3.25rem + 10px) !important;
+  height: calc(3.25rem + 10px);
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -5916,7 +5916,8 @@ input[type=submit].btn-block {
   display: flex;
   padding-left: 0;
   list-style: none;
-  border-radius: .25rem
+  border-radius: .25rem;
+  font-weight: 500;
 }
 
 .page-link {
