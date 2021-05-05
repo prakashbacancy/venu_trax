@@ -7,4 +7,8 @@ module ApplicationHelper
     when 'alert' then 'alert-error'
     end
   end
+
+  def url_simplifier(url)
+    (url.start_with?('http://') || url.start_with?('https://')) ? url : "http://#{url}"
+  end
 end
