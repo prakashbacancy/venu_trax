@@ -17,6 +17,7 @@ require("chartkick")
 require("chart.js")
 require("parsleyjs")
 // require("packs/app.min.js")
+require("packs/custom_datatable.js")
 
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
