@@ -57,7 +57,7 @@
       </div>
       <div class="my-2 my-lg-0">
       <ul class="navbar-nav">
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown profile-dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_pack_tag 'home/profile_placeholder.svg', alt: "", class: "profile-circle nav-circie mr-1" %><%= current_user.full_name.truncate(15, :omission => "...") || 'User' %>
             </a>
@@ -124,6 +124,20 @@
     }
     .navbar .navbar-brand {
       padding: 0 0.8em;
+    }
+    .profile-dropdown {
+      position: relative;
+    }
+    .profile-dropdown::before {
+      content: '.';
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      border-left: 1px solid #fff;
+      color: #2E3F50;
+      height: 37%;
+      left: 1%;
     }
   }
 
