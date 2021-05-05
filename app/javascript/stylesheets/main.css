@@ -20639,13 +20639,13 @@ table.text-center th {
   min-width: 38px
 }
 
-input.parsley-success,
+/* input.parsley-success,
 select.parsley-success,
 textarea.parsley-success {
   color: #468847;
   background-color: #DFF0D8;
   border: 1px solid #D6E9C6;
-}
+} */
 
 .parsley-errors-list li.parsley-required{
   padding-top: 7px;
