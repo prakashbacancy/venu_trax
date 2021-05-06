@@ -7079,7 +7079,7 @@ a.close.disabled {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 1rem 1rem;
+  padding: 1rem 40px !important;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(.3rem - 1px);
   border-top-right-radius: calc(.3rem - 1px);

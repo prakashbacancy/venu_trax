@@ -14,8 +14,8 @@
             Business Management
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View Business", 'javascript:(0)', class: 'dropdown-item fw-600 fs-14' %>
-            <a class="dropdown-item fw-600 fs-14" href="#">Add Business</a>
+            <%= link_to "View Business", businesses_path, class: 'dropdown-item fw-600 fs-14' %>
+            <%= link_to "Add Business", new_business_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
             <%= link_to "View Simulation", simulations_path, class: 'dropdown-item fw-600 fs-14' %>
             <a class="dropdown-item fw-600 fs-14" href="#">View Venue</a>
             <!-- <div class="dropdown-divider"></div> -->
@@ -27,7 +27,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "View User", users_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "Add User", users_path, class: 'dropdown-item fw-600 fs-14' %>
+            <%= link_to "Add User", new_user_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
           </div>
         </li>
         <li class="nav-item dropdown px-md-2">
@@ -80,11 +80,6 @@
 </header>
 
 <style>
-  .main-header .dropdown-menu {
-    background-color: #007AFF;
-    border-radius: 0px;
-  }
-
   .main-header .dropdown-menu>.dropdown-item{
     color: white;
     opacity: 60% !important;
@@ -97,38 +92,4 @@
   .main-header .dropdown-menu>.dropdown-item:focus{
     background-color: #007bff;
   }
-
-  .navbar .navbar-nav .nav-link {
-    padding: 0.6em;
-  }
-  .navbar .navbar-brand {
-    padding: 0 0.6em;
-  }
-
-  @media only screen and (min-width: 960px) {
-    .navbar {
-      padding: 0;
-    }
-    .navbar .navbar-nav .nav-link {
-      padding: 1em 0.5em;
-    }
-    .navbar .navbar-brand {
-      padding: 0 0.8em;
-    }
-    .profile-dropdown {
-      position: relative;
-    }
-    .profile-dropdown::before {
-      content: '.';
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translate(-50%,-50%);
-      transform: translate(-50%,-50%);
-      border-left: 1px solid #fff;
-      color: #2E3F50;
-      height: 37%;
-      left: -2%;
-    }
-  }
-
 </style>

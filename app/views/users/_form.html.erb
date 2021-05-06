@@ -1,12 +1,40 @@
 
 
 <div class="modal-header">
-  <h5 class="modal-title">Add User</h5>
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Add' : 'Edit' %>
+  <h5 class="modal-title"><%= title_half %> User</h5>
 </div>
 <div class="modal-body">
-  <%= form_for @user, url: users_path, method: :post do |f| %>
+  <% path = (params[:action] == 'new' or params[:action] == 'create') ? users_path : user_path(@user) %>
+  <% method = (params[:action] == 'new' or params[:action] == 'create') ? :post : :put %>
+  <%= form_for @user, url: path, method: method do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
+
     <div class="form-group">
+      <div class="">
+        <% if @user.profile_pic.attached? %>
+          <%= image_tag @user.profile_pic, class: 'img-boundary' %>
+        <% else %>
+          <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary' %>
+        <% end %>
+        <div class="content-profile-info d-inline badge badge-edit">
+          <label class="btn-avatar">
+            <i class="fa fa-pencil-alt fs-16 text-white"></i>
+            <span style="display:none;">
+              <%= f.file_field :profile_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+            </span>
+            <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+              <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
+              </li>
+            </ul>
+          </label>
+        </div>
+        <%#= f.file_field :profile_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+        <%# <span class="badge badge-edit fa fa-pencil-alt"> </span> %>
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
       <%= f.label :email_address, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.email_field :email, class:"form-control", placeholder:"Email Address", required: true  %>
     </div>
@@ -17,9 +45,21 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :phone_number, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.label :mobile_number, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.text_field :phone_no, class:"form-control", placeholder:"Phone Number", required: true  %>
     </div>
+
+    <% unless (params[:action] == 'new' or params[:action] == 'create') %>
+      <div class="form-group">
+        <%= f.label :change_password, class: 'text-capitalize fs-17' %><br />  
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Password" value="**********" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+          <div class="input-group-append">
+            <span class="input-group-text"><%= link_to "Change", edit_password_path(@user), remote: true %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
     <div class="modal-footer modal-footer-fixed">
       <%= f.submit "Save", class: "btn btn-primary" %>

@@ -1,7 +1,8 @@
 
 
 <div class="modal-header">
-  <h5 class="modal-title">Add Business</h5>
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Add' : 'Edit' %>
+  <h5 class="modal-title"><%= title_half %> Business</h5>
 </div>
 <div class="modal-body">
   <%= form_for @business do |f| %>
@@ -9,65 +10,63 @@
 
     <div class="form-group mt-4">
       <%= f.label :business_domain_name, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :domain, class:"form-control", placeholder:"Business Domain Name", required: true  %>
+      <%= f.text_field :domain, class:"form-control", placeholder:"Enter Business Domain Name", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :business_name, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :name, class:"form-control", placeholder:"Name", required: true  %>
+      <%= f.text_field :name, class:"form-control", placeholder:"Enter Business Name", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :industry, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :industry, class:"form-control", placeholder: "Industry", required: true  %>
+      <%= f.text_field :industry, class:"form-control", placeholder: "Enter Industry", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :type, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :business_type, class:"form-control", placeholder:"Type", required: true  %>
+      <%= f.text_field :business_type, class:"form-control", placeholder:"Enter Type", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :phone, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Phone", class: 'form-control' %>
+      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Enter Phone", class: 'form-control' %>
     </div>
-
 
     <div class="form-group">
       <%= f.label :zip_code, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :zip_code, class:"form-control", placeholder:"Zip Code", required: true  %>
+      <%= f.text_field :zip_code, class:"form-control", placeholder:"Enter Zip Code", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :address, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :address, class:"form-control", placeholder: "Address", required: true  %>
+      <%= f.text_field :address, class:"form-control", placeholder: "Enter Address", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :city, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :city, class:"form-control", placeholder: "City", required: true  %>
+      <%= f.text_field :city, class:"form-control", placeholder: "Enter City", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :state, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :state, class:"form-control", placeholder: "State", required: true  %>
+      <%= f.text_field :state, class:"form-control", placeholder: "Enter State", required: true  %>
     </div>
 
     <div class="form-group">
       <%= f.label :no_of_employee, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :no_of_employee, class:"form-control", placeholder:"No of Employee", required: true  %>
+      <%= f.text_field :no_of_employee, class:"form-control", placeholder:"Enter No of Employee", required: true  %>
     </div>
-
 
     <div class="form-group">
       <%= f.label :annual_revenue, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :annual_revenue, class:"form-control", placeholder: "Annual Revenue", required: true  %>
+      <%= f.text_field :annual_revenue, class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
     </div>
 
 
     <div class="form-group">
       <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_area :description, class:"form-control h-auto", placeholder: "Description", required: true, rows: 8  %>
+      <%= f.text_area :description, class:"form-control h-auto", placeholder: "Enter Description", required: true, rows: 8  %>
     </div>
 
     <div class="modal-footer modal-footer-fixed">

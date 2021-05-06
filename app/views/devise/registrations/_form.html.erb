@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">Edit Profile</h5>
+  <h5 class="modal-title">My Profile</h5>
 </div>
 <div class="modal-body">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -53,7 +53,7 @@
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Password" value="**********" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
         <div class="input-group-append">
-          <span class="input-group-text"><%= link_to "Change", businesses_path %></span>
+          <span class="input-group-text"><%= link_to "Change", edit_password_path(resource), remote: true %></span>
         </div>
       </div>
     </div>
