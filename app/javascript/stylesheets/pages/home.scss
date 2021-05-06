@@ -32,14 +32,14 @@
  }
 
  .main-header .dropdown-menu .dropdown-item {
-   opacity: 60%;
+   opacity: 60% !important;
    line-height: 2rem;
  }
 
  .main-header .dropdown-menu .dropdown-item:hover {
    background-color: #007AFF;
   //  color: yellow;
-   opacity: 100%;
+   opacity: 100% !important;
  }
 
  .badge-edit{
