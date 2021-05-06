@@ -7,8 +7,25 @@
 
     <div class="form-group">
       <div class="">
-        <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary' %>
-                      <span class="badge badge-edit fa fa-pencil-alt"> </span>
+        <% if resource.profile_pic.attached? %>
+          <%= image_tag resource.profile_pic, class: 'img-boundary' %>
+        <% else %>
+          <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary' %>
+        <% end %>
+        <div class="content-profile-info d-inline badge badge-edit">
+          <label class="btn-avatar">
+            <i class="fa fa-pencil-alt fs-16 text-white"></i>
+            <span style="display:none;">
+              <%= f.file_field :profile_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+            </span>
+            <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+              <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
+              </li>
+            </ul>
+          </label>
+        </div>
+        <%#= f.file_field :profile_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+        <%# <span class="badge badge-edit fa fa-pencil-alt"> </span> %>
       </div>
     </div>
 
