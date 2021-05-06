@@ -80,26 +80,6 @@
 </header>
 
 <style>
-  .dropdown .dropdown-menu {
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-
-    max-height: 0;
-    display: block;
-    overflow: hidden;
-    opacity: 0;
-  }
-
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-    max-height: 300px;
-    opacity: 1;
-  }
-
   .main-header .dropdown-menu {
     background-color: #007AFF;
     border-radius: 0px;
@@ -107,6 +87,15 @@
 
   .main-header .dropdown-menu>.dropdown-item{
     color: white;
+    opacity: 60% !important;
+  }
+
+  .main-header .dropdown-menu>.dropdown-item:hover{
+    opacity: 100% !important;
+  }
+
+  .main-header .dropdown-menu>.dropdown-item:focus{
+    background-color: #007bff;
   }
 
   .navbar .navbar-nav .nav-link {
