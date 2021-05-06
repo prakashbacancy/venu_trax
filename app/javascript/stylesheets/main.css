@@ -20715,3 +20715,6 @@ textarea.parsley-error {
   color: #f80c0c;
   content: "*";
 }
+.border-radius-5{
+  border-radius: 5px;
+}
