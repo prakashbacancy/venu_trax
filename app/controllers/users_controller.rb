@@ -1,0 +1,59 @@
+class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :user, only: %i[show new edit]
+
+  def index
+    @users = User.without_ current_user
+  end
+
+  def create
+    link_raw = set_reset_password_token
+    user.assign_attributes(user_params)
+    if user.save(validate: false)
+      UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+      flash[:success] = 'User Successfully Added!'
+    else
+      flash[:danger] = 'Error Occurred While Adding A User!'
+    end
+    redirect_to users_path
+  end
+
+  def update
+    if user.update(user_params)
+      flash[:success] = 'User Successfully Updated!'
+    else
+      flash[:danger] = 'Error Occurred While Updating A User!'
+    end
+    redirect_to users_path
+  end
+
+  def destroy
+    if user.destroy
+      flash[:success] = 'User Successfully Deleted!'
+    else
+      flash[:danger] = 'Error Occurred While Deleting A User!'
+    end
+    redirect_to users_path
+  end
+
+  private
+
+  def user
+    @user ||= if params[:id].present?
+                User.find(params[:id])
+              else
+                User.new
+              end
+  end
+
+  def user_params
+    params.require(:user).permit(User::PERMITTED_PARAM)
+  end
+
+  def set_reset_password_token
+    raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
+    user.reset_password_token   = enc
+    user.reset_password_sent_at = Time.now.utc
+    raw
+  end
+end
