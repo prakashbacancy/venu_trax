@@ -5,13 +5,13 @@ class PasswordsController < ApplicationController
   def update
     if user.valid_password?(user_params[:current_password])
       if user.reset_password(user_params[:password], user_params[:password_confirmation])
-        sign_in(user, bypass: true) if current_password == user
-        flash[:notice] = 'Password Changed Successfully'
+        sign_in(user, bypass: true) if current_user == user
+        flash[:notice] = 'Password Changed Successfully!'
       else
         flash[:alert] = user.errors.full_messages
       end
     else
-      flash[:alert] = 'Entered Current Password is wrong'
+      flash[:alert] = 'You have entered wrong current password!'
     end
     redirect_to request.referrer
   end
