@@ -14,8 +14,8 @@
             Business Management
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View Business", 'javascript:(0)', class: 'dropdown-item fw-600 fs-14' %>
-            <a class="dropdown-item fw-600 fs-14" href="#">Add Business</a>
+            <%= link_to "View Business", businesses_path, class: 'dropdown-item fw-600 fs-14' %>
+            <%= link_to "Add Business", new_business_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
             <%= link_to "View Simulation", simulations_path, class: 'dropdown-item fw-600 fs-14' %>
             <a class="dropdown-item fw-600 fs-14" href="#">View Venue</a>
             <!-- <div class="dropdown-divider"></div> -->
@@ -27,7 +27,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "View User", users_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "Add User", users_path, class: 'dropdown-item fw-600 fs-14' %>
+            <%= link_to "Add User", new_user_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
           </div>
         </li>
         <li class="nav-item dropdown px-md-2">
@@ -80,7 +80,6 @@
 </header>
 
 <style>
-
   .main-header .dropdown-menu>.dropdown-item{
     color: white;
     opacity: 60% !important;
@@ -93,6 +92,4 @@
   .main-header .dropdown-menu>.dropdown-item:focus{
     background-color: #007bff;
   }
-
-
 </style>
