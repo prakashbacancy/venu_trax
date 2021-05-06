@@ -2,7 +2,7 @@
   <div class="col-lg-4 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">Venue Details</h3>
+        <h3 class="chart-main-title mb-0">Seating Capacity </h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= area_chart @simulations.group_by_day(:created_at).sum(:daily_seating_capacity) %>
@@ -16,8 +16,14 @@
         <h3 class="chart-main-title mb-0">Visitor Attendance</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= pie_chart (@simulations.group_by_day(:created_at).sum(:annual_attendance_per))
-           %>
+  				<%= line_chart(@visitor_attendance, messages: {empty: "No Records available."},
+          thousands: ",",
+          prefix: "$ ",
+          donut: true,
+          round: 2,
+          zeros: true,
+          width: 10,
+          colors: ["#b00", "#666"]) %>
   			</div>
   		</div>
   	</div>
@@ -28,47 +34,62 @@
         <h3 class="chart-main-title mb-0">WIFILP</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart (@simulations.group_by_day(:created_at).sum(:wifi_lp_per_day_login))
-           %>
+  				<%= column_chart(@wifi_login, messages: {empty: "No Records available."},
+          thousands: ",",
+          prefix: "$ ",
+          donut: true,
+          round: 2,
+          zeros: true) %>
   			</div>
   		</div>
   	</div>
   </div>
 </div>
 <div class="row">
-  <div class="col-lg-4 mb-4">
+  <div class="col-lg-3 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10">
       <div class="chart-header">
         <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart @simulations.group_by_day(:created_at).sum(:cpm_impression_per_day) %>
+  				<%= column_chart @lp_impression %>
   			</div>
   		</div>
   	</div>
   </div>
-  <div class="col-lg-4 mb-4">
+  <div class="col-lg-3 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10">
       <div class="chart-header">
         <h3 class="chart-main-title mb-0">User Impression</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= pie_chart (@simulations.group_by_day(:created_at).sum(:cpm_impression_per_day))
-           %>
+  				<%= column_chart @user_impression %>
   			</div>
   		</div>
   	</div>
   </div>
-  <div class="col-lg-4 mb-4">
+  <div class="col-lg-3 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10">
       <div class="chart-header">
         <h3 class="chart-main-title mb-0">CPM Impression Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart (@simulations.group_by_day(:created_at).sum(:cpm_impression_annual))
+  				<%= column_chart @cpm_lpm %>
            %>
   			</div>
   		</div>
   	</div>
+  </div>
+  <div class="col-lg-3 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">CPM Impression Revenue</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+          <%= area_chart @simulations.group_by_day(:created_at).sum(:wifi_annual_total) 
+          %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
