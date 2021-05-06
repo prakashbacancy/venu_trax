@@ -522,3 +522,19 @@ table.dataTable {
 		}
 	}
 }
+
+.simulation-form form .form-control{
+	height: calc(3.25rem + -7px) !important
+}
+.simulation-form .form-control{
+	border: 1px solid #F6F6F6 !important;
+	color: #007AFF !important;
+}
+.simulation-form .form-control::placeholder{
+	color: lightgray !important;
+}
+.simulation-form input[type=number]::-webkit-inner-spin-button,
+.simulation-form input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
