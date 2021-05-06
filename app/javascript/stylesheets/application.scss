@@ -17,3 +17,14 @@
 
 @import "./pages/login";
 @import "./pages/home";
+
+ .main-header .dropdown-menu .dropdown-item {
+   opacity: 60% !important;
+   line-height: 2rem;
+ }
+
+ .main-header .dropdown-menu .dropdown-item:hover {
+   background-color: #007AFF;
+  //  color: yellow;
+   opacity: 100% !important;
+ }
