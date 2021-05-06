@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h5 class="modal-title">Change Password</h5>
+</div>
+<div class="modal-body">
+  <%= form_for @user, url: password_path(@user), method: :put do |f| %>
+    <%#= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group mt-4">
+      <%= f.label :current_password, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :current_password, class:"form-control", placeholder:"Enter Current Password", required: true  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :new_password, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :password, class:"form-control", placeholder:"Enter New Password", required: true  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :confirm_new_password, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :password_confirmation, class:"form-control", placeholder: "Enter Confirm Password", required: true  %>
+    </div>
+
+    <div class="modal-footer modal-footer-fixed">
+      <%= f.submit "Save", class: "btn btn-primary" %>
+      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    </div>
+  <% end %>
+</div>

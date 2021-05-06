@@ -8,4 +8,5 @@ class User < ApplicationRecord
   scope :without_, ->(current_user) { where.not(id: current_user) }
 
   PERMITTED_PARAM = %w[id full_name email phone_no profile_pic].freeze
+  PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
 end
