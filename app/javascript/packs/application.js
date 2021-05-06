@@ -8,7 +8,6 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import 'stylesheets/application'
 
 require('jquery')
 require("bootstrap")
@@ -18,6 +17,7 @@ require("chart.js")
 require("parsleyjs")
 // require("packs/app.min.js")
 require("packs/custom_datatable.js")
+import 'stylesheets/application'
 
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
