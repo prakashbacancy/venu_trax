@@ -4,6 +4,7 @@ class SimulationsController < ApplicationController
   def index
     set_date_filter
     @simulations = Simulation.where(created_at: @date_range)
+    @visitor_attendance, @wifi_login, @cpm_lpm, @user_impression, @lp_impression = visitor_attendance(@simulations)
   end
 
   def new
@@ -68,5 +69,13 @@ class SimulationsController < ApplicationController
     else
       Date.today.beginning_of_day..Date.today.end_of_day
     end
+  end
+  def visitor_attendance(data)
+    visitor = [{"name" => "Per day","data" => data.group_by_day(:created_at).sum(:avg_attendance_event)},{"name" => "Annual  Attendance","data" => data.group_by_day(:created_at).sum(:avg_attendance_annual_event)}]
+    wifi_login = [{"name" => "Per day","data" => data.group_by_day(:created_at).sum(:wifi_lp_per_day_login)},{"name" => "Annual","data" => data.group_by_day(:created_at).sum(:wifi_lp_annual_login)}]
+    lp_impression = [{"name" => "Per day","data" => data.group_by_day(:created_at).sum(:lp_rev_per_day_total)},{"name" => "Annual","data" => data.group_by_day(:created_at).sum(:lp_rev_annual_total)}]
+    cpm_lp = [{"name" => "Per day","data" => data.group_by_day(:created_at).sum(:cpm_impression_per_day)},{"name" => "Annual","data" => data.group_by_day(:created_at).sum(:cpm_impression_annual)}]
+    user_impression = [{"name" => "Per day","data" => data.group_by_day(:created_at).sum(:user_impression_per_day)},{"name" => "Annual","data" => data.group_by_day(:created_at).sum(:user_impression_annual)}]
+    return visitor, wifi_login, cpm_lp, user_impression, lp_impression
   end
 end
