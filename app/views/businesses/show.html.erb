@@ -27,14 +27,93 @@
             <div class="tab-pane fade show active" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
 
             <div class="shadow p-3 mb-5 bg-white rounded mt-4 p-5">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
+             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
+             <p class="text-primary mt-3 fa fa-comments">  Add Comments</p>
             
             </div>
 
-            
+            <div class="shadow p-3 mb-5 bg-white rounded mt-4 p-5">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley</p>
+              <p class="text-primary mt-3 fa fa-comments">  Add Comments</p>
+            </div>
+
+            </div>
+            <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">
+             <div class="admin-table bg-white table-responsive mt-3">
+                <table class="table table-bordered text-center w-100" id="business_list_table">
+                  <thead class="thead-dark">
+                    <th>Venue Name</th>
+                    <th>City</th>
+                    <th>No of Employees</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>xyz xyz</td>
+                      <td>Chicago</td>
+                      <td>10</td>
+                      <td>+1 (925)-945-2293</td>
+                      <td>
+                        <div class="action-area-buttons">
+                          <%= link_to(' ', '#', remote: true, class: 'fa fa-pencil-alt') %>
+                          <%= link_to(' ', '#', method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>xyz xyz</td>
+                      <td>Chicago</td>
+                      <td>10</td>
+                      <td>+1 (925)-945-2293</td>
+                      <td>
+                        <div class="action-area-buttons">
+                          <%= link_to(' ', '#', remote: true, class: 'fa fa-pencil-alt') %>
+                          <%= link_to(' ', '#', method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>xyz xyz</td>
+                      <td>Chicago</td>
+                      <td>10</td>
+                      <td>+1 (925)-945-2293</td>
+                      <td>
+                        <div class="action-area-buttons">
+                          <%= link_to(' ', '#', remote: true, class: 'fa fa-pencil-alt') %>
+                          <%= link_to(' ', '#', method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>xyz xyz</td>
+                      <td>Chicago</td>
+                      <td>10</td>
+                      <td>+1 (925)-945-2293</td>
+                      <td>
+                        <div class="action-area-buttons">
+                          <%= link_to(' ', '#', remote: true, class: 'fa fa-pencil-alt') %>
+                          <%= link_to(' ', '#', method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>xyz xyz</td>
+                      <td>Chicago</td>
+                      <td>10</td>
+                      <td>+1 (925)-945-2293</td>
+                      <td>
+                        <div class="action-area-buttons">
+                          <%= link_to(' ', '#', remote: true, class: 'fa fa-pencil-alt') %>
+                          <%= link_to(' ', '#', method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             
             </div>
-            <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">..Venues.</div>
           </div>
         </div>
       </div>
