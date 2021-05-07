@@ -5,7 +5,7 @@
         <h3 class="chart-main-title mb-0">Seating Capacity </h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart @simulations.group_by_day(:created_at).sum(:daily_seating_capacity) %>
+  				<%= area_chart @simulations.group_by_day(:created_at).sum(:annual_seating_capacity) %>
   			</div>
   		</div>
   	</div>
