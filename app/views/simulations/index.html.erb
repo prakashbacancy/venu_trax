@@ -1,32 +1,73 @@
-<section class="content-wrapper">
+<section class="content-wrapper simulation-section">
   <div class="content position-relative">
   	<div class="d-flex">
       <div class="row">
         <div class="col-lg-12">
-          <h5 class="text-gray d-inline">Simulations</h5>
+          <h5 class="text-gray d-inline">Business Management</h5>
           <h5 class="text-gray d-inline"> <i class="fa fa-angle-right"></i></h5>
           <h5 class="text-dark d-inline">View Simulation</h5>
         </div>
       </div>
     </div>
-    <hr>
+
+		<ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+			<li class="nav-item mt-3">
+				<a class="nav-link active fs-20 mx-4" id="simulation-analytics-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Simulation Analytics</a>
+			</li>
+			<li class="nav-item mt-3">
+				<a class="nav-link fs-20 mx-4" id="pos-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">POS</a>
+			</li>
+			<li class="nav-item mt-3">
+				<a class="nav-link fs-20 mx-4" id="iptv-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">IPTV</a>
+			</li>
+			<li class="nav-item mt-3 mr-auto">
+				<a class="nav-link fs-20 mx-4" id="live-analytics-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Live Analytics</a>
+			</li>
+			<li>
+				<div class="dropdown ml-4">
+					<button class="btn btn-white border dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Select Brand
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Apple</a>
+						<a class="dropdown-item" href="#">Microsoft</a>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="dropdown ml-4">
+					<button class="btn btn-white border dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Revenue Source
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Apple</a>
+						<a class="dropdown-item" href="#">Microsoft</a>
+					</div>
+				</div>
+			</li>
+			<li class="  ">
+				<div class="ml-4 d-inline">
+					<%= image_pack_tag "simulation/ic_print.svg", class: 'mr-4' %>
+					<%= image_pack_tag "simulation/ic_pdf.svg", class: 'mr-4' %>
+					<%= image_pack_tag "simulation/ic_share.svg", class: '' %>
+				</div>
+			</li>
+			<li class=" ">
+				<div class="mx-4 mt-3  d-inline">
+					<%= link_to "Input Simulation Data", new_simulation_path, remote: true, class: 'btn btn-primary' %>
+				</div>
+			</li>
+		</ul>
+		<%# <div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+		</div> %>
     <div class='row mt-2'>
-    	<div class="col-md-2">
-    		<h3>Simulation Analytics</h3>
-    	</div>
-      <div class="col-md-2">
+      <div class="col-md-2 mx-4 ml-auto">
 	      <div class="form-group down-arrow">
-	        <%= select_tag :option, options_for_select(Simulation::CHART_OPTIONS, params[:option]), class: 'form-control chart_option' %>
+	        <%= select_tag :option, options_for_select(Simulation::CHART_OPTIONS, params[:option]), class: 'w-100 chart_option btn-white btn border' %>
 	      </div>
-	    </div>
-      <div class="col-md-2"></div>
-      <div class="col-md-2">
-        <%= image_pack_tag "simulation/ic_print.svg", class: 'mr-4' %>
-        <%= image_pack_tag "simulation/ic_pdf.svg", class: 'mr-4' %>
-        <%= image_pack_tag "simulation/ic_share.svg", class: 'mr-4' %>
-      </div>
-	    <div class="col-md-2">
-				<%= link_to "Input Simulation Data", new_simulation_path, remote: true, class: 'btn btn-primary' %>
 	    </div>
     </div>
     <div id="chart-records">

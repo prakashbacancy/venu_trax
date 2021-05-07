@@ -13,18 +13,8 @@
 @import "./components/buttons";
 @import "./components/inputs";
 
-@import "./main.css";
-
 @import "./pages/login";
 @import "./pages/home";
+@import "./pages/simulation";
 
- .main-header .dropdown-menu .dropdown-item {
-   opacity: 60% !important;
-   line-height: 2rem;
- }
-
- .main-header .dropdown-menu .dropdown-item:hover {
-   background-color: #007AFF;
-  //  color: yellow;
-   opacity: 100% !important;
- }
+@import "./main.css";
