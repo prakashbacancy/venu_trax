@@ -1,4 +1,4 @@
-class PasswordsController < ApplicationController
+class CredentialsController < ApplicationController
   before_action :authenticate_user!
   before_action :user, only: %i[edit update]
 
