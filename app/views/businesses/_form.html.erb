@@ -20,17 +20,19 @@
 
     <div class="form-group">
       <%= f.label :industry, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :industry, class:"form-control", placeholder: "Enter Industry", required: true  %>
+      <%#= f.text_field :industry, class:"form-control", placeholder: "Enter Industry", required: true  %>
+      <%= f.select :industry, options_for_select(Business::INDUSTRY, selected: f.object.industry), {include_blank: 'Select Industry'}, {class:"form-control product-selection"}%>
     </div>
 
     <div class="form-group">
       <%= f.label :type, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :business_type, class:"form-control", placeholder:"Enter Type", required: true  %>
+      <%#= f.text_field :business_type, class:"form-control", placeholder:"Enter Type", required: true  %>
+      <%= f.select :business_type, options_for_select(Business::TYPE, selected: f.object.business_type), {include_blank: 'Select Industry'}, {class:"form-control product-selection"}%>
     </div>
 
     <div class="form-group">
       <%= f.label :phone, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Enter Phone", class: 'form-control' %>
+      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Enter Phone", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'Please enter Phone Number' %>
     </div>
 
     <div class="form-group">
@@ -75,3 +77,30 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(document).on('keyup keypress', '.phone-number', function(e){
+    phone_number = /^(1\s?)?((\([0-9]{3}\)-)|[0-9]{3})[\s\-]?[\0-9]{3}-[\s\-]?[0-9]{4}$/
+    space_regex = /\(?\d{3}\)?[ ]\d{3}?[ ]\d{4}/
+    dash_regex = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/
+    var curchr = this.value.length;
+    var curval = $(this).val();
+    if (curchr == 3 && curval.indexOf("(") <= -1) {
+      if (e.which != 8){
+        $(this).val("(" + curval + ")" + " ");
+      }
+    } else if (curchr == 4 && curval.indexOf("(") > -1) {
+      if (e.which != 8){
+        $(this).val(curval + ")-");
+      }
+    } else if (curchr == 5 && curval.indexOf(")") > -1) {
+      if (e.which != 8){
+        $(this).val(curval + "-");
+      }
+    } else if (curchr == 9) {
+      if (e.which != 8){
+        $(this).val(curval + "-");
+      }
+      $(this).attr('maxlength', '14');
+    }
+  });
+</script>

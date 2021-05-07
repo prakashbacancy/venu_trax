@@ -26,15 +26,15 @@
       </div>
       <div class=" row align-items-center mt-2 ">
         <%= f.label "Estimated % Visitor Wifi Login's ", class: 'text-capitalize fs-17 col-8 col-md-9 ' %>
-        <%= f.number_field :visitor_wifi_login, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline' %>
+        <%= f.number_field :visitor_wifi_login, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline', required: true  %>
       </div>
     </div>
 
     <div class="px-3 mt-4 border py-2 border-light">
       <%= f.label 'LP CPM Cost', class: 'text-capitalize fs-17 fw-600' %>
       <div class=" row align-items-center mt-2 ">
-        <%= f.label :cost_lp_impression, class: 'text-capitalize fs-17 col-8 col-md-9 ' %>
-        <%= f.number_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline' %>
+        <%= f.label :cost_lp_impression, class: 'text-capitalize fs-17 col-8 col-md-9 ', required: true  %>
+        <%= f.number_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline', required: true  %>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <%= f.label 'Visitor WIFI Impressions', class: 'text-capitalize fs-17 fw-600' %>
       <div class=" row align-items-center mt-2 ">
         <%= f.label 'Daily/Event Usage Impression', class: 'text-capitalize fs-17 col-8 col-md-9 ' %>
-        <%= f.number_field :event_usage_impression, autofocus: true, autocomplete: "", placeholder: '0', class: 'form-control col-3 col-md-2 d-inline' %>
+        <%= f.number_field :event_usage_impression, autofocus: true, autocomplete: "", placeholder: '0', class: 'form-control col-3 col-md-2 d-inline', required: true  %>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
       <%= f.label 'CPM Impression Cost', class: 'text-capitalize fs-17 fw-600' %>
       <div class=" row align-items-center mt-2 ">
         <%= f.label 'Per Day/Event', class: 'text-capitalize fs-17 col-8 col-md-9 ' %>
-        <%= f.number_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '0.0', class: 'form-control col-3 col-md-2 d-inline' %>
+        <%= f.number_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '0.0', class: 'form-control col-3 col-md-2 d-inline', required: true  %>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
       <%= f.label 'Venue Contract Term', class: 'text-capitalize fs-17 fw-600' %>
       <div class=" row align-items-center mt-2 ">
         <%= f.label 'No of Months', class: 'text-capitalize fs-17 col-8 col-md-9 ' %>
-        <%= f.number_field :contract_month, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline' %>
+        <%= f.number_field :contract_month, autofocus: true, autocomplete: "", placeholder: '0.00', class: 'form-control col-3 col-md-2 d-inline', required: true  %>
       </div>
     </div>
 
