@@ -9,8 +9,10 @@
       </div>
       <div class="col-lg-6 d-flex justify-content-center align-items-center">
         <div class="user-login-inner mx-auto text-white">
-          <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Login</h2>
+          <h2 class="admin-main-title user-login-main-title mb-md-3 font-weight-bold fw-600">Login</h2>
+          <div class="form-group">
           <label class="fs-14 fw-600">Let's Login and join the network of VenuTrax.</label>
+          </div>
           <% flash.each do |key, value| %>
           <% if key == "alert" and value == "Invalid Email or Password." %>
           <div class="alert-message-top">
@@ -19,11 +21,11 @@
           <% end %>
           <% end %>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: ''}) do |f| %>
-          <div class="form-group relative mt-4">
+          <div class="form-group relative mt-md-4">
             <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Email cannot be blank', 'data-parsley-trigger': 'keyup' %>
           </div>
-          <div class="form-group mb-2 relative mt-4">
+          <div class="form-group mb-md-2 relative mt-md-4">
             <label for="user_password" class="fs-14 text-uppercase fw-600">Password</label>
             <%= f.password_field :password, autofocus: true, autocomplete: "current-password", placeholder: 'Enter Password', class: 'form-control input100 textbox-blur-bg mt-2', id: "password-field", 'data-parsley-required': 'true', 'data-parsley-required-message': 'Password cannot be blank', 'data-parsley-trigger': 'keyup' %>
             <span toggle="#password-field" class="fa field-icon toggle-password"></span>
@@ -31,7 +33,7 @@
           <div class="row mt-4 login-extra-links">
             <div class="col-lg-6 col-sm-12">
               <% if devise_mapping.rememberable? %>
-              <div class="form-group mt-3 relative">
+              <div class="form-group mt-md-3 relative">
                 <div class="checkbox-area custom-control custom-checkbox">
                   <%= f.check_box :remember_me,{class: "custom-control-input"}, "1" %>
                   <%= label_tag :remember_me, "Remember Me", for: "user_remember_me", class: "custom-control-label text-white fs-14 text-uppercase fw-600" %>
@@ -40,13 +42,13 @@
               <% end %>
             </div>
             <div class="col-lg-6 col-sm-12 text-right">
-              <div class="form-group mt-3 relative">
+              <div class="form-group mt-md-3 relative">
                 <%= link_to 'Forgot Password?', new_user_password_path, class: "forgot-password forgot-link-right text-white fs-14 text-uppercase fw-600" %>
               </div>
             </div>
           </div>
           <%#= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password text-blue1"%>
-          <%= f.submit "Sign In", class: 'btn btn-primary border-radius-3 mb-4 mt-4' %>
+          <%= f.submit "Sign In", class: 'btn btn-primary border-radius-3 mb-md-4 mt-md-4' %>
           <% end %>
           <%#= render "users/shared/links" %>
         </div>

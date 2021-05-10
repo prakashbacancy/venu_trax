@@ -22,10 +22,14 @@
 
 .badge-notify {
 	background: red;
-	position: relative;
-	top: -13px;
-	left: -12px;
+	// position: relative;
+	// top: -13px;
+	// left: -12px;
 	border-radius: 50px;
+	position: absolute;
+  right: 0;
+  left: inherit;
+  top: -10px;
 }
 
 header {
@@ -124,8 +128,9 @@ header {
 		z-index: 2;
 		display: block;
 		width: 2.375rem;
-		height: 2.375rem;
-		line-height: 3.7rem;
+		// height: 2.375rem;
+		height: auto;
+		line-height: 3rem;
 		text-align: center;
 		pointer-events: none;
 		color: #aaa;
@@ -135,7 +140,9 @@ header {
 .navbar {
 	.navbar-nav {
 		.nav-link {
-			padding: 0.6em;
+			// padding: 0.6em;
+			font-size: 15px;
+  		padding: 17px 19px;
 		}
 	}
 	.navbar-brand {

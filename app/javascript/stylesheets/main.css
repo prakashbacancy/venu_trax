@@ -2531,7 +2531,8 @@ pre code {
 .form-control {
   display: block;
   width: 100%;
-  height: calc(3.25rem + 10px) !important;
+  /* height: calc(3.25rem + 10px) !important; */
+  height: 50px!important;
   padding: .375rem .75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -5416,7 +5417,11 @@ input[type=submit].btn-block {
   }
 
   .navbar-expand-xl .navbar-nav .dropdown-menu {
-    position: absolute
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 0;
   }
 
   .navbar-expand-xl .navbar-nav .nav-link {
@@ -20731,4 +20736,101 @@ textarea.parsley-error {
   text-align: left;
   padding-top: 7px;
   font-weight: 500;
+}
+
+/* new css */
+
+/* .btn {
+  font-size: 16px;
+  padding: 11px 19px;
+  min-width: auto;
+} */
+
+/* .form-control {
+  height: 50px!important;
+} */
+
+/* .has-search .form-control-feedback {
+  height: auto;
+} */
+
+/* .navbar .navbar-nav .nav-link {
+  font-size: 15px;
+  padding: 17px 19px;
+} */
+
+/* .navbar-expand-xl .navbar-nav .dropdown-menu {
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 0;
+} */
+
+.main-header li.nav-item {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin: 0 4px !important;
+}
+
+header .dropdown:hover {/* background-color: #253342; */}
+
+.navbar .nav-right-custom  .navbar-nav .nav-link {
+  padding: 0 6px;
+  position: relative;
+}
+
+.navbar .navbar-brand {
+  padding: 0px .8em !important;
+}
+
+/* .navbar .nav-right-custom .navbar-nav .nav-link span.badge.badge-notify {
+  position: absolute;
+  right: 0;
+  left: inherit;
+  top: -10px;
+} */
+
+.admin-table .table  th {
+  border: 1px solid #f4f4f4 !important;
+}
+
+.admin-table .table th, .admin-table .table td {
+  /* border: none; */
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+}
+
+.admin-table .table th,.admin-table .table td {
+  /* font-size: 14px !important; */
+}
+
+.dataTables_length label {
+  font-size: 15px;
+}
+
+.paging_simple_numbers li {
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.paging_simple_numbers li:hover a {
+  color: #007bff !important;
+}
+
+@media only screen and (max-width: 1199px){
+  nav.navbar.navbar-expand-xl.navbar-dark {
+      padding: 11px 11px 11px 0;
+  }
+  .main-header .navbar-nav{
+      flex-direction: column;
+  }
+  .nav-right-custom ul.navbar-nav{
+      flex-direction: row !important;
+      padding: 6px 12px;
+  }
+}
+
+
+div#business_list_table_length {
+  margin-bottom: 14px;
 }
