@@ -10,9 +10,9 @@
       <div class="col-lg-6 d-flex justify-content-center align-items-center">
         <div class="user-login-inner mx-auto text-white">
           <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Login</h2>
-          <label class="fs-14 fw-600">Let's log in and join the network of VenuTrax.</label>
+          <label class="fs-14 fw-600">Let's Login and join the network of VenuTrax.</label>
           <% flash.each do |key, value| %>
-          <% if key == "alert" and value == "Invalid Email or password." %>
+          <% if key == "alert" and value == "Invalid Email or Password." %>
           <div class="alert-message-top">
             <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
           </div>
