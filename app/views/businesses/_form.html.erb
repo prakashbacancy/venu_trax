@@ -62,7 +62,7 @@
 
     <div class="form-group">
       <%= f.label :annual_revenue, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :annual_revenue, class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
+      <%= f.text_field :annual_revenue, value: display_two_digit(f.object.annual_revenue), class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
     </div>
 
 

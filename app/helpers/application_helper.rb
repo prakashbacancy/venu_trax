@@ -11,4 +11,10 @@ module ApplicationHelper
   def url_simplifier(url)
     (url.start_with?('http://') || url.start_with?('https://')) ? url : "http://#{url}"
   end
+
+  def display_two_digit(val)
+    val = val.to_f
+    val = (val < 0) ? 0 : val
+    '%.2f' % val.to_f
+  end
 end
