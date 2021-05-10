@@ -1,3 +1,6 @@
 $('#right-modal-content').html('<%= j render(partial: 'form') %>')
 $("#right_modal").modal('show');
 $('form').parsley();
+// $('#right_modal').on('shown.bs.modal', function() {
+//       $('.modal-content').scrollTop(0);
+//    });
