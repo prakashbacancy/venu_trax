@@ -32,7 +32,7 @@
 
     <div class="form-group">
       <%= f.label :phone, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"(xxx) xxx-xxx", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'Please enter Phone Number' %>
+      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"(xxx) xxx-xxx", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'This value is required' %>
     </div>
 
     <div class="form-group">
@@ -56,13 +56,15 @@
     </div>
 
     <div class="form-group">
+      <% emp_record = f.object.new_record? ? "" : f.object.no_of_employee %>
       <%= f.label :no_of_employee, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :no_of_employee, class:"form-control", placeholder:"Enter No of Employee", required: true, maxlength: "10"  %>
+      <%= f.text_field :no_of_employee, value: emp_record, class:"form-control", placeholder:"Enter No of Employee", required: true, maxlength: "10"  %>
     </div>
 
     <div class="form-group">
       <%= f.label :annual_revenue, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :annual_revenue, value: display_two_digit(f.object.annual_revenue), class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
+      <% record = f.object.new_record? ? "" : display_two_digit(f.object.annual_revenue)%>
+      <%= f.text_field :annual_revenue, value: record, class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
     </div>
 
 
