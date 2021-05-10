@@ -5,7 +5,7 @@
         <h3 class="chart-main-title mb-0">Seating Capacity </h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart @simulations.group_by_day(:created_at).sum(:annual_seating_capacity) %>
+  				<%= area_chart(@simulations.group_by_day(:created_at).sum(:annual_seating_capacity), id: 'seating_capacity') %>
   			</div>
   		</div>
   	</div>
@@ -16,14 +16,7 @@
         <h3 class="chart-main-title mb-0">Visitor Attendance</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= line_chart(@visitor_attendance, messages: {empty: "No Records available."},
-          thousands: ",",
-          prefix: "$ ",
-          donut: true,
-          round: 2,
-          zeros: true,
-          width: 10,
-          colors: ["#b00", "#666"]) %>
+  				<%= line_chart(@visitor_attendance, id: 'vistior_chart') %>
   			</div>
   		</div>
   	</div>
@@ -34,12 +27,7 @@
         <h3 class="chart-main-title mb-0">WIFILP</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart(@wifi_login, messages: {empty: "No Records available."},
-          thousands: ",",
-          prefix: "$ ",
-          donut: true,
-          round: 2,
-          zeros: true) %>
+  				<%= column_chart(@wifi_login, id: 'wifi_lp') %>
   			</div>
   		</div>
   	</div>
@@ -52,7 +40,7 @@
         <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart @lp_impression %>
+  				<%= column_chart(@lp_impression, id: 'cpm_lp') %>
   			</div>
   		</div>
   	</div>
@@ -63,7 +51,7 @@
         <h3 class="chart-main-title mb-0">User Impression</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart @user_impression %>
+  				<%= column_chart(@user_impression, id: 'user_impression') %>
   			</div>
   		</div>
   	</div>
@@ -74,7 +62,7 @@
         <h3 class="chart-main-title mb-0">CPM Impression Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart @cpm_lpm %>
+  				<%= column_chart(@cpm_lpm, id: 'cpm_impression') %>
   			</div>
   		</div>
   	</div>
@@ -85,10 +73,49 @@
         <h3 class="chart-main-title mb-0">WIFI Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-          <%= area_chart @simulations.group_by_day(:created_at).sum(:wifi_annual_total) 
+          <%= area_chart(@simulations.group_by_day(:created_at).sum(:wifi_annual_total), id: 'wifi_revenue') 
           %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function (){
+    var chart = Chartkick.charts["vistior_chart"]
+    var seating_capacity = Chartkick.charts["seating_capacity"]
+    var wifi_revenue = Chartkick.charts["wifi_revenue"]
+    var wifi_lp = Chartkick.charts["wifi_lp"]
+    var cpm_lp = Chartkick.charts["cpm_lp"]
+    var user_impression = Chartkick.charts["user_impression"]
+    var cpm_impression = Chartkick.charts["cpm_impression"]
+
+    var newOptions = {
+      library: {
+        thousands: ",",
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem) {
+              return "$ "+  (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+            }
+          }
+        }
+      }
+    }
+    var mergedOptions = jQuery.extend(chart.options,newOptions)
+    chart.setOptions(mergedOptions);
+    var SeatingOptions = jQuery.extend(seating_capacity.options,newOptions)
+    seating_capacity.setOptions(SeatingOptions);
+    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions)
+    wifi_revenue.setOptions(WifiOptions);
+    var WifiLP = jQuery.extend(wifi_lp.options,newOptions)
+    wifi_lp.setOptions(WifiOptions);
+    var CPMLP = jQuery.extend(cpm_lp.options,newOptions)
+    cpm_lp.setOptions(CPMLP);
+    var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)
+    user_impression.setOptions(UserImpressionOption);
+    var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptions)
+    cpm_impression.setOptions(CPMImpressionOption);
+
+  })
+</script>
