@@ -29,7 +29,7 @@
                 </div>
               <% end %>
               <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Email cannot be blank', 'data-parsley-trigger': 'keyup' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Please enter Email', 'data-parsley-trigger': 'keyup' %>
             </div>
           <%#= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password text-blue1"%>
           <%= f.submit "Submit", class: 'btn btn-primary border-radius-3 mb-4 mt-5' %>
