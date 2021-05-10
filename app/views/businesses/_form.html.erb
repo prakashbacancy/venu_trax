@@ -27,7 +27,7 @@
     <div class="form-group">
       <%= f.label :type, class: 'text-capitalize fs-17 asterisk' %><br />
       <%#= f.text_field :business_type, class:"form-control", placeholder:"Enter Type", required: true  %>
-      <%= f.select :business_type, options_for_select(Business::TYPE, selected: f.object.business_type), {include_blank: 'Select Industry'}, {class:"form-control product-selection"}%>
+      <%= f.select :business_type, options_for_select(Business::TYPE, selected: f.object.business_type), {include_blank: 'Select Type'}, {class:"form-control product-selection"}%>
     </div>
 
     <div class="form-group">
