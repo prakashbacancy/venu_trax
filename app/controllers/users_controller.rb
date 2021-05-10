@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :user, only: %i[show new edit]
 
   def index
-    @users = User.without_ current_user
+    @users = User.all
   end
 
   def create
