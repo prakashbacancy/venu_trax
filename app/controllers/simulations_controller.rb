@@ -65,7 +65,7 @@ class SimulationsController < ApplicationController
                   when 'Monthly'
                     Date.today.beginning_of_month.beginning_of_day..Date.today.end_of_month.end_of_day
                   when 'Annually'
-                    Date.today.beginning_of_year.beginning_of_day..Date.today.beginning_of_year.end_of_day
+                    Date.today.beginning_of_year.beginning_of_day..Date.today.end_of_year.end_of_day
                   else
                     Date.today.beginning_of_day..Date.today.end_of_day
                   end
