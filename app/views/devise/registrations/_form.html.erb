@@ -31,7 +31,7 @@
 
     <div class="form-group mt-4">
       <%= f.label :full_name, class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control' %>
+      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', required: true %>
     </div>
 
     <div class="form-group">
@@ -40,8 +40,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :mobile_number, class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", class: 'form-control' %>
+      <%= f.label :phone_number, class: 'text-capitalize fs-17' %><br />
+      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Phone Number", class: 'form-control', required: true %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
