@@ -74,7 +74,7 @@
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <button type="button" class="btn btn-primary">Add More</button>
+      <button type="button" class="btn btn-primary not-allowed" disabled>Add More</button>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>
