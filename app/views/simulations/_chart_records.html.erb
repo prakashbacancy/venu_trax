@@ -95,21 +95,69 @@
         thousands: ",",
         tooltips: {
           callbacks: {
+            title: function(value){
+              d = new Date(value[0].label);
+              str = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+              return str;
+            },
             label: function(tooltipItem) {
-              return (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+              return '$ '+ (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
             }
           }
+        },
+        scales: {
+          xAxes: [{
+              ticks: {
+                callback: function(value) {
+                  d = new Date(value);
+                  var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
+                  return str;
+                }
+              }
+          }],
         }
       }
     }
-    var mergedOptions = jQuery.extend(chart.options,newOptions)
+
+    var newOptions2 = {
+      library: {
+        thousands: ",",
+        tooltips: {
+          callbacks: {
+            title: function(value){
+              d = new Date(value[0].label);
+              str = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+              return str;
+            },
+            label: function(tooltipItem) {
+              return '$ ' + (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+              ticks: {
+                callback: function(value) {
+                  d = new Date(value);
+                  var str = d.getDay() + '/' + d.getMonth() ;
+                  var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
+                  return str;
+                }
+              }
+          }],
+        }
+
+      }
+    }
+
+    var mergedOptions = jQuery.extend(chart.options,newOptions2)
     chart.setOptions(mergedOptions);
-    var SeatingOptions = jQuery.extend(seating_capacity.options,newOptions)
+    var SeatingOptions = jQuery.extend(seating_capacity.options,newOptions2)
     seating_capacity.setOptions(SeatingOptions);
-    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions)
+    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions2)
     wifi_revenue.setOptions(WifiOptions);
     var WifiLP = jQuery.extend(wifi_lp.options,newOptions)
-    wifi_lp.setOptions(WifiOptions);
+    wifi_lp.setOptions(WifiLP);
     var CPMLP = jQuery.extend(cpm_lp.options,newOptions)
     cpm_lp.setOptions(CPMLP);
     var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)

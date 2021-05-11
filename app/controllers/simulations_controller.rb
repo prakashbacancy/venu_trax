@@ -1,5 +1,5 @@
 class SimulationsController < ApplicationController
-	before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     set_date_filter
@@ -46,10 +46,10 @@ class SimulationsController < ApplicationController
 
   def simulation
     @simulation ||= if params[:id].present?
-                    Simulation.find(params[:id])
-                  else
-                    Simulation.new
-                  end
+                      Simulation.find(params[:id])
+                    else
+                      Simulation.new
+                    end
   end
 
   def simulation_params
@@ -58,24 +58,31 @@ class SimulationsController < ApplicationController
 
   def set_date_filter
     @date_range = case params[:option]
-    when 'Today'
-      Date.today.beginning_of_day..Date.today.end_of_day
-    when 'Weekly'
-      Date.today.beginning_of_week.beginning_of_day..Date.today.end_of_week.end_of_day
-    when 'Monthly'
-      Date.today.beginning_of_month.beginning_of_day..Date.today.end_of_month.end_of_day
-    when 'Annually'
-      Date.today.beginning_of_year.beginning_of_day..Date.today.beginning_of_year.end_of_day
-    else
-      Date.today.beginning_of_day..Date.today.end_of_day
-    end
+                  when 'Today'
+                    Date.today.beginning_of_day..Date.today.end_of_day
+                  when 'Weekly'
+                    Date.today.beginning_of_week.beginning_of_day..Date.today.end_of_week.end_of_day
+                  when 'Monthly'
+                    Date.today.beginning_of_month.beginning_of_day..Date.today.end_of_month.end_of_day
+                  when 'Annually'
+                    Date.today.beginning_of_year.beginning_of_day..Date.today.beginning_of_year.end_of_day
+                  else
+                    Date.today.beginning_of_day..Date.today.end_of_day
+                  end
   end
+
   def visitor_attendance(data)
-    visitor = [{"name" => "Per day","data" => data.group_by_day(:created_at, format: "%b %e").sum(:avg_attendance_event)},{"name" => "Annual  Attendance","data" => data.group_by_day(:created_at, format: "%b %e").sum(:avg_attendance_annual_event)}]
-    wifi_login = [{"name" => "Per day","data" => data.group_by_day(:created_at, format: "%b %e").sum(:wifi_lp_per_day_login)},{"name" => "Annual","data" => data.group_by_day(:created_at, format: "%b %e").sum(:wifi_lp_annual_login)}]
-    lp_impression = [{"name" => "Per day","data" => data.group_by_day(:created_at, format: "%b %e").sum(:lp_rev_per_day_total)},{"name" => "Annual","data" => data.group_by_day(:created_at, format: "%b %e").sum(:lp_rev_annual_total)}]
-    cpm_lp = [{"name" => "Per day","data" => data.group_by_day(:created_at, format: "%b %e").sum(:cpm_impression_per_day)},{"name" => "Annual","data" => data.group_by_day(:created_at, format: "%b %e").sum(:cpm_impression_annual)}]
-    user_impression = [{"name" => "Per day","data" => data.group_by_day(:created_at, format: "%b %e").sum(:user_impression_per_day)},{"name" => "Annual","data" => data.group_by_day(:created_at, format: "%b %e").sum(:user_impression_annual)}]
-    return visitor, wifi_login, cpm_lp, user_impression, lp_impression
+    visitor = [{ 'name' => 'Per day', 'data' => data.group_by_day(:created_at).sum(:avg_attendance_event) },
+               { 'name' => 'Annual  Attendance',
+                 'data' => data.group_by_day(:created_at).sum(:avg_attendance_annual_event) }]
+    wifi_login = [{ 'name' => 'Per day', 'data' => data.group_by_day(:created_at).sum(:wifi_lp_per_day_login) },
+                  { 'name' => 'Annual', 'data' => data.group_by_day(:created_at).sum(:wifi_lp_annual_login) }]
+    lp_impression = [{ 'name' => 'Per day', 'data' => data.group_by_day(:created_at).sum(:lp_rev_per_day_total) },
+                     { 'name' => 'Annual', 'data' => data.group_by_day(:created_at).sum(:lp_rev_annual_total) }]
+    cpm_lp = [{ 'name' => 'Per day', 'data' => data.group_by_day(:created_at).sum(:cpm_impression_per_day) },
+              { 'name' => 'Annual', 'data' => data.group_by_day(:created_at).sum(:cpm_impression_annual) }]
+    user_impression = [{ 'name' => 'Per day', 'data' => data.group_by_day(:created_at).sum(:user_impression_per_day) },
+                       { 'name' => 'Annual', 'data' => data.group_by_day(:created_at).sum(:user_impression_annual) }]
+    [visitor, wifi_login, cpm_lp, user_impression, lp_impression]
   end
 end
