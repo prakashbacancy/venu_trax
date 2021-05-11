@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <%= f.label :business_name, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :name, class:"form-control", placeholder:"Enter Business Name", required: true  %>
+      <%= f.text_field :name, class:"form-control", placeholder:"Enter Business Name", required: true, 'data-parsley-trigger': "keyup", 'data-parsley-maxlength': "100", 'data-parsley-maxlength-message': "Business Name should have 100 characters or fewer.", 'data-parsley-validation-threshold': "10"  %>
     </div>
 
     <div class="form-group">
