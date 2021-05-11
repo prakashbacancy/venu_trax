@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   def create
     link_raw = set_reset_password_token
     user.assign_attributes(user_params)
-    if user.save(validate: false)
-      UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+    if user.save
+      # UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
       flash[:success] = 'User Successfully Added!'
     else
       flash[:danger] = 'Error Occurred While Adding A User!'
