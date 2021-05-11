@@ -3927,7 +3927,7 @@ input[type=submit].btn-block {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 10rem;
+  min-width: 10rem !important;
   padding: .5rem 0;
   margin: .125rem 0 0;
   font-size: 1rem;
@@ -13141,7 +13141,7 @@ html {
 .content-wrapper,
 .right-side {
   /* min-height: 100%; */
-  min-height: calc(100vh - 139px);
+  min-height: calc(100vh - 128px);
   z-index: 800
 }
 
@@ -20823,13 +20823,33 @@ header .dropdown:hover {/* background-color: #253342; */}
   }
   .main-header .navbar-nav{
       flex-direction: column;
+      width: 100%;
   }
   .nav-right-custom ul.navbar-nav{
       flex-direction: row !important;
-      padding: 6px 12px;
+      padding: 6px 29px;
+  }
+  .header-custom {
+    display: flex;
+    align-items: flex-start !important;
+    flex-direction: column-reverse;
+  }
+  .header-custom .profile-dropdown #navbarDropdown {
+    padding: 6px 15px;
   }
 }
 
 div#business_list_table_length {
   margin-bottom: 14px;
+}
+
+.dataTable-bottom {
+  margin-top: 30px;
+  align-items: center;
+}
+
+.page-title .content{
+  min-height: 0;
+  padding-top: 11px;
+  padding-bottom: 11px;
 }
