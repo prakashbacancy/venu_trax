@@ -105,6 +105,23 @@
             }
           }
         },
+        plugins: {
+          datalabels: {
+            backgroundColor: function(context) {
+              return context.dataset.backgroundColor;
+            },
+            borderRadius: 4,
+            color: 'white',
+            font: {
+              weight: 'bold'
+            },
+            formatter: function(value) {
+              return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
+            },
+            padding: 5
+          }
+        },
+
         scales: {
           xAxes: [{
               ticks: {
@@ -132,6 +149,22 @@
             label: function(tooltipItem) {
               return '$ ' + (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
             }
+          }
+        },
+        plugins: {
+          datalabels: {
+            backgroundColor: function(context) {
+              return context.dataset.backgroundColor;
+            },
+            borderRadius: 4,
+            color: 'white',
+            font: {
+              weight: 'bold'
+            },
+            formatter: function(value) {
+              return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
+            },
+            padding: 5
           }
         },
         scales: {

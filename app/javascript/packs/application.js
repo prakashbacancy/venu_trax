@@ -18,7 +18,7 @@ require("parsleyjs")
 // require("packs/app.min.js")
 require("packs/custom_datatable.js")
 import 'stylesheets/application'
-// import 'chartjs-plugin-datalabels'
+import 'chartjs-plugin-datalabels'
 import 'custom';
 
 // import "../stylesheets/application";
