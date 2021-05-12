@@ -54,8 +54,12 @@
             <td><%= business.phone_no %></td>
             <td>
               <div class="action-area-buttons">
-                <%= link_to(' ', edit_business_path(business), remote: true, class: 'fa fa-pencil-alt') %>
-                <%= link_to(' ', business_path(business), method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this Business?' }) %>
+                <%= link_to(edit_business_path(business), remote: true, class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_edit.svg'%>
+                <% end %>
+                <%= link_to(business_path(business), method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Business?' }) do %>
+                  <%= image_pack_tag 'home/ic_delete.svg'%>
+                <% end %>
               </div>
             </td>
     			</tr>
