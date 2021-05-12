@@ -91,13 +91,16 @@
     var cpm_impression = Chartkick.charts["cpm_impression"]
 
     var newOptions = {
+      messages: {empty: "No Records available."},
       library: {
+        messages: {empty: "No Records available."},
         thousands: ",",
         tooltips: {
           callbacks: {
             title: function(value){
               d = new Date(value[0].label);
-              str = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+              month = d.getMonth() + 1
+              str = d.getDate() + '/' + month + '/' + d.getFullYear();
               return str;
             },
             label: function(tooltipItem) {
@@ -139,13 +142,15 @@
     }
 
     var newOptions2 = {
+      messages: {empty: "No Records available."},
       library: {
         thousands: ",",
         tooltips: {
           callbacks: {
             title: function(value){
               d = new Date(value[0].label);
-              str = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+              month = d.getMonth() + 1
+              str = d.getDate() + '/' + month + '/' + d.getFullYear();
               return str;
             },
             label: function(tooltipItem) {
