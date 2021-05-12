@@ -50,9 +50,13 @@
             <td>-</td>
             <td>
               <div class="action-area-buttons">
-                <%= link_to(' ', edit_user_path(user), remote: true, class: 'fa fa-pencil-alt') %>
+                <%= link_to(edit_user_path(user), remote: true, class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_edit.svg'%>
+                <% end %>
                 <% if current_user != user %>
-                  <%= link_to(' ', user_path(user), method: :delete, class: 'fa fa-trash', data: { confirm: 'Are you sure want to delete this User?' }) %>
+                  <%= link_to(user_path(user), method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this User?' }) do %>
+                    <%= image_pack_tag 'home/ic_delete.svg'%>
+                  <% end %>
                 <% end %>
               </div>
             </td>
