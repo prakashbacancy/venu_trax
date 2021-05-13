@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   #   get 'users/password' => 'users/passwords#index'
   # end
   # for business module
-  resources :businesses
+  resources :businesses do
+    resources :venues
+  end
   resources :simulations
   resources :credentials, only: %i[edit update]
+  resources :venues
 end
