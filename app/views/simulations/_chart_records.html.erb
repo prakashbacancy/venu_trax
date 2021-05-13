@@ -41,7 +41,7 @@
         <h3 class="chart-main-title mb-0">WIFILP</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-          <%#= column_chart(@wifi_login, id: 'wifi_lp') %>
+          <%= column_chart(@simulations[:wifi_lp_login], id: 'wifi_lp') %>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
         <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%#= column_chart(@lp_impression, id: 'cpm_lp') %>
+  				<%= column_chart(@simulations[:lp_impression], id: 'cpm_lp') %>
   			</div>
   		</div>
   	</div>
@@ -63,7 +63,7 @@
         <h3 class="chart-main-title mb-0">User Impression</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%#= column_chart(@user_impression, id: 'user_impression') %>
+  				<%= column_chart(@simulations[:cpm_impression], id: 'user_impression') %>
   			</div>
   		</div>
   	</div>
@@ -99,6 +99,9 @@
     option = "<%= params[:option] %>"
     var chart = Chartkick.charts["seating_capacity"]
     var visitor_chart = Chartkick.charts["vistior_chart"]
+    var wifi_lp = Chartkick.charts["wifi_lp"]
+    var cpm_lp = Chartkick.charts["cpm_lp"]
+    var user_impression = Chartkick.charts["user_impression"]
 
       var newOptions = {
         messages: {empty: "No Records available."},
@@ -115,8 +118,8 @@
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' +lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   // debugger
                   // d = new Date(value[0].label);
                   // month = d.getMonth() + 1
@@ -126,8 +129,8 @@
                   var date = new Date(value[0].label);
                   var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
                   var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   return start_date+" To "+end_date;
                 }
               },
@@ -150,7 +153,7 @@
                 weight: 'bold'
               },
               formatter: function(value) {
-                return (value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
               padding: 5
             }
@@ -171,7 +174,7 @@
                     if (d == "Invalid Date"){
                       str = value
                     }else{
-                      str = d.getDate().toString().padStart(2, '0') + '/' + (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear();
+                      str = (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0') + '/' +  d.getFullYear();
                       if (option == 'Monthly'){
                         str = " Week "+(i+1)
                       }else if(option == 'Annually'){
@@ -202,8 +205,8 @@
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   // debugger
                   // d = new Date(value[0].label);
                   // month = d.getMonth() + 1
@@ -213,8 +216,8 @@
                   var date = new Date(value[0].label);
                   var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
                   var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' +lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   return start_date+" To "+end_date;
                 }
               },
@@ -256,7 +259,7 @@
                     if (d == "Invalid Date"){
                       str = value
                     }else{
-                      str = d.getDate().toString().padStart(2, '0') + '/' + (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear();
+                      str = (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0') + '/' +  d.getFullYear();
                       if (option == 'Monthly'){
                         str = " Week "+(ind+1)
                       }else if(option == 'Annually'){
@@ -278,5 +281,11 @@
     chart.setOptions(mergedOptions);
     var mergedOptions = jQuery.extend(visitor_chart.options, newOptions2)
     visitor_chart.setOptions(mergedOptions);
+    var WifiLP = jQuery.extend(wifi_lp.options,newOptions)
+    wifi_lp.setOptions(WifiLP);
+    var CPMLP = jQuery.extend(cpm_lp.options,newOptions)
+    cpm_lp.setOptions(CPMLP);
+    var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)
+    user_impression.setOptions(UserImpressionOption);
   })
 </script>
