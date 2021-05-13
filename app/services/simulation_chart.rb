@@ -196,10 +196,10 @@ class SimulationChart
       else
         data[:user_impression] = [{'name' => 'Per day', 'data' => {'Daily' => daily_user_impression, 'Weekly'=> week_user_impression, 'Monthly' => month_user_impression, 'Annually' => year_user_impression }},{'name' => 'Annual Attendance', 'data' => {'Daily' => daily_annual_user_impression, 'Weekly'=> week_annual_user_impression, 'Monthly' => month_annual_user_impression, 'Annually' => year_annual_user_impression }}]
       end
-    data[:daily_wifi_lp_login] = daily_user_impression
-    data[:week_wifi_lp_login] = week_user_impression
-    data[:month_wifi_lp_login] = month_user_impression
-    data[:year_wifi_lp_login] = year_user_impression
+    data[:daily_user_impression] = daily_user_impression
+    data[:week_user_impression] = week_user_impression
+    data[:month_user_impression] = month_user_impression
+    data[:year_user_impression] = year_user_impression
   end
 
   def cpm_impression(params, simulation, data, daily_data, week_data, month_data, year_data)

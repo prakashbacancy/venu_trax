@@ -75,7 +75,7 @@
         <h3 class="chart-main-title mb-0">User Impression</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart(@user_impression, id: 'user_impression') %>
+  				<%= column_chart(@simulations[:user_impression], id: 'user_impression') %>
   			</div>
         <div class="chart-labels row ml-5 justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></b></span>
