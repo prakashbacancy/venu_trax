@@ -219,7 +219,7 @@
                 }
               },
               label: function(tooltipItem) {
-                return (tooltipItem.value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(tooltipItem.value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               }
             }
           },
@@ -235,7 +235,7 @@
                 weight: 'bold'
               },
               formatter: function(value) {
-                return (value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
               padding: 5
             }
@@ -276,7 +276,7 @@
 
     var mergedOptions = jQuery.extend(chart.options,newOptions)
     chart.setOptions(mergedOptions);
-    var mergedOptions = jQuery.extend(visitor_chart.options,newOptions2)
+    var mergedOptions = jQuery.extend(visitor_chart.options, newOptions2)
     visitor_chart.setOptions(mergedOptions);
   })
 </script>
