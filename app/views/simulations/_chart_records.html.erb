@@ -115,8 +115,8 @@
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getMonth().toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + lastday.getMonth().toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
                   // debugger
                   // d = new Date(value[0].label);
                   // month = d.getMonth() + 1
@@ -126,8 +126,8 @@
                   var date = new Date(value[0].label);
                   var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
                   var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getMonth().toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + lastday.getMonth().toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
                   return start_date+" To "+end_date;
                 }
               },
@@ -202,8 +202,8 @@
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getMonth().toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + lastday.getMonth().toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
                   // debugger
                   // d = new Date(value[0].label);
                   // month = d.getMonth() + 1
@@ -213,8 +213,8 @@
                   var date = new Date(value[0].label);
                   var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
                   var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getMonth().toString().padStart(2, '0') + '/' + firstday.getFullYear()
-                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + lastday.getMonth().toString().padStart(2, '0') + '/' + lastday.getFullYear()
+                  start_date = firstday.getDate().toString().padStart(2, '0') + '/' + (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = lastday.getDate().toString().padStart(2, '0') + '/' + (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getFullYear()
                   return start_date+" To "+end_date;
                 }
               },
