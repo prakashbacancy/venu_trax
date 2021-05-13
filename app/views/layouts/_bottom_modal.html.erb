@@ -1,0 +1,46 @@
+<div class="modal custom-modal modal-bottom fade" id="bottom_modal" tabindex="-1" role="dialog" aria-labelledby="bottom_modal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg shadow-lg" role="document">
+    <div class="modal-content" id="bottom-modal-content">
+      <div class="modal-header d-flex justify-content-around align-items-center text-white">
+        <h5 class="modal-title"> Create Note</h5>
+         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" class="fa fa-times"></span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group mb-5">
+            <%= cktext_area_tag :page, :info, cols: 40, ckeditor: { uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom' } %>
+          </div>
+        
+      </div>
+        <div class="modal-footer modal-footer-fixed bg-light-bottom mt-4" style="left: 0">
+          <div class="form-group mr-auto">
+            <div class="checkbox-area custom-control custom-checkbox">
+              <%= check_box_tag :create_a_task_to_follow_up, 'yes',0, class: "custom-control-input" %>
+              <%= label_tag :create_a_task_to_follow_up, "Create a task to follow up", for: "create_a_task_to_follow_up", class: "custom-control-label fs-14 fw-600" %>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary">Create</button>
+          <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+<style>
+.custom-modal {
+  background-color: rgba(0, 0, 0, 0) !important; 
+}
+.cke_1 .cke_top{
+  border: 0;
+}
+.cke{
+  border: 0;
+}
+/* .cke_inner span{
+  border: 0;
+} */
+/* .modal-open .modal {
+    width: 300px;
+    margin: 0 auto;
+} */
+</style>
