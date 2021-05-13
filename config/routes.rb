@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root to: 'businesses#index'
   # for user functionality
   devise_for :users, controllers: {
