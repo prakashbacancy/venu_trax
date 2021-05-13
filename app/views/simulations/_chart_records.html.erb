@@ -7,11 +7,11 @@
         <div>
   				<%= column_chart(@simulations[:seating_capacity], id: 'seating_capacity') %>
   			</div>
-        <div class="row">
-          <span class="mr-2">Daily : <b><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Weekly :<b><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Monthly : <b><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Annualy :<b><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></b></span>
+        <div class="chart-labels row ml-5 justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annualy<br><b><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
   	</div>
@@ -24,11 +24,11 @@
         <div>
   				<%= line_chart(@simulations[:visitor_attendance], id: 'vistior_chart') %>
   			</div>
-        <div class="row">
-          <span class="mr-2">Daily : <b><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Weekly :<b><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Monthly : <b><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></b></span>
-          <span class="mr-2">Annualy :<b><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+        <div class="chart-labels row ml-5 justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annualy<br> <b><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
   	</div>

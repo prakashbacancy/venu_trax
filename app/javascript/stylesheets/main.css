@@ -20855,3 +20855,6 @@ div#business_list_table_length {
 }
 
 .not-allowed {cursor: not-allowed !important;}
+.chart-labels span b {
+  color: #007AFF;
+}
