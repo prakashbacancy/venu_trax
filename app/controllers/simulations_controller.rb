@@ -3,8 +3,10 @@ class SimulationsController < ApplicationController
 
   def index
     set_date_filter
-    @simulations = Simulation.where(created_at: @date_range)
-    @visitor_attendance, @wifi_login, @cpm_lpm, @user_impression, @lp_impression = visitor_attendance(@simulations)
+    @simulations = SimulationChart.new(params).calculation
+    # @simulations = Simulation.where(created_at: @date_range)
+
+    # @visitor_attendance, @wifi_login, @cpm_lpm, @user_impression, @lp_impression = visitor_attendance(@simulations)
   end
 
   def new

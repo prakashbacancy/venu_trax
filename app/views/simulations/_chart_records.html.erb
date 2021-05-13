@@ -5,8 +5,14 @@
         <h3 class="chart-main-title mb-0">Seating Capacity </h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= area_chart(@simulations.group_by_day(:created_at).sum(:annual_seating_capacity), id: 'seating_capacity') %>
+  				<%= column_chart(@simulations[:seating_capacity], id: 'seating_capacity') %>
   			</div>
+        <div class="row">
+          <span class="mr-2">Daily : <b><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Weekly :<b><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Monthly : <b><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Annualy :<b><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></b></span>
+        </div>
   		</div>
   	</div>
   </div>
@@ -16,8 +22,14 @@
         <h3 class="chart-main-title mb-0">Visitor Attendance</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= line_chart(@visitor_attendance, id: 'vistior_chart') %>
+  				<%= line_chart(@simulations[:visitor_attendance], id: 'vistior_chart') %>
   			</div>
+        <div class="row">
+          <span class="mr-2">Daily : <b><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Weekly :<b><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Monthly : <b><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="mr-2">Annualy :<b><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+        </div>
   		</div>
   	</div>
   </div>
@@ -29,7 +41,7 @@
         <h3 class="chart-main-title mb-0">WIFILP</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-          <%= column_chart(@wifi_login, id: 'wifi_lp') %>
+          <%#= column_chart(@wifi_login, id: 'wifi_lp') %>
         </div>
       </div>
     </div>
@@ -40,7 +52,7 @@
         <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart(@lp_impression, id: 'cpm_lp') %>
+  				<%#= column_chart(@lp_impression, id: 'cpm_lp') %>
   			</div>
   		</div>
   	</div>
@@ -51,7 +63,7 @@
         <h3 class="chart-main-title mb-0">User Impression</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-  				<%= column_chart(@user_impression, id: 'user_impression') %>
+  				<%#= column_chart(@user_impression, id: 'user_impression') %>
   			</div>
   		</div>
   	</div>
@@ -75,7 +87,7 @@
         <h3 class="chart-main-title mb-0">WIFI Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-          <%= area_chart(@simulations.group_by_day(:created_at).sum(:wifi_annual_total), id: 'wifi_revenue') 
+          <%#= area_chart(@simulations.group_by_day(:created_at).sum(:wifi_annual_total), id: 'wifi_revenue') 
           %>
         </div>
       </div>
@@ -84,19 +96,11 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function (){
-    var option = "<%= params[:option] %>"
-    console.log(option)
-    var chart = Chartkick.charts["vistior_chart"]
-    var seating_capacity = Chartkick.charts["seating_capacity"]
-    var wifi_revenue = Chartkick.charts["wifi_revenue"]
-    var wifi_lp = Chartkick.charts["wifi_lp"]
-    var cpm_lp = Chartkick.charts["cpm_lp"]
-    var user_impression = Chartkick.charts["user_impression"]
-    var cpm_impression = Chartkick.charts["cpm_impression"]
+    var chart = Chartkick.charts["seating_capacity"]
 
-    if (option == "Monthly" || option == "Annually"){
       var newOptions = {
         messages: {empty: "No Records available."},
+        colors: ["#0526FF", "#FFFFFF", "#DDDFFF", "#DdCFFF"],
         library: {
           messages: {empty: "No Records available."},
           thousands: ",",
@@ -109,114 +113,13 @@
                 return str;
               },
               label: function(tooltipItem) {
-                return (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                return (tooltipItem.value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               }
             }
           },
           plugins: {
             datalabels: {
-              display: false,
-              // align: 'end',
-              // anchor: 'end',
-              // backgroundColor: function(context) {
-              //   return context.dataset.backgroundColor;
-              // },
-              // borderRadius: 4,
-              // color: 'white',
-              // font: {
-              //   weight: 'bold'
-              // },
-              // formatter: function(value) {
-              //   return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
-              // },
-              // padding: 5
-            }
-          },
-
-          scales: {
-            xAxes: [{
-                ticks: {
-                  callback: function(value) {
-                    d = new Date(value);
-                    var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
-                    return str;
-                  }
-                }
-            }],
-          }
-        }
-      }
-
-      var newOptions2 = {
-        messages: {empty: "No Records available."},
-        library: {
-          thousands: ",",
-          tooltips: {
-            callbacks: {
-              title: function(value){
-                d = new Date(value[0].label);
-                month = d.getMonth() + 1
-                str = d.getDate() + '/' + month + '/' + d.getFullYear();
-                return str;
-              },
-              label: function(tooltipItem) {
-                return (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-              }
-            }
-          },
-          plugins: {
-            datalabels: {
-              display: false,
-              // backgroundColor: function(context) {
-              //   return context.dataset.backgroundColor;
-              // },
-              // borderRadius: 4,
-              // color: 'white',
-              // font: {
-              //   weight: 'bold'
-              // },
-              // formatter: function(value) {
-              //   return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
-              // },
-              // padding: 5
-            }
-          },
-          scales: {
-            xAxes: [{
-                ticks: {
-                  callback: function(value) {
-                    d = new Date(value);
-                    var str = d.getDay() + '/' + d.getMonth() ;
-                    var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
-                    return str;
-                  }
-                }
-            }],
-          }
-
-        }
-      }
-    }else{
-      var newOptions = {
-        messages: {empty: "No Records available."},
-        library: {
-          messages: {empty: "No Records available."},
-          thousands: ",",
-          tooltips: {
-            callbacks: {
-              title: function(value){
-                d = new Date(value[0].label);
-                month = d.getMonth() + 1
-                str = d.getDate() + '/' + month + '/' + d.getFullYear();
-                return str;
-              },
-              label: function(tooltipItem) {
-                return (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-              }
-            }
-          },
-          plugins: {
-            datalabels: {
+              display: true,
               align: 'end',
               anchor: 'end',
               backgroundColor: function(context) {
@@ -228,23 +131,23 @@
                 weight: 'bold'
               },
               formatter: function(value) {
-                return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
+                return (value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
               padding: 5
             }
           },
 
-          scales: {
-            xAxes: [{
-                ticks: {
-                  callback: function(value) {
-                    d = new Date(value);
-                    var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
-                    return str;
-                  }
-                }
-            }],
-          }
+          // scales: {
+          //   yAxes: [{
+          //       ticks: {
+          //         callback: function(value) {
+          //           d = new Date(value);
+          //           var str = ('0' + d.getDate()).slice(-2) + '/' + ('0' + (d.getMonth()+1)).slice(-2)
+          //           return str;
+          //         }
+          //       }
+          //   }],
+          // }
         }
       }
 
@@ -252,6 +155,7 @@
         messages: {empty: "No Records available."},
         library: {
           thousands: ",",
+          colors: ["#0526FF", "#FFFFFF", "#DDDFFF", "#DCCFFF"],
           tooltips: {
             callbacks: {
               title: function(value){
@@ -261,28 +165,29 @@
                 return str;
               },
               label: function(tooltipItem) {
-                return (parseFloat(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                return (parseInt(tooltipItem.value)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
               }
             }
           },
           plugins: {
             datalabels: {
-              backgroundColor: function(context) {
-                return context.dataset.backgroundColor;
-              },
-              borderRadius: 4,
-              color: 'white',
-              font: {
-                weight: 'bold'
-              },
-              formatter: function(value) {
-                return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
-              },
-              padding: 5
+              display: false,
+              // backgroundColor: function(context) {
+              //   return context.dataset.backgroundColor;
+              // },
+              // borderRadius: 4,
+              // color: 'white',
+              // font: {
+              //   weight: 'bold'
+              // },
+              // formatter: function(value) {
+              //   return (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');   
+              // },
+              // padding: 5
             }
           },
           scales: {
-            xAxes: [{
+            yAxes: [{
                 ticks: {
                   callback: function(value) {
                     d = new Date(value);
@@ -296,23 +201,8 @@
 
         }
       }
-    }
-   
 
-    var mergedOptions = jQuery.extend(chart.options,newOptions2)
+    var mergedOptions = jQuery.extend(chart.options,newOptions)
     chart.setOptions(mergedOptions);
-    var SeatingOptions = jQuery.extend(seating_capacity.options,newOptions2)
-    seating_capacity.setOptions(SeatingOptions);
-    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions2)
-    wifi_revenue.setOptions(WifiOptions);
-    var WifiLP = jQuery.extend(wifi_lp.options,newOptions)
-    wifi_lp.setOptions(WifiLP);
-    var CPMLP = jQuery.extend(cpm_lp.options,newOptions)
-    cpm_lp.setOptions(CPMLP);
-    var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)
-    user_impression.setOptions(UserImpressionOption);
-    var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptions)
-    cpm_impression.setOptions(CPMImpressionOption);
-
   })
 </script>
