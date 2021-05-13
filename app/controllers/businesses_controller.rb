@@ -2,6 +2,7 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :business, only: %i[show new edit]
   before_action :find_venues, only: %i[show]
+  before_action :find_notes, only: %i[show]
 
   def index
     @businesses = Business.all
@@ -50,5 +51,9 @@ class BusinessesController < ApplicationController
 
   def find_venues
     @venues = @business.venues
+  end
+
+  def find_notes
+    @notes = @business.notes
   end
 end
