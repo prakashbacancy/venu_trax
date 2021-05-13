@@ -15,7 +15,7 @@ class SimulationChart
     vistior_chart(@params, simulation, data)
     wifilp_login_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
     lp_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
-    user_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
+    user_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     cpm_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
 
 		data
