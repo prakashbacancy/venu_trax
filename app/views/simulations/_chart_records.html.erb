@@ -17,26 +17,58 @@
         <td><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>Visitor Attendance</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
+        <td rowspan="2" class="text-left"><b>Visitor Attendance</b></td>
+          <tr>
+            <td> Per Day</td>
+            <td><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Annually</td>
+            <td><%= number_with_delimiter(@simulations[:daily_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:week_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:month_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:year_annual_visitor].to_i, :delimiter => ',') %></td>
+          </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>WIFILP</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></b></td>
+        <td rowspan="2" class="text-left"><b>WIFILP</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>CPM LP Revenue</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
-      </tr>
+        <td rowspan="2" class="text-left"><b>CPM LP Revenue</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        </tr>
       <tr>
         <td colspan="2" class="text-left"><b>User Impression</b></td>
         <td><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
@@ -210,10 +242,11 @@
               title: function(value){
                 if (option == "Monthly"){
                   var curr = new Date(value[0].label); // get current date
-                  var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+                  var first = curr.getDate() // First day is the day of the month - the day of the week
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
+                  debugger
                   start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
                   end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' +lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   // debugger
@@ -231,7 +264,7 @@
                 }
               },
               label: function(tooltipItem) {
-                return (tooltipItem.value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(tooltipItem.value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               }
             }
           },
@@ -297,7 +330,7 @@
               title: function(value){
                 if (option == "Monthly"){
                   var curr = new Date(value[0].label); // get current date
-                  var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+                  var first = curr.getDate() // First day is the day of the month - the day of the week
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
@@ -355,7 +388,7 @@
                     if (d == "Invalid Date"){
                       str = value
                     }else{
-                      str = (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0') + '/' +  d.getFullYear();
+                      str = (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0') + '/' +  new Date().getFullYear();
                       if (option == 'Monthly'){
                         str = " Week "+(ind+1)
                       }else if(option == 'Annually'){

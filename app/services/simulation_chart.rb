@@ -18,7 +18,6 @@ class SimulationChart
     user_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     cpm_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     wifi_revenue_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
-
 		data
 	end
 
@@ -39,7 +38,7 @@ class SimulationChart
     when 'Weekly'
       data[:seating_capacity] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:annual_seating_capacity)
     when 'Monthly'
-      data[:seating_capacity] = simulation.where(created_at: @month).group_by_week(:created_at).sum(:annual_seating_capacity)
+      data[:seating_capacity] = simulation.where(created_at: @month).group_by_week(:created_at, week_start: :monday).sum(:annual_seating_capacity)
     when 'Annually'
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)
     else
@@ -72,9 +71,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_annual_event) }]
       when 'Monthly'
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:avg_attendance_event) },
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:avg_attendance_annual_event) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:avg_attendance_annual_event) }]
       when 'Annually'
         data[:visitor_attendance] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
@@ -86,6 +85,11 @@ class SimulationChart
     data[:week_visitor_attendance] = week_visitor
     data[:month_visitor_attendance] = month_visitor
     data[:year_visitor_attendance] = month_visitor
+
+    data[:daily_annual_visitor] = daily_annual_visitor
+    data[:week_annual_visitor] = week_annual_visitor
+    data[:month_annual_visitor] = month_annual_visitor
+    data[:year_annual_visitor] = year_annual_visitor
   end
   
   def wifilp_login_chart(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -109,9 +113,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:wifi_lp_annual_login) }]
       when 'Monthly'
-        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:wifi_lp_per_day_login) },
+        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:wifi_lp_annual_login) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_lp_annual_login) }]
       when 'Annually'
         data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
@@ -123,6 +127,11 @@ class SimulationChart
     data[:week_wifi_lp_login] = week_wifi_lp_login
     data[:month_wifi_lp_login] = month_wifi_lp_login
     data[:year_wifi_lp_login] = month_wifi_lp_login
+
+    data[:daily_annual_wifi_lp_login] = daily_annual_wifi_lp_login
+    data[:week_annual_wifi_lp_login] = week_annual_wifi_lp_login
+    data[:month_annual_wifi_lp_login] = month_annual_wifi_lp_login
+    data[:year_annual_wifi_lp_login] = year_annual_wifi_lp_login
   end
 
   def lp_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -146,9 +155,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:lp_rev_annual_total) }]
       when 'Monthly'
-        data[:lp_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:lp_rev_per_day_total) },
+        data[:lp_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:lp_rev_annual_total) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:lp_rev_annual_total) }]
       when 'Annually'
         data[:lp_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
@@ -160,6 +169,11 @@ class SimulationChart
     data[:week_lp_impression] = week_lp_impression
     data[:month_lp_impression] = month_lp_impression
     data[:year_lp_impression] = year_lp_impression
+
+    data[:daily_annual_lp_impression] = daily_annual_lp_impression
+    data[:week_annual_lp_impression] = week_annual_lp_impression
+    data[:month_annual_lp_impression] = month_annual_lp_impression
+    data[:year_annual_lp_impression] = year_annual_lp_impression
   end
 
   def user_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -183,9 +197,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:user_impression_annual) }]
       when 'Monthly'
-        data[:user_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:user_impression_per_day) },
+        data[:user_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:user_impression_annual) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:user_impression_annual) }]
       when 'Annually'
         data[:user_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -197,6 +211,11 @@ class SimulationChart
     data[:week_user_impression] = week_user_impression
     data[:month_user_impression] = month_user_impression
     data[:year_user_impression] = year_user_impression
+
+    data[:daily_annual_user_impression] = daily_annual_user_impression
+    data[:week_annual_user_impression] = week_annual_user_impression
+    data[:month_annual_user_impression] = month_annual_user_impression
+    data[:year_annual_user_impression] = year_annual_user_impression
   end
 
   def cpm_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -220,9 +239,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:cpm_impression_annual) }]
       when 'Monthly'
-        data[:cpm_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:cpm_impression_per_day) },
+        data[:cpm_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:cpm_impression_annual) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:cpm_impression_annual) }]
       when 'Annually'
         data[:cpm_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -234,6 +253,11 @@ class SimulationChart
     data[:week_cpm_impression] = week_cpm_impression
     data[:month_cpm_impression] = month_cpm_impression
     data[:year_cpm_impression] = year_cpm_impression
+
+    data[:daily_annual_cpm_impression] = daily_annual_cpm_impression
+    data[:week_annual_cpm_impression] = week_annual_cpm_impression
+    data[:month_annual_cpm_impression] = month_annual_cpm_impression
+    data[:year_annual_cpm_impression] = year_annual_cpm_impression
   end
 
   def wifi_revenue_chart(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -243,13 +267,13 @@ class SimulationChart
     year = simulation.where(created_at: @year).sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] = simulation.where(created_at: @today).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = daily_data.group_by_day(:created_at).sum(:wifi_annual_total)
       when 'Weekly'
-        data[:wifi_revenue] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_total)
       when 'Monthly'
-        data[:wifi_revenue] = simulation.where(created_at: @month).group_by_week(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_annual_total)
       when 'Annually'
-        data[:wifi_revenue] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = year_data.group_by_month(:created_at).sum(:wifi_annual_total)
       else
         data[:wifi_revenue] = {'Daily' => daily, 'Weekly'=> week, 'Monthly' => month, 'Annually' => year }
       end
