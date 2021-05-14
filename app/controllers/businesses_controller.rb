@@ -1,20 +1,11 @@
 class BusinessesController < ApplicationController
-	before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :business, only: %i[show new edit]
+  before_action :find_venues, only: %i[show]
+  before_action :find_notes, only: %i[show]
 
   def index
     @businesses = Business.all
-  end
-
-  def show
-    business
-  end
-
-  def new
-    business
-  end
-
-  def edit
-    business
   end
 
   def create
@@ -56,5 +47,13 @@ class BusinessesController < ApplicationController
 
   def business_params
     params.require(:business).permit(Business::PERMITTED_PARAM)
+  end
+
+  def find_venues
+    @venues = @business.venues
+  end
+
+  def find_notes
+    @notes = @business.notes.recent
   end
 end

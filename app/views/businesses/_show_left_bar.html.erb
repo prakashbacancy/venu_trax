@@ -1,0 +1,85 @@
+<div class="content position-relative p-4">
+  <%= link_to '< All business', businesses_path, class: "fs-14" %>
+  <div class="d-flex mt-3">
+    <div class="mr-3">
+      <%= image_pack_tag 'home/ic_profile_pic.svg' %>
+    </div>
+    <div class="">
+      <h3 class="fw-300 text-break"><%= @business.name %></h3>
+      <h6><%= @business.phone_no %></h6>
+      <div class="mt-3">
+        <ul id="mylist" class="text-center d-flex">
+          <li class="m-0 mr-3">
+            <a class="btn sharp fs-12" href="http://google.com" target="_blank">
+              <i><%= image_pack_tag 'home/ic_note.svg' %></i>Notes
+            </a>
+          </li>
+          <li class="m-0 mr-3">
+            <a class="btn sharp fs-12" href="http://google.com" target="_blank">
+              <i><%= image_pack_tag 'home/ic_email.svg' %></i>Email
+            </a>
+          </li>
+          <li class="m-0 mr-3">
+            <a class="btn sharp fs-12" href="http://google.com" target="_blank">
+              <i><%= image_pack_tag 'home/ic_meet.svg' %></i>Meet
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row border p-4">
+    <div class="col-md-12">
+      <a class="text-dark fw-500 d-block d-flex collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <span class="mr-auto fs-16">About Business</span><i class="fa fa-chevron-down"></i>
+      </a>
+    </div>
+  </div>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body border-0">
+    <div class="row">
+      <div class="col-md-12 text-gray fs-16">
+        <%= @business.description %>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-6">
+        <p class="fw-700 fs-16">Domain Name:</p>
+        <p class="text-gray fs-15"><%= @business.domain %></p>
+      </div>
+      <div class="col-6">
+        <p class="fw-700 fs-16">Industry:</p>
+        <p class="text-gray fs-15"><%= @business.industry %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">Type:</p>
+        <p class="text-gray fs-15"><%= @business.business_type %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">Zip Code:</p>
+        <p class="text-gray fs-15"><%= @business.zip_code %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">Address:</p>
+        <p class="text-gray fs-15"><%= @business.address %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">State:</p>
+        <p class="text-gray fs-15"><%= @business.state %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">City:</p>
+        <p class="text-gray fs-15"><%= @business.city %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">No of Employees:</p>
+        <p class="text-gray fs-15"><%= @business.no_of_employee %></p>
+      </div>
+      <div class="col-6 mt-3">
+        <p class="fw-700 fs-16">Annual Revenue:</p>
+        <p class="text-gray fs-15"><%= @business.annual_revenue %></p>
+      </div>
+    </div>
+  </div>
+</div>
