@@ -64,13 +64,13 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_event) },
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_annual_event) }]
+                 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_annual_event).collect{|k,v| [k.to_s + '_', v]}.to_h }]
       when 'Weekly'
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_event) },
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h },
                { 'name' => 'Annually  Attendance',
-                 'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_annual_event) }]
+                 'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_annual_event).collect{|k,v| [k.to_s + '_', v]}.to_h }]
       when 'Monthly'
         data[:visitor_attendance] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
@@ -243,9 +243,9 @@ class SimulationChart
     year = simulation.where(created_at: @year).sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] = simulation.where(created_at: @today).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = simulation.where(created_at: @today).group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Weekly'
-        data[:wifi_revenue] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
         data[:wifi_revenue] = simulation.where(created_at: @month).group_by_week(:created_at).sum(:wifi_annual_total)
       when 'Annually'

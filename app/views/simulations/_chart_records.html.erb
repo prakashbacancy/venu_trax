@@ -223,6 +223,8 @@
         }
       }
 
+      var mycustomflag = true
+
       var newOptions2 = {
         messages: {empty: "No Records available."},
         library: {
@@ -286,8 +288,11 @@
             xAxes: [{
                 ticks: {
                   callback: function(value, ind) {
-                    console.log(value)
-                    d = new Date(value);
+                    value1 = value
+                    if (option == 'Weekly' || option == "Today"){
+                      value1 = value1.substring(0, value1.length - 1);
+                    }
+                    d = new Date(value1);
                     if (d == "Invalid Date"){
                       str = value
                     }else{
@@ -296,16 +301,13 @@
                         str = " Week "+(ind+1)
                       }else if(option == 'Annually'){
                         str = d.toLocaleString('default', { month: 'long' });
-                      }else{
-                        
                       }
                     }
                     return str
                   }
                 }
-            }],
+            }]
           }
-
         }
       }
 
