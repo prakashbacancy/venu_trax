@@ -20858,6 +20858,10 @@ div#business_list_table_length {
 
 .not-allowed {cursor: not-allowed !important;}
 
+.chart-labels span b {
+  color: #007AFF;
+}
+
 .search-business{
   padding: 26px 11px 5px 11px;
   border: 1px solid #f7f8fa;
