@@ -80,7 +80,7 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => year_data.group_by_month(:created_at).sum(:avg_attendance_annual_event) }]
       else
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => {'Daily' => daily_visitor, 'Weekly'=> week_visitor, 'Monthly' => month_visitor, 'Annually' => year_visitor }},{'name' => 'Annual Attendance', 'data' => {'Daily' => daily_annual_visitor, 'Weekly'=> week_annual_visitor, 'Monthly' => month_annual_visitor, 'Annually' => year_annual_visitor }}]
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => {'Daily' => daily_visitor, 'Weekly'=> week_visitor, 'Monthly' => month_visitor, 'Annually' => year_visitor }},{'name' => 'Annually Attendance', 'data' => {'Daily' => daily_annual_visitor, 'Weekly'=> week_annual_visitor, 'Monthly' => month_annual_visitor, 'Annually' => year_annual_visitor }}]
       end
     data[:daily_visitor_attendance] = daily_visitor
     data[:week_visitor_attendance] = week_visitor
@@ -117,7 +117,7 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => year_data.group_by_month(:created_at).sum(:wifi_lp_annual_login) }]
       else
-        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => {'Daily' => daily_wifi_lp_login, 'Weekly'=> week_wifi_lp_login, 'Monthly' => month_wifi_lp_login, 'Annually' => year_wifi_lp_login }},{'name' => 'Annual Attendance', 'data' => {'Daily' => daily_annual_wifi_lp_login, 'Weekly'=> week_annual_wifi_lp_login, 'Monthly' => month_annual_wifi_lp_login, 'Annually' => year_annual_wifi_lp_login }}]
+        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => {'Daily' => daily_wifi_lp_login, 'Weekly'=> week_wifi_lp_login, 'Monthly' => month_wifi_lp_login, 'Annually' => year_wifi_lp_login }},{'name' => 'Annually Attendance', 'data' => {'Daily' => daily_annual_wifi_lp_login, 'Weekly'=> week_annual_wifi_lp_login, 'Monthly' => month_annual_wifi_lp_login, 'Annually' => year_annual_wifi_lp_login }}]
       end
     data[:daily_wifi_lp_login] = daily_wifi_lp_login
     data[:week_wifi_lp_login] = week_wifi_lp_login
