@@ -18,7 +18,6 @@ class SimulationChart
     user_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     cpm_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     wifi_revenue_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
-
 		data
 	end
 
@@ -39,7 +38,7 @@ class SimulationChart
     when 'Weekly'
       data[:seating_capacity] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:annual_seating_capacity)
     when 'Monthly'
-      data[:seating_capacity] = simulation.where(created_at: @month).group_by_week(:created_at).sum(:annual_seating_capacity)
+      data[:seating_capacity] = simulation.where(created_at: @month).group_by_week(:created_at, week_start: :monday).sum(:annual_seating_capacity)
     when 'Annually'
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)
     else
@@ -72,9 +71,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_annual_event) }]
       when 'Monthly'
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:avg_attendance_event) },
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:avg_attendance_annual_event) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:avg_attendance_annual_event) }]
       when 'Annually'
         data[:visitor_attendance] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
@@ -268,13 +267,13 @@ class SimulationChart
     year = simulation.where(created_at: @year).sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] = simulation.where(created_at: @today).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = daily_data.group_by_day(:created_at).sum(:wifi_annual_total)
       when 'Weekly'
-        data[:wifi_revenue] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_total)
       when 'Monthly'
-        data[:wifi_revenue] = simulation.where(created_at: @month).group_by_week(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = month_data.group_by_week(:created_at).sum(:wifi_annual_total)
       when 'Annually'
-        data[:wifi_revenue] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = year_data.group_by_month(:created_at).sum(:wifi_annual_total)
       else
         data[:wifi_revenue] = {'Daily' => daily, 'Weekly'=> week, 'Monthly' => month, 'Annually' => year }
       end

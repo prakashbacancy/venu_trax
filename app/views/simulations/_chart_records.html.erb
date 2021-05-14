@@ -242,10 +242,11 @@
               title: function(value){
                 if (option == "Monthly"){
                   var curr = new Date(value[0].label); // get current date
-                  var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+                  var first = curr.getDate() // First day is the day of the month - the day of the week
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
+                  debugger
                   start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
                   end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' +lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
                   // debugger
@@ -329,7 +330,7 @@
               title: function(value){
                 if (option == "Monthly"){
                   var curr = new Date(value[0].label); // get current date
-                  var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+                  var first = curr.getDate() // First day is the day of the month - the day of the week
                   var last = first + 6; // last day is the first day + 6
                   var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
                   var lastday = new Date(curr.setDate(last));
