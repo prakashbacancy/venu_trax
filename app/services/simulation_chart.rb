@@ -113,9 +113,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:wifi_lp_annual_login) }]
       when 'Monthly'
-        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:wifi_lp_per_day_login) },
+        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:wifi_lp_annual_login) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_lp_annual_login) }]
       when 'Annually'
         data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
@@ -155,9 +155,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:lp_rev_annual_total) }]
       when 'Monthly'
-        data[:lp_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:lp_rev_per_day_total) },
+        data[:lp_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:lp_rev_annual_total) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:lp_rev_annual_total) }]
       when 'Annually'
         data[:lp_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
@@ -197,9 +197,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:user_impression_annual) }]
       when 'Monthly'
-        data[:user_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:user_impression_per_day) },
+        data[:user_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:user_impression_annual) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:user_impression_annual) }]
       when 'Annually'
         data[:user_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -239,9 +239,9 @@ class SimulationChart
                { 'name' => 'Annually  Attendance',
                  'data' => week_data.group_by_day(:created_at).sum(:cpm_impression_annual) }]
       when 'Monthly'
-        data[:cpm_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at).sum(:cpm_impression_per_day) },
+        data[:cpm_impression] = [{'name' => 'Per day', 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => month_data.group_by_week(:created_at).sum(:cpm_impression_annual) }]
+                 'data' => month_data.group_by_week(:created_at, week_start: :monday).sum(:cpm_impression_annual) }]
       when 'Annually'
         data[:cpm_impression] = [{'name' => 'Per day', 'data' => year_data.group_by_month(:created_at).sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -271,7 +271,7 @@ class SimulationChart
       when 'Weekly'
         data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_total)
       when 'Monthly'
-        data[:wifi_revenue] = month_data.group_by_week(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_annual_total)
       when 'Annually'
         data[:wifi_revenue] = year_data.group_by_month(:created_at).sum(:wifi_annual_total)
       else
