@@ -11,10 +11,10 @@
     <tbody>
       <tr>
         <td colspan="2" class="text-left"><b>Seating Capacity</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        <td><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
         <td colspan="2" class="text-left"><b>Visitor Attendance</b></td>
