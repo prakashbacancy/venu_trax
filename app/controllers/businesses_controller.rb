@@ -54,6 +54,6 @@ class BusinessesController < ApplicationController
   end
 
   def find_notes
-    @notes = @business.notes
+    @notes = @business.notes.recent
   end
 end
