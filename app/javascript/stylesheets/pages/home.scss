@@ -609,3 +609,37 @@ div.dataTables_wrapper div.dataTables_length select{
 	}
 }
 
+.business-show .content{
+	padding: 35px 35px;
+	min-height: 0px;
+}
+
+@media only screen and (max-width: 767px){
+	.business-show .content {
+		padding: 35px 15px;
+	}
+}
+
+.left-sidebar-btn:after{
+	content: 'Notes'
+}
+
+.business-show ul#mylist li {
+		display:inline;
+		text-align:center;
+		margin: 0 10%;
+}
+.business-show ul#mylist li i {
+		display: block;
+}
+
+.business-show ul#mylist li:first-child {
+		margin-left: 0;
+}
+.business-show ul#mylist li:last-child {
+		margin-right: 0;
+}
+.business-show .sharp{
+	min-width: 0px;
+	padding: 0 !important;
+}
