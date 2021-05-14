@@ -34,7 +34,7 @@ class SimulationChart
     year = year_data.sum(:annual_seating_capacity)
     @date_range = case params[:option]
     when 'Today'
-      data[:seating_capacity] = simulation.where(created_at: @today).group_by_day(:created_at).sum(:annual_seating_capacity)
+      data[:seating_capacity] = simulation.where(created_at: @today).group_by_hour_of_day(:created_at, format: "%-l %P").sum(:annual_seating_capacity)
     when 'Weekly'
       data[:seating_capacity] = simulation.where(created_at: @week).group_by_day(:created_at).sum(:annual_seating_capacity)
     when 'Monthly'
@@ -63,9 +63,9 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h },
+        data[:visitor_attendance] = [{'name' => 'Per day', 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_event) },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:avg_attendance_annual_event).collect{|k,v| [k.to_s + '_', v]}.to_h }]
+                 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_annual_event) }]
       when 'Weekly'
         data[:visitor_attendance] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:avg_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h },
                { 'name' => 'Annually  Attendance',
@@ -105,9 +105,9 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:wifi_lp_per_day_login) },
+        data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:wifi_lp_annual_login) }]
+                 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_lp_annual_login) }]
       when 'Weekly'
         data[:wifi_lp_login] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:wifi_lp_per_day_login) },
                { 'name' => 'Annually  Attendance',
@@ -147,9 +147,9 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:lp_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:lp_rev_per_day_total) },
+        data[:lp_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:lp_rev_annual_total) }]
+                 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:lp_rev_annual_total) }]
       when 'Weekly'
         data[:lp_impression] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:lp_rev_per_day_total) },
                { 'name' => 'Annually  Attendance',
@@ -189,9 +189,9 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:user_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:user_impression_per_day) },
+        data[:user_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:user_impression_annual) }]
+                 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:user_impression_annual) }]
       when 'Weekly'
         data[:user_impression] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:user_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -231,9 +231,9 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:cpm_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_day(:created_at).sum(:cpm_impression_per_day) },
+        data[:cpm_impression] = [{'name' => 'Per day', 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
-                 'data' => daily_data.group_by_day(:created_at).sum(:cpm_impression_annual) }]
+                 'data' => daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:cpm_impression_annual) }]
       when 'Weekly'
         data[:cpm_impression] = [{'name' => 'Per day', 'data' => week_data.group_by_day(:created_at).sum(:cpm_impression_per_day) },
                { 'name' => 'Annually  Attendance',
@@ -267,7 +267,7 @@ class SimulationChart
     year = simulation.where(created_at: @year).sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] = daily_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
+        data[:wifi_revenue] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_annual_total)
       when 'Weekly'
         data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
