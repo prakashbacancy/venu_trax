@@ -263,7 +263,7 @@
                 }
               },
               label: function(tooltipItem) {
-                return (tooltipItem.value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(tooltipItem.value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               }
             }
           },
