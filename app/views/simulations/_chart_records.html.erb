@@ -111,7 +111,7 @@
         <h3 class="chart-main-title mb-0">WIFI Revenue</h3>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
-          <%#= area_chart(@simulations.group_by_day(:created_at).sum(:wifi_annual_total), id: 'wifi_revenue') 
+          <%= area_chart(@simulations[:wifi_revenue], id: 'wifi_revenue') 
           %>
         </div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
@@ -132,6 +132,8 @@
     var wifi_lp = Chartkick.charts["wifi_lp"]
     var cpm_lp = Chartkick.charts["cpm_lp"]
     var user_impression = Chartkick.charts["user_impression"]
+    var cpm_impression = Chartkick.charts["cpm_impression"]
+    var wifi_revenue = Chartkick.charts["wifi_revenue"]
 
       var newOptions = {
         messages: {empty: "No Records available."},
@@ -317,5 +319,9 @@
     cpm_lp.setOptions(CPMLP);
     var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)
     user_impression.setOptions(UserImpressionOption);
+    var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptions)
+    cpm_impression.setOptions(CPMImpressionOption);
+    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions2)
+    wifi_revenue.setOptions(WifiOptions);
   })
 </script>
