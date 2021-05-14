@@ -267,9 +267,9 @@ class SimulationChart
     year = simulation.where(created_at: @year).sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] = simulation.daily_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
+        data[:wifi_revenue] = daily_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Weekly'
-        data[:wifi_revenue] = simulation.week_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
+        data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
         data[:wifi_revenue] = month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_annual_total)
       when 'Annually'
