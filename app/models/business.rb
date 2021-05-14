@@ -1,4 +1,7 @@
 class Business < ApplicationRecord
+  has_many :notes, as: :notable
+  has_many :venues
+
   PERMITTED_PARAM = %w[id name industry business_type phone_no zip_code address city state
                        no_of_employee annual_revenue description domain].freeze
   INDUSTRY = ['State and Local Government',

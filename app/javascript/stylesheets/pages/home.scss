@@ -135,7 +135,8 @@ header {
 		line-height: 3rem;
 		text-align: center;
 		pointer-events: none;
-		color: #aaa;
+		color: #c4c4c4;
+		font-size: 22px;
 	}
 }
 
@@ -239,6 +240,10 @@ header {
 }
 
 .modal.modal-right {
+	.modal-header {
+		padding-top: 32px !important;
+		padding-bottom: 32px !important;
+	}
 	.modal-dialog {
 		-webkit-transform: translate3d(0%, 0, 0);
 		-ms-transform: translate3d(0%, 0, 0);
@@ -259,7 +264,7 @@ header {
 	}
 
 	.modal-body {
-		padding: 15px 40px 80px;
+		padding: 15px 40px 120px;
 	}
 
 	.modal-dialog.modal-sm {
@@ -273,6 +278,24 @@ header {
 	.modal-dialog.modal-xl {
 		width: 1140px;
 	}
+
+	.modal-footer {
+		background: #f6f6f6;
+		left: 0;
+		right: 0;
+		padding: 11px 22px !important;
+		display: flex;
+		align-items: center;
+		justify-content: center !important;
+	}
+
+	.btn {
+		min-width: 131px;
+		padding: 16px 59px;
+		margin: 12px;
+	}
+
+	label {font-weight: 500; margin-bottom: 12px;}
 }
 
 .modal.modal-top {
@@ -309,7 +332,7 @@ header {
 		position: fixed;
 		margin: auto;
 		width: 100%;
-		max-width: 100%;
+		// max-width: ;
 		height: auto;
 	}
 
@@ -410,6 +433,7 @@ header {
 .modal.modal-bottom.fade.show {
 	.modal-dialog {
 		bottom: 0;
+		right: 0;
 	}
 }
 
@@ -551,3 +575,37 @@ table.dataTable {
 .title-border {
 	border-color: #F7F8FA !important;
 }
+
+.bg-light-bottom {
+	background-color: #F6F6F6;
+}
+
+div.dataTables_wrapper div.dataTables_length select{
+	width: 100px !important;
+	display: inline-block;
+	margin-right: 14px;
+	text-align: center;
+	font-size: 19px;
+	text-align-last: center;
+}
+
+.admin-table table tr td, .admin-table table tr th {
+	border-color: #f7f8fa!important;
+}
+
+.business-show .tab-section .shadow p {
+	font-size: 16px;
+	
+}
+.business-show .tab-section .shadow{
+	padding: 32px !important;
+}
+
+@media only screen and (max-width: 991px){
+	.modal-right .btn {
+			min-width: auto;
+				padding: 11px 22px;
+			margin: 4px;
+	}
+}
+

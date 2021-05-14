@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root to: 'businesses#index'
   # for user functionality
   devise_for :users, controllers: {
@@ -11,7 +12,11 @@ Rails.application.routes.draw do
   #   get 'users/password' => 'users/passwords#index'
   # end
   # for business module
-  resources :businesses
+  resources :businesses do
+    resources :venues
+    resources :notes
+  end
   resources :simulations
   resources :credentials, only: %i[edit update]
+  resources :venues
 end

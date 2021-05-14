@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
   </head>
 
   <body class="admin-wrapper">
@@ -20,6 +21,7 @@
       </div>
       <%= yield %>
       <%= render partial: 'layouts/right_modal' %>
+      <%= render partial: 'layouts/bottom_modal' %>
       <%= render partial: 'layouts/footer' %>
     </div>
   </body>

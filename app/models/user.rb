@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_pic, dependent: :destroy
 
+  has_many :notes, dependent: :destroy
+
   scope :without_, ->(current_user) { where.not(id: current_user) }
   validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
 

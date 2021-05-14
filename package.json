@@ -11,6 +11,8 @@
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
     "chartkick": "^3.2.0",
+    "ckeditor4": "^4.16.0",
+    "copy-webpack-plugin": "^8.1.1",
     "datatables.net": "^1.10.24",
     "datatables.net-bs4": "^1.10.24",
     "jquery": "^3.6.0",

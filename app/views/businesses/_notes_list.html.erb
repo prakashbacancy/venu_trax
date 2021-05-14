@@ -1,0 +1,15 @@
+
+<% if notes.present? %>
+  <% notes.each do |note| %>
+    <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+      <p class="fs-18"><%= note.description.html_safe %></p>
+      <p class="text-gray mt-3 fs-16"> -- <%= "#{note.user.full_name} | #{note.created_at.strftime('%b %d, %Y %l:%M %p')}" %> </p>
+      <p class="text-primary mt-3 fs-16 fw-600"><%= image_pack_tag 'home/ic_comment.svg', class: 'mr-3' %>  Add Comments</p>
+    </div>
+  <% end %>
+<% else %>
+  <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+    <p class="fs-18 text-center text-gray">No Data Available</p>
+  </div>
+<% end %>
+
