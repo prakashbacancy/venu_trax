@@ -17,39 +17,94 @@
         <td><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>Visitor Attendance</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
+        <td rowspan="2" class="text-left"><b>Visitor Attendance</b></td>
+          <tr>
+            <td> Per Day</td>
+            <td><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Annually</td>
+            <td><%= number_with_delimiter(@simulations[:daily_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:week_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:month_annual_visitor].to_i, :delimiter => ',') %></td>
+            <td><%= number_with_delimiter(@simulations[:year_annual_visitor].to_i, :delimiter => ',') %></td>
+          </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>WIFILP</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></b></td>
+        <td rowspan="2" class="text-left"><b>WIFILP</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>CPM LP Revenue</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
+        <td rowspan="2" class="text-left"><b>CPM LP Revenue</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_lp_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_lp_impression].to_i, :delimiter => ',') %></td>
+        </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>User Impression</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></td>
+        <td rowspan="2" class="text-left"><b>User Impression</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_user_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_user_impression].to_i, :delimiter => ',') %></td>
+        </tr>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>CPM Impression Revenue</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td rowspan="2" class="text-left"><b>CPM Impression Revenue</b></td>
+        <tr>
+          <td> Per Day</td>
+          <td><%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Annually</td>
+          <td><%= number_with_delimiter(@simulations[:daily_annual_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:week_annual_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:month_annual_cpm_impression].to_i, :delimiter => ',') %></td>
+          <td><%= number_with_delimiter(@simulations[:year_annual_cpm_impression].to_i, :delimiter => ',') %></td>
+        </tr>
       </tr>
       <tr>
         <td colspan="2" class="text-left"><b>WIFI Revenue</b></td>
@@ -231,7 +286,7 @@
                 }
               },
               label: function(tooltipItem) {
-                return (tooltipItem.value).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                return (parseInt(tooltipItem.value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               }
             }
           },

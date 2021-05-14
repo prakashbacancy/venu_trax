@@ -86,6 +86,11 @@ class SimulationChart
     data[:week_visitor_attendance] = week_visitor
     data[:month_visitor_attendance] = month_visitor
     data[:year_visitor_attendance] = month_visitor
+
+    data[:daily_annual_visitor] = daily_annual_visitor
+    data[:week_annual_visitor] = week_annual_visitor
+    data[:month_annual_visitor] = month_annual_visitor
+    data[:year_annual_visitor] = year_annual_visitor
   end
   
   def wifilp_login_chart(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -123,6 +128,11 @@ class SimulationChart
     data[:week_wifi_lp_login] = week_wifi_lp_login
     data[:month_wifi_lp_login] = month_wifi_lp_login
     data[:year_wifi_lp_login] = month_wifi_lp_login
+
+    data[:daily_annual_wifi_lp_login] = daily_annual_wifi_lp_login
+    data[:week_annual_wifi_lp_login] = week_annual_wifi_lp_login
+    data[:month_annual_wifi_lp_login] = month_annual_wifi_lp_login
+    data[:year_annual_wifi_lp_login] = year_annual_wifi_lp_login
   end
 
   def lp_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -160,6 +170,11 @@ class SimulationChart
     data[:week_lp_impression] = week_lp_impression
     data[:month_lp_impression] = month_lp_impression
     data[:year_lp_impression] = year_lp_impression
+
+    data[:daily_annual_lp_impression] = daily_annual_lp_impression
+    data[:week_annual_lp_impression] = week_annual_lp_impression
+    data[:month_annual_lp_impression] = month_annual_lp_impression
+    data[:year_annual_lp_impression] = year_annual_lp_impression
   end
 
   def user_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -197,6 +212,11 @@ class SimulationChart
     data[:week_user_impression] = week_user_impression
     data[:month_user_impression] = month_user_impression
     data[:year_user_impression] = year_user_impression
+
+    data[:daily_annual_user_impression] = daily_annual_user_impression
+    data[:week_annual_user_impression] = week_annual_user_impression
+    data[:month_annual_user_impression] = month_annual_user_impression
+    data[:year_annual_user_impression] = year_annual_user_impression
   end
 
   def cpm_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -234,6 +254,11 @@ class SimulationChart
     data[:week_cpm_impression] = week_cpm_impression
     data[:month_cpm_impression] = month_cpm_impression
     data[:year_cpm_impression] = year_cpm_impression
+
+    data[:daily_annual_cpm_impression] = daily_annual_cpm_impression
+    data[:week_annual_cpm_impression] = week_annual_cpm_impression
+    data[:month_annual_cpm_impression] = month_annual_cpm_impression
+    data[:year_annual_cpm_impression] = year_annual_cpm_impression
   end
 
   def wifi_revenue_chart(params, simulation, data, daily_data, week_data, month_data, year_data)
