@@ -53,7 +53,7 @@ class SimulationChart
     when 'Annually'
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)
     else
-      data[:seating_capacity] = {'Daily' => daily, 'Weekly'=> week, 'Monthly' => month, 'Annually' => year }
+      data[:seating_capacity] = {'Daily' => daily, 'Weekly(Avg)'=> week, 'Monthly' => month, 'Annually' => year }
     end
    data[:daily_seating_capacity] = daily
    data[:day_seating_capacity] = day_data
@@ -72,14 +72,14 @@ class SimulationChart
       @date_range = case params[:option]
       when 'Today'
         data[:visitor_attendance] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_event)
-      when 'Weekly'
+      when '(Avg)'
         data[:visitor_attendance] = week_data.group_by_day(:created_at).sum(:week_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
         data[:visitor_attendance] = month_data.group_by_week(:created_at, week_start: :monday).sum(:month_attendance_event)           
       when 'Annually'
         data[:visitor_attendance] = year_data.group_by_month(:created_at).sum(:avg_attendance_annual_event)
       else
-        data[:visitor_attendance] = {'Daily' => daily_visitor, 'Weekly'=> week_visitor, 'Monthly' => month_visitor, 'Annually' => year_visitor}
+        data[:visitor_attendance] = {'Daily' => daily_visitor, 'Weekly(Avg)'=> week_visitor, 'Monthly(Avg)' => month_visitor, 'Annually' => year_visitor}
       end
     data[:daily_visitor_attendance] = daily_visitor
     data[:day_visitor_attendance] = day_visitor
@@ -105,7 +105,7 @@ class SimulationChart
       when 'Annually'
         data[:wifi_lp_login] = year_data.group_by_month(:created_at).sum(:wifi_lp_annual_login)
       else
-        data[:wifi_lp_login] =  {'Daily' => daily_wifi_lp_login, 'Weekly'=> week_wifi_lp_login, 'Monthly' => month_wifi_lp_login, 'Annually' => year_wifi_lp_login }
+        data[:wifi_lp_login] =  {'Daily' => daily_wifi_lp_login, 'Weekly(Avg)'=> week_wifi_lp_login, 'Monthly(Avg)' => month_wifi_lp_login, 'Annually' => year_wifi_lp_login }
       end
     data[:daily_wifi_lp_login] = daily_wifi_lp_login
     data[:wifi_lp_day_login] = day_wifi_lp_login
@@ -132,7 +132,7 @@ class SimulationChart
       when 'Annually'
         data[:lp_impression] = year_data.group_by_month(:created_at).sum(:lp_rev_annual_total)
       else
-        data[:lp_impression] = {'Daily' => daily_lp_impression, 'Weekly'=> week_lp_impression, 'Monthly' => month_lp_impression, 'Annually' => year_lp_impression }
+        data[:lp_impression] = {'Daily' => daily_lp_impression, 'Weekly(Avg)'=> week_lp_impression, 'Monthly(Avg)' => month_lp_impression, 'Annually' => year_lp_impression }
       end
     data[:daily_lp_impression] = daily_lp_impression
     data[:day_lp_impression] = day_lp_impression
@@ -160,7 +160,7 @@ class SimulationChart
       when 'Annually'
         data[:user_impression] = year_data.group_by_month(:created_at).sum(:user_impression_per_day)
       else
-        data[:user_impression] = {'Daily' => daily_user_impression, 'Weekly'=> week_user_impression, 'Monthly' => month_user_impression, 'Annually' => year_user_impression }
+        data[:user_impression] = {'Daily' => daily_user_impression, 'Weekly(Avg)'=> week_user_impression, 'Monthly(Avg)' => month_user_impression, 'Annually' => year_user_impression }
       end
     data[:daily_user_impression] = daily_user_impression
     data[:day_user_impression] = day_user_impression
@@ -187,7 +187,7 @@ class SimulationChart
       when 'Annually'
         data[:cpm_impression] = year_data.group_by_month(:created_at).sum(:cpm_impression_annual)
       else
-        data[:cpm_impression] = {'Daily' => daily_cpm_impression, 'Weekly'=> week_cpm_impression, 'Monthly' => month_cpm_impression, 'Annually' => year_cpm_impression }
+        data[:cpm_impression] = {'Daily' => daily_cpm_impression, 'Weekly(Avg)'=> week_cpm_impression, 'Monthly(Avg)' => month_cpm_impression, 'Annually' => year_cpm_impression }
       end
     data[:daily_cpm_impression] = daily_cpm_impression
     data[:day_cpm_impression] = day_cpm_impression
@@ -211,7 +211,7 @@ class SimulationChart
       when 'Annually'
         data[:wifi_revenue] = year_data.group_by_month(:created_at).sum(:wifi_annual_total)
       else
-        data[:wifi_revenue] = {'Daily' => daily, 'Weekly'=> week, 'Monthly' => month, 'Annually' => year }
+        data[:wifi_revenue] = {'Daily' => daily, 'Weekly(Avg)'=> week, 'Monthly(Avg)' => month, 'Annually' => year }
       end
     data[:daily_wifi_revenue] = daily
     data[:week_wifi_revenue] = week
