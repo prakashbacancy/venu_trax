@@ -1,3 +1,6 @@
+<script>
+  custom_ckeditor('note_description')
+</script>
 <div class="modal-header d-flex justify-content-around align-items-center text-white">
   <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Create' : 'Edit' %>
   <h5 class="modal-title"> <%= title_half %> Note</h5>
@@ -11,7 +14,7 @@
 <%= form_for [@note.notable, @note] do |f| %>
   <div class="modal-body">
     <div class="form-group mb-5">
-      <%= f.cktext_area :description, class: 'form-control', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom' } %>
+      <%= f.cktext_area :description, class: 'form-control',required: true, placeholder: 'Start typing to leave a note', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper' }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
     </div>
   </div>
   <div class="modal-footer modal-footer-fixed bg-light-bottom mt-4" style="left: 0">
@@ -28,6 +31,13 @@
     <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
   </div>
 <% end %>
+<style>
+  .parsley-errors-list {
+    position: absolute;
+    top: 0;
+    padding-left: 1rem;
+  }
+</style>
 <script>
   $(document).ready(function(){
     $('.expand_note_modal_btn').on('click', function(){
