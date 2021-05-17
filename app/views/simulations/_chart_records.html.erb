@@ -1,94 +1,68 @@
 <div class="admin-table bg-white table-responsive mt-3">
   <table class="table table-bordered w-100 mb-5 text-center">
     <thead class="thead-dark">
-      <th>Name</th>
-      <th></th>
-      <th>Daily</th>
-      <th>Weekly</th>
-      <th>Monthly</th>
-      <th>Annually</th>
+      <th>Details</th>
+      <th>Input Data</th>
+      <th class="<%= hide_table(params[:option], 'Today')%>">Daily</th>
+      <th class="<%= hide_table(params[:option], 'Weekly')%>">Weekly(Average)</th>
+      <th class="<%= hide_table(params[:option], 'Monthly')%>">Monthly(Average)</th>
+      <th class="<%= hide_table(params[:option], 'Annually')%>">Annually</th>
     </thead>
     <tbody>
       <tr>
-        <td colspan="2" class="text-left"><b>Seating Capacity</b></td>
+        <td class="text-left"><b>Seating Capacity</b></td>
         <td><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>"><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>"> <%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>"> <%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>"> <%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td rowspan="2" class="text-left"><b>Visitor Attendance</b></td>
-          <tr>
-            <td> Per Day</td>
-            <td><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Annually</td>
-            <td><%= number_with_delimiter(@simulations[:daily_annual_visitor].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:week_annual_visitor].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:month_annual_visitor].to_i, :delimiter => ',') %></td>
-            <td><%= number_with_delimiter(@simulations[:year_annual_visitor].to_i, :delimiter => ',') %></td>
-          </tr>
+        <td class="text-left"><b>Visitor Attendance</b></td>
+        <td><%= @simulations[:input_annual_att_per].to_i %>%</td>
+        <td class="<%= hide_table(params[:option], 'Today')%>"><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>"><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>"><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>"><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td rowspan="2" class="text-left"><b>WIFILP</b></td>
-        <tr>
-          <td> Per Day</td>
-          <td><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Annually</td>
-          <td><%= number_with_delimiter(@simulations[:daily_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:week_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:month_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:year_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        </tr>
+        <td class="text-left"><b>WIFILP</b></td>
+        <td><%= @simulations[:input_visitor_wifi_login].to_i %>%</td>
+        <td class="<%= hide_table(params[:option], 'Today')%>"><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>"><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>"><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>"><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td rowspan="2" class="text-left"><b>CPM LP Revenue</b></td>
-        <tr>
-          <td> Per Day</td>
-          <td><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Annually</td>
-          <td><%= number_with_delimiter(@simulations[:daily_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:week_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:month_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-          <td><%= number_with_delimiter(@simulations[:year_annual_wifi_lp_login].to_i, :delimiter => ',') %></td>
-        </tr>
+        <td class="text-left"><b>CPM LP Revenue</b></td>
+        <td><%= @simulations[:input_cost_lp_impression] %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
       <tr>
-        <td colspan="2" class="text-left"><b>User Impression</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></td>
+        <td class="text-left"><b>User Impression</b></td>
+        <td><%= @simulations[:input_event_usage_impression] %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>"><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>"><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>"><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>"><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>CPM Impression Revenue</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td class="text-left"><b>CPM Impression Revenue</b></td>
+        <td><%= @simulations[:input_cpm_impression_cost] %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></td>
       </tr>
       <tr>
-        <td colspan="2" class="text-left"><b>WIFI Revenue</b></td>
-        <td><%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td><%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></td>
+        <td class="text-left"><b>WIFI Revenue</b></td>
+         <td><%= @simulations[:input_contract_month] %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></td>
       </tr>
       
     </tbody>
@@ -157,10 +131,10 @@
   				<%= column_chart(@simulations[:lp_impression], id: 'cpm_lp') %>
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
-          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
   	</div>
@@ -193,10 +167,10 @@
   				<%= column_chart(@simulations[:cpm_impression], id: 'cpm_impression') %>
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
-          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
   	</div>
@@ -213,10 +187,10 @@
           %>
         </div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
-          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></b></span>
         </div>
       </div>
     </div>
@@ -286,7 +260,95 @@
               formatter: function(value) {
                 return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
-              padding: 15
+              padding: 3
+            }
+          },
+
+          scales: {
+            yAxes: [{
+              ticks: {
+                callback: function(value) {
+                  return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                }
+              }
+            }],
+            xAxes: [{
+                ticks: {
+                  callback: function(value, i) {
+                    d = new Date(value);
+                    if (d == "Invalid Date"){
+                      str = value
+                    }else{
+                      str = (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getDate().toString().padStart(2, '0') + '/' +  d.getFullYear();
+                      if (option == 'Monthly'){
+                        str = " Week "+(i+1)
+                      }else if(option == 'Annually'){
+                        str = d.toLocaleString('default', { month: 'long' });
+                      }else{
+                        
+                      }
+                    }
+                    return str
+                  }
+                }
+            }],
+          }
+        }
+      }
+
+      var newOptionWithDoller = {
+        messages: {empty: "No Records available."},
+        colors: ["#0526FF", "#dc3d1f", "#DDDFFF", "#DdCFFF"],
+        library: {
+          messages: {empty: "No Records available."},
+          thousands: ",",
+          tooltips: {
+            callbacks: {
+              title: function(value){
+                if (option == "Monthly"){
+                  var curr = new Date(value[0].label); // get current date
+                  var first = curr.getDate() // First day is the day of the month - the day of the week
+                  var last = first + 6; // last day is the first day + 6
+                  var firstday = new Date(curr.setDate(first)); // 06-Jul-2014
+                  var lastday = new Date(curr.setDate(last));
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' +  firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' +lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
+                  // debugger
+                  // d = new Date(value[0].label);
+                  // month = d.getMonth() + 1
+                  // str = d.getDate() + '/' + month + '/' + d.getFullYear();
+                  return start_date+" To "+end_date;
+                }else if(option == "Annually") {
+                  var date = new Date(value[0].label);
+                  var firstday = new Date(date.getFullYear(), date.getMonth(), 1);
+                  var lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                  start_date = (firstday.getMonth() + 1).toString().padStart(2, '0') + '/' + firstday.getDate().toString().padStart(2, '0') + '/' + firstday.getFullYear()
+                  end_date = (lastday.getMonth() + 1).toString().padStart(2, '0') + '/' + lastday.getDate().toString().padStart(2, '0') + '/' +  lastday.getFullYear()
+                  return start_date+" To "+end_date;
+                }
+              },
+              label: function(tooltipItem) {
+                return "$ "+(parseInt(tooltipItem.value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+              }
+            }
+          },
+          plugins: {
+            datalabels: {
+              display: true,
+              align: 'end',
+              anchor: 'end',
+              backgroundColor: function(context) {
+                return context.dataset.backgroundColor;
+              },
+              borderRadius: 4,
+              color: 'white',
+              font: {
+                weight: 'bold'
+              },
+              formatter: function(value) {
+                return "$ "+(parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+              },
+              padding: 3
             }
           },
 
@@ -373,7 +435,7 @@
               formatter: function(value) {
                 return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
-              padding: 15
+              padding: 3
             }
           },
           scales: {
@@ -416,13 +478,13 @@
     visitor_chart.setOptions(mergedOptions);
     var WifiLP = jQuery.extend(wifi_lp.options,newOptions)
     wifi_lp.setOptions(WifiLP);
-    var CPMLP = jQuery.extend(cpm_lp.options,newOptions)
+    var CPMLP = jQuery.extend(cpm_lp.options,newOptionWithDoller)
     cpm_lp.setOptions(CPMLP);
     var UserImpressionOption = jQuery.extend(user_impression.options,newOptions)
     user_impression.setOptions(UserImpressionOption);
-    var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptions)
+    var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptionWithDoller)
     cpm_impression.setOptions(CPMImpressionOption);
     var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions2)
-    wifi_revenue.setOptions(WifiOptions);
+    wifi_revenue.setOptions(newOptionWithDoller);
   })
 </script>
