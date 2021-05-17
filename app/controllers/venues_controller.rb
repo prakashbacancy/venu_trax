@@ -16,7 +16,7 @@ class VenuesController < ApplicationController
     else
       flash[:danger] = 'Error Occurred While Adding A Venue!'
     end
-    redirect_to venues_path
+    redirect_to request.referrer
   end
 
   def update
@@ -25,7 +25,7 @@ class VenuesController < ApplicationController
     else
       flash[:danger] = 'Error Occurred While Updating A Venue!'
     end
-    redirect_to venues_path
+    redirect_to request.referrer
   end
 
   def destroy
@@ -34,7 +34,7 @@ class VenuesController < ApplicationController
     else
       flash[:danger] = 'Error Occurred While Deleting A Venue!'
     end
-    redirect_to venues_path
+    redirect_to request.referrer
   end
 
   private
