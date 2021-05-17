@@ -726,3 +726,42 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 		margin: 0 9px;
 	}
 }
+
+.expanded-note-modal{
+	right: 0px!important;
+ & .modal-dialog {
+			width: 100vw;
+			height: 100vh;
+			min-width: 100%;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+					& .modal-content{
+					height: 100vh;
+					& .modal-body{
+							height: calc(100vh - 67px);
+							& .cke_contents{
+								height: calc(100vh - 220px) !important;
+							}
+					}
+			}
+	}
+}
+
+@media only screen and (max-width: 767px){
+	.expanded-note-modal.modal.modal-bottom .modal-dialog {
+		right: 0px!important;
+		left: 0px!important;
+		width: 100% !important;
+	}
+	.expanded-note-modal .modal-dialog .modal-content .modal-body .cke_contents {
+    height: calc(100vh - 275px) !important;
+	}	
+}
+@media only screen and (max-width: 575px){
+	.expanded-note-modal .modal-dialog .modal-content .modal-body .cke_contents {
+		height: calc(100vh - 329px) !important;
+
+	}
+}
