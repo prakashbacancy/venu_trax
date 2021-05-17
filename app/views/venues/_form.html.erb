@@ -5,6 +5,13 @@
 <div class="modal-body">
   <%= form_for @venue do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
+    <div class="form-group">
+      <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
+      <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
+      <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection", required: true, disabled: disable} %>
+    </div>
+
     <div class="form-group mt-4">
       <%= f.label :venue_domain_name, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.text_field :domain, class:"form-control", placeholder:"Enter Venue Domain Name", required: true, 'parsley-trigger': "change keyup", 'parsley-type': "url",'data-parsley-pattern': '^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$','data-parsley-pattern-message': 'Domain Name is Invalid' %>
@@ -49,13 +56,6 @@
       <% emp_record = f.object.new_record? ? "" : f.object.no_of_employee %>
       <%= f.label :no_of_employee, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.number_field :no_of_employee, value: emp_record, class:"form-control", placeholder:"Enter No of Employee", required: true, min: '0', max: '20000', maxlength: "10", 'data-parsley-validation-threshold': "1", 'data-parsley-trigger': 'keyup', 'data-parsley-type': 'digits' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
-      <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
-      <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection", required: true, disabled: disable} %>
     </div>
 
     <div class="modal-footer modal-footer-fixed">
