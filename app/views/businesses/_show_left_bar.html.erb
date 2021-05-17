@@ -14,16 +14,6 @@
               <i><%= image_pack_tag 'home/ic_note.svg' %></i>Notes
             </a>
           </li>
-          <li class="m-0 mr-3">
-            <a class="btn sharp fs-12" href="http://google.com" target="_blank">
-              <i><%= image_pack_tag 'home/ic_email.svg' %></i>Email
-            </a>
-          </li>
-          <li class="m-0 mr-3">
-            <a class="btn sharp fs-12" href="http://google.com" target="_blank">
-              <i><%= image_pack_tag 'home/ic_meet.svg' %></i>Meet
-            </a>
-          </li>
         </ul>
       </div>
     </div>
@@ -78,7 +68,7 @@
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Annual Revenue:</p>
-        <p class="text-gray fs-15"><%= @business.annual_revenue %></p>
+        <p class="text-gray fs-15">$<%= @business.annual_revenue %></p>
       </div>
     </div>
   </div>

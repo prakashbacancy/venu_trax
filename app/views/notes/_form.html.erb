@@ -1,8 +1,12 @@
 <div class="modal-header d-flex justify-content-around align-items-center text-white">
-  <h5 class="modal-title"> Create Note</h5>
-    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true" class="fa fa-times"></span>
-  </button>
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Create' : 'Edit' %>
+  <h5 class="modal-title"> <%= title_half %> Note</h5>
+    <button type="button" class="close text-white expand_note_modal_btn ">
+      <%= image_pack_tag 'home/expand.svg'%>
+    </button>
+    <button type="button" class="close text-white ml-2" data-dismiss="modal" aria-label="Close">
+      <%= image_pack_tag 'home/ic_times.svg'%>
+    </button>
 </div>
 <%= form_for [@note.notable, @note] do |f| %>
   <div class="modal-body">
@@ -13,13 +17,24 @@
   <div class="modal-footer modal-footer-fixed bg-light-bottom mt-4" style="left: 0">
     <div class="form-group mr-auto">
       <div class="checkbox-area custom-control custom-checkbox">
-        <%= check_box_tag :create_a_task_to_follow_up, 'yes', false, class: "custom-control-input" %>
-        <%= label_tag :create_a_task_to_follow_up, "Create a task to follow up", for: "create_a_task_to_follow_up", class: "custom-control-label fs-14 fw-600" %>
+        <%= f.check_box :task_to_follow_up, class: "custom-control-input" %>
+        <%= f.label :task_to_follow_up, "Create a task to follow up", class: "custom-control-label fs-14 fw-600" %>
       </div>
     </div>
     <%= f.hidden_field :notable_type, value: f.object.notable_type %>
     <%= f.hidden_field :notable_id, value: f.object.notable_id %>
-    <%= f.submit 'Create', class: "btn btn-primary" %>
+    <% save_button_title = f.object.new_record? ? 'Create' : 'Save' %>
+    <%= f.submit save_button_title, class: "btn btn-primary" %>
     <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
   </div>
 <% end %>
+<script>
+  $(document).ready(function(){
+    $('.expand_note_modal_btn').on('click', function(){
+      $(this).closest('.modal').toggleClass('expanded-note-modal');
+    })
+    $('#bottom_modal').on('hidden.bs.modal', function () {
+      $(this).closest('.modal').removeClass('expanded-note-modal');
+    });
+  })
+</script>

@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   # for business module
   resources :businesses do
     resources :venues
-    resources :notes
+    resources :notes, module: :business do
+      resources :comments
+    end
   end
   resources :simulations
   resources :credentials, only: %i[edit update]
