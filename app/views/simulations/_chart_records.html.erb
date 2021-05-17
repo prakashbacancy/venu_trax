@@ -368,7 +368,11 @@
             xAxes: [{
                 ticks: {
                   callback: function(value, i) {
-                    d = new Date(value);
+                    value1 = value
+                    if (option == 'Weekly' || option == "Today"){
+                      value1 = value1.substring(0, value1.length - 1);
+                    }
+                    d = new Date(value1);
                     if (d == "Invalid Date"){
                       str = value
                     }else{
