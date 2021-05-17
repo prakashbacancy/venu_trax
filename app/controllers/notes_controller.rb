@@ -2,21 +2,7 @@ class NotesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:business_id]
-      @object = Business.find(params[:business_id])
-    elsif params[:venue_id]
-      @object = Venue.find(params[:venue_id])
-    end
-    @notes = @object.notes
-  end
-
-  def new
-    if params[:business_id]
-      @object = Business.find(params[:business_id])
-    elsif params[:venue_id]
-      @object = Venue.find(params[:venue_id])
-    end
-    @note = @object.notes.new
+    @notes = @note.notes
   end
 
   def create
@@ -26,10 +12,18 @@ class NotesController < ApplicationController
     else
       flash[:danger] = 'Cant add a Note'
     end
-    redirect_to business_path(@note.notable)
+    redirect_to @note.notable
   end
 
   private
+
+  def note
+    @note ||= if params[:id].present?
+                Note.find(params[:id])
+              else
+                @notable.notes.new
+              end
+  end
 
   def notes_params
     params.require(:note).permit(:description, :notable_type, :notable_id).merge(user: current_user)
