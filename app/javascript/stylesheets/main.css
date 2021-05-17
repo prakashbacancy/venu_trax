@@ -20856,7 +20856,7 @@ div#business_list_table_length {
   padding-bottom: 11px;
 }
 
-.not-allowed {cursor: not-allowed !important;}
+.not-allowed {cursor: not-allowed !important; pointer-events: none;}
 
 .chart-labels span b {
   color: #007AFF;

@@ -9,7 +9,8 @@
       <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
       <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
       <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
-      <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection", required: true, disabled: disable} %>
+      <% not_class = disable ? 'not-allowed' : '' %>
+      <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection #{ not_class }", required: true, readonly: disable} %>
     </div>
 
     <div class="form-group mt-4">
