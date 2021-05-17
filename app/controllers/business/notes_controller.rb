@@ -1,6 +1,6 @@
 class Business::NotesController < NotesController
-  before_action :set_notable, only: %i[new]
-  before_action :note, only: %i[new]
+  before_action :set_notable, only: %i[new edit destroy]
+  before_action :note, only: %i[new edit update]
 
   private
 

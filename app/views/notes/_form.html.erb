@@ -1,5 +1,6 @@
 <div class="modal-header d-flex justify-content-around align-items-center text-white">
-  <h5 class="modal-title"> Create Note</h5>
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Create' : 'Edit' %>
+  <h5 class="modal-title"> <%= title_half %> Note</h5>
     <button type="button" class="close fa fa-expand-alt text-white ">
     <button type="button" class="close text-white ml-0" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true" class="fa fa-times"></span>
@@ -20,7 +21,8 @@
     </div>
     <%= f.hidden_field :notable_type, value: f.object.notable_type %>
     <%= f.hidden_field :notable_id, value: f.object.notable_id %>
-    <%= f.submit 'Create', class: "btn btn-primary" %>
+    <% save_button_title = f.object.new_record? ? 'Create' : 'Save' %>
+    <%= f.submit save_button_title, class: "btn btn-primary" %>
     <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
   </div>
 <% end %>
