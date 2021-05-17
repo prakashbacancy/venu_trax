@@ -53,7 +53,7 @@ class SimulationChart
     when 'Annually'
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)
     else
-      data[:seating_capacity] = {'Daily' => daily, 'Weekly(Avg)'=> week, 'Monthly' => month, 'Annually' => year }
+      data[:seating_capacity] = {'Daily' => daily, 'Weekly(Avg)'=> week, 'Monthly(Avg)' => month, 'Annually' => year }
     end
    data[:daily_seating_capacity] = daily
    data[:day_seating_capacity] = day_data
