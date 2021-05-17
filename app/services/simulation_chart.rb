@@ -72,7 +72,7 @@ class SimulationChart
       @date_range = case params[:option]
       when 'Today'
         data[:visitor_attendance] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_event)
-      when '(Avg)'
+      when 'Weekly'
         data[:visitor_attendance] = week_data.group_by_day(:created_at).sum(:week_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
         data[:visitor_attendance] = month_data.group_by_week(:created_at, week_start: :monday).sum(:month_attendance_event)           
