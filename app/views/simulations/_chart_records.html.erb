@@ -36,10 +36,10 @@
       <tr>
         <td class="text-left"><b>CPM LP Revenue</b></td>
         <td><%= @simulations[:input_cost_lp_impression] %></td>
-        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:daily_lp_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:week_lp_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:month_lp_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:year_lp_impression], :delimiter => ',')) %></td>
       <tr>
         <td class="text-left"><b>User Impression</b></td>
         <td><%= @simulations[:input_event_usage_impression] %></td>
@@ -51,18 +51,18 @@
       <tr>
         <td class="text-left"><b>CPM Impression Revenue</b></td>
         <td><%= @simulations[:input_cpm_impression_cost] %></td>
-        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:daily_cpm_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:week_cpm_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:month_cpm_impression], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:year_cpm_impression], :delimiter => ',')) %></td>
       </tr>
       <tr>
         <td class="text-left"><b>WIFI Revenue</b></td>
          <td><%= @simulations[:input_contract_month] %></td>
-        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Today')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:daily_wifi_revenue], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:week_wifi_revenue], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:month_wifi_revenue], :delimiter => ',')) %></td>
+        <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= display_two_digit(number_with_delimiter(@simulations[:year_wifi_revenue], :delimiter => ',')) %></td>
       </tr>
       
     </tbody>
