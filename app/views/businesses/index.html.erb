@@ -50,7 +50,7 @@
     				<td><%= business.address %></td>
             <td><%= link_to business.domain, url_simplifier(business.domain), target: "_blank" if business.domain %></td>
     				<td><%= business.state %></td>
-            <td>0</td>
+            <td><%= business.venues.count %></td>
             <td><%= business.phone_no %></td>
             <td>
               <div class="action-area-buttons">
