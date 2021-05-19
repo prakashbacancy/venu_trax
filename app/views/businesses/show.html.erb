@@ -26,5 +26,11 @@
       $("#bottom_modal").modal('show');
       $('.modal-backdrop').removeClass('show');
     })
+    $('.enable_notes').on('click', function(){
+      $('.header_tabs').removeClass('active');
+      $('.tab-pane').removeClass('active show');
+      $('#notes-tab').addClass('active');
+      $('#notes-tab-body').addClass('active show');
+    })
   })
 </script>
