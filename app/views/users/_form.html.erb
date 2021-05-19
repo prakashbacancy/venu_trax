@@ -13,9 +13,9 @@
     <div class="form-group">
       <div class="">
         <% if @user.profile_pic.attached? %>
-          <%= image_tag @user.profile_pic, class: 'img-boundary' %>
+          <%= image_tag @user.profile_pic, class: 'img-boundary image-profile-pic' %>
         <% else %>
-          <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary' %>
+          <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary image-profile-pic' %>
         <% end %>
         <div class="content-profile-info d-inline badge badge-edit">
           <label class="btn-avatar">
@@ -68,3 +68,23 @@
     </div>
   <% end %>
 </div>
+<script>
+ function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.image-profile-pic').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#avatar-upload1").change(function() {
+    var val = $(this).val();
+    if (!val.match(/(?:gif|jpg|png|bmp|jpeg|svg)$/)) {
+      $("#image-val-msg").css('display', 'block');
+      return false
+    }
+    $('#img_prev1').removeClass('hidden');
+    readURL(this);
+  });
+</script>
