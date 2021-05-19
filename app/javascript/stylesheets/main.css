@@ -20871,3 +20871,10 @@ div#business_list_table_length {
 .business-show .collapsed .fa-chevron-down {
   transform: rotate(270deg)
 }
+.calendar { position: absolute; top: 12px; left: 15px; }
+.bootstrap-datetimepicker-widget.dropdown-menu {
+ width: auto;
+}
+.timepicker-picker .table-condensed tr td {
+border: none !important;
+}

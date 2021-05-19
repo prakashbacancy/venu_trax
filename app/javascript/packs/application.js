@@ -18,6 +18,7 @@ require("parsleyjs")
 // require("packs/app.min.js")
 require("packs/custom_datatable.js")
 require("packs/custom_ckeditor.js")
+require("packs/bootstrap-datetimepicker.min")
 import 'stylesheets/application'
 import 'chartjs-plugin-datalabels'
 import 'custom';
