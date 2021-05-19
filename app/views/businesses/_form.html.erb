@@ -65,16 +65,21 @@
       <%= f.text_field :annual_revenue, value: record, class:"form-control", placeholder: "Enter Annual Revenue", required: true  %>
     </div>
 
-
     <div class="form-group">
       <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.text_area :description, class:"form-control h-auto", placeholder: "Enter Description", required: true, rows: 8  %>
     </div>
 
+    <% Klass.business.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @business.send(field.name)} %>
+      </div>
+    <% end %>
+
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <button type="button" class="btn btn-primary not-allowed" disabled>Add More</button>
+      <%= link_to 'Add More', settings_path, class: 'btn btn-primary' %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>
