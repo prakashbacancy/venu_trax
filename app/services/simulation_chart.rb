@@ -52,6 +52,8 @@ class SimulationChart
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_week(:created_at, week_start: :monday).sum(:month_seating_capacity)
     when 'Annually'
       data[:seating_capacity] = simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)
+    when 'Date Range'
+    data[:seating_capacity] = {"#{params[:start_date]} To #{params[:end_date]}" => 15000}
     else
       data[:seating_capacity] = {'Daily' => daily, 'Weekly(Avg)'=> week, 'Monthly(Avg)' => month, 'Annually' => year }
     end
@@ -68,7 +70,6 @@ class SimulationChart
     week_visitor = week_data.sum(:week_attendance_event)
     month_visitor = month_data.sum(:month_attendance_event)
     year_visitor = year_data.sum(:avg_attendance_annual_event)
-
       @date_range = case params[:option]
       when 'Today'
         data[:visitor_attendance] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_event)
