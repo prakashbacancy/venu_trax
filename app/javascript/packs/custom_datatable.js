@@ -17,7 +17,8 @@ window.custom_datatable = function(table){
         targets: [table.find('th').length - 1],
         orderable: false
       }],
-      pageLength: 10
+      pageLength: 10,
+      order: [],
     });
   }
   $('.search_btn').on('click', function(){
