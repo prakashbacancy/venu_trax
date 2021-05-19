@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Add' : 'Edit' %>
+  <h5 class="modal-title"><%= title_half %> Field</h5>
+</div>
+<div class="modal-body">
+  <%= form_for @field do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= label_tag :label %>
+      <%= f.text_field :label, class: 'form-control', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :type %>
+      <%= f.select :column_type, options_for_select(Field::TYPE_CAST.keys.sort,  f.object.column_type), {prompt: "Select Type"}, { class: 'form-control', disabled: !f.object.new_record?, required: true} %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :placeholder %>
+      <%= f.text_field :placeholder, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :default_value %>
+      <%= f.text_field :default_value, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group min-max hidden file">
+      <%= label_tag :min_length %>
+      <%= f.number_field :min_length, value: 0, class: 'form-control' %>
+    </div>
+
+    <div class="form-group min-max hidden file">
+      <%= label_tag :max_length %>
+      <%= f.number_field :max_length, value: 255, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox-area custom-control custom-checkbox">
+        <%= f.check_box :required, class: 'custom-control-input' %>
+        <%= f.label :required, class: 'custom-control-label' %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :klass_id, value: klass.id %>
+    <%= f.hidden_field :custom, value: true %>
+
+    <div class="modal-footer modal-footer-fixed">
+      <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
+      <%= f.submit save_button_title, class: "btn btn-primary" %>
+      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    </div>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function () {
+    $("#field_column_type").on('change', function () {
+      if (["File"].includes($(this).val())) {
+        $(".file").addClass('hidden');
+      } else {
+        $(".file").removeClass('hidden');
+      }
+      if (["Text", "URL", "Text Area HTML"].includes($(this).val())) {
+        $(".min-max").removeClass('hidden');
+      } else {
+        $(".min-max").addClass('hidden');
+      }
+    });
+    <% if f.object.column_type == 'File' %>
+      $(".file").addClass('hidden'); 
+    <% end %>
+  });
+</script>

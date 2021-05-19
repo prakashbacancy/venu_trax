@@ -1,0 +1,87 @@
+<%= label_tag(field_label, nil, class: ('color-red' if field.required)) unless field_label.nil?%>
+<span class="required"> <%= "*" if field.required && field_label%> </span>
+
+  <%- case column_type
+    when 'Text' %>
+    <%= f.text_field field_name, class: "form-control #{field_name}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Password' %>
+    <%= f.password_field field_name, required: field.required, placeholder: field.placeholder, class: 'form-control' %>
+  <% when 'Skype' %>
+    <%= f.text_field field_name, class: 'form-control', required: field.required , pattern: Field::PATTERNS["Skype".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Text Area HTML'%>
+    <%= f.cktext_area field_name, class: "ckeditor", required: field.required, value: value, id: "content_#{field.id}" %>
+  <% when 'Decimal'%>
+    <%= f.number_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["Decimal".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Integer'%>
+    <%= f.number_field field_name, class: 'form-control', required: field.required, placeholder: field.placeholder, value: value, min: "0", max: "99999" %>
+  <% when 'Percent'%>
+    <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["Percent".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Currency'%>
+    <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["Currency".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Email'%>
+    <%= f.email_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["Email".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Date' %>
+    <%= f.text_field field_name, class: 'form-control datepicker', required: field.required, pattern: Field::PATTERNS["Date".to_sym], placeholder: field.placeholder, autocomplete: 'nope', value: value.try(:strftime, "%m/%d/%Y") %>
+  <% when 'Phone' %>
+    <%= f.text_field field_name, class: 'form-control phone-validation phone-number', required: field.required, pattern: Field::PATTERNS["Phone".to_sym], maxlength: 14, placeholder: field.placeholder, value: value %>
+  <% when 'URL' %>
+    <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["URL".to_sym], placeholder: field.placeholder, value: value %>
+  <% when 'Time' %>
+    <%= f.text_field field_name, class: 'form-control timepicker', autocomplete: 'new-password', required: field.required, pattern: Field::PATTERNS["Time".to_sym], placeholder: field.placeholder, value: value.try(:strftime, "%I:%M %p") %>
+  <% when 'Checkbox' %>
+    <div class="form-group mt-md-3 relative">
+      <div class="checkbox-area custom-control custom-checkbox">
+        <%= f.check_box field_name, class: 'custom-control-input', id: field_name, placeholder: field.placeholder, value: value %>
+        <%= f.label field_name, "", id: field_name, for: field_name, class: "custom-control-label" %>
+      </div>
+    </div>
+  <% when 'DateTime' %>
+    <%= f.text_field field_name, class: 'form-control datetimepicker', required: field.required, placeholder: field.placeholder, value: value.try(:strftime, "%m/%d/%Y, %I:%M %p") %>
+  <% when 'Text Area' %>
+    <%= f.text_area field_name, class: 'form-control', required: field.required, placeholder: field.placeholder, value: value, rows: 5 %>
+  <% when 'File' %>
+    <% if f.object.respond_to?(:documents) %>
+      <%= f.label "Attachment" if field_label.nil? %><span class="required"></span>
+      <br/>
+      <input type="file" name="attachments[]" id="files" class="inputfile" multiple />
+      <label for="files" title='Upload Local Files' class="btn btn-default">Upload Files</label>
+      <div id="selectedFiles"></div>
+      <%= hidden_field_tag :document_ids, [], class: 'document_ids'%>
+      <div class="row m-t-15">
+        <div class="col-md-12 ">
+          <div class='selected_documents'>
+            <%= render partial: 'documents/selected_documents', locals: { documents: [] } %>
+          </div>
+        </div>
+      </div>
+      <% if !f.object.new_record? %>
+        <% f.object.documents.each do |attach| %>
+          <span class="file-name">
+          <%= link_to attach.attachment.url, target: 'blank', class: 'file-name', title: attach.attachment.file.filename do %>
+            <i class="fa fa-file" aria-hidden="true"></i>
+              <%= attach.attachment.file.filename.truncate(20) %>
+          <%end%>
+            <span class="remove-file" data-id="<%= attach.id %>"><i class="fa fa-close" ></i></span>
+          <br/>
+        </span>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= f.label "Attachment" if field_label.nil? %><span class="required"></span>
+      <br/>
+      <input type="file" name="attachments[]" id="files" class="inputfile" multiple />
+      <label for="files" title='Upload Local Files' class="btn btn-default">Upload Files</label>
+    <% end %>
+  <% when 'Label' %>
+  <% when 'Radio Button' %>
+    <div class="radio-lbl radio-oneline">
+      <% field.field_picklist_values.each do |field_picklist_value| %>
+        <label class="radio"><%= field_picklist_value.value %>
+          <%= f.radio_button field.name, field_picklist_value.value, checked: (field_picklist_value.value == value), required: field.required %>
+          <span class="checkround"></span>
+        </label>
+      <% end %>
+    </div>
+  <%else%>
+    <strong> Not a field</strong>
+  <% end%>

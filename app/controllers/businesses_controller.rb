@@ -46,7 +46,8 @@ class BusinessesController < ApplicationController
   end
 
   def business_params
-    params.require(:business).permit(Business::PERMITTED_PARAM)
+    dynamic_params = Klass.business.fields.pluck(:name)
+    params.require(:business).permit(Business::PERMITTED_PARAM + dynamic_params)
   end
 
   def find_venues
