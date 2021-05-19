@@ -1,5 +1,5 @@
 <div class="content position-relative p-4">
-  <%= link_to '< All business', businesses_path, class: "fs-14" %>
+  <%= link_to '< All Business', businesses_path, class: "fs-14" %>
   <div class="d-flex mt-3">
     <div class="mr-3">
       <%= image_pack_tag 'home/ic_profile_pic.svg' %>
@@ -68,7 +68,7 @@
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Annual Revenue:</p>
-        <p class="text-gray fs-15">$<%= @business.annual_revenue %></p>
+        <p class="text-gray fs-15">$<%= display_two_digit @business.annual_revenue %></p>
       </div>
     </div>
   </div>
