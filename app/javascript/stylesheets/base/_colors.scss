@@ -8,6 +8,9 @@
     &-darkgray2 {
         color: $color-darkgray2 !important;
     }
+    &-dark2 {
+        color: $color-dark2 !important;
+    }
     &-gray {
         color: $color-gray !important;
     }
@@ -32,6 +35,9 @@
     &-darkgray2 {
         background-color: $color-darkgray2 !important;
     }
+    &-dark2 {
+        background-color: $color-dark2 !important;
+    }
     &-gray {
         background-color: $color-gray !important;
     }
@@ -47,4 +53,12 @@
     &-blue2 {
         background-color: $color-blue2 !important;
     }
+}
+
+@each $color, $value in $theme-colors {
+    @include bg-variant(".bg-#{$color}", $value);
+}
+
+@each $color, $value in $theme-colors {
+    @include text-emphasis-variant(".text-#{$color}", $value);
 }

@@ -1,0 +1,113 @@
+@import "../abstract/mixins";
+
+.main-sidebar-right {
+	& .main-sidebar {
+		background-color: unset;
+		left: auto;
+		right: 0;
+		padding-top: 0px;
+		width: 320px;
+		// @include respondMax(lg-desktop) {
+		// width: 255px;
+		// }
+	}
+}
+
+.main-sidebar-right {
+	& .middle_part {
+		& .content {
+			margin-right: 320px;
+			padding: 20px;
+			// @include respondMax(lg-desktop) {
+			//   margin-right: 255px;
+			// }
+			@include respondMax(md-tab) {
+				padding: 20px 15px;
+				margin-right: 0;
+			}
+
+			& .nav-tabs {
+				width: 100%;
+				overflow-x: auto;
+				flex-wrap: nowrap;
+				overflow-y: hidden;
+				&::-webkit-scrollbar {
+					width: 3px;
+					height: 3px;
+				}
+
+				/* Track */
+				&::-webkit-scrollbar-track {
+					background: #f1f1f1;
+				}
+
+				/* Handle */
+				&::-webkit-scrollbar-thumb {
+					background: #ccc;
+				}
+
+				/* Handle on hover */
+				&::-webkit-scrollbar-thumb:hover {
+					background: #555;
+				}
+				& .nav-item {
+					white-space: nowrap;
+					margin-bottom: 1px;
+					& .nav-link {
+						padding: 0.1rem 1rem 0.5rem 1rem;
+					}
+				}
+			}
+
+			& .add_btn {
+				background-color: unset;
+			}
+		}
+		& .contact_user {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+	}
+}
+
+.sidebar-collapse {
+	& .main-sidebar-right {
+		& .middle_part {
+			& .content {
+				margin-right: 0px !important;
+			}
+		}
+	}
+}
+
+.add_btn {
+	background-color: unset;
+}
+i.fa.fa-chevron-down {
+	transition-duration: 0.5s;
+}
+
+.sidebar-collapse .main-sidebar {
+	-webkit-transform: translate(320px, 0);
+	-ms-transform: translate(320px, 0);
+	-o-transform: translate(320px, 0);
+	transform: translate(320px, 0);
+}
+
+@media (max-width: 767px) {
+	.left-side,
+	.sidebar-collapse .main-sidebar {
+		-webkit-transform: translate(-00px, 0);
+		-ms-transform: translate(-00px, 0);
+		transform: translate(-0px, 0);
+	}
+}
+
+.toggle-sidebar-button {
+	position: absolute;
+	left: -38px;
+	border-bottom-left-radius: 27px;
+	border-top-left-radius: 27px;
+	z-index: 2;
+}

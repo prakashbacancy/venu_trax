@@ -75,3 +75,27 @@ $breakpoint arguement choices:
 	top: 50%;
 	transform: translateY(-50%) translateX(-50%);
 }
+
+@mixin font-weight($weight, $font-weight) {
+	#{$weight} {
+		font-weight: $font-weight;
+	}
+}
+
+@mixin font-size($size, $font-size) {
+	#{$size} {
+		font-size: $font-size;
+	}
+}
+
+@mixin bg-variant($parent, $color) {
+	#{$parent} {
+		background-color: $color !important;
+	}
+}
+
+@mixin text-emphasis-variant($parent, $color, $ignore-warning: false) {
+	#{$parent} {
+		color: $color !important;
+	}
+}
