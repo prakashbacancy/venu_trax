@@ -1,5 +1,5 @@
 <div class="content position-relative p-4">
-  <%= link_to businesses_path, class: 'fs-14 text-blue1 fw-600' do %>
+  <%= link_to business_path(@business, anchor: 'venues-tab-body'), class: 'fs-14 text-blue1 fw-600' do %>
     <i class="fa fa-chevron-left mr-2"></i>All Venues
   <% end %>
   <div class="d-flex mt-3">
@@ -7,8 +7,8 @@
       <%= image_pack_tag 'home/ic_profile_pic.svg', class: "img-fluid" %>
     </div>
     <div class="">
-      <h3 class="fw-400 text-break text-dark2 fs-24">Basket Ball Ground</h3>
-      <h6 class="fs-16  text-dark2">(925) 925-9259</h6>
+      <h3 class="fw-400 text-break text-dark2 fs-24"><%= @business.name %></h3>
+      <h6 class="fs-16  text-dark2"><%= @business.phone_no %></h6>
       <div class="mt-3">
         <ul id="mylist" class="text-center d-flex">
           <li class="m-0 mr-3">
@@ -48,49 +48,45 @@
   <div class="card card-body border-0">
     <div class="row">
       <div class="col-md-12 text-light-gray fs-16">
-        This is an amazing company.
-        Lorem Ipsum is simply dummied text of the printing and typesetting industry. Lorem Ipsum has been the
-        industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-        into electronic typesetting, remaining essentially unchanged.
+        <%= @business.description %>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-6">
         <p class="fw-700 fs-16">Domain Name:</p>
-        <p class="text-gray fs-15">www.youtube.com</p>
+        <p class="text-gray fs-15"><%= @business.domain %></p>
       </div>
       <div class="col-6">
         <p class="fw-700 fs-16">Industry:</p>
-        <p class="text-gray fs-15">Retail trade</p>
+        <p class="text-gray fs-15"><%= @business.industry %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Type:</p>
-        <p class="text-gray fs-15">Vandor</p>
+        <p class="text-gray fs-15"><%= @business.business_type %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Zip Code:</p>
-        <p class="text-gray fs-15">01234</p>
+        <p class="text-gray fs-15"><%= @business.zip_code %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Address:</p>
-        <p class="text-gray fs-15">E 49th St</p>
+        <p class="text-gray fs-15"><%= @business.address %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">State:</p>
-        <p class="text-gray fs-15">California</p>
+        <p class="text-gray fs-15"><%= @business.state %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">City:</p>
-        <p class="text-gray fs-15">Los Angeles</p>
+        <p class="text-gray fs-15"><%= @business.city %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">No of Employees:</p>
-        <p class="text-gray fs-15">50</p>
+        <p class="text-gray fs-15"><%= @business.no_of_employee %></p>
       </div>
       <div class="col-6 mt-3">
         <p class="fw-700 fs-16">Annual Revenue:</p>
-        <p class="text-gray fs-15">500000.0</p>
+        <p class="text-gray fs-15">$<%= display_two_digit @business.annual_revenue %></p>
       </div>
     </div>
   </div>

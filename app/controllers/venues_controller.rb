@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   before_action :authenticate_user!
   before_action :venue, only: %i[show new edit]
+  before_action :find_business, only: %i[show]
 
   def index
     @venues = Venue.all
@@ -53,5 +54,9 @@ class VenuesController < ApplicationController
 
   def venue_params
     params.require(:venue).permit(Venue::PERMITTED_PARAM)
+  end
+
+  def find_business
+    @business = @venue.business
   end
 end
