@@ -30,9 +30,8 @@
     <div class="tab-pane fade active show" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
       <%= render 'notes_list', notes: @notes %>
     </div>
-    <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">
-      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-      </div>
+    <div class="tab-pane fade" id="emails-tab-body" role="tabpanel" aria-labelledby="emails-tab">
+      <%= render 'emails_list', emails: @emails %>
     </div>
     <div class="tab-pane fade" id="meetings-tab-body" role="tabpanel" aria-labelledby="meetings-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">

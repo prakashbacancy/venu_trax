@@ -773,3 +773,11 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 	height: 25px;
 	border-radius: 50%;
 }
+
+.badge-tick {
+	border-radius: 50px;
+	position: absolute;
+  right: 7px;
+  left: inherit;
+  top: 7px;
+}
