@@ -4,8 +4,8 @@
       <th>Details</th>
       <th>Input Data</th>
       <th class="<%= hide_table(params[:option], 'Today')%>">Daily</th>
-      <th class="<%= hide_table(params[:option], 'Weekly')%>">Weekly(Average)</th>
-      <th class="<%= hide_table(params[:option], 'Monthly')%>">Monthly(Average)</th>
+      <th class="<%= hide_table(params[:option], 'Weekly')%>">Weekly</th>
+      <th class="<%= hide_table(params[:option], 'Monthly')%>">Monthly</th>
       <th class="<%= hide_table(params[:option], 'Annually')%>">Annually</th>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@
       </tr>
       <tr>
         <td>CPM LP Revenue</td>
-        <td><%= @simulations[:input_cost_lp_impression] %></td>
+        <td>$<%= @simulations[:input_cost_lp_impression] %></td>
         <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:daily_lp_impression]), :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:week_lp_impression]),:delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:month_lp_impression]), :delimiter => ',') %></td>
@@ -50,7 +50,7 @@
       </tr>
       <tr>
         <td>CPM Impression Revenue</td>
-        <td><%= @simulations[:input_cpm_impression_cost] %></td>
+        <td>$<%= @simulations[:input_cpm_impression_cost] %></td>
         <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:daily_cpm_impression]), :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:week_cpm_impression]), :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:month_cpm_impression]), :delimiter => ',') %></td>
@@ -79,8 +79,8 @@
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_seating_capacity].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_seating_capacity].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_seating_capacity].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_seating_capacity].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
@@ -96,8 +96,8 @@
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_visitor_attendance].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_visitor_attendance].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_visitor_attendance].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br> <b><%= number_with_delimiter(@simulations[:year_visitor_attendance].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
@@ -115,8 +115,8 @@
         </div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3 ">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3 ">Weekly(Avg)<br><b><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3 ">Monthly(Avg)<br> <b><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3 ">Weekly<br><b><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3 ">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3 ">Annually<br><b><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
         </div>
       </div>
@@ -132,8 +132,8 @@
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_lp_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b>$<%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b>$<%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_lp_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_lp_impression].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_lp_impression].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
@@ -151,8 +151,8 @@
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
@@ -168,8 +168,8 @@
   			</div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_cpm_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b>$<%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b>$<%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_cpm_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_cpm_impression].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_cpm_impression].to_i, :delimiter => ',') %></b></span>
         </div>
   		</div>
@@ -188,8 +188,8 @@
         </div>
         <div class="chart-labels row justify-content-around mt-4 border rounded p-3 text-gray fs-14 text-break">
           <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly(Avg)<br><b>$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly(Avg)<br> <b>$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
           <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></b></span>
         </div>
       </div>
@@ -252,8 +252,9 @@
           plugins: {
             datalabels: {
               display: true,
-              align: 'end',
+              align: 'top',
               anchor: 'end',
+              visibility: true,
               backgroundColor: function(context) {
                 return context.dataset.backgroundColor;
               },
@@ -265,7 +266,8 @@
               formatter: function(value) {
                 return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
-              padding: 3
+              padding: 3,
+              clamp: true
             }
           },
 
@@ -340,7 +342,8 @@
           plugins: {
             datalabels: {
               display: true,
-              align: 'end',
+              align: 'top',
+              visibility: true,
               anchor: 'end',
               backgroundColor: function(context) {
                 return context.dataset.backgroundColor;
@@ -353,7 +356,8 @@
               formatter: function(value) {
                 return "$ "+(parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
-              padding: 3
+              padding: 3,
+              clamp: true
             }
           },
 
@@ -370,7 +374,9 @@
                   callback: function(value, i) {
                     value1 = value
                     if (option == 'Weekly' || option == "Today"){
-                      value1 = value1.substring(0, value1.length - 1);
+                      if (value1.charAt(value1.length-1) == '_'){
+                        value1 = value1.substring(0, value1.length - 1);
+                      }
                     }
                     d = new Date(value1);
                     if (d == "Invalid Date"){
@@ -433,6 +439,10 @@
           plugins: {
             datalabels: {
               display: true,
+              align: 'end',
+              visibility: true,
+              anchor: 'end',
+              clamp: true,
               backgroundColor: function(context) {
                 return context.dataset.backgroundColor;
               },

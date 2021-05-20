@@ -561,7 +561,7 @@ table.dataTable {
 }
 .simulation-form .form-control{
 	border: 1px solid #F6F6F6 !important;
-	color: #007AFF !important;
+	//color: #007AFF !important;
 }
 .simulation-form .form-control::placeholder{
 	color: lightgray !important;
@@ -767,3 +767,10 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 }
 
 .block-ui-box{border:1px solid #DDDDDD;padding:5px;color:#000;position:relative;background-color: #fff;margin:0px 5px;}
+.profile-circle {
+	background-color: #fff;
+	width: 25px;
+	min-width: 25px;
+	height: 25px;
+	border-radius: 50%;
+}
