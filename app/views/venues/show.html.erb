@@ -14,4 +14,18 @@
     $('body').toggleClass('sidebar-collapse')
     $(this).find('i').toggleClass('fa-angle-double-right').toggleClass('fa-angle-double-left')
   })
+  enable_this = function(tab, tab_body){
+    $('.header_tabs').removeClass('active');
+    $('.tab-pane').removeClass('active show');
+    $('#' + tab).addClass('active');
+    $('#' + tab_body).addClass('active show');
+  }
+  $(document).ready(function(){
+    $('.enable_notes').on('click', function(){
+      enable_this('notes-tab', 'notes-tab-body')
+    })
+    $('.enable_emails').on('click', function(){
+      enable_this('emails-tab', 'emails-tab-body')
+    })
+  })
 </script>
