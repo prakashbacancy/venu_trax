@@ -10,6 +10,7 @@
   <%= render 'sidebar' %>
 </section>
 <script>
+  $('body').toggleClass('sidebar-collapse');
   $('.toggle-sidebar-button').on('click', function () {
     $('body').toggleClass('sidebar-collapse')
     $(this).find('i').toggleClass('fa-angle-double-right').toggleClass('fa-angle-double-left')
@@ -29,3 +30,60 @@
     })
   })
 </script>
+<style>
+  .sidebar-collapse .main-sidebar {
+    -webkit-transform: translate(320px, 0);
+    -ms-transform: translate(320px, 0);
+    -o-transform: translate(320px, 0);
+    transform: translate(320px, 0);
+  }
+  @media (max-width: 767px) {
+    .left-side,
+    .sidebar-collapse .main-sidebar {
+      -webkit-transform: translate(-00px, 0);
+      -ms-transform: translate(-00px, 0);
+      transform: translate(-0px, 0);
+    }
+  }
+  @media (max-width: 1023px) {
+    .toggle-sidebar-button {
+      position: absolute;
+      right: 320px;
+      top: 20px;
+      z-index: 2;
+    }
+    .sidebar-collapse .toggle-sidebar-button {
+      right: 20px;
+    }
+    .web-btn {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    .toggle-sidebar-button {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 2;
+    }
+    .sidebar-collapse .toggle-sidebar-button {
+      right: 320px;
+    }
+    .web-btn {
+      display: none;
+    }
+  }
+  @media (min-width: 1024px) {
+    .toggle-sidebar-button {
+      position: fixed;
+      right: 320px;
+      z-index: 2;
+    }
+    .mob-btn {
+      display: none;
+    }
+    .sidebar-collapse .toggle-sidebar-button {
+      right: 5px;
+    }
+  }
+</style>

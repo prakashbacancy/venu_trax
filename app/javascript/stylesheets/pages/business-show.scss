@@ -18,12 +18,13 @@
 		& .content {
 			margin-right: 320px;
 			padding: 20px;
-			// @include respondMax(lg-desktop) {
-			//   margin-right: 255px;
-			// }
+			
 			@include respondMax(md-tab) {
 				padding: 20px 15px;
 				margin-right: 0;
+			}
+			@include respondMax(sm-phone) {
+				padding: 0px;
 			}
 
 			& .nav-tabs {
@@ -101,6 +102,44 @@ i.fa.fa-chevron-down {
 	transform: translate(320px, 0);
 }
 
+.form {
+	.plan {
+		input {
+			display: none;
+			&:checked {
+				+ {
+					label {
+						&:after {
+							content: "\2713";
+							width: 25px;
+							height: 25px;
+							line-height: 25px;
+							border-radius: 100%;
+							border: 1px solid #fff;
+							background-color: #007AFF;
+							z-index: 999;
+							position: absolute;
+							top: -7px;
+							color: #fff;
+							right: -7px;
+						}
+					}
+				}
+			}
+		}
+	}
+	label {
+		position: relative;
+		text-align: center;
+		display: block;
+		cursor: pointer;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin: 10px 0;
+	}
+}
+
 @media (max-width: 767px) {
 	.left-side,
 	.sidebar-collapse .main-sidebar {
@@ -108,12 +147,4 @@ i.fa.fa-chevron-down {
 		-ms-transform: translate(-00px, 0);
 		transform: translate(-0px, 0);
 	}
-}
-
-.toggle-sidebar-button {
-	position: absolute;
-	left: -38px;
-	border-bottom-left-radius: 27px;
-	border-top-left-radius: 27px;
-	z-index: 2;
 }
