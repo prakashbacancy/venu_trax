@@ -72,7 +72,7 @@
 
     <% Klass.business.fields.each do |field| %>
       <div class="form-group">
-        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @business.send(field.name)} %>
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @business.send(field.name)} %>
       </div>
     <% end %>
 

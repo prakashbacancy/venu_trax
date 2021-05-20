@@ -26,6 +26,9 @@
     <%= f.text_field field_name, class: 'form-control phone-validation phone-number', required: field.required, pattern: Field::PATTERNS["Phone".to_sym], maxlength: 14, placeholder: field.placeholder, value: value %>
   <% when 'URL' %>
     <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["URL".to_sym], placeholder: field.placeholder, value: value %>
+  <% when  'Picklist' %>
+    <% select_data = data[field_name.to_sym] %>
+    <%= f.select field_name, options_for_select(select_data, value || field.default_value), {prompt: field.placeholder}, {class: 'form-control', required: field.required} %>
   <% when 'Time' %>
     <%= f.text_field field_name, class: 'form-control timepicker', autocomplete: 'new-password', required: field.required, pattern: Field::PATTERNS["Time".to_sym], placeholder: field.placeholder, value: value.try(:strftime, "%I:%M %p") %>
   <% when 'Checkbox' %>

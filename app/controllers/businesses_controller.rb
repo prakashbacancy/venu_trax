@@ -3,6 +3,8 @@ class BusinessesController < ApplicationController
   before_action :business, only: %i[show new edit]
   before_action :find_venues, only: %i[show]
   before_action :find_notes, only: %i[show]
+  before_action :set_klass, only: %i[show new edit]
+  before_action :find_dynamic_fields, only: %i[new edit]
 
   def index
     @businesses = Business.all
@@ -56,5 +58,17 @@ class BusinessesController < ApplicationController
 
   def find_notes
     @notes = @business.notes.recent
+  end
+
+  def set_klass
+    @klass = Klass.business
+  end
+
+  def find_dynamic_fields
+    fields = @klass.fields.includes(:field_picklist_values)
+    @data = {}
+    fields.each do |field|
+      @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
+    end
   end
 end
