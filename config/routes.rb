@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   end
   resources :simulations
   resources :credentials, only: %i[edit update]
-  resources :venues
+  resources :venues do
+    resources :notes, module: :venue do
+      resources :comments
+    end
+  end
 end

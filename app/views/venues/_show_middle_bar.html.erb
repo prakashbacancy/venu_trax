@@ -28,24 +28,7 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade active show" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
-      <div class="box-body shadow mb-4 mt-4">
-        <div class="row align-items-center admin-form">
-          <div class="col-lg-12 col-btn">
-            <button class="btn btn-primary">Create Note</button>
-          </div>
-        </div>
-      </div>
-      <div class="shadow p-3 mb-5 bg-white rounded mt-4 note_shadow_box_5">
-        <p class="fs-18"></p>
-        <p class="text-dark2 fw-500">Description is the pattern of narrative development that aims to make
-          vivid a place, object, character, or group. Description is one of four rhetorical modes, along with
-          exposition, argumentation, and narration.&nbsp;</p>
-        <p></p>
-        <p class="text-gray mt-3 fs-15"> -- Rohan | May 18, 2021 8:13 AM </p>
-        <%= link_to root_path(), remote: true, class: 'text-primary mt-3 fs-16 fw-600 add_comment' do %>
-          <%= image_pack_tag 'home/ic_comment.svg', class: 'mr-3' %> Add Comment
-        <% end %>
-      </div>
+      <%= render 'notes_list', notes: @notes %>
     </div>
     <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
