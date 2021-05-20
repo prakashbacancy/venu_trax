@@ -20017,3 +20017,5 @@ aside.main-sidebar  .main-sidebar-inner {
 .timepicker-picker .table-condensed tr td {
   border: none !important;
 }
+
+.cursor-not-allowed {cursor: not-allowed !important;}

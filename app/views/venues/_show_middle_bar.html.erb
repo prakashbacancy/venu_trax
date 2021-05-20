@@ -7,25 +7,25 @@
       <a class="nav-link fs-20 mx-sm-3 header_tabs active" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
         role="tab" aria-controls="notes-tab-body" aria-selected="true">Notes</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
+    <li class="nav-item cursor-not-allowed">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
         aria-controls="emails-tab-body" aria-selected="false">Email</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
+    <li class="nav-item cursor-not-allowed">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
         role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
+    <li class="nav-item cursor-not-allowed">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
         aria-controls="events-tab-body" aria-selected="false">Events</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="venue_contacts-tab" data-toggle="tab"
+    <li class="nav-item cursor-not-allowed">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="venue_contacts-tab" data-toggle="tab"
         href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
         Contacts</a>
     </li>
-    <li class="nav-item mr-auto">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab"
+    <li class="nav-item cursor-not-allowed mr-auto">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab"
         aria-controls="brands-tab-body" aria-selected="false">Brands</a>
     </li>
   </ul>
@@ -37,8 +37,7 @@
       <%= render 'emails_list', emails: @emails %>
     </div>
     <div class="tab-pane fade" id="meetings-tab-body" role="tabpanel" aria-labelledby="meetings-tab">
-      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-      </div>
+      <%= render 'meetings_list', meetings: @meetings %>
     </div>
     <div class="tab-pane fade" id="events-tab-body" role="tabpanel" aria-labelledby="events-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
