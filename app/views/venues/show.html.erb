@@ -1,0 +1,17 @@
+<section class="content-wrapper position-relative business-show main-sidebar-right">
+  <div class="row h-100 w-100 m-0 h-100 content-wrapper">
+    <div class="col-lg-4 col-xl-3 p-0 border-right">
+      <%= render 'show_left_bar' %>
+    </div>
+    <div class="col-lg-8 col-xl-9 bg-light middle_part">
+      <%= render 'show_middle_bar' %>
+    </div>
+  </div>
+  <%= render 'sidebar' %>
+</section>
+<script>
+  $('.toggle-sidebar-button').on('click', function () {
+    $('body').toggleClass('sidebar-collapse')
+    $(this).find('i').toggleClass('fa-angle-double-right').toggleClass('fa-angle-double-left')
+  })
+</script>
