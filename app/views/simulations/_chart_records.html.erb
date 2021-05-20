@@ -342,7 +342,18 @@
           plugins: {
             datalabels: {
               display: true,
-              align: 'top',
+              align: function(context) {
+                console.log(context.chart.config)
+                var index = context.dataIndex;
+                xAxisMaxValue = context.chart.scales["y-axis-0"].max
+                var value = context.dataset.data[index];
+                var invert = Math.abs(value) <= 1;
+                if (context.chart.config["type"] == "line"){
+                  return ( index >= 3) ? 'left' : 'end'
+                }else{
+                  return (xAxisMaxValue == value) ? 'start' : 'end'
+                }
+              },
               visibility: true,
               anchor: 'end',
               backgroundColor: function(context) {
@@ -357,7 +368,6 @@
                 return "$ "+(parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
               padding: 3,
-              clamp: true
             }
           },
 
@@ -442,7 +452,6 @@
               align: 'end',
               visibility: true,
               anchor: 'end',
-              clamp: true,
               backgroundColor: function(context) {
                 return context.dataset.backgroundColor;
               },
@@ -503,7 +512,7 @@
     user_impression.setOptions(UserImpressionOption);
     var CPMImpressionOption = jQuery.extend(cpm_impression.options,newOptionWithDoller)
     cpm_impression.setOptions(CPMImpressionOption);
-    var WifiOptions = jQuery.extend(wifi_revenue.options,newOptions2)
-    wifi_revenue.setOptions(newOptionWithDoller);
+    var WifiOptions = jQuery.extend(wifi_revenue.options, newOptionWithDoller)
+    wifi_revenue.setOptions(WifiOptions);
   })
 </script>
