@@ -22,7 +22,7 @@ class GoogleImapController < ApplicationController
       auth_client.code = params[:code]
       auth_client.update!(
         scope: "https://mail.google.com https://www.googleapis.com/auth/calendar",
-        redirect_uri: "http://#{ENV['HOST_URL']}/oauth2callback",
+        redirect_uri: "#{ENV['HOST_URL']}/oauth2callback",
         grant_type: :authorization_code,
         additional_parameters: {
           access_type: :offline,
