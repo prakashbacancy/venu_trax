@@ -20020,3 +20020,6 @@ aside.main-sidebar  .main-sidebar-inner {
 }
 
 .cursor-not-allowed {cursor: not-allowed !important;}
+.bg-white1 {
+  background: #fff !important
+}
