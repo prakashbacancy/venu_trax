@@ -26,7 +26,7 @@
     <tbody>
       <% venues.each do |venue| %>
         <tr>
-          <td><%= venue.name %></td>
+          <td><%= link_to venue.name, venue_path(venue) %></td>
           <td><%= venue.city %></td>
           <td><%= venue.no_of_employee %></td>
           <td><%= venue.phone_no %></td>
