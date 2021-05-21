@@ -72,6 +72,16 @@
         <p class="fw-700 fs-16">Annual Revenue:</p>
         <p class="text-gray fs-15">$<%= display_two_digit @business.annual_revenue %></p>
       </div>
+      <% @klass.fields.each do |field|%>
+        <% if field.column_type == 'Text Area HTML' %>
+          <div class="col-12 mt-3">
+        <% else %>
+          <div class="col-6 mt-3">
+        <% end %>
+          <p class="fw-700 fs-16"><%= field.label %></p>
+          <p class="text-gray fs-15"><%= pretty_value(field, @business) %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

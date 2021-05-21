@@ -41,7 +41,7 @@ module AuthHelper
     auth_client = client_secrets.to_authorization
     auth_client.update!(
       scope: "https://mail.google.com https://www.googleapis.com/auth/calendar",
-      redirect_uri: "http://#{ENV['HOST_URL']}/oauth2callback",
+      redirect_uri: "#{ENV['HOST_URL']}/oauth2callback",
       state: Base64.encode64(state),
       additional_parameters: {
         prompt: :consent,

@@ -1,0 +1,42 @@
+<div class="block-ui-box">
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      <%= link_to new_field_picklist_value_path(field_id: field.id), remote:true, class: 'pull-right m-t-10 m-b-10 m-r-20' do%>
+        Add Value <i class="fa fa-plus" aria-hidden="true"></i>
+      <%end%>
+    </div>
+    <div class="col-md-12 mt-3">
+      <ul class="list-unstyled fields-sortable">
+        <% field_picklist_values.each_with_index do |field_picklist_value, f_ind|%>
+          <li class="block-ui-box" data-field-picklist-value-id="<%= field_picklist_value.id %>">
+            <span class="mr-auto"><%= field_picklist_value.value%></span>
+            <%= link_to edit_field_picklist_value_path(field_picklist_value), remote: true do%>
+              <%= image_pack_tag 'home/ic_edit.svg'%>
+            <% end %>
+            <%= link_to field_picklist_value_path(field_picklist_value), method: :delete, remote: true, data: { confirm: 'Are you sure want to delete this Option?' } do%>
+              <%= image_pack_tag 'home/ic_delete.svg'%>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    // $( ".fields-sortable" ).sortable({
+    //   stop: function(event, ui) {
+    //     let fieldPicklistValueIds = $(this).sortable('toArray', {attribute: "data-field-picklist-value-id"});
+    //     $.ajax({
+    //       url: "<%= change_position_field_picklist_values_url %>",
+    //       type: 'GET',
+    //       data: {
+    //         field_picklist_value_ids: fieldPicklistValueIds
+    //       },
+    //       dataType: "script"
+    //     });
+    //   }
+    // });
+  });
+</script>

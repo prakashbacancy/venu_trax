@@ -117,6 +117,7 @@ class EmailsController < ApplicationController
   def destroy
     service = get_service
     service.trash_user_message(params[:id])
+    @email_message_id = params[:id]
   end
 
   #TODO: replace email_id by email

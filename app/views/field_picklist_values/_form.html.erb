@@ -1,0 +1,5 @@
+<div class='form-group mb-5'>
+  <%= f.label :value %>
+  <%= f.text_field :value, class: 'form-control', required: true %>
+</div>
+<%= f.hidden_field :field_id, value: f.object.field_id%>

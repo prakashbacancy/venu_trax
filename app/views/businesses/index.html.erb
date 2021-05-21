@@ -50,7 +50,11 @@
     				<td><%= business.address %></td>
             <td><%= link_to business.domain, url_simplifier(business.domain), target: "_blank" if business.domain %></td>
     				<td><%= business.state %></td>
-            <td><%= business.venues.count %></td>
+            <% if business.venues.count == 0 %>
+              <td><%= link_to business.venues.count, 'javascript:(0);' %></td>
+            <% else %>
+              <td><%= link_to business.venues.count, 'javascript:(0);', data: {toggle: 'modal', target: "#venueModal_#{business.id}"} %></td>
+            <% end %>
             <td><%= business.phone_no %></td>
             <td>
               <div class="action-area-buttons">
@@ -66,12 +70,19 @@
     		<% end %>
         </tbody>
       </table>
+      <% @businesses.each do |business| %>
+        <%= render 'venue_modal', business: business %>
+      <% end %>
     </div>
   </div>
+
 </section>
 
 <script>
   $(document).ready(function(){
     custom_datatable($('#business_list_table'));
+    $('.modal-table').DataTable({
+        "paging":   false,
+        "info":     false});
   })
 </script>

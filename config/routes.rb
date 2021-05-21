@@ -24,6 +24,19 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+  resources :settings do
+    collection do
+      get :field_options
+    end
+  end
+  resources :fields
+  resources :field_picklist_values do
+    collection do
+      get :change_klass
+      get :change_field
+      get :change_position
+    end
+  end
   resources :simulations
   resources :credentials, only: %i[edit update]
   resources :venues do
