@@ -8,4 +8,8 @@ module SimulationsHelper
 			"hide"
 		end
 	end
+
+	def action_name(params, object)
+		@simulation.new_record? ? [simulations_path, :post] : [simulation_path(object), :put]
+	end
 end

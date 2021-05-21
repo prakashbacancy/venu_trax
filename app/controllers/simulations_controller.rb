@@ -2,6 +2,8 @@ class SimulationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    simulation_record = Simulation.last
+    @simulation = simulation_record.present? ? simulation_record : Simulation.new
     set_date_filter
     @simulations = SimulationChart.new(params).calculation
     # @simulations = Simulation.where(created_at: @date_range)
