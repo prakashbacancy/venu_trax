@@ -58,6 +58,12 @@
       </div>
     </div>
 
+    <% Klass.user.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: @data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : resource.send(field.name)} %>
+      </div>
+    <% end %>
+
     <div class="modal-footer modal-footer-fixed">
       <%= f.submit "Save", class: "btn btn-primary" %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>

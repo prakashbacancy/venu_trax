@@ -39,6 +39,11 @@ gem 'pg'
 gem 'ckeditor'
 # For ckeditor images
 gem 'mini_magick'
+# mailbox
+gem 'google-api-client', require: ['google/apis/gmail_v1', 'google/apis/calendar_v3', 'google/api_client/client_secrets']
+gem 'google-apis-gmail_v1'
+# OAuth integration
+gem 'oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

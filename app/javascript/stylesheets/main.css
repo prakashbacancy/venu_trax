@@ -6253,8 +6253,8 @@ a.close.disabled {
   justify-content: space-between;
   padding: 1rem 40px !important;
   border-bottom: 1px solid #dee2e6;
-  border-top-left-radius: calc(.3rem - 1px);
-  border-top-right-radius: calc(.3rem - 1px);
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
   background: transparent linear-gradient(
     90deg
     , #007AFF 0%, #006DE4 100%) 0% 0% no-repeat padding-box;
@@ -19976,6 +19976,7 @@ div#business_list_table_length {
 .content-wrapper, .right-side {
   margin-top: 63px;
 }
+
 header.main-header{
   position: fixed;
   width: 100%;
@@ -20019,3 +20020,6 @@ aside.main-sidebar  .main-sidebar-inner {
 }
 
 .cursor-not-allowed {cursor: not-allowed !important;}
+.bg-white1 {
+  background: #fff !important
+}

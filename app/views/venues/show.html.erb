@@ -1,4 +1,4 @@
-<section class="content-wrapper position-relative business-show main-sidebar-right">
+<section class="content-wrapper content-margin position-relative business-show main-sidebar-right">
   <div class="row h-100 w-100 m-0 h-100 content-wrapper">
     <div class="col-lg-4 col-xl-3 p-0 border-right">
       <%= render 'show_left_bar' %>
@@ -21,12 +21,48 @@
     $('#' + tab).addClass('active');
     $('#' + tab_body).addClass('active show');
   }
+  // var email_flag = <%= current_user.google_access_token.present? %>
+  var email_flag = true
   $(document).ready(function(){
     $('.enable_notes').on('click', function(){
       enable_this('notes-tab', 'notes-tab-body')
     })
     $('.enable_emails').on('click', function(){
       enable_this('emails-tab', 'emails-tab-body')
+    })
+    $('#emails-tab, .sync-gmail').on('click', function(){
+      if (email_flag){
+        email_flag = false;
+        $.ajax({
+          url: '<%= emails_url %>',
+          type: "GET",
+          data: {},
+          dataType: "script",
+          success: function (data) { 
+            console.log("Emails successfully fetched")
+          }
+        })
+      }
+    })
+     $('.sync-gmail').on('click', function(){
+      $.ajax({
+        url: '<%= emails_url %>',
+        type: "GET",
+        data: {},
+        dataType: "script",
+        success: function (data) { 
+          console.log("Emails successfully fetched")
+        }
+      })
+    })
+    $('.header_tabs').on('click', function(){
+      if(this.id == 'emails-tab'){
+        $('.sync_email').closest('li').removeClass('d-none');
+        $('.web-btn').addClass('d-none');
+      } else {
+        $('.sync_email').closest('li').addClass('d-none');
+        $('.web-btn').removeClass('d-none');
+      }
     })
   })
 </script>
