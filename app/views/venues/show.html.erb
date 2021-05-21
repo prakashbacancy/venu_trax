@@ -21,6 +21,8 @@
     $('#' + tab).addClass('active');
     $('#' + tab_body).addClass('active show');
   }
+  // var email_flag = <%= current_user.google_access_token.present? %>
+  var email_flag = true
   $(document).ready(function(){
     $('.enable_notes').on('click', function(){
       enable_this('notes-tab', 'notes-tab-body')
@@ -28,6 +30,41 @@
     $('.enable_emails').on('click', function(){
       enable_this('emails-tab', 'emails-tab-body')
     })
+    $('#emails-tab, .sync-gmail').on('click', function(){
+      if (email_flag){
+        $.ajax({
+          url: '<%= emails_url %>',
+          type: "GET",
+          data: {},
+          dataType: "script",
+          success: function (data) { 
+            email_flag = false;
+            console.log("Emails successfully fetched")
+          }
+        })
+      }
+    })
+    $('.header_tabs').on('click', function(){
+      if(this.id == 'emails-tab'){
+        $('.sync_email').closest('li').removeClass('d-none');
+        $('.web-btn').addClass('d-none');
+      } else {
+        $('.sync_email').closest('li').addClass('d-none');
+        $('.web-btn').remmoveClass('d-none');
+      }
+    })
+    // $('.sync_mail').on('click', function(){
+    //   $.ajax({
+    //       url: '<%= emails_url %>',
+    //       type: "GET",
+    //       data: {},
+    //       dataType: "script",
+    //       success: function (data) { 
+    //         email_flag = false;
+    //         console.log("data successfully fetched")
+    //       }
+    //     })
+    // })
   })
 </script>
 <style>
