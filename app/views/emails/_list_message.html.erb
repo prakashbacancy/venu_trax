@@ -28,13 +28,13 @@
     <span class="mr-4 d-flex align-items-center ">
       <p class="text-blue1  fw-600 fs-15">Date:
       </p>
-      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= time_date(message.received_date_time.to_datetime) %>
+      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%b %d, %Y') %>
       </p>
     </span>
     <span class="mr-4 d-flex align-items-center ">
       <p class="text-blue1  fw-600 fs-15">Time:
       </p>
-      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time %>
+      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%I:%M %p') %>
       </p>
     </span>
   </div>
