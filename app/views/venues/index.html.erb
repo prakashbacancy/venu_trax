@@ -45,7 +45,7 @@
         <tbody>
     		<% @venues.each do |venue| %>
     			<tr>
-    				<td><%= link_to venue.name, 'javascript:(0);' %></td>
+    				<td><%= link_to venue.name, venue_path(venue) %></td>
             <td><%= venue.business.name %></td>
     				<td><%= venue.address %></td>
             <td><%= venue.no_of_employee %></td>

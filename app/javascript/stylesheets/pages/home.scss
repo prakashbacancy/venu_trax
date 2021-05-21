@@ -561,7 +561,7 @@ table.dataTable {
 }
 .simulation-form .form-control{
 	border: 1px solid #F6F6F6 !important;
-	//color: #007AFF !important;
+	color: #007AFF !important;
 }
 .simulation-form .form-control::placeholder{
 	color: lightgray !important;
@@ -610,13 +610,13 @@ div.dataTables_wrapper div.dataTables_length select{
 }
 
 .business-show .content{
-	padding: 35px 35px;
+	padding: 20px;
 	min-height: 0px;
 }
 
 @media only screen and (max-width: 767px){
 	.business-show .content {
-		padding: 35px 15px;
+		padding: 20px 15px;
 	}
 }
 
@@ -773,4 +773,12 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 	min-width: 25px;
 	height: 25px;
 	border-radius: 50%;
+}
+
+.badge-tick {
+	border-radius: 50px;
+	position: absolute;
+  right: 7px;
+  left: inherit;
+  top: 7px;
 }

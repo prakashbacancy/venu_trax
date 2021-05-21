@@ -1,0 +1,150 @@
+@import "../abstract/mixins";
+
+.main-sidebar-right {
+	& .main-sidebar {
+		background-color: unset;
+		left: auto;
+		right: 0;
+		padding-top: 0px;
+		width: 320px;
+		// @include respondMax(lg-desktop) {
+		// width: 255px;
+		// }
+	}
+}
+
+.main-sidebar-right {
+	& .middle_part {
+		& .content {
+			margin-right: 320px;
+			padding: 20px;
+			
+			@include respondMax(md-tab) {
+				padding: 20px 15px;
+				margin-right: 0;
+			}
+			@include respondMax(sm-phone) {
+				padding: 0px;
+			}
+
+			& .nav-tabs {
+				width: 100%;
+				overflow-x: auto;
+				flex-wrap: nowrap;
+				overflow-y: hidden;
+				&::-webkit-scrollbar {
+					width: 3px;
+					height: 3px;
+				}
+
+				/* Track */
+				&::-webkit-scrollbar-track {
+					background: #f1f1f1;
+				}
+
+				/* Handle */
+				&::-webkit-scrollbar-thumb {
+					background: #ccc;
+				}
+
+				/* Handle on hover */
+				&::-webkit-scrollbar-thumb:hover {
+					background: #555;
+				}
+				& .nav-item {
+					white-space: nowrap;
+					margin-bottom: 1px;
+					& .nav-link {
+						padding: 0.1rem 1rem 0.5rem 1rem;
+					}
+				}
+			}
+
+			& .add_btn {
+				background-color: unset;
+			}
+		}
+		& .contact_user {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+		}
+	}
+}
+
+.sidebar-collapse {
+	& .main-sidebar-right {
+		& .middle_part {
+			& .content {
+				margin-right: 0px !important;
+			}
+		}
+	}
+}
+
+.contact_user {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.add_btn {
+	background-color: unset;
+}
+i.fa.fa-chevron-down {
+	transition-duration: 0.5s;
+}
+
+.sidebar-collapse .main-sidebar {
+	-webkit-transform: translate(320px, 0);
+	-ms-transform: translate(320px, 0);
+	-o-transform: translate(320px, 0);
+	transform: translate(320px, 0);
+}
+
+.form {
+	.plan {
+		input {
+			display: none;
+			&:checked {
+				+ {
+					label {
+						&:after {
+							content: "\2713";
+							width: 25px;
+							height: 25px;
+							line-height: 25px;
+							border-radius: 100%;
+							border: 1px solid #fff;
+							background-color: #007AFF;
+							z-index: 999;
+							position: absolute;
+							top: -7px;
+							color: #fff;
+							right: -7px;
+						}
+					}
+				}
+			}
+		}
+	}
+	label {
+		position: relative;
+		text-align: center;
+		display: block;
+		cursor: pointer;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin: 10px 0;
+	}
+}
+
+@media (max-width: 767px) {
+	.left-side,
+	.sidebar-collapse .main-sidebar {
+		-webkit-transform: translate(-00px, 0);
+		-ms-transform: translate(-00px, 0);
+		transform: translate(-0px, 0);
+	}
+}

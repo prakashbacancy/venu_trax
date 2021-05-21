@@ -12,4 +12,17 @@ class User < ApplicationRecord
 
   PERMITTED_PARAM = %w[id full_name email phone_no profile_pic].freeze
   PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
+
+  def google_token_expired?
+    Time.current > google_token_expired_at rescue true
+  end
+
+  def send_login_instructions(current_user)
+    InvitationWorker.perform_async(:user_login_instructions, user_id: id, current_user_id: current_user.id)
+  end
+
+  def send_account_setup_instructions(current_user)
+    token = set_reset_password_token
+    InvitationWorker.perform_async(:user_account_setup_instructions, user_id: id, token: token, current_user_id: current_user.id)
+  end
 end

@@ -1,0 +1,5 @@
+<% if @error %>
+  $('#email-listing-partial').html('<%= j render(partial: 'connect', locals: {login_url: @login_url, google_login_url: @google_login_url}) %>')
+<% else %>
+  $('#email-listing-partial').html('<%= j render(partial: 'messages', locals: {messages: @messages}) %>')
+<% end %>

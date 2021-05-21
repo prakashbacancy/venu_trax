@@ -4,7 +4,7 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- :root {
+:root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -3155,7 +3155,7 @@ input[type=submit].btn-block {
   top: 100%;
   left: 0;
   z-index: 1000;
-  display: block;
+  display: none;
   float: left;
   min-width: 10rem !important;
   padding: .5rem 0;
@@ -7056,7 +7056,7 @@ button.bg-danger:hover {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important
+  background-color: #FCFCFC  !important
 }
 
 a.bg-light:focus,
@@ -7090,19 +7090,19 @@ button.bg-dark:hover {
 }
 
 .border-top {
-  border-top: 1px solid #dee2e6 !important
+  border-top: 1px solid #EFEFEF !important
 }
 
 .border-right {
-  border-right: 1px solid #dee2e6 !important
+  border-right: 1px solid #EFEFEF !important
 }
 
 .border-bottom {
-  border-bottom: 1px solid #dee2e6 !important
+  border-bottom: 1px solid #EFEFEF !important
 }
 
 .border-left {
-  border-left: 1px solid #dee2e6 !important
+  border-left: 1px solid #EFEFEF !important
 }
 
 .border-0 {
@@ -8631,12 +8631,13 @@ button.bg-dark:hover {
   -webkit-box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important
 }
-
 .shadow {
-  -webkit-box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important
+  -webkit-box-shadow: 0px 3px 25px #76767612 !important;
+  box-shadow: 0px 3px 25px #76767612 !important;
+  border: 1px solid #EDEDED;
+  border-radius: 5px !important;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
 }
-
 .shadow-lg {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important
@@ -11084,10 +11085,10 @@ a.text-light:focus,
 a.text-light:hover {
   color: #cbd3da !important
 }
-
+/* 
 .text-dark {
   color: #343a40 !important
-}
+} */
 
 a.text-dark:focus,
 a.text-dark:hover {
@@ -12174,9 +12175,6 @@ html {
   position: relative
 }
 
-.layout-boxed {
-  /* background: url(../img/boxed-bg.jpg) repeat fixed */
-}
 
 .content-wrapper,
 .main-footer,
@@ -12625,9 +12623,9 @@ a:hover {
 
   .left-side,
   .main-sidebar {
-    -webkit-transform: translate(-300px, 0);
-    -ms-transform: translate(-300px, 0);
-    transform: translate(-300px, 0)
+    -webkit-transform: translate(320px, 0);
+    -ms-transform: translate(320px, 0);
+    transform: translate(320px, 0)
   }
 }
 
@@ -12635,9 +12633,9 @@ a:hover {
 
   .sidebar-collapse .left-side,
   .sidebar-collapse .main-sidebar {
-    -webkit-transform: translate(-230px, 0);
-    -ms-transform: translate(-230px, 0);
-    transform: translate(-230px, 0)
+    -webkit-transform: translate(-320px, 0);
+    -ms-transform: translate(-320px, 0);
+    transform: translate(-320px, 0)
   }
 }
 
@@ -12889,7 +12887,7 @@ a:hover {
   .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>.pull-right,
   .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span {
     display: none !important;
-    -webkit-transform: translateZ(0)
+    
   }
 
   .sidebar-mini.sidebar-collapse .sidebar-menu>li>a>span {
@@ -18429,10 +18427,20 @@ table.text-center th {
   margin-bottom: 0
 }
 
+.business-show .content {
+  min-height: 0px;
+  padding: 35px;
+}
+@media only screen and (max-width: 767px){
+.business-show .content {
+  padding: 35px 15px;
+}}
+
+
 .main-footer {
   background-color: #fff;
   padding: 20px;
-  border-top: 1px solid #f7f8fa;
+  border-top: 1px solid #EFEFEF !important;
 }
 
 .main-footer .foot-nav a {
@@ -19863,7 +19871,7 @@ textarea.parsley-error {
   margin: 0 4px !important;
 }
 
-header .dropdown:hover {/* background-color: #253342; */}
+
 
 .navbar .nav-right-custom  .navbar-nav .nav-link {
   padding: 0 6px;
@@ -19892,9 +19900,7 @@ header .dropdown:hover {/* background-color: #253342; */}
   font-size: 14px !important;
 }
 
-.admin-table .table th,.admin-table .table td {
-  /* font-size: 14px !important; */
-}
+
 
 .dataTables_length label {
   font-size: 15px;
@@ -19961,10 +19967,56 @@ div#business_list_table_length {
 .business-show .collapsed .fa-chevron-down {
   transform: rotate(270deg)
 }
+
 .calendar { position: absolute; top: 12px; left: 15px; }
 .bootstrap-datetimepicker-widget.dropdown-menu {
  width: auto;
 }
-.timepicker-picker .table-condensed tr td {
-border: none !important;
+
+.content-wrapper, .right-side {
+  margin-top: 63px;
 }
+
+header.main-header{
+  position: fixed;
+  width: 100%;
+  top:0;
+}
+
+
+@media only screen and (min-width: 992px){
+aside.main-sidebar  .main-sidebar-inner {
+  top: 0;
+  position: fixed;
+  overflow-y: auto;
+  bottom: 0;
+  padding-top: 65px !important;
+  width:320px;
+   max-height: calc(100vh - 66px);
+}
+
+.main-sidebar-inner::-webkit-scrollbar {
+  width: 4px;height:4px;
+}
+
+/* Track */
+.main-sidebar-inner::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+.main-sidebar-inner::-webkit-scrollbar-thumb {
+  background: #ccc; 
+}
+
+/* Handle on hover */
+.main-sidebar-inner::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+}
+
+.timepicker-picker .table-condensed tr td {
+  border: none !important;
+}
+
+.cursor-not-allowed {cursor: not-allowed !important;}
