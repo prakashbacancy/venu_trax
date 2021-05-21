@@ -32,17 +32,28 @@
     })
     $('#emails-tab, .sync-gmail').on('click', function(){
       if (email_flag){
+        email_flag = false;
         $.ajax({
           url: '<%= emails_url %>',
           type: "GET",
           data: {},
           dataType: "script",
           success: function (data) { 
-            email_flag = false;
             console.log("Emails successfully fetched")
           }
         })
       }
+    })
+     $('.sync-gmail').on('click', function(){
+      $.ajax({
+        url: '<%= emails_url %>',
+        type: "GET",
+        data: {},
+        dataType: "script",
+        success: function (data) { 
+          console.log("Emails successfully fetched")
+        }
+      })
     })
     $('.header_tabs').on('click', function(){
       if(this.id == 'emails-tab'){
@@ -53,18 +64,6 @@
         $('.web-btn').removeClass('d-none');
       }
     })
-    // $('.sync_mail').on('click', function(){
-    //   $.ajax({
-    //       url: '<%= emails_url %>',
-    //       type: "GET",
-    //       data: {},
-    //       dataType: "script",
-    //       success: function (data) { 
-    //         email_flag = false;
-    //         console.log("data successfully fetched")
-    //       }
-    //     })
-    // })
   })
 </script>
 <style>
