@@ -7,11 +7,12 @@ class Field < ApplicationRecord
   # 'Skype' => 'text'
   # 'File' => 'file',
   # 'Multi-Select Check Box' => 'text'
+  # 'DateTime' => 'datetime',
 
   TYPE_CAST = { 'Text' => 'text', 'Decimal' => 'decimal', 'Integer' => 'integer', 'Percent' => 'float',
                 'Currency' => 'decimal', 'Date' => 'date', 'Email' => 'text', 'Phone' => 'text',
                 'Picklist' => 'text', 'URL' => 'text', 'Checkbox' => 'text', 'Text Area HTML' => 'text',
-                'Time' => 'time', 'DateTime' => 'datetime', 'Text Area' => 'text', 'Label' => 'text',
+                'Time' => 'time', 'Text Area' => 'text', 'Label' => 'text',
                 'Radio Button' => 'string' }.freeze
   PATTERNS =  {
     Text: nil,
