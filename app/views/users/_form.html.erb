@@ -61,6 +61,12 @@
       </div>
     <% end %>
 
+    <% Klass.user.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: @data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @user.send(field.name)} %>
+      </div>
+    <% end %>
+
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>

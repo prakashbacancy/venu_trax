@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :user, only: %i[show new edit]
+  before_action :set_klass, only: %i[show new edit]
+  before_action :find_dynamic_fields, only: %i[new edit]
 
   def index
     @users = User.all
@@ -47,7 +49,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(User::PERMITTED_PARAM)
+    dynamic_params = Klass.user.fields.pluck(:name)
+    params.require(:user).permit(User::PERMITTED_PARAM + dynamic_params)
   end
 
   def set_reset_password_token
@@ -55,5 +58,17 @@ class UsersController < ApplicationController
     user.reset_password_token   = enc
     user.reset_password_sent_at = Time.now.utc
     raw
+  end
+
+  def set_klass
+    @klass = Klass.user
+  end
+
+  def find_dynamic_fields
+    fields = @klass.fields.includes(:field_picklist_values)
+    @data = {}
+    fields.each do |field|
+      @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
+    end
   end
 end
