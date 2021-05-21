@@ -1,12 +1,13 @@
 class SimulationChart
-	def initialize(params)
+	def initialize(params, simulation)
 		@params = params
+    @simulation = simulation
 	end
 
 	def calculation
 		data = {}
 		set_date_filter
-		simulation = Simulation.all
+		simulation =  @simulation
 
     daily_data = simulation.where(created_at: @today)
     week_data = simulation.where(created_at: @week)

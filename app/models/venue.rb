@@ -1,5 +1,6 @@
 class Venue < ApplicationRecord
   belongs_to :business
+  has_one :simulation
 
   has_many :notes, as: :notable
 

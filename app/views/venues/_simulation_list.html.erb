@@ -1,0 +1,39 @@
+<div class="admin-table bg-white table-responsive mt-3">
+  <table class="table table-bordered w-100 mb-5" id="business_list_table">
+		<% if @simulation.present? %>
+		    <thead class="thead-dark">
+		    	<th>Events Per Week</th>
+		    	<th>Daily Seating Capacity</th>
+		    	<th>Estimated Avg Annual Attendance</th>
+		    	<th>Estimated % Visitor Wifi Login's</th>
+		    	<th>Cost LP Impression</th>
+		    	<th>Usage Impression</th>
+		    	<th>Per Day/Event</th>
+		    	<th>No Of Months</th>
+		    </thead>
+		    <tbody>
+		    	<tr>
+		    		<td><%= link_to @simulation.event_per_year, simulations_path(venue_id: @venue.id) %></td>
+		    		<td><%= @simulation.daily_seating_capacity %></td>
+		    		<td><%= @simulation.annual_attendance_per %></td>
+		    		<td><%= @simulation.visitor_wifi_login %></td>
+		    		<td><%= @simulation.cost_lp_impression %></td>
+		    		<td><%= @simulation.event_usage_impression %></td>
+		    		<td><%= @simulation.cpm_impression_cost %></td>
+		    		<td><%= @simulation.contract_month %></td>
+		    	</tr>
+		    </tbody>
+		<% else %>
+		 <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+	    <%= link_to "Create Simulation", simulations_path(venue_id: @venue), class: 'btn btn-primary' %>
+	    <p class="fs-18 text-center text-gray">
+	    No Data Available</p>
+	  </div>
+			<!-- tr>
+				<td colspan="5"> <h5>No Simulation found </h5>
+				<%#= link_to "Create Simulation", simulations_path(venue_id: @venue), class: 'btn btn-primary' %>
+				</td>
+			</tr> -->
+		<% end %>
+	</thead>
+</table>

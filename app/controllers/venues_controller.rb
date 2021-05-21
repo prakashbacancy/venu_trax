@@ -39,6 +39,10 @@ class VenuesController < ApplicationController
     redirect_to redirect_url
   end
 
+  def show
+    @simulation = @venue.simulation
+  end
+
   private
 
   def redirect_url
