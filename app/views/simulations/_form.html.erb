@@ -1,9 +1,9 @@
 <div class="modal-header">
   <h5 class="modal-title">Input Simulation Data</h5>
 </div>
-
-<div class="modal-body simulation-form">
-  <%= form_for @simulation, html: {class: 'admin-form'} do |f|  %>
+<% path, method_name = action_name(params, @simulation) %>
+<div class="simulation-form">
+  <%= form_for @simulation, url: path, method: method_name, html: {class: 'admin-form', remote: true} do |f|  %>
     <%#= render "devise/shared/error_messages", resource: resource %>
     <p class="text-gray fs-14 mt-3">Please enter all input details to see your Revenue Analytics</p>
     <div class="px-3 mt-4 border py-2 border-light">
@@ -62,9 +62,10 @@
       </div>
     </div>
 
-    <div class="modal-footer modal-footer-fixed">
-      <%= f.submit "Save", class: "btn btn-primary" %>
-      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    <div>
+      <% btn_name = method_name.eql?(:put) ? 'Update' : 'Save' %>
+      <%= f.submit btn_name, class: "btn btn-primary" %>
+      <!-- <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button> -->
     </div>
   <% end %>
 </div>
