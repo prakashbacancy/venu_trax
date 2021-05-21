@@ -9,9 +9,11 @@
     <div class="d-flex align-items-center">
       <p class="text-gray fs-14 mr-3"><%= message.received_date_time %>
       </p>
-      <a herf="#">
-        <%= image_pack_tag 'home/ic_delete.svg', class: 'img-fluid' %>
-      </a>
+      <div class="action-icon pull-right">
+        <%= link_to email_path(message.id), data: {id: message.id}, method: :delete, remote: true do %>
+          <%= image_pack_tag 'home/ic_delete.svg', class: 'img-fluid' %>
+        <% end %>
+      </div>
     </div>
   </div>
   <p>
