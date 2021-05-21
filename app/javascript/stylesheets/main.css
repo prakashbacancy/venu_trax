@@ -19974,11 +19974,9 @@ div#business_list_table_length {
 }
 
 .content-wrapper, .right-side {
-  /* margin-top: 0; */
-}
-.content-margin {
   margin-top: 63px;
 }
+
 header.main-header{
   position: fixed;
   width: 100%;
