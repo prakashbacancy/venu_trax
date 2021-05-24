@@ -44,7 +44,7 @@
   $('iframe').on('load', function() {
     $('iframe').contents().find("head").append($("<style type='text/css'>  html{overflow-x:hidden;}  </style>"));
     $('iframe').addClass('w-100');
-    this.style.height = (this.contentWindow.document.body.scrollHeight+20) + 'px';
+    this.style.height = (this.contentWindow.document.body.scrollHeight+50) + 'px';
   });
 
 </script>
