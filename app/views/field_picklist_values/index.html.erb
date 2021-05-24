@@ -10,42 +10,39 @@
       </div>
     </div>
   </div>
-  <div class="content position-relative tab-section bg-light pt-0">
+  <div class="content position-relative tab-section bg-light pt-0 mt-5">
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="options-tab-body" role="tabpanel" aria-labelledby="business-tab">
-       
+
         <div class="w-100">
           <%= form_tag field_picklist_values_path, method: :post, class: "form" do %>
-            <div class="site-content-data">
-              <div class="block-ui-box-wrapper">
-                <div  class="block-ui-box m-t-20">
-                  <div class='row'>
-                    <div class="col-sm-12 text-center">
-                      <div class="form-group mb10">
-                      <%= label_tag "Select Module", "Select Module", class:'select-module-set' %>
+          <div class="site-content-data">
+            <div class='row'>
+              <div class="col-sm-12 col-md-10 col-lg-7 mx-auto">
+                <div class="block-ui-box-wrapper">
+                  <div class="shadow p-4 mb-5 bg-white rounde">
+                    <div class="form-group mb-4 ">
+                      <%= label_tag "Select Module", "Select Module", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600' %>
                       <%= select_tag "klasses", options_for_select(@klasses, @field&.klass_id), { class: 'form-control', prompt: "Select Module"}%>
-                      </div>
                     </div>
-                  </div>
-                  <div class='row'>
-                    <div class="col-sm-12 text-center">
-                    <div class='form-group mb10' id ='select_field'>
-                    <%= label_tag "Select Field", "Select Field", class:'select-module-set'  %>
+                    <div class='form-group mb10' id='select_field'>
+                      <%= label_tag "Select Field", "Select Field", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600'  %>
                       <%= select_tag "field_name", options_for_select(@field_names, @field&.id), { class: 'form-control', prompt: "Select Field"}%>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          <%end%>
+            <%end%>
 
-          <div class='row'>
-            <div class="col-md-12 m-t-30">
-              <div class="block-ui-box-wrapper">
-                <div id='picklist-values'>
-                  <%if @field_picklist_values.present? %>
+            <div class='row'>
+              <div class="col-md-12 m-t-30">
+                <div class="block-ui-box-wrapper">
+                  <div id='picklist-values'>
+                    <%if @field_picklist_values.present? %>
                     <%= render partial: 'picklist_value', locals: {field_picklist_values: @field_picklist_values, field: @field }%>
-                  <%end%>
+                    <%end%>
+                  </div>
                 </div>
               </div>
             </div>
@@ -53,13 +50,12 @@
         </div>
       </div>
     </div>
-  </div>
-  <div id="myModal"></div>
+    <div id="myModal"></div>
 </section>
 
 <script>
-  $(document).ready(function(){
-    $("#klasses").on('change', function(){
+  $(document).ready(function () {
+    $("#klasses").on('change', function () {
       $.ajax({
         url: "<%= change_klass_field_picklist_values_url %>",
         type: 'GET',
@@ -67,7 +63,7 @@
           klass_id: $(this).val()
         },
         dataType: "script",
-        success: function(result){
+        success: function (result) {
 
         }
       });
