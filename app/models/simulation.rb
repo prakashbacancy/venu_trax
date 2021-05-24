@@ -32,8 +32,8 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 		lp_rev_week_total = (lp_rev_annual_total.to_f / weeks)
 		lp_rev_day_total = (lp_rev_per_day_total.to_f * ((event_per_year.to_f * weeks) / 365))
 
-		cpa_per_day_login = avg_attendance_event * (cpa_impression_cost/100)
-		cpa_annual_login = avg_attendance_annual_event * (cpa_impression_cost/100)
+		cpa_per_day_login = wifi_lp_per_day_login * cpa_impression_cost
+		cpa_annual_login = wifi_lp_annual_login * cpa_impression_cost
 		cpa_week_login = (cpa_annual_login.to_f / weeks)
 		cpa_month_login = (cpa_annual_login.to_f / months)
 		cpa_day_login = (cpa_per_day_login.to_f * ((event_per_year.to_f * weeks) / 365))
@@ -88,7 +88,12 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 												cpm_impression_day: cpm_impression_day,
 												wifi_annual_month_total: wifi_annual_month_total,
 												wifi_annual_week_total: wifi_annual_week_total,
-												wifi_annual_day_total: wifi_annual_day_total
+												wifi_annual_day_total: wifi_annual_day_total,
+												cpa_per_day_login: cpa_per_day_login,
+												cpa_annual_login: cpa_annual_login,
+												cpa_week_login: cpa_week_login,
+												cpa_month_login: cpa_month_login,
+												cpa_day_login: cpa_day_login
 												)
 
 	end
