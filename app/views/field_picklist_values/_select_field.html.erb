@@ -1,5 +1,5 @@
 <%= form_tag field_picklist_values_path, method: :post do %>
-  <%= label_tag "Select Field","Select Field", class:'select-module-set'  %>
+  <%= label_tag "Select Field","Select Field", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600'  %>
   <%= grouped_collection_select nil, :field_id, Klass.all, :field_picklist_valuable_fields, :label, :id, :label, {include_blank: "Select Field"}, class: 'form-control' %>
 <%end%>
 <script>

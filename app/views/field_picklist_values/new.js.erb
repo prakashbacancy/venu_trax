@@ -1,3 +1,3 @@
-$('#bottom-modal-content').html('<%= j render(partial: 'modal', locals: {field_picklist_value: @field_picklist_value, field_id: params[:field_id] }) %>')
-$("#bottom_modal").modal('show');
+$('#simple-modal-content').html('<%= j render(partial: 'modal', locals: {field_picklist_value: @field_picklist_value, field_id: params[:field_id] }) %>')
+$("#simple_modal").modal('show');
 $('form').parsley();

@@ -3,12 +3,12 @@
   <h5 class="modal-title"><%= title_half %> Options</h5>
 </div>
 <%= form_for field_picklist_value, remote: true, class: "form-inline" do |f| %>
-  <div class="modal-body mb-5">
+  <div class="modal-body">
       <%= render 'form', f: f %>
   </div>
-  <div class="modal-footer modal-footer-fixed">
+  <div class="modal-footer">
     <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
-    <%= f.submit save_button_title, class: "btn btn-primary" %>
+    <%= f.submit save_button_title, class: "btn btn-primary ml-auto" %>
     <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
   </div>
 <%end%>
