@@ -3,6 +3,7 @@ class VenuesController < ApplicationController
   before_action :venue, only: %i[show new edit]
   before_action :find_business, only: %i[show]
   before_action :find_notes, only: %i[show]
+  before_action :set_klass
 
   def index
     @venues = Venue.all
@@ -67,5 +68,9 @@ class VenuesController < ApplicationController
 
   def find_notes
     @notes = @venue.notes
+  end
+
+  def set_klass
+    @klass = Klass.business
   end
 end
