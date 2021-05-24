@@ -64,6 +64,10 @@
         $('.web-btn').removeClass('d-none');
       }
     })
+    $('.add_note').on('click', function(){
+      $("#bottom_modal").modal('show');
+      $('.modal-backdrop').removeClass('show');
+    })
   })
 </script>
 <style>
