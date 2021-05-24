@@ -24,6 +24,7 @@ import 'timepicker/jquery.timepicker.css';
 import 'stylesheets/application'
 import 'chartjs-plugin-datalabels'
 import 'custom';
+require("packs/jquery-ui.js")
 require("packs/crm.js")
 
 // import "../stylesheets/application";
