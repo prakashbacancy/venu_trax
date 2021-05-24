@@ -1,10 +1,10 @@
 <div class='filter-middle-wrapper w99-50  message_id_<%= message.id %>' id='message_container'>
   <%= link_to 'javascript:void(0)', class: 'common-link back-messages m-l-5' do%>
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
-  <%end%>
-  <%= link_to email_path(message.id), data: {id: message.id}, method: :delete, remote: true,  class: 'common-link delete-message m-l-10' do%>
+  <% end %>
+  <%= link_to email_path(message.id), data: {id: message.id}, method: :delete, remote: true,  class: 'common-link delete-message ml-3' do%>
     <i class='fa fa-trash' aria-hidden='true'></i>
-  <%end%>
+  <% end %>
   <div class='email-hr m-b-5'>
     <hr/>
   </div>
@@ -17,10 +17,10 @@
     </div>
   </div>
   <hr/>
-  <div class='row'>
-    <%= form_tag email_reply_path(message.id, mailbox: message.mailbox), remote: true do %>
-      <textarea class='form-control m-t-10 txt-reply' placeholder='Write a reply message' name='comment'></textarea>
-      <%= submit_tag 'Reply', class: 'btn btn-success pull-right m-t-5 m-r-30' %>
+  <div class='row col-md-12'>
+    <%= form_tag email_reply_path(message.id, mailbox: message.mailbox), class: 'd-sm-flex flex-row', remote: true do %>
+      <textarea class='form-control m-t-10 txt-reply mr-2 mt-2' placeholder='Write a reply message' name='comment'></textarea>
+      <%= submit_tag 'Reply', class: 'btn btn-primary pull-right mt-2' %>
     <% end %>
   </div>
 </div>
@@ -29,20 +29,22 @@
     $("#reply_id_<%= message.id %>").children('.btn-link').trigger('click');
     $('.message-data .filter-middle-main').removeClass('selected');
     $('.<%=params[:msg_id] %>').addClass('selected');
-    $.unblockUI();
+    // $.unblockUI();
     $(".back-messages").on('click', function(){
-      $("#messages_container").removeClass('hidden');
-      $("#message_container").addClass('hidden');
+      $("#messages_container").removeClass('d-none');
+      $("#message_container").addClass('d-none');
     });
     $('#message_container').on('ajax:success', function(e){
-      $("#messages_container").removeClass('hidden');
-      $("#message_container").addClass('hidden');
+      $("#messages_container").removeClass('d-none');
+      $("#message_container").addClass('d-none');
       $('.message_id_' + $(e.target).data('id')).remove();
     });
 
   });
   $('iframe').on('load', function() {
     $('iframe').contents().find("head").append($("<style type='text/css'>  html{overflow-x:hidden;}  </style>"));
+    $('iframe').addClass('w-100');
+    this.style.height = (this.contentWindow.document.body.scrollHeight+20) + 'px';
   });
 
 </script>

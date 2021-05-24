@@ -1,47 +1,51 @@
-<div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
+<!-- <div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
   <div class="d-flex align-items-start justify-content-between flex-wrap">
-    <div>
-      <p class="text-dark2 fw-600 fs-17">To: <%= message.to_name %><span class="text-gray">(<%= message.to_email_address %>)</span>
-      </p>
-      <p class="text-dark2 fw-600 fs-17">From: <%= message.from_name %><span class="text-gray">(<%= message.from_email_address %>)</span>
-      </p>
-    </div>
     <div class="d-flex align-items-center">
-      <p class="text-gray fs-14 mr-3"><%= message.received_date_time %>
-      </p>
-      <div class="action-icon pull-right">
-        <%= link_to email_path(message.id), data: {id: message.id}, method: :delete, remote: true do %>
-          <%= image_pack_tag 'home/ic_delete.svg', class: 'img-fluid' %>
-        <% end %>
-      </div>
+    
+    </div>
     </div>
   </div>
-  <p>
-  </p>
-  <p class="text-gray mt-3 fs-17"> <%= message.subject %>
-  </p>
-  <div class="d-flex align-items-center flex-wrap mt-4">
-    <span class="mr-4 d-flex align-items-center ">
-      <p class="text-blue1 fw-600 fs-15">Contacted:
-      </p>
-      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.to_name %>
-      </p>
-    </span>
-    <span class="mr-4 d-flex align-items-center ">
-      <p class="text-blue1  fw-600 fs-15">Date:
-      </p>
-      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%b %d, %Y') %>
-      </p>
-    </span>
-    <span class="mr-4 d-flex align-items-center ">
-      <p class="text-blue1  fw-600 fs-15">Time:
-      </p>
-      <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%I:%M %p') %>
-      </p>
-    </span>
-  </div>
-  <!-- <p class="text-primary mt-3 fs-17 fw-600">
-    <%#= image_pack_tag 'home/ic_comment.svg', class: 'img-fluid mr-3' %> Add
-    Comments
-  </p> -->
-</div>
+   -->
+  <% message_path = message.mailbox == :draft ? new_email_path(message_id: message.id, mailbox: message.mailbox, ind: ind) : email_path(message.id, mailbox: message.mailbox, msg_id: 'msg-'+ind.to_s)%>
+  <td width="20%">
+    <a href="<%= message_path %>" class="message-data" data-remote="true">
+      <p class="text-dark2 fw-600 fs-17 text-nowrap"><%= message.from_name %></p>
+    </a>
+  </td>
+  <td class="subject-email" width="65%">
+    <% size = message.subject.size rescue 0 %>
+    <p class="text-gray  fs-17"> <b><%= message.subject %></b> - <span><%= strip_tags(message.body.gsub("\n", ' ')).squeeze(' ')&.truncate(75-size)%></span></p>
+  </td>
+  <td width="10%" class="p-0" style="padding: 0 !important;">
+    <p class="text-gray fs-14 text-right text-nowrap"><%= time_date(message.received_date_time) %></p>
+  </td>
+  <td width="5%">
+    <div class="action-icon ">
+      <%= link_to message.mailbox == :draft ? destroy_draft_emails_path(message.id) : email_path(message.id), data: {id: message.id}, method: :delete, remote: true do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+      <%#= link_to '', email_path(message.id), data: {id: message.id}, class: 'fa fa-trash', method: :delete, remote: true %>
+    </div>
+  </td>
+
+  <!-- <div class="d-flex align-items-center flex-wrap mt-4">
+        <span class="mr-4 d-flex align-items-center ">
+          <p class="text-blue1 fw-600 fs-15">Contacted:
+          </p>
+          <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.to_name %>
+          </p>
+        </span>
+        <span class="mr-4 d-flex align-items-center ">
+          <p class="text-blue1  fw-600 fs-15">Date:
+          </p>
+          <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%b %d, %Y') %>
+          </p>
+        </span>
+        <span class="mr-4 d-flex align-items-center ">
+          <p class="text-blue1  fw-600 fs-15">Time:
+          </p>
+          <p class="text-darkgray1  fw-600 ml-2 fs-15"><%= message.received_date_time.strftime('%I:%M %p') %>
+          </p>
+        </span>
+      </div> -->
+

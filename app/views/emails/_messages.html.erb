@@ -1,11 +1,24 @@
 <% if messages.any? %>
-  <div class="filter-middle m-t-0" id='messages'>
-    <% messages.each_with_index do|message, ind| %>
-      <div class="radio-lbl email-checkbox message_id_<%= message.id %>">
-        <%= render partial: 'emails/list_message', locals: {message: message, ind: ind}%>
-      </div>
-    <%end%>
+  <div class="filter-middle m-t-0 table-responsive admin-table bg-white table-responsive mt-3" id='messages_container'>
+    <table class=" email-table table table-bordered w-100 mb-5 modal-table table-hover">
+      <thead>
+        <th width="20%"></th>
+        <th width="65%"></th>
+        <th width="10%"></th>
+        <th width="5%"></th>
+      </thead>
+      <tbody>
+        <% messages.each_with_index do |message, ind| %>
+          <tr class="radio-lbl email-checkbox message_id_<%#= message.id %> position-relative ">
+            <%= render partial: 'emails/list_message', locals: { message: message, ind: ind } %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+  <div class="filter-middle m-t-0 table-responsive admin-table bg-white table-responsive mt-3 d-none" id="message_container">
+  </div>
+  
 <% else %>
   <div class="filter-middle" id='messages'>
     <div class="col-md-12 text-center">
@@ -14,46 +27,75 @@
   </div>
 <% end %>
 
+<style>
+  .email-name p {
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: red;
+  }
+
+  .subject-email p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .email-table tr {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    -webkit-box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 12%);
+    box-shadow: inset 0 -1px 0 0 rgb(100 121 143 / 12%);
+
+  }
+  table .p-0{
+    padding: 0 !important;
+  }
+</style>
+
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#search-msg").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#messages .email-checkbox").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-    $('.message-data .filter-middle-main').on('click', function(){
-      $.blockUI({
-        message: "<h3> Please wait... </h3>",
-        css: {
-          border: 'none',
-          padding: '15px',
-          backgroundColor: '#000',
-          '-webkit-border-radius': '10px',
-          '-moz-border-radius': '10px',
-          opacity: .5,
-          color: '#fff'
-        }
+  $(document).ready(function () {
+    $("#search-msg").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#messages_container .email-checkbox").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+      $('.message-data .filter-middle-main').on('click', function () {
+        $.blockUI({
+          message: "<h3> Please wait... </h3>",
+          css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+          }
+        });
       });
     });
-  });
-  $('#check-all').on('change', function(){
-    if($(this).prop('checked')){
-      $('.delete-all').removeClass('hidden');
-    }else{
-      $('.delete-all').addClass('hidden');
-    }
-    $('.chk-msg').prop('checked', $(this).prop('checked'));
+    $('#check-all').on('change', function () {
+      if ($(this).prop('checked')) {
+        $('.delete-all').removeClass('hidden');
+      } else {
+        $('.delete-all').addClass('hidden');
+      }
+      $('.chk-msg').prop('checked', $(this).prop('checked'));
 
+    });
+    $('#messages_container').on('ajax:success', function (e) {
+      let element = $(e.target);
+      $('.message_id_' + element.data('id')).remove();
+    });
   });
-  $('#messages_container').on('ajax:success', function(e){
-    let element = $(e.target);
-    $('.message_id_' + element.data('id')).remove();
-  });
-});
 
-// $(".email-checkbox").hover(function(){
-//     $('.remove-btn').show();
-// },function(){
-//     $('.date-time').hide();
-// });
+  // $(".email-checkbox").hover(function(){
+  //     $('.remove-btn').show();
+  // },function(){
+  //     $('.date-time').hide();
+  // });
 </script>
