@@ -1,6 +1,6 @@
 class Simulation < ApplicationRecord
 	PERMITTED_PARAM = %w[event_per_year daily_seating_capacity annual_attendance_per visitor_wifi_login
-cost_lp_impression event_usage_impression cpm_impression_cost contract_month]
+cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa_impression_cost venue_id]
 	CHART_OPTIONS = %W[All Today Weekly Monthly Annually]
 	after_save :update_simulation_records
 
@@ -31,6 +31,13 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month]
 		lp_rev_month_total = (lp_rev_annual_total.to_f / months)
 		lp_rev_week_total = (lp_rev_annual_total.to_f / weeks)
 		lp_rev_day_total = (lp_rev_per_day_total.to_f * ((event_per_year.to_f * weeks) / 365))
+
+		cpa_per_day_login = wifi_lp_per_day_login * cpa_impression_cost
+		cpa_annual_login = wifi_lp_annual_login * cpa_impression_cost
+		cpa_week_login = (cpa_annual_login.to_f / weeks)
+		cpa_month_login = (cpa_annual_login.to_f / months)
+		cpa_day_login = (cpa_per_day_login.to_f * ((event_per_year.to_f * weeks) / 365))
+
 
 		user_impression_per_day = wifi_lp_per_day_login * event_usage_impression
 		user_impression_annual = wifi_lp_annual_login * event_usage_impression
@@ -81,7 +88,12 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month]
 												cpm_impression_day: cpm_impression_day,
 												wifi_annual_month_total: wifi_annual_month_total,
 												wifi_annual_week_total: wifi_annual_week_total,
-												wifi_annual_day_total: wifi_annual_day_total
+												wifi_annual_day_total: wifi_annual_day_total,
+												cpa_per_day_login: cpa_per_day_login,
+												cpa_annual_login: cpa_annual_login,
+												cpa_week_login: cpa_week_login,
+												cpa_month_login: cpa_month_login,
+												cpa_day_login: cpa_day_login
 												)
 
 	end

@@ -2,10 +2,10 @@ class SimulationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    simulation_record = Simulation.last
-    @simulation = simulation_record.present? ? simulation_record : Simulation.new
+    simulation = Simulation.where(venue_id: params[:venue_id])
+    @simulation = simulation.present? ? simulation.first : Simulation.new
     set_date_filter
-    @simulations = SimulationChart.new(params).calculation
+    @simulations = SimulationChart.new(params, simulation).calculation
     # @simulations = Simulation.where(created_at: @date_range)
 
     # @visitor_attendance, @wifi_login, @cpm_lpm, @user_impression, @lp_impression = visitor_attendance(@simulations)
@@ -25,7 +25,7 @@ class SimulationsController < ApplicationController
     else
       flash[:danger] = 'Error Occurred While Adding A Simulation!'
     end
-    redirect_to simulations_path
+    redirect_to simulations_path(venue_id: simulation.venue_id)
   end
 
   def update
@@ -34,7 +34,7 @@ class SimulationsController < ApplicationController
     else
       flash[:danger] = 'Error Occurred While Updating A Simulation!'
     end
-    redirect_to simulations_path
+    redirect_to simulations_path(venue_id: simulation.venue_id)
   end
 
   def destroy
