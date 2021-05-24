@@ -119,10 +119,11 @@
 <script type="text/javascript">
 	$(document).on('change', '.chart_option', function(){
 		selected_options = $('.chart_option option:selected').val()
+		venue_id = "<%= params[:venue_id] %>"
 		$.ajax({
 	    url: '/simulations',
 	    type: "GET",
-	    data: {"option" : selected_options},
+	    data: {"option" : selected_options, venue_id: venue_id},
 	    dataType: "script",
 	    success: function (data) { 
 	      console.log("data successfully updated")
