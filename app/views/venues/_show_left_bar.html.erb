@@ -38,13 +38,13 @@
 </div>
 <div class="row border p-4">
   <div class="col-md-12">
-    <a class="text-dark fw-500 d-block d-flex collapsed" data-toggle="collapse" href="#collapseExample"
+    <a class="text-dark fw-500 d-block d-flex" data-toggle="collapse" href="#collapseExample"
       role="button" aria-expanded="false" aria-controls="collapseExample">
       <span class="mr-auto fs-16 fw-600 text-dark2">About Business</span><i class="fa fa-chevron-down"></i>
     </a>
   </div>
 </div>
-<div class="collapse" id="collapseExample">
+<div class="collapse show" id="collapseExample">
   <div class="card card-body border-0">
     <div class="row">
       <div class="col-md-12 text-light-gray fs-16">
@@ -88,6 +88,16 @@
         <p class="fw-700 fs-16">Annual Revenue:</p>
         <p class="text-gray fs-15">$<%= display_two_digit @business.annual_revenue %></p>
       </div>
+      <% @klass.fields.each do |field|%>
+        <% if field.column_type == 'Text Area HTML' %>
+          <div class="col-12 mt-3">
+        <% else %>
+          <div class="col-6 mt-3">
+        <% end %>
+          <p class="fw-700 fs-16"><%= field.label %></p>
+          <p class="text-gray fs-15"><%= pretty_value(field, @business) %></p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
