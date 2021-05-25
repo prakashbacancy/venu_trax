@@ -44,6 +44,14 @@ Rails.application.routes.draw do
       resources :comments
     end
   end
+  resources :meetings do
+    collection do
+      delete :destroy_all
+      get :calendar
+      get :calendar_meetings
+      post :calendar_day_meetings
+    end
+  end
   resources :emails do
     post :reply
     collection do
