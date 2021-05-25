@@ -50,7 +50,7 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Cost LP Impression
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost LP Impression" %>
         </p>
-        <%= f.number_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
+        <%= f.text_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
       </div>
     </div>
     <div class="px-3 border py-2 border-light">
@@ -60,7 +60,7 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Cost CPA Impression
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost CPA Impression" %>
         </p>
-        <%= f.number_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
+        <%= f.text_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
       </div>
     </div>
     <div class="px-3 border py-2 border-light">
@@ -81,7 +81,7 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Per Day/Event
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Per Day/Event" %>
         </p>
-        <%= f.number_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0  %>
+        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0  %>
       </div>
     </div>
 
@@ -103,3 +103,27 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function(){
+    setupPercentageField()
+  })
+  function setupPercentageField() {
+    $('input.percentageField').each(function(){
+      $(this).val('$' + $(this).val().replace('$', ''));
+    });
+    $(document).on('focusin', '.percentageField', function() {
+      $(this).val($(this).val().replace('$', '').replace(' ', ''));
+    });
+
+    $(document).on('focusout', '.percentageField', function() {
+      if ($(this).val() != '') {
+        $(this).val('$' + $(this).val().replace('$', ''));
+      }
+    });
+
+    $(document).on('keypress', '.percentageField', function(event) {
+      var key = event.keyCode;
+      return (key >= 48 && key <= 57) || ((!$(this).val().includes('.')) && key == 46)
+    });
+  }
+</script>
