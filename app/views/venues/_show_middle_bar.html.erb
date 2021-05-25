@@ -11,8 +11,8 @@
       <a class="nav-link fs-20 mx-sm-3 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
         aria-controls="emails-tab-body" aria-selected="false">Email</a>
     </li>
-    <li class="nav-item cursor-not-allowed">
-      <a class="nav-link fs-20 mx-sm-3 header_tabs not-allowed" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
+    <li class="nav-item">
+      <a class="nav-link fs-20 mx-sm-3 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
         role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
     </li>
     <li class="nav-item cursor-not-allowed">
@@ -35,6 +35,11 @@
     <li class="mt-3 mt-md-0 d-none text-nowrap">
       <div class="ml-4 d-inline">
         <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
+      </div>
+    </li>
+    <li class="mt-3 mt-md-0 d-none text-nowrap">
+      <div class="ml-4 d-inline">
+        <%= link_to "Create Meeting", emails_url, remote: true, class: 'btn btn-primary create_meeting' %>
       </div>
     </li>
   </ul>
