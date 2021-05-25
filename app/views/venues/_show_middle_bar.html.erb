@@ -39,7 +39,7 @@
     </li>
     <li class="mt-3 mt-md-0 d-none text-nowrap">
       <div class="ml-4 d-inline">
-        <%= link_to "Create Meeting", emails_url, remote: true, class: 'btn btn-primary create_meeting' %>
+        <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: 'btn btn-primary create_meeting' %>
       </div>
     </li>
   </ul>

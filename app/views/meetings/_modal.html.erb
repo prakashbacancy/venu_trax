@@ -1,0 +1,46 @@
+<script>
+  custom_ckeditor('note_description')
+</script>
+
+<div class="modal-header d-flex justify-content-around align-items-center text-white">
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Create' : 'Edit' %>
+  <h5 class="modal-title"> <%= title_half %> Meeting</h5>
+    <button type="button" class="close text-white expand_meeting_modal_btn ">
+      <%= image_pack_tag 'home/expand.svg'%>
+    </button>
+    <button type="button" class="close text-white ml-2" data-dismiss="modal" aria-label="Close">
+      <%= image_pack_tag 'home/ic_times.svg'%>
+    </button>
+</div>
+
+<%= form_for meeting, remote: true do |f| %>
+  <div class="modal-body">
+    <%= render 'form', f: f %>
+    <% if params[:meetingable].present? # used to persist meetingable between request %>
+      <%= hidden_field_tag :meetingable, params[:meetingable] %>
+    <% end %>
+  </div>
+  <div class="modal-footer modal-footer-fixed bg-light-bottom mt-4" style="left: 0">
+    <% save_button_title = f.object.new_record? ? 'Create' : 'Save' %>
+    <%= f.submit save_button_title, class: "btn btn-primary ml-auto" %>
+    <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+  </div>
+<% end %>
+
+<style>
+  .parsley-errors-list {
+    position: absolute;
+    top: 0;
+    padding-left: 1rem;
+  }
+</style>
+<script>
+  $(document).ready(function(){
+    $('.expand_meeting_modal_btn').on('click', function(){
+      $(this).closest('.modal').toggleClass('expanded-note-modal');
+    })
+    $('#bottom_modal').on('hidden.bs.modal', function () {
+      $(this).closest('.modal').removeClass('expanded-note-modal');
+    });
+  })
+</script>

@@ -70,7 +70,7 @@
         $('.create_meeting').closest('li').addClass('d-none');
       }
     })
-    $('.add_note').on('click', function(){
+    $('.add_note, .create_meeting').on('click', function(){
       $("#bottom_modal").modal('show');
       $('.modal-backdrop').removeClass('show');
     })
