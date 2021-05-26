@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :user, only: %i[show new edit]
-  before_action :set_klass, only: %i[show new edit]
-  before_action :find_dynamic_fields, only: %i[new edit]
+  before_action :set_klass, only: %i[show new edit create update]
+  before_action :find_dynamic_fields, only: %i[new edit create update]
 
   def index
     @users = User.all
@@ -15,19 +15,21 @@ class UsersController < ApplicationController
     if user.save
       # UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
       flash[:success] = 'User Successfully Added!'
+      @user = User.new
     else
       flash[:alert] = user.errors.full_messages.join(', ')
     end
-    redirect_to users_path
+    @users = User.all
   end
 
   def update
     if user.update(user_params)
       flash[:success] = 'User Successfully Updated!'
+      @user = User.new
     else
       flash[:alert] = user.errors.full_messages.join(', ')
     end
-    redirect_to users_path
+    @users = User.all
   end
 
   def destroy
