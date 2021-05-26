@@ -11,6 +11,7 @@ class Meetings::Meeting < ApplicationRecord
   belongs_to :user
 
   has_many :attendees, dependent: :destroy
+  has_many :comments, as: :commentable
 
   validate :validate_time_range
 
