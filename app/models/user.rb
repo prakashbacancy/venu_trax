@@ -12,7 +12,9 @@ class User < ApplicationRecord
   scope :without_, ->(current_user) { where.not(id: current_user) }
   scope :active, -> { where.not(encrypted_password: '') }
   scope :ordered, -> { order(:full_name) }
-  validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
+  # validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
+
+  attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
 
   PERMITTED_PARAM = %w[id full_name email phone_no profile_pic].freeze
   PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
@@ -40,5 +42,13 @@ class User < ApplicationRecord
 
   def to_polymorphic
     "User:#{id}"
+  end
+  
+  protected
+
+  def password_required?
+    return false if skip_password_validation
+
+    super
   end
 end

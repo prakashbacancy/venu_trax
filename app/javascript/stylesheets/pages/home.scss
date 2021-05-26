@@ -557,7 +557,10 @@ table.dataTable {
 }
 
 .simulation-form form .form-control{
-	height: calc(3.25rem + -7px) !important
+	height: calc(3.20rem + -15px) !important
+}
+.simulation-text-field{
+  font-size: 12px !important;
 }
 .simulation-form .form-control{
 	//border: 1px solid #F6F6F6 !important;

@@ -11,11 +11,12 @@ class UsersController < ApplicationController
   def create
     link_raw = set_reset_password_token
     user.assign_attributes(user_params)
+    user.skip_password_validation = true
     if user.save
       # UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
       flash[:success] = 'User Successfully Added!'
     else
-      flash[:danger] = 'Error Occurred While Adding A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
     redirect_to users_path
   end
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
     if user.update(user_params)
       flash[:success] = 'User Successfully Updated!'
     else
-      flash[:danger] = 'Error Occurred While Updating A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
     redirect_to users_path
   end
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
     if user.destroy
       flash[:success] = 'User Successfully Deleted!'
     else
-      flash[:danger] = 'Error Occurred While Deleting A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
     redirect_to users_path
   end

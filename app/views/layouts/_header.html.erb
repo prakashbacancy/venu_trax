@@ -52,7 +52,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="javascript:(0)"><i class="fa fa-cog"></i></a>
+            <%= link_to settings_path, class: 'nav-link' do %>
+              <i class="fa fa-cog"></i>
+            <% end %>
           </li>
         </ul>
       </div>
