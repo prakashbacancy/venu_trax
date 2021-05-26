@@ -1,4 +1,7 @@
 <header class="main-header bg-custom-blue">
+  <div class="header_flash_message">
+    <%= render 'layouts/flash_messages' %>
+  </div>
   <nav class="navbar navbar-expand-xl navbar-dark">
     <%= link_to root_path, class: 'navbar-brand py-3' do %>
       <%= image_pack_tag 'login/VenuTRAX-WH-2s.png', width: '133px', height: '43px' %>

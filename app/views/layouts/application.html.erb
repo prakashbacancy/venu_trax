@@ -16,9 +16,6 @@
   <body class="admin-wrapper">
     <div class="wrapper">
       <%= render partial: 'layouts/header' %>
-      <div class="header_flash_message">
-        <%= render 'layouts/flash_messages' %>
-      </div>
       <%= yield %>
       <%= render partial: 'layouts/simple_modal' %>
       <%= render partial: 'layouts/right_modal' %>
