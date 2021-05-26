@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = 'Comment has been added'
     else
-      flash[:danger] = 'Can not add a comment'
+      flash[:alert] = 'Can not add a comment'
     end
     redirect_to @comment.commentable.notable
   end

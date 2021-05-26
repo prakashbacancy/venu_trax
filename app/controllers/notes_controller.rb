@@ -10,7 +10,7 @@ class NotesController < ApplicationController
     if @note.save
       flash[:success] = 'Note added'
     else
-      flash[:danger] = 'Can not add a Note'
+      flash[:alert] = 'Can not add a Note'
     end
     redirect_to @note.notable
   end
@@ -19,7 +19,7 @@ class NotesController < ApplicationController
     if note.update(notes_params)
       flash[:success] = 'Note updated'
     else
-      flash[:danger] = 'Can not update a Note'
+      flash[:alert] = 'Can not update a Note'
     end
     redirect_to @note.notable
   end
@@ -28,7 +28,7 @@ class NotesController < ApplicationController
     if note.destroy
       flash[:success] = 'Note Successfully Deleted!'
     else
-      flash[:danger] = 'Error Occurred While Deleting A Note!'
+      flash[:alert] = 'Error Occurred While Deleting A Note!'
     end
     redirect_to @notable
   end

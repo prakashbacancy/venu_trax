@@ -14,16 +14,16 @@ class BusinessesController < ApplicationController
     if business.update(business_params)
       flash[:success] = 'Business Successfully Added!'
     else
-      flash[:danger] = 'Error Occurred While Adding A Business!'
+      flash[:alert] = 'Error Occurred While Adding A Business!'
     end
     redirect_to businesses_path
   end
 
   def update
     if business.update(business_params)
-      flash[:success] = 'business Successfully Updated!'
+      flash[:success] = 'Business Successfully Updated!'
     else
-      flash[:danger] = 'Error Occurred While Updating A business!'
+      flash[:alert] = 'Error Occurred While Updating A business!'
     end
     redirect_to businesses_path
   end
@@ -32,7 +32,7 @@ class BusinessesController < ApplicationController
     if business.destroy
       flash[:success] = 'Business Successfully Deleted!'
     else
-      flash[:danger] = 'Error Occurred While Deleting A Business!'
+      flash[:alert] = 'Error Occurred While Deleting A Business!'
     end
     redirect_to businesses_path
   end

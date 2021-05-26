@@ -17,7 +17,7 @@ class VenuesController < ApplicationController
     if venue.update(venue_params)
       flash[:success] = 'Venue Successfully Added!'
     else
-      flash[:danger] = 'Error Occurred While Adding A Venue!'
+      flash[:alert] = 'Error Occurred While Adding A Venue!'
     end
     redirect_to redirect_url
   end
@@ -26,7 +26,7 @@ class VenuesController < ApplicationController
     if venue.update(venue_params)
       flash[:success] = 'Venue Successfully Updated!'
     else
-      flash[:danger] = 'Error Occurred While Updating A Venue!'
+      flash[:alert] = 'Error Occurred While Updating A Venue!'
     end
     redirect_to redirect_url
   end
@@ -35,7 +35,7 @@ class VenuesController < ApplicationController
     if venue.destroy
       flash[:success] = 'Venue Successfully Deleted!'
     else
-      flash[:danger] = 'Error Occurred While Deleting A Venue!'
+      flash[:alert] = 'Error Occurred While Deleting A Venue!'
     end
     redirect_to redirect_url
   end
