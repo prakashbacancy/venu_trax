@@ -20088,3 +20088,70 @@ aside.main-sidebar  .main-sidebar-inner {
   bottom: -20px;
   top: auto;
 }
+
+.settings_page .setting-icon-main {
+  width: 100%;
+  height: auto;
+  padding: 15px 10px;
+  display: block;
+  text-align: left;
+  min-height: 174px;
+  margin-bottom: 20px;
+}
+
+.setting-icon {
+  margin-right: unset;
+}
+
+.settings_page .setting-icon-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.settings_page .badge-count {
+  float: right;
+  border-radius: 50%;
+  position: unset;
+}
+
+.settings_page .setting-icon-title {
+  margin-bottom: 0;
+}
+
+.settings_page .blue_badge {
+  background-color: #007aff;
+}
+
+.settings_page .red_badge {
+  background-color: #fe2d55;
+  margin-left: 5px;
+}
+
+.settings_page .setting-icon p {
+  max-width: 102px;
+  margin-bottom: 0px;
+  min-height: 33px;
+}
+
+.settings_page .setting-icon-main {
+  box-shadow: unset;
+  border: 1px solid #f1f1f1;
+  border-radius: 12px;
+}
+
+.settings_page .setting-icon-main:hover {
+  box-shadow: 0px 0px 7px 0px rgb(105 105 105 / 20%);
+}
+
+.settings_page .arrow {
+  opacity: 0.65;
+  bottom: 12px;
+}
+
+.settings_page .setting-icon-main:hover .arrow {
+  opacity: 1;
+}
+
+.settings_page .setting-icon-wrapper {
+  display: unset;
+}
