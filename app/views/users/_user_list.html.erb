@@ -1,0 +1,36 @@
+<table class="table table-bordered w-100" id="user_list_table">
+  <thead class="thead-dark">
+    <th>Name</th>
+    <th>Email Address</th>
+    <th>Phone Number</th>
+    <th>Assigned Role</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_no %></td>
+        <td>-</td>
+        <td>
+          <div class="action-area-buttons">
+            <%= link_to(edit_user_path(user), remote: true, class: 'fa') do %>
+              <%= image_pack_tag 'home/ic_edit.svg'%>
+            <% end %>
+            <% if current_user != user %>
+              <%= link_to(user_path(user), method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this User?' }) do %>
+                <%= image_pack_tag 'home/ic_delete.svg'%>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    custom_datatable($('#user_list_table'));
+  })
+</script>

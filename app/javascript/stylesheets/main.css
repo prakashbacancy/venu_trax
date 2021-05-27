@@ -20155,3 +20155,11 @@ aside.main-sidebar  .main-sidebar-inner {
 .settings_page .setting-icon-wrapper {
   display: unset;
 }
+
+.inner_flash_message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

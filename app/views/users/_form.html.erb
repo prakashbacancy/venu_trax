@@ -1,13 +1,12 @@
-
-
 <div class="modal-header">
-  <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Add' : 'Edit' %>
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? 'Add' : 'Edit' %>
   <h5 class="modal-title"><%= title_half %> User</h5>
+  <div id="flashMessage", class="inner_flash_message"></div>
 </div>
 <div class="modal-body">
-  <% path = (params[:action] == 'new' or params[:action] == 'create') ? users_path : user_path(@user) %>
-  <% method = (params[:action] == 'new' or params[:action] == 'create') ? :post : :put %>
-  <%= form_for @user, url: path, method: method do |f| %>
+  <% path = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? users_path : user_path(@user) %>
+  <% method = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? :post : :put %>
+  <%= form_for @user, url: path, method: method, remote: true do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
 
     <div class="form-group">
@@ -49,7 +48,7 @@
       <%= f.text_field :phone_no, class:"form-control", placeholder:"Phone Number", placeholder:"(xxx) xxx-xxx", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'This value is required' %>
     </div>
 
-    <% unless (params[:action] == 'new' or params[:action] == 'create') %>
+    <% unless (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) %>
       <div class="form-group">
         <%= f.label :change_password, class: 'text-capitalize fs-17' %><br />  
         <div class="input-group">
@@ -70,7 +69,7 @@
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <%= link_to 'Add More', settings_path, class: 'btn btn-primary' %>
+      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>

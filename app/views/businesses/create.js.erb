@@ -1,0 +1,10 @@
+<% if params[:add_more].present? %>
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: {data: @data, add_more: true}) %>')
+  $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('show');
+  $('.modal-content').scrollTop(0);
+  $('form').parsley();
+  $('.business_list_div').html('<%= j render(partial: 'business_list', locals: {businesses: @businesses}) %>')
+<% else %>
+  $(window.location.replace("<%= businesses_path %>"))
+<% end %>
