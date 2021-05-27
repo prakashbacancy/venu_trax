@@ -30,8 +30,10 @@ require("packs/crm.js")
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
+      // Todo: Temporary fix. Put outside and check the issue. 
+      require("packs/custom_multi_select.js")
+      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-toggle="popover"]').popover()
     })
 })
 const images = require.context('../images', true)
