@@ -1,9 +1,10 @@
 <div class="modal-header">
   <% title_half = (params[:action] == 'new' or params[:action] == 'create') ? 'Add' : 'Edit' %>
   <h5 class="modal-title"><%= title_half %> Venue</h5>
+  <div id="flashMessage", class="inner_flash_message"></div>
 </div>
 <div class="modal-body">
-  <%= form_for @venue do |f| %>
+  <%= form_for [@business, @venue], remote: true do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
     <div class="form-group">
       <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
@@ -62,7 +63,7 @@
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <button type="button" class="btn btn-primary not-allowed" disabled>Add More</button>
+      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>

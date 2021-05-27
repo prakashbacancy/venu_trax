@@ -1,0 +1,15 @@
+<% if params[:add_more].present? %>
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: {data: @data, add_more: true}) %>')
+  $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('show');
+  $('.modal-content').scrollTop(0);
+  $('form').parsley();
+<% else %>
+  $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('hide');
+<% end %>
+<% if @business %>
+  $('.venue_list_div_business').html('<%= j render(partial: 'businesses/venue_table', locals: {venues: @venues}) %>')
+<% else %>
+  $('.venue_list_div').html('<%= j render(partial: 'venue_list', locals: {venues: @venues}) %>')
+<% end %>
