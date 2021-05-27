@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = 'Can not add a comment'
     end
-    redirect_to @comment.commentable.notable
   end
 
   private

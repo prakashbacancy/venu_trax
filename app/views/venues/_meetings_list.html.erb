@@ -1,5 +1,4 @@
-<div class=" bg-white  mt-3 overflow-hidden">
-  <div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
+  <%# <div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
     <div class="d-flex align-items-start justify-content-between flex-wrap">
       <div>
         <p class="text-dark2 fw-600 fs-17">Meet By: Holistic Benchmark eMarkets
@@ -15,63 +14,86 @@
       nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
       eos et accusam et justo duo dolores et ea rebum.
     </p>
-  </div>
-  <div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
-    <div class="d-flex align-items-start">
-      <img class="mr-3 mt-1" src="./images/ic_calendar.svg">
-      <div class="meeting_info">
-        <div class="d-flex align-items-start justify-content-between flex-wrap">
-          <div>
-            <p class="text-dark2 fw-600 fs-17">Meet By: Holistic Benchmark eMarkets
-            </p>
+  </div> %>
+<% if @meetings.present? %>
+  <div class=" bg-white  mt-3 overflow-hidden">
+  <% @meetings.each do |meeting| %>
+    <div class="shadow p-3 mb-3 bg-white rounded mt-4 note_shadow_box_5">
+      <div class="d-flex align-items-start">
+        <%= image_pack_tag 'meeting/ic_calendar.svg', class: 'mr-3 mt-1' %>
+        <div class="meeting_info w-100">
+          <div class="d-flex align-items-start justify-content-between flex-wrap">
+            <div>
+              <p class="text-dark2 fw-600 fs-17">Meet By: <%= meeting.title %>
+              </p>
 
+            </div>
+            <p class="text-gray fs-14"><%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
           </div>
-          <p class="text-gray fs-14">Mar 23, 2021 04:30 PM
+          <p>
+          </p>
+          <p class="text-gray mt-3 fs-17"><%= meeting.description.html_safe %>
+          </p>
+          <p class="text-dark2 fw-600 fs-17 mt-4"><%= meeting.title %>
+          </p>
+          <div class="d-flex align-items-center flex-wrap mt-4">
+            <span class="mr-5">
+              <p class="text-blue1 fw-600 fs-15">Outcome
+              </p>
+              <p class="text-darkgray1  fw-600 fs-16 mt-1">Scheduled
+              </p>
+            </span>
+            <span class="mr-5" data-html="true" title="<%= meeting_attendees(meeting) %>">
+              <p class="text-blue1  fw-600 fs-15">Attendees
+              </p>
+              <p class="text-darkgray1  fw-600  fs-16 mt-1"><%= meeting.attendees.count %> Attendees
+              </p>
+            </span>
+            <span class="mr-5">
+              <p class="text-blue1  fw-600 fs-15">Duration
+              </p>
+              <p class="text-darkgray1  fw-600  fs-16 mt-1">1 Hour
+              </p>
+            </span>
+            <span class="mr-5">
+              <p class="text-blue1  fw-600 fs-15">Date
+              </p>
+              <p class="text-darkgray1  fw-600  fs-15 mt-1"><%= meeting.date.strftime('%b %d, %Y') %>
+              </p>
+            </span>
+          </div>
+          <p class="text-dark2 fw-600 fs-17 mt-5">Team Notes
+          </p>
+          <p class="text-gray mt-2 fs-17"> <%= meeting.team_note.html_safe %>
           </p>
         </div>
-        <p>
-        </p>
-        <p class="text-gray mt-3 fs-17"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          eos et accusam et justo duo dolores et ea rebum.
-        </p>
-        <p class="text-dark2 fw-600 fs-17 mt-4">Holistic Benchmark eMarkets
-        </p>
-        <div class="d-flex align-items-center flex-wrap mt-4">
-          <span class="mr-5">
-            <p class="text-blue1 fw-600 fs-15">Outcome
-            </p>
-            <p class="text-darkgray1  fw-600 fs-16 mt-1">Scheduled
-            </p>
-          </span>
-          <span class="mr-5">
-            <p class="text-blue1  fw-600 fs-15">Attendees
-            </p>
-            <p class="text-darkgray1  fw-600  fs-16 mt-1">120 Attendees
-            </p>
-          </span>
-          <span class="mr-5">
-            <p class="text-blue1  fw-600 fs-15">Duration
-            </p>
-            <p class="text-darkgray1  fw-600  fs-16 mt-1">1 Hour
-            </p>
-          </span>
-          <span class="mr-5">
-            <p class="text-blue1  fw-600 fs-15">Date
-            </p>
-            <p class="text-darkgray1  fw-600  fs-15 mt-1">Mar 23, 2021
-            </p>
-          </span>
-        </div>
-        <p class="text-dark2 fw-600 fs-17 mt-5">Team Notes
-        </p>
-        <p class="text-gray mt-2 fs-17"> Holistic Benchmark eMarkets
-        </p>
+      </div>
+      <%= link_to new_venue_meeting_comment_path(@venue.id, meeting.id), remote: true, class: 'text-primary mt-5 fs-17 fw-600 add_comment' do %>
+        <%= image_pack_tag 'home/ic_comment.svg', class: 'img-fluid' %> Add Comment
+      <% end %>
+      | <a class="text-primary mt-3 fs-16 fw-600 collapsed ml-2" data-toggle="collapse" href="#meeting_comment_partial_<%= meeting.id %>" role="button" aria-expanded="false" aria-controls="meeting_comment_partial_<%= meeting.id %>">
+        Comments <i class="fa fa-chevron-down"></i>
+      </a>
+      <div class="add_comment_for_meeting_<%= meeting.id %> main_comment_form_div"></div>
+      <div class="collapse" id="meeting_comment_partial_<%= meeting.id %>">
+        <% if meeting.comments.present? %>
+          <% meeting.comments.each do |comment| %>
+            <div class="card card-body mt-2">
+              <p class="fs-18"><%= comment.description.html_safe %></p>
+              <p class="text-gray mt-3 fs-16"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="card card-body mt-2">
+            <p class="text-center text-gray">No Comments yet</p>
+          </div>
+        <% end %>
       </div>
     </div>
-    <p class="text-primary mt-5 fs-17 fw-600">
-      <%= image_pack_tag 'home/ic_comment.svg', class: 'img-fluid' %> Add
-      Comments
-    </p>
+  <% end %>
   </div>
-</div>
+<% else %>
+  <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+    <p class="fs-18 text-center text-gray">No Data Available</p>
+  </div>
+<% end %>

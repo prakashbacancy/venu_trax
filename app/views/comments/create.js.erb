@@ -1,0 +1,2 @@
+$('#<%= "#{@partial_name_part}_comment_partial_#{@commentable.id}" %>').html('<%= j render(partial: 'comments_list', locals: { comments: @comments }) %>')
+$('.add_comment_for_<%= "#{@partial_name_part}_#{@commentable.id}" %>').html('');

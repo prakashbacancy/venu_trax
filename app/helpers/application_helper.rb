@@ -117,7 +117,7 @@ module ApplicationHelper
     return "<iframe srcdoc='#{object.send(field.name)}'></iframe>".html_safe if field.column_type == 'Text Area HTML'
     return pretty_checkbox(object.send(field.name)) if field.column_type == 'Checkbox'
     return pretty_file_associations(object.file_manager_file_associations.where(field: field)) if field.column_type == 'File'
-    return object.user.fullname if field.name == 'user_id'
+    return object.user.full_name if field.name == 'user_id'
     # return pretty_reference(field, object) if field.reference?
     return object.send(field.name)
   end

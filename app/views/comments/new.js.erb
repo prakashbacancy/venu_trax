@@ -1,3 +1,2 @@
-$('.add_comment_for_note_<%= @commentable.id %>').html('<%= j render(partial: 'form') %>')
-<%# $("#right_modal").modal('show'); %>
+$('.add_comment_for_<%= "#{@partial_name_part}_#{@commentable.id}" %>').html('<%= j render(partial: 'form') %>')
 $('form').parsley();
