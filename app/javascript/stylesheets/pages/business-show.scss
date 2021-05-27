@@ -368,5 +368,28 @@ i.fa.fa-chevron-down {
 }
 
 .picker_input {
-  margin-left: 22px;
+  padding-left: 22px !important;
+}
+
+.meeting-modal-data::-webkit-scrollbar {
+  width: 3px;height:3px;
+}
+
+/* Track */
+.meeting-modal-data::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.meeting-modal-data::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.meeting-modal-data::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.meeting-modal-data{
+  max-height: 80vh;
+	overflow-y: auto;
 }

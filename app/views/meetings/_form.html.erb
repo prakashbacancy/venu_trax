@@ -32,7 +32,7 @@
       <div class="col-lg-3 col-md-6">
         <div class="form-group">
           <label class="text-gray fw-600 fs-13 w-100" for="business_type">Duration</label><br>
-          <%= f.select :duration, options_for_select(1..200), {}, { required: 'true', autofocus: 'true', class: 'form-control timeend durationField duration', autocomplete: 'off'} %>
+          <%= f.select :duration, options_for_select([1,2,3,4], selected: 1, prompt: 'Select Hour'),{}, { required: 'true', autofocus: 'true', class: 'form-control timeend durationField duration', autocomplete: 'off'} %>
         </div>
       </div>
     </div>
@@ -45,6 +45,9 @@
       <%= f.cktext_area :team_note, class: 'form-control',required: true, placeholder: 'Write a note for the team', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
     </div>
   </div>
+  <% if params[:meetingable].present? # used to persist meetingable between request %>
+    <%= hidden_field_tag :meetingable, params[:meetingable] %>
+  <% end %>
 </div>
 <style>
   .meeting-form .cke_bottom{
