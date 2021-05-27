@@ -37,9 +37,10 @@
         <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
       </div>
     </li>
-    <li class="mt-3 mt-md-0 d-none text-nowrap">
+    <% set_google_token_flag = check_google_token %>
+    <li class="mt-3 mt-md-0 d-none text-nowrap <%= 'cursor-not-allowed' if set_google_token_flag %>">
       <div class="ml-4 d-inline">
-        <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: 'btn btn-primary create_meeting' %>
+        <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary create_meeting #{'not-allowed' if set_google_token_flag}", disabled: set_google_token_flag, title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
       </div>
     </li>
   </ul>
