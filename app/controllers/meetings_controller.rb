@@ -17,7 +17,7 @@ class MeetingsController < ApplicationController
 
   def create
     if meeting.update(meeting_params)
-      flash.now[:success] = 'Meeting Successfully Added!'
+      flash[:success] = 'Meeting Successfully Added!'
       token = get_google_access_token
       attendees_emails = meeting.emails_of_attendees
       # SimpleWorker.execute do
@@ -32,14 +32,14 @@ class MeetingsController < ApplicationController
         meeting.update(google_event_id: event.id)
       # end
     else
-      flash.now[:danger] = meeting.errors.full_messages.join(', ')
+      flash[:alert] = meeting.errors.full_messages.join(', ')
     end
     redirect_to request.referrer
   end
 
   def update
     if meeting.update(meeting_params)
-      flash.now[:success] = 'Meeting Successfully Updated!'
+      flash[:success] = 'Meeting Successfully Updated!'
       token = get_google_access_token
       attendees_emails = meeting.emails_of_attendees
       # SimpleWorker.execute do
@@ -54,14 +54,14 @@ class MeetingsController < ApplicationController
         )
       # end
     else
-      flash.now[:danger] = meeting.errors.full_messages.join(', ')
+      flash[:alert] = meeting.errors.full_messages.join(', ')
     end
     redirect_to request.referrer
   end
 
   def destroy
     if meeting.destroy
-      flash.now[:success] = 'Meeting Successfully Deleted!'
+      flash[:success] = 'Meeting Successfully Deleted!'
       token = get_google_access_token
       # SimpleWorker.execute do
         CalendarManager::GoogleCalendar.new(token).destroy_event(
@@ -69,7 +69,7 @@ class MeetingsController < ApplicationController
         )
       # end
     else
-      flash.now[:danger] = meeting.errors.full_messages.join(', ')
+      flash[:alert] = meeting.errors.full_messages.join(', ')
     end
     redirect_to request.referrer
   end
@@ -164,6 +164,8 @@ class MeetingsController < ApplicationController
     params[:meeting][:user_id] = current_user.id
     params[:meeting][:category] = params[:meeting][:category].to_i
     params[:meeting][:date] = DateTime.strptime(params[:meeting][:date], '%m/%d/%Y') if params[:meeting][:date].present?
+    params[:meeting][:duration] = params[:meeting][:duration].to_f
+    params[:meeting][:end_time] = (Time.parse(params[:meeting][:start_time]) + params[:meeting][:duration].hour).strftime("%I:%M %p")
     # params[:meeting][:date] = DateTime.strptime(params[:meeting][:date], '%m/%d/%Y').to_s
     params.require(:meeting).permit(:title, :date, :start_time, :end_time, :location, :description, :duration, :team_note, :user_id, :category)
   end
