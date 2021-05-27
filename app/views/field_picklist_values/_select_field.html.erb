@@ -5,6 +5,7 @@
 <script>
   $(document).ready(function(){
     $("#field_id").on('change', function(){
+      $('#picklist-values').html('');
       $.ajax({
         url: "<%= change_field_field_picklist_values_url %>",
         type: 'GET',
