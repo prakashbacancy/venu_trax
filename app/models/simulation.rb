@@ -1,4 +1,5 @@
 class Simulation < ApplicationRecord
+  has_many :comments, as: :commentable
 	PERMITTED_PARAM = %w[event_per_year daily_seating_capacity annual_attendance_per visitor_wifi_login
 cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa_impression_cost venue_id event_type user_id]
 	CHART_OPTIONS = %W[All Today Weekly Monthly Annually]
