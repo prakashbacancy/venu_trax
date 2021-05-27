@@ -115,7 +115,7 @@
 	  </div>
 	  <div class="row">
 	  	<div class="col-md-12">
-	  		<%= render partial: 'simulation_comment' %>
+	  		<%= render partial: 'simulation_comment' unless @simulation.new_record? %>
 	  	</div>
 	  </div>
 </section>
