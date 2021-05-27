@@ -39,8 +39,8 @@ module CalendarManager
         summary: summary,
         location: location,
         description: description,
-        start: Google::Apis::CalendarV3::EventDateTime.new(date_time: start_date_time.rfc3339, timezone: @timezone),
-        end: Google::Apis::CalendarV3::EventDateTime.new(date_time: end_date_time.rfc3339, timezone: @timezone),
+        start: Google::Apis::CalendarV3::EventDateTime.new(date_time: start_date_time.rfc3339, time_zone: @timezone),
+        end: Google::Apis::CalendarV3::EventDateTime.new(date_time: end_date_time.rfc3339, time_zone: @timezone),
         attendees: attendees
       )
     end
