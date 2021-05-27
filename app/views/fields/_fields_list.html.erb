@@ -4,12 +4,12 @@
       <% if klass.fields.present? %>
         <ul class="row" data-klass-id="<%= klass.id %>">
           <% klass.fields.each do |field| %>
-            <li class="col-sm-12" data-field-id="<%= field.id %>">
+            <li class="col-sm-12 mb-1" data-field-id="<%= field.id %>">
               <div class="block-ui-box d-flex">
                 <div class="row mr-auto">
-                  <div class="col-lg-12 md-pd-10 text-break">
+                  <div class="col-lg-12 md-pd-10 text-break mt-1">
                     <b class="<%= 'color-red' if field.required? %>"><%= field.label %></b>
-                    <span style="opacity:0.5;"><%= field.column_type %></span>
+                    <span class="ml-1" style="opacity:0.5;"><%= field.column_type %></span>
                   </div>
                 </div>
                 <div class="action-area-buttons">
