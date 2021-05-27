@@ -7,14 +7,16 @@
     <%#= render "devise/shared/error_messages", resource: resource %>
     <p class="text-gray fs-14 mt-3">Please enter all input details to see your Revenue Analytics</p>
     <%= f.hidden_field :venue_id, value: params[:venue_id] %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
     <div class="px-3 border py-2 border-light">
       <%= f.label 'Venue Details', class: 'text-capitalize fs-16 fw-600' %>
-      <div class=" row align-items-center ">
+      <div class="row align-items-center mt-1">
         <%#= f.label 'Events Per Week', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Events Per Week
+        <p class="text-capitalize fs-14 col-6 col-md-6">No of Event
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Events Per Week.' %>
         </p>
         <%= f.number_field :event_per_year, autofocus: true, placeholder: 0,  class: 'form-control col-3 col-md-2 d-inline simulation-text-field', required: true %>
+        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-2 col-md-3"}%>
       </div>
       <div class="row align-items-center">
         <%#= f.label :daily_seating_capacity, class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
@@ -50,17 +52,17 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Cost LP Impression
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost LP Impression" %>
         </p>
-        <%= f.text_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
+        <%= f.text_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
       </div>
     </div>
     <div class="px-3 border py-2 border-light">
       <%= f.label :cpa_impression_cost, 'LP CPA Cost', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
-        <%#= f.label :cpa_impression_cost, "Cost CPA Impression",class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
+        <%= f.label :cpa_impression_cost, "Cost CPA Impression",class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-8 col-md-9">Cost CPA Impression
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost CPA Impression" %>
         </p>
-        <%= f.text_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
+        <%= f.text_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', pattern: '\$\d+(?:\.\d+)?', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
       </div>
     </div>
     <div class="px-3 border py-2 border-light">
@@ -81,7 +83,7 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Per Day/Event
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Per Day/Event" %>
         </p>
-        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0  %>
+        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', pattern: '\$\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
       </div>
     </div>
 
@@ -103,27 +105,3 @@
     </div>
   <% end %>
 </div>
-<script type="text/javascript">
-  $(document).on('turbolinks:load', function(){
-    setupPercentageField()
-  })
-  function setupPercentageField() {
-    $('input.percentageField').each(function(){
-      $(this).val('$' + $(this).val().replace('$', ''));
-    });
-    $(document).on('focusin', '.percentageField', function() {
-      $(this).val($(this).val().replace('$', '').replace(' ', ''));
-    });
-
-    $(document).on('focusout', '.percentageField', function() {
-      if ($(this).val() != '') {
-        $(this).val('$' + $(this).val().replace('$', ''));
-      }
-    });
-
-    $(document).on('keypress', '.percentageField', function(event) {
-      var key = event.keyCode;
-      return (key >= 48 && key <= 57) || ((!$(this).val().includes('.')) && key == 46)
-    });
-  }
-</script>

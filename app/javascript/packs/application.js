@@ -24,9 +24,9 @@ import 'timepicker/jquery.timepicker.css';
 import 'stylesheets/application'
 import 'chartjs-plugin-datalabels'
 import 'custom';
+import 'simulation';
 require("packs/jquery-ui.js")
 require("packs/crm.js")
-
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
     $(function () {

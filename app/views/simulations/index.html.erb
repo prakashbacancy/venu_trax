@@ -115,12 +115,11 @@
 	  </div>
   <!-- </div> -->
 </section>
-
-<script type="text/javascript">
+<script>
 	$(document).on('change', '.chart_option', function(){
-		selected_options = $('.chart_option option:selected').val()
-		venue_id = "<%= params[:venue_id] %>"
-		$.ajax({
+	  selected_options = $('.chart_option option:selected').val()
+	  venue_id = "<%= params[:venue_id] %>"
+	  $.ajax({
 	    url: '/simulations',
 	    type: "GET",
 	    data: {"option" : selected_options, venue_id: venue_id},
@@ -131,10 +130,10 @@
 	  })
 	})
 	$(document).on('click', '.search-btn', function(){
-		start_date = $('#start_date').val()
-		end_date = $('#end_date').val()
+	  start_date = $('#start_date').val()
+	  end_date = $('#end_date').val()
 
-		$.ajax({
+	  $.ajax({
 	    url: '/simulations',
 	    type: "GET",
 	    data: {"start_date" : start_date, "end_date": end_date, 'option': 'Date Range' },
@@ -144,29 +143,4 @@
 	    }
 	  })
 	})
-  $('#start_date').datetimepicker({
-    icons: {
-      time: "fa fa-clock-o",
-      date: "fa fa-calendar",
-      up: "fa fa-arrow-up",
-      down: "fa fa-arrow-down",
-      previous: "fa fa-chevron-left",
-      next: "fa fa-chevron-right",
-      today: "fa fa-clock-o",
-      clear: "fa fa-trash-o"
-    }
-  });
-  $('#end_date').datetimepicker({
-    icons: {
-      time: "fa fa-clock-o",
-      date: "fa fa-calendar",
-      up: "fa fa-arrow-up",
-      down: "fa fa-arrow-down",
-      previous: "fa fa-chevron-left",
-      next: "fa fa-chevron-right",
-      today: "fa fa-clock-o",
-      clear: "fa fa-trash-o"
-    }
-  });
-
 </script>
