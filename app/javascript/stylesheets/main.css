@@ -20163,3 +20163,7 @@ aside.main-sidebar  .main-sidebar-inner {
   top: 0;
   left: 0;
 }
+
+.text-capitalize{
+  text-transform: capitalize !important;
+}
