@@ -69,6 +69,7 @@ class VenuesController < ApplicationController
               end
   end
 
+  # Set new venue object for `Add More`
   def set_new_venue
     @venue = if @business
                @business.venues.new
