@@ -26,9 +26,13 @@
         <%= f.text_field :start_time, required: true, class: 'form-control timepicker timestart', value: pretty_time(f.object.start_time) %>
       </div>
       <div class="col-sm-6">
-        <label>End Time</label>
-        <%= f.text_field :end_time, required: true, class: 'form-control timepicker timeend', value: pretty_time(f.object.end_time) %>
+        <label>Duration</label>
+        <%= f.text_field :duration, required: true, class: 'form-control timeend durationField', autocomplete: 'off' %>
       </div>
+      <!-- <div class="col-sm-6">
+             <label>End Time</label>
+             <%= f.text_field :end_time, required: true, class: 'form-control timepicker timeend', value: pretty_time(f.object.end_time) %>
+           </div> -->
     </div>
   </div>
   <div class="col-md-12">
@@ -52,3 +56,27 @@
     margin-bottom: 80px !important;
   }
 </style>
+<script>
+  $(document).ready(function(){
+    setupDurationField()
+  })
+  function setupDurationField() {
+    $('input.durationField').each(function(){
+      $(this).val($(this).val().replace('hours', '') + ' hours');
+    });
+    $(document).on('focusin', '.durationField', function() {
+      $(this).val($(this).val().replace('hours', '').replace(' ', ''));
+    });
+
+    $(document).on('focusout', '.durationField', function() {
+      if ($(this).val() != '') {
+        $(this).val($(this).val().replace('hours', '') + ' hours');
+      }
+    });
+
+    $(document).on('keypress', '.durationField', function(event) {
+      var key = event.keyCode;
+      return (key >= 48 && key <= 57) || ((!$(this).val().includes('.')) && key == 46)
+    });
+  }
+</script>
