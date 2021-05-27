@@ -46,7 +46,7 @@
         <td>$<%= number_with_delimiter(display_two_digit(@simulations[:input_cpa_impression_cost].to_f)) %></td>
         <td class="<%= hide_table(params[:option], 'Today')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:daily_cpa_impression]), :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Weekly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:week_cpa_impression]), :delimiter => ',') %></td>
-        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:month_cpa_impression]), :delimiter => ',') %></td>
+        <td class="<%= hide_table(params[:option], 'Monthly')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:month_cpa_impression].to_i), :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Annually')%>">$<%= number_with_delimiter(display_two_digit(@simulations[:year_cpa_impression]), :delimiter => ',') %></td>
       </tr>
       <tr>
