@@ -47,6 +47,9 @@ Rails.application.routes.draw do
     resources :notes do
       resources :comments, module: :note
     end
+    resources :simulations do
+      resources :comments, module: :simulation
+    end
   end
   resources :meetings do
     collection do
