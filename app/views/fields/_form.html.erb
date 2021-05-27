@@ -62,9 +62,9 @@
         $(".file").removeClass('hidden');
       }
       if (["Text", "URL", "Text Area HTML"].includes($(this).val())) {
-        $(".min-max").removeClass('hidden');
+        $(".min-max").removeClass('d-none');
       } else {
-        $(".min-max").addClass('hidden');
+        $(".min-max").addClass('d-none');
       }
     });
     // <%# if f.object.column_type == 'File' %>
