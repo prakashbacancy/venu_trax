@@ -1,50 +1,48 @@
-<div class='row meeting-form'>
-  <div class='col-md-12'>
+<div class="modal-body p-0">
+  <div class="meeting-modal-data px-4 pt-3 pb-5">
     <div class="form-group">
-      <%= label_tag 'title' %>
+      <label class="text-dark2 fw-600 fs-16">Title</label>
       <%= f.text_field :title, required: true, placeholder: 'What are you meeting about?', class: 'form-control' %>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row" >
-      <div class="col-sm-6">
+    <div class="row">
+      <div class="col-lg-3 col-md-5">
         <div class="form-group">
-          <%= label_tag :attendees %>
-          <%= select_tag :attendees, grouped_options_for_select(all_attendees, value_of_attendees_for_select(f.object)), multiple: true, required: true, title: 'Select Attendees', class: 'form-control select_picker multi_select', data: { "live-search": true } %>
+          <label class="text-gray fw-600 fs-13 w-100" for="usr">Attendees</label>
+          <div style="width:100%;">
+            <%= select_tag :attendees, grouped_options_for_select(all_attendees, value_of_attendees_for_select(f.object)), multiple: true, required: true, title: 'Select Attendees', class: 'form-control select_picker multi_select', data: { "live-search": true } %>
+          </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <%= label_tag :date %>
-        <%= f.text_field :date, required: true, class: 'form-control datepicker', value: pretty_date(f.object.date), autocomplete: 'off' %>
+      <div class="col-lg-6 col-md-7 d-flex align-items-center">
+        <div class="form-group">
+          <label class="text-gray fw-600 fs-13">Date</label>
+          <div class="position-relative">
+            <%= f.text_field :date, required: true,  placeholder: '25/05/2020', class: 'form-control datepicker picker_input', value: pretty_date(f.object.date), autocomplete: 'off' %>
+            <%= image_pack_tag 'meeting/ic_date.svg', class: 'img-fluid position-absolute picker_icon', width: '16' %>
+          </div>
+        </div>
+        <div class="form-group ml-2">
+          <label class="text-gray fw-600 fs-13"></label>
+          <div class="position-relative">
+            <%= f.text_field :start_time, required: true, placeholder: '12:00 AM', class: 'form-control timepicker timestart picker_input', value: pretty_time(f.object.start_time) %>
+            <%= image_pack_tag 'meeting/ic_time.svg', class: 'img-fluid position-absolute picker_icon', width: '16' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="form-group">
+          <label class="text-gray fw-600 fs-13 w-100" for="business_type">Duration</label><br>
+          <%= f.select :duration, options_for_select(1..200), {}, { required: 'true', autofocus: 'true', class: 'form-control timeend durationField duration', autocomplete: 'off'} %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row" data-datetimepair-container>
-      <div class="col-sm-6">
-        <label>Start Time</label>
-        <%= f.text_field :start_time, required: true, class: 'form-control timepicker timestart', value: pretty_time(f.object.start_time) %>
-      </div>
-      <div class="col-sm-6">
-        <label>Duration</label>
-        <%= f.text_field :duration, required: true, class: 'form-control timeend durationField', autocomplete: 'off' %>
-      </div>
-      <!-- <div class="col-sm-6">
-             <label>End Time</label>
-             <%= f.text_field :end_time, required: true, class: 'form-control timepicker timeend', value: pretty_time(f.object.end_time) %>
-           </div> -->
-    </div>
-  </div>
-  <div class="col-md-12">
     <div class="form-group">
-      <%= label_tag :attendee_description %>
-      <%= f.cktext_area :description, class: 'form-control',required: true, placeholder: 'Start typing to leave a note', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
+      <label class="text-dark2 fw-600 fs-16" for="usr">Attendee Description</label>
+      <%= f.cktext_area :description, class: 'form-control',required: true, placeholder: 'Send a description to your attendees', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
     </div>
-  </div>
-  <div class="col-md-12">
-    <div class="form-group team-note">
-      <%= label_tag :team_note %>
-      <%= f.cktext_area :team_note, class: 'form-control',required: true, placeholder: 'Start typing to leave a note', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
+    <div class="form-group">
+      <label class="text-dark2 fw-600 fs-16" for="usr">Team Notes</label>
+      <%= f.cktext_area :team_note, class: 'form-control',required: true, placeholder: 'Write a note for the team', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
     </div>
   </div>
 </div>
@@ -59,24 +57,25 @@
 <script>
   $(document).ready(function(){
     setupDurationField()
+    $('.multi_select').multiselect();
   })
   function setupDurationField() {
-    $('input.durationField').each(function(){
-      $(this).val($(this).val().replace('hours', '') + ' hours');
-    });
-    $(document).on('focusin', '.durationField', function() {
-      $(this).val($(this).val().replace('hours', '').replace(' ', ''));
-    });
+    // $('input.durationField').each(function(){
+    //   $(this).val($(this).val().replace('hours', '') + ' hours');
+    // });
+    // $(document).on('focusin', '.durationField', function() {
+    //   $(this).val($(this).val().replace('hours', '').replace(' ', ''));
+    // });
 
-    $(document).on('focusout', '.durationField', function() {
-      if ($(this).val() != '') {
-        $(this).val($(this).val().replace('hours', '') + ' hours');
-      }
-    });
+    // $(document).on('focusout', '.durationField', function() {
+    //   if ($(this).val() != '') {
+    //     $(this).val($(this).val().replace('hours', '') + ' hours');
+    //   }
+    // });
 
-    $(document).on('keypress', '.durationField', function(event) {
-      var key = event.keyCode;
-      return (key >= 48 && key <= 57) || ((!$(this).val().includes('.')) && key == 46)
-    });
+    // $(document).on('keypress', '.durationField', function(event) {
+    //   var key = event.keyCode;
+    //   return (key >= 48 && key <= 57) || ((!$(this).val().includes('.')) && key == 46)
+    // });
   }
 </script>
