@@ -15,33 +15,7 @@
       </div>
     </div>
   </div>
-  <table class="table table-bordered w-100" id="venue_list_table">
-    <thead class="thead-dark">
-      <th>Venue Name</th>
-      <th>City</th>
-      <th>No of Employees</th>
-      <th>Phone Number</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      <% venues.each do |venue| %>
-        <tr>
-          <td><%= link_to venue.name, venue_path(venue) %></td>
-          <td><%= venue.city %></td>
-          <td><%= venue.no_of_employee %></td>
-          <td><%= venue.phone_no %></td>
-          <td>
-            <div class="action-area-buttons">
-              <%= link_to(edit_venue_path(venue), remote: true, class: 'fa') do %>
-                <%= image_pack_tag 'home/ic_edit.svg'%>
-              <% end %>
-              <%= link_to(venue_path(venue), method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Venue?' }) do %>
-                <%= image_pack_tag 'home/ic_delete.svg'%>
-              <% end %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="admin-table bg-white table-responsive mt-3 venue_list_div_business">
+    <%= render 'venue_table', venues: @venues %>
+  </div>
 </div>
