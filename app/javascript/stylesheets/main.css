@@ -20023,3 +20023,7 @@ aside.main-sidebar  .main-sidebar-inner {
 .bg-white1 {
   background: #fff !important
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

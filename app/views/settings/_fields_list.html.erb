@@ -2,7 +2,7 @@
   <div class='row mt-3'>
     <div class="col-12">
       <% if klass.fields.present? %>
-        <ul class="row" data-klass-id="<%= klass.id %>">
+        <ul class="row fields-sortable connectedSortable<%= klass.name.snakecase %>" data-klass-id="<%= klass.id %>">
           <% klass.fields.each do |field| %>
             <li class="col-sm-12" data-field-id="<%= field.id %>">
               <div class="block-ui-box d-flex">
@@ -30,3 +30,45 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $( ".fields-sortable" ).sortable({
+      items: '> li:not(.pin)',
+      connectWith: ".connectedSortable<%= klass.name.snakecase %>",
+      start: function(e, ui){
+        ui.placeholder.height(ui.item.height()); // Fixes placeholder not visible due to height issues
+      },
+      stop: function(event, ui) {
+        let klassId = $(this).attr('data-klass-id');
+        let groupId = $(this).attr('data-group-id');
+        let fieldIds = $(this).sortable('toArray', {attribute: "data-field-id"});
+        $.ajax({
+          url: "<%= change_position_fields_url %>",
+          type: 'GET',
+          data: {
+            klass_id: klassId,
+            group_id: groupId,
+            field_ids: fieldIds
+          },
+          dataType: "script"
+        });
+      },
+      receive: function(event, ui) {
+        let klassId = $(this).attr('data-klass-id');
+        let groupId = $(this).attr('data-group-id');
+        let fieldIds = $(this).sortable('toArray', {attribute: "data-field-id"});
+        $.ajax({
+          url: "<%= change_position_fields_url %>",
+          type: 'GET',
+          data: {
+            klass_id: klassId,
+            group_id: groupId,
+            field_ids: fieldIds
+          },
+          dataType: "script"
+        });
+      }
+    });
+  })
+</script>
