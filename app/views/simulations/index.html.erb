@@ -4,8 +4,12 @@
       <div class="row">
         <div class="col-lg-12 breed-outer">
 					<div class="simulation-breed">
-						<h5 class="text-gray d-inline">Business Management</h5>
+						<h5 class="text-gray d-inline"><%= link_to "Business Management", businesses_path, class: 'text-gray' %></h5>
 						<h5 class="text-gray d-inline"> <i class="fa fa-angle-right"></i></h5>
+						<% venue = @simulation.venue %>
+						<% if @simulation.present? && venue.present? %>
+							<h5 class="text-dark d-inline"><%= link_to "#{venue&.name}", venue_path(venue.id), class: 'text-gray' %></h5> <i class="fa fa-angle-right"></i>
+						<% end %>
 						<h5 class="text-dark d-inline">View Simulation</h5>
 					</div>
 					<!-- <div class="mx-4 mt-3  d-inline simulation-btn-1"> -->

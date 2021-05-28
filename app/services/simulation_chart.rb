@@ -87,7 +87,9 @@ class SimulationChart
       when 'Annually'
         data[:visitor_attendance] = year_data.group_by_month(:created_at).sum(:avg_attendance_annual_event)
       else
-        data[:visitor_attendance] = {'Daily' => daily_visitor, 'Weekly'=> week_visitor, 'Monthly' => month_visitor, 'Annually' => year_visitor}
+        data[:visitor_attendance] =  [{"data"=>[["Daily", daily_visitor], ["Weekly", week_visitor], ["Monthly", month_visitor], ["Annually", year_visitor]],
+      "library"=> @color_option }]
+        #{'Daily' => daily_visitor, 'Weekly'=> week_visitor, 'Monthly' => month_visitor, 'Annually' => year_visitor}
       end
     data[:daily_visitor_attendance] = daily_visitor
     data[:day_visitor_attendance] = day_visitor
