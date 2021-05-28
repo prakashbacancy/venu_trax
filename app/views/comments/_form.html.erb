@@ -1,5 +1,5 @@
 <div class="mt-2">
-  <%= form_for [@comment.commentable.notable, @comment.commentable, @comment] do |f| %>
+  <%= form_for [@module, @comment.commentable, @comment], remote: true do |f| %>
     <div class="row">
       <div class="col-md-8">
         <div class="form-group">

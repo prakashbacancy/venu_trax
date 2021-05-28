@@ -3,7 +3,7 @@
     <div class="content">
       <div class="row">
         <div class="col-lg-12">
-          <h5 class="text-gray d-inline">Settings</h5>
+          <h5 class="text-gray d-inline"><%= link_to 'Settings', settings_path, class: 'text-gray' %></h5>
           <h5 class="text-gray d-inline"> <i class="fa fa-angle-right"></i></h5>
           <h5 class="text-dark d-inline">Options Customization</h5>
         </div>
@@ -56,6 +56,8 @@
 <script>
   $(document).ready(function () {
     $("#klasses").on('change', function () {
+      $('#picklist-values').html('');
+      $('#field_id').find('optgroup').remove()  
       $.ajax({
         url: "<%= change_klass_field_picklist_values_url %>",
         type: 'GET',

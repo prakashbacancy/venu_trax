@@ -24,14 +24,16 @@ import 'timepicker/jquery.timepicker.css';
 import 'stylesheets/application'
 import 'chartjs-plugin-datalabels'
 import 'custom';
+import 'simulation';
 require("packs/jquery-ui.js")
 require("packs/crm.js")
-
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
+      // Todo: Temporary fix. Put outside and check the issue. 
+      require("packs/custom_multi_select.js")
+      $('[data-toggle="tooltip"]').tooltip()
+      $('[data-toggle="popover"]').popover()
     })
 })
 const images = require.context('../images', true)
@@ -47,6 +49,7 @@ const dataTables = [];
 Crm.events.onLoaded(function() {
   $('.timepicker').timepicker({timeFormat: 'h:i A'});
   $('.timepicker').attr('autocomplete', 'nope')
+  $('.timeend, .timestart').attr('autocomplete', 'off')
   
   // $('.datepicker').datepicker({format: 'mm/dd/yyyy', todayHighlight: true, autoclose: true});
   // $('.timepicker').timepicker({timeFormat: 'h:i A'});

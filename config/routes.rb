@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   # for business module
   resources :businesses do
     resources :venues
-    resources :notes, module: :business do
-      resources :comments
+    resources :notes do
+      resources :comments, module: :note
     end
   end
   resources :settings do
@@ -40,8 +40,23 @@ Rails.application.routes.draw do
   resources :simulations
   resources :credentials, only: %i[edit update]
   resources :venues do
-    resources :notes, module: :venue do
-      resources :comments
+    resources :notes, module: :venue
+    resources :meetings do
+      resources :comments, module: :meeting
+    end
+    resources :notes do
+      resources :comments, module: :note
+    end
+    resources :simulations do
+      resources :comments, module: :simulation
+    end
+  end
+  resources :meetings do
+    collection do
+      delete :destroy_all
+      get :calendar
+      get :calendar_meetings
+      post :calendar_day_meetings
     end
   end
   resources :emails do

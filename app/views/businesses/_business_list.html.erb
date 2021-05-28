@@ -1,0 +1,40 @@
+<table class="table table-bordered w-100 mb-5" id="business_list_table">
+  <thead class="thead-dark">
+    <th>Business Name</th>
+    <th>Address</th>
+    <th>Domain</th>
+    <th>State</th>
+    <th>Venue</th>
+    <th>Phone Number</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <% businesses.each do |business| %>
+      <tr>
+        <td><%= link_to business.name, business_path(business.id) %></td>
+        <td><%= business.address %></td>
+        <td><%= link_to business.domain, url_simplifier(business.domain), target: "_blank" if business.domain %></td>
+        <td><%= business.state %></td>
+        <% if business.venues.count == 0 %>
+          <td><%= link_to business.venues.count, 'javascript:(0);' %></td>
+        <% else %>
+          <td><%= link_to business.venues.count, 'javascript:(0);', data: {toggle: 'modal', target: "#venueModal_#{business.id}"} %></td>
+        <% end %>
+        <td><%= business.phone_no %></td>
+        <td>
+          <div class="action-area-buttons">
+            <%= link_to(edit_business_path(business), remote: true, class: 'fa') do %>
+              <%= image_pack_tag 'home/ic_edit.svg'%>
+            <% end %>
+            <%= link_to(business_path(business), method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Business?' }) do %>
+              <%= image_pack_tag 'home/ic_delete.svg'%>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  custom_datatable($('#business_list_table'));
+</script>

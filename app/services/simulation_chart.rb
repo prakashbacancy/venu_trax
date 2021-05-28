@@ -19,13 +19,14 @@ class SimulationChart
     lp_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     user_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     cpm_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
+    cpa_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     wifi_revenue_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)		
     data[:input_annual_att_per] = simulation.pluck(:annual_attendance_per).join(",")
     data[:input_visitor_wifi_login] = simulation.pluck(:visitor_wifi_login).join(",")
     data[:input_cost_lp_impression] = simulation.pluck(:cost_lp_impression).join(",")
     data[:input_event_usage_impression] = simulation.pluck(:event_usage_impression).join(",")
     data[:input_cpm_impression_cost] = simulation.pluck(:cpm_impression_cost).join(",")
-    
+    data[:input_cpa_impression_cost] = simulation.pluck(:cpa_impression_cost).join(",")
     data[:input_contract_month] = simulation.pluck(:contract_month).join(",")
   
     
@@ -173,7 +174,7 @@ class SimulationChart
 
   def cpm_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
     daily_cpm_impression = daily_data.sum(:cpm_impression_per_day)
-    day_cpm_impression = daily_data.sum(:user_impression_day)
+    day_cpm_impression = daily_data.sum(:cpm_impression_day)
 
     week_cpm_impression = week_data.sum(:cpm_impression_week)
     month_cpm_impression = month_data.sum(:cpm_impression_month)
@@ -196,6 +197,32 @@ class SimulationChart
     data[:week_cpm_impression] = week_cpm_impression
     data[:month_cpm_impression] = month_cpm_impression
     data[:year_cpm_impression] = year_cpm_impression
+  end
+
+  def cpa_impression(params, simulation, data, daily_data, week_data, month_data, year_data)
+    daily_cpa_impression = daily_data.sum(:cpa_per_day_login)
+    day_cpa_impression = daily_data.sum(:cpa_day_login)
+    week_cpa_impression = week_data.sum(:cpa_week_login)
+    month_cpa_impression = month_data.sum(:cpa_month_login)
+    year_cpa_impression = year_data.sum(:cpa_annual_login)
+
+    @date_range = case params[:option]
+      when 'Today'
+        data[:cpa_impression] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:cpa_day_login)
+      when 'Weekly'
+        data[:cpa_impression] = week_data.group_by_day(:created_at).sum(:cpa_week_login)
+      when 'Monthly'
+        data[:cpa_impression] = month_data.group_by_week(:created_at, week_start: :monday).sum(:cpa_month_login)
+      when 'Annually'
+        data[:cpa_impression] = year_data.group_by_month(:created_at).sum(:cpa_annual_login)
+      else
+        data[:cpa_impression] = {'Daily' => daily_cpa_impression, 'Weekly'=> week_cpa_impression, 'Monthly' => month_cpa_impression, 'Annually' => year_cpa_impression }
+      end
+    data[:daily_cpa_impression] = daily_cpa_impression
+    data[:day_cpa_impression] = day_cpa_impression
+    data[:week_cpa_impression] = week_cpa_impression
+    data[:month_cpa_impression] = month_cpa_impression
+    data[:year_cpa_impression] = year_cpa_impression
   end
 
   def wifi_revenue_chart(params, simulation, data, daily_data, week_data, month_data, year_data)

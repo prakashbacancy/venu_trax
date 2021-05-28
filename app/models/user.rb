@@ -6,9 +6,15 @@ class User < ApplicationRecord
   has_one_attached :profile_pic, dependent: :destroy
 
   has_many :notes, dependent: :destroy
+  has_many :attendees, as: :resourceable, class_name: 'Meetings::Attendee', dependent: :destroy
+  has_many :meetings, class_name: 'Meetings::Meeting', dependent: :destroy # meeting as owner
 
   scope :without_, ->(current_user) { where.not(id: current_user) }
-  validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
+  scope :active, -> { where.not(encrypted_password: '') }
+  scope :ordered, -> { order(:full_name) }
+  # validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
+
+  attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
 
   PERMITTED_PARAM = %w[id full_name email phone_no profile_pic].freeze
   PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
@@ -24,5 +30,25 @@ class User < ApplicationRecord
   def send_account_setup_instructions(current_user)
     token = set_reset_password_token
     InvitationWorker.perform_async(:user_account_setup_instructions, user_id: id, token: token, current_user_id: current_user.id)
+  end
+
+  def all_user_of_related_company
+    User.all.active.ordered
+  end
+
+  def self.all_active_users
+    User.all.active.ordered
+  end
+
+  def to_polymorphic
+    "User:#{id}"
+  end
+  
+  protected
+
+  def password_required?
+    return false if skip_password_validation
+
+    super
   end
 end

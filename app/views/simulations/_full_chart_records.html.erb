@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">WIFILP</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+          <%= column_chart(@simulations[:wifi_lp_login], id: 'wifi_lp') %>
+        </div>
+        <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3 ">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3 ">Weekly<br><b><%= number_with_delimiter(@simulations[:week_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3 ">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3 ">Annually<br><b><%= number_with_delimiter(@simulations[:year_wifi_lp_login].to_i, :delimiter => ',') %></b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+  				<%= column_chart(@simulations[:lp_impression], id: 'cpm_lp') %>
+  			</div>
+        <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:daily_lp_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:week_lp_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:month_lp_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:year_lp_impression].to_i), :delimiter => ',') %></b></span>
+        </div>
+  		</div>
+  	</div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">User Impression</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+  				<%= column_chart(@simulations[:user_impression], id: 'user_impression') %>
+  			</div>
+        <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b><%= number_with_delimiter(@simulations[:year_user_impression].to_i, :delimiter => ',') %></b></span>
+        </div>
+  		</div>
+  	</div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">CPM Impression Revenue</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+  				<%= column_chart(@simulations[:cpm_impression], id: 'cpm_impression') %>
+  			</div>
+        <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:daily_cpm_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:week_cpm_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:month_cpm_impression].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:year_cpm_impression].to_i), :delimiter => ',') %></b></span>
+        </div>
+  		</div>
+  	</div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
+      <div class="chart-header">
+        <h3 class="chart-main-title mb-0">WIFI Revenue</h3>
+        <p class="chart-sub-title text-blue3 mb-3"></p>
+        <div>
+          <%= area_chart(@simulations[:wifi_revenue], id: 'wifi_revenue') 
+          %>
+        </div>
+        <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

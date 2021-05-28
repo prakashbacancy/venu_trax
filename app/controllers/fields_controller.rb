@@ -12,7 +12,7 @@ class FieldsController < ApplicationController
         @klass = field.klass
         flash[:notice] = 'Field Successfully added.'
       else
-        flash[:danger] = field.errors.full_messages.join(',')
+        flash[:alert] = field.errors.full_messages.join(',')
       end
     rescue StandardError => e
     end
@@ -30,7 +30,7 @@ class FieldsController < ApplicationController
     if @field.update(field_params)
       flash[:notice] = 'Field Successfully updated.'
     else
-      flash[:danger] = @field.errors.full_messages.join(',')
+      flash[:alert] = @field.errors.full_messages.join(',')
     end
     redirect_to request.referrer
   end

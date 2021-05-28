@@ -1,6 +1,6 @@
 <section class="content-wrapper tab-section simulation-tab">
   <div class="page-title border-bottom title-border">
-    <div class="content">
+    <div class="content px-5">
       <div class="row">
         <div class="col-lg-12 breed-outer">
 					<div class="simulation-breed">
@@ -8,15 +8,15 @@
 						<h5 class="text-gray d-inline"> <i class="fa fa-angle-right"></i></h5>
 						<h5 class="text-dark d-inline">View Simulation</h5>
 					</div>
-					<div class="mx-4 mt-3  d-inline simulation-btn-1">
-						<%= link_to "Input Simulation Data", new_simulation_path, remote: true, class: 'btn btn-primary' %>
-				</div>
+					<!-- <div class="mx-4 mt-3  d-inline simulation-btn-1"> -->
+						<%#= link_to "Input Simulation Data", new_simulation_path, remote: true, class: 'btn btn-primary' %>
+					<!-- </div> -->
         </div>
       </div>
 		</div>
 	</div>
-  <div class="content position-relative">
-		<ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+  <div class="content position-relative px-5">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item mt-3">
 				<a class="nav-link active fs-20 mx-4" id="simulation-analytics-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Simulation Analytics</a>
 			</li>
@@ -70,7 +70,7 @@
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
 			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
 		</div> %>
-    <div class='row mt-2'>
+    <!-- <div class='row mt-2'> -->
  <!--    	<div class="col-md-3">
         <div class="form-group">
           <div class="admin-select down-arrow w-100">
@@ -96,7 +96,7 @@
 	      </div>
 	    </div> -->
     <!-- </div> -->
-    <div class="row">
+    <div class="row mt-2">
     	<div class="col-md-4">
 		  		<%= render partial: 'form' %>
 		  </div>
@@ -106,16 +106,27 @@
 		    </div>
 		  </div>
 	  </div>
-  </div>
+	  <div class="row">
+	  	<div class="col-md-12">
+	  		<div id="full-chart-records">
+	  			<%= render partial: 'full_chart_records' %>
+	  		</div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-12">
+	  		<%= render partial: 'simulation_comment' unless @simulation.new_record? %>
+	  	</div>
+	  </div>
 </section>
-
-<script type="text/javascript">
+<script>
 	$(document).on('change', '.chart_option', function(){
-		selected_options = $('.chart_option option:selected').val()
-		$.ajax({
+	  selected_options = $('.chart_option option:selected').val()
+	  venue_id = "<%= params[:venue_id] %>"
+	  $.ajax({
 	    url: '/simulations',
 	    type: "GET",
-	    data: {"option" : selected_options},
+	    data: {"option" : selected_options, venue_id: venue_id},
 	    dataType: "script",
 	    success: function (data) { 
 	      console.log("data successfully updated")
@@ -123,10 +134,10 @@
 	  })
 	})
 	$(document).on('click', '.search-btn', function(){
-		start_date = $('#start_date').val()
-		end_date = $('#end_date').val()
+	  start_date = $('#start_date').val()
+	  end_date = $('#end_date').val()
 
-		$.ajax({
+	  $.ajax({
 	    url: '/simulations',
 	    type: "GET",
 	    data: {"start_date" : start_date, "end_date": end_date, 'option': 'Date Range' },
@@ -136,29 +147,4 @@
 	    }
 	  })
 	})
-  $('#start_date').datetimepicker({
-    icons: {
-      time: "fa fa-clock-o",
-      date: "fa fa-calendar",
-      up: "fa fa-arrow-up",
-      down: "fa fa-arrow-down",
-      previous: "fa fa-chevron-left",
-      next: "fa fa-chevron-right",
-      today: "fa fa-clock-o",
-      clear: "fa fa-trash-o"
-    }
-  });
-  $('#end_date').datetimepicker({
-    icons: {
-      time: "fa fa-clock-o",
-      date: "fa fa-calendar",
-      up: "fa fa-arrow-up",
-      down: "fa fa-arrow-down",
-      previous: "fa fa-chevron-left",
-      next: "fa fa-chevron-right",
-      today: "fa fa-clock-o",
-      clear: "fa fa-trash-o"
-    }
-  });
-
 </script>

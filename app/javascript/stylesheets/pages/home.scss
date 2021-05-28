@@ -557,7 +557,10 @@ table.dataTable {
 }
 
 .simulation-form form .form-control{
-	height: calc(3.25rem + -7px) !important
+	height: calc(3.20rem + -15px) !important
+}
+.simulation-text-field{
+  font-size: 12px !important;
 }
 .simulation-form .form-control{
 	//border: 1px solid #F6F6F6 !important;
@@ -617,6 +620,9 @@ div.dataTables_wrapper div.dataTables_length select{
 @media only screen and (max-width: 767px){
 	.business-show .content {
 		padding: 20px 15px;
+	}
+	.business-show .tab-section .shadow{
+		padding: 1rem  !important;
 	}
 }
 
@@ -766,7 +772,7 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 	}
 }
 
-.block-ui-box{border:1px solid #ced4da;padding:7px 5px;color:#000;position:relative;background-color: #fff;margin:0px 5px;}
+.block-ui-box{border:1px solid #ced4da;padding:7px 15px;color:#000;position:relative;background-color: #fff;margin:0px 5px; border-radius: 3px;}
 .profile-circle {
 	background-color: #fff;
 	width: 25px;

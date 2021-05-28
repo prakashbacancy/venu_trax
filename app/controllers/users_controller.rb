@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :user, only: %i[show new edit]
-  before_action :set_klass, only: %i[show new edit]
-  before_action :find_dynamic_fields, only: %i[new edit]
+  before_action :set_klass, only: %i[show new edit create update]
+  before_action :find_dynamic_fields, only: %i[new edit create update]
 
   def index
     @users = User.all
@@ -11,29 +11,32 @@ class UsersController < ApplicationController
   def create
     link_raw = set_reset_password_token
     user.assign_attributes(user_params)
+    user.skip_password_validation = true
     if user.save
       # UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
       flash[:success] = 'User Successfully Added!'
+      @user = User.new
     else
-      flash[:danger] = 'Error Occurred While Adding A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
-    redirect_to users_path
+    @users = User.all
   end
 
   def update
     if user.update(user_params)
       flash[:success] = 'User Successfully Updated!'
+      @user = User.new
     else
-      flash[:danger] = 'Error Occurred While Updating A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
-    redirect_to users_path
+    @users = User.all
   end
 
   def destroy
     if user.destroy
       flash[:success] = 'User Successfully Deleted!'
     else
-      flash[:danger] = 'Error Occurred While Deleting A User!'
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
     redirect_to users_path
   end

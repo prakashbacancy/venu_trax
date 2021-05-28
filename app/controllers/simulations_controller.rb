@@ -2,7 +2,7 @@ class SimulationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    simulation = Simulation.where(venue_id: params[:venue_id])
+    simulation = Simulation.where(venue_id: params[:venue_id], user_id: current_user.id)
     @simulation = simulation.present? ? simulation.first : Simulation.new
     set_date_filter
     @simulations = SimulationChart.new(params, simulation).calculation
@@ -57,6 +57,10 @@ class SimulationsController < ApplicationController
   end
 
   def simulation_params
+    params[:simulation][:cost_lp_impression] = params[:simulation][:cost_lp_impression].gsub("$", "")
+    params[:simulation][:cpa_impression_cost] = params[:simulation][:cpa_impression_cost].gsub("$", "")
+    params[:simulation][:cpm_impression_cost] = params[:simulation][:cpm_impression_cost].gsub("$", "")
+    
     params.require(:simulation).permit(Simulation::PERMITTED_PARAM)
   end
 

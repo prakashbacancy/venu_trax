@@ -20027,3 +20027,146 @@ aside.main-sidebar  .main-sidebar-inner {
 .cursor-pointer {
   cursor: pointer;
 }
+.web-btn{
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.ui-tooltip, .arrow:after {
+  position: absolute;
+  background: #111;
+  border:1px solid #e1e0aa;
+}
+
+.ui-tooltip {
+  z-index:10;
+  width:150px;
+  max-width:100%;
+  font-size:0.875em;
+  text-align:center;
+  border-radius: 20px;
+  color:white;
+  font-family: 'Droid Sans', sans-serif;
+  text-shadow: 0px 0px #ffffff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border:1px solid #e1e0aa;
+}
+
+.arrow {
+  width: 50px;
+  height: 16px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  margin-left: -35px;
+  bottom: -16px;
+  *display:none;
+}
+
+.arrow.top {
+  top: -16px;
+  bottom: auto;
+}
+
+.arrow.left {
+  left: 20%;}
+
+.arrow:after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: -20px;
+  width: 25px;
+  height: 25px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  tranform: rotate(45deg);
+}
+
+.arrow.top:after {
+  bottom: -20px;
+  top: auto;
+}
+
+.settings_page .setting-icon-main {
+  width: 100%;
+  height: auto;
+  padding: 15px 10px;
+  display: block;
+  text-align: left;
+  min-height: 174px;
+  margin-bottom: 20px;
+}
+
+.setting-icon {
+  margin-right: unset;
+}
+
+.settings_page .setting-icon-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.settings_page .badge-count {
+  float: right;
+  border-radius: 50%;
+  position: unset;
+}
+
+.settings_page .setting-icon-title {
+  margin-bottom: 0;
+}
+
+.settings_page .blue_badge {
+  background-color: #007aff;
+}
+
+.settings_page .red_badge {
+  background-color: #fe2d55;
+  margin-left: 5px;
+}
+
+.settings_page .setting-icon p {
+  max-width: 102px;
+  margin-bottom: 0px;
+  min-height: 33px;
+}
+
+.settings_page .setting-icon-main {
+  box-shadow: unset;
+  border: 1px solid #f1f1f1;
+  border-radius: 12px;
+}
+
+.settings_page .setting-icon-main:hover {
+  box-shadow: 0px 0px 7px 0px rgb(105 105 105 / 20%);
+}
+
+.settings_page .arrow {
+  opacity: 0.65;
+  bottom: 12px;
+}
+
+.settings_page .setting-icon-main:hover .arrow {
+  opacity: 1;
+}
+
+.settings_page .setting-icon-wrapper {
+  display: unset;
+}
+
+.inner_flash_message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.text-capitalize{
+  text-transform: capitalize !important;
+}
