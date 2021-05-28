@@ -241,8 +241,8 @@ header {
 
 .modal.modal-right {
 	.modal-header {
-		padding-top: 32px !important;
-		padding-bottom: 32px !important;
+		padding-top: 20px !important;
+		padding-bottom: 20px !important;
 	}
 	.modal-dialog {
 		-webkit-transform: translate3d(0%, 0, 0);
@@ -264,7 +264,7 @@ header {
 	}
 
 	.modal-body {
-		padding: 15px 40px 120px;
+		padding: 15px 30px 120px;
 	}
 
 	.modal-dialog.modal-sm {
@@ -291,11 +291,11 @@ header {
 
 	.btn {
 		min-width: 131px;
-		padding: 16px 59px;
+		padding: 11px 59px;
 		margin: 12px;
 	}
 
-	label {font-weight: 500; margin-bottom: 12px;}
+	label {font-weight: 500; margin-bottom: 12px; font-size: 16px !important}
 }
 
 .modal.modal-top {
@@ -607,7 +607,7 @@ div.dataTables_wrapper div.dataTables_length select{
 @media only screen and (max-width: 991px){
 	.modal-right .btn {
 			min-width: auto;
-				padding: 11px 22px;
+			padding: 11px 22px;
 			margin: 4px;
 	}
 }

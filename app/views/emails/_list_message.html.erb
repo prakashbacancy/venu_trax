@@ -9,16 +9,16 @@
   <% message_path = message.mailbox == :draft ? new_email_path(message_id: message.id, mailbox: message.mailbox, ind: ind) : email_path(message.id, mailbox: message.mailbox, msg_id: 'msg-'+ind.to_s)%>
   <td width="20%">
     <a href="<%= message_path %>" class="message-data" data-remote="true">
-      <p class="text-dark2 fw-600 fs-17 text-nowrap"><%= message.from_name %></p>
+      <p class="text-dark2 fs-16 text-nowrap"><%= message.from_name %></p>
     </a>
   </td>
   <td class="subject-email" width="65%">
     <% size = message.subject.size rescue 0 %>
     <a href="<%= message_path %>" class="message-data" data-remote="true">
-    <p class="text-gray  fs-17"> <b><%= message.subject %></b> - <span><%= strip_tags(message.body.gsub("\n", ' ')).squeeze(' ')&.truncate(75-size)%></span></p>
+    <p class="fs-16"> <span><%= message.subject %></span> - <span class="text-gray "><%= strip_tags(message.body.gsub("\n", ' ')).squeeze(' ')&.truncate(75-size)%></span></p>
     </a>
   </td>
-  <td width="10%" class="p-0" style="padding: 0 !important;">
+  <td width="10%" class="p-0" style="padding-right: 0 !important;">
     <p class="text-gray fs-14 text-right text-nowrap"><%= time_date(message.received_date_time) %></p>
   </td>
   <td width="5%">
