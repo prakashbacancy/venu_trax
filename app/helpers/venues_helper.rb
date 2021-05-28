@@ -1,6 +1,6 @@
 module VenuesHelper
   def check_google_token
-    current_user.google_token_expired? || current_user.google_access_token.blank?
+    current_user.google_access_token.blank?
   end
 
   def meeting_attendees(meeting)
