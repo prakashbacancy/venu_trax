@@ -1,5 +1,7 @@
 class FieldPicklistValue < ApplicationRecord
-  default_scope { order(:position) }
+  # default_scope { order(:position) }
+  # This is just for temporary purpose
+  default_scope { order(created_at: :asc) }
 
   belongs_to :field
 
