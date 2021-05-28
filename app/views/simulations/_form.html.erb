@@ -16,7 +16,7 @@
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Events Per Week.' %>
         </p>
       <%= f.number_field :event_per_year, autofocus: true, placeholder: 0,  class: 'form-control col-3 col-md-2 d-inline simulation-text-field', required: true, 'data-parsley-errors-container'=> ".event_per_year_error"%>
-        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-2 col-md-3"}%>
+        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-2 col-md-3 fs-14 ml-1"}%>
         <ul class="event_per_year_error"></ul>
       </div>
       <div class="row align-items-center">

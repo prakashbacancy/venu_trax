@@ -59,15 +59,15 @@
       if(this.id == 'emails-tab'){
         $('.sync_email').closest('li').removeClass('d-none');
         $('.web-btn').addClass('d-none');
-        $('.create_meeting').closest('li').addClass('d-none');
+        $('.create_meeting').closest('div').addClass('d-none');
       } else if(this.id == 'meetings-tab'){
         $('.sync_email').closest('li').addClass('d-none');
         $('.web-btn').addClass('d-none');
-        $('.create_meeting').closest('li').removeClass('d-none');
+        $('.create_meeting').closest('div').removeClass('d-none');
       } else {
         $('.sync_email').closest('li').addClass('d-none');
         $('.web-btn').removeClass('d-none');
-        $('.create_meeting').closest('li').addClass('d-none');
+        $('.create_meeting').closest('div').addClass('d-none');
       }
     })
     $('.add_note, .create_meeting').on('click', function(){

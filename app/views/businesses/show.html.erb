@@ -31,11 +31,11 @@
     custom_datatable($('#venue_list_table'));
     $('.header_tabs').on('click', function(){
       if(this.id == 'venues-tab'){
-        $('.add_venue').closest('li').removeClass('d-none');
-        $('.add_note').closest('li').addClass('d-none');
+        $('.add_venue').closest('div').removeClass('d-none');
+        $('.add_note').closest('div').addClass('d-none');
       } else {
-        $('.add_note').closest('li').removeClass('d-none');
-        $('.add_venue').closest('li').addClass('d-none');
+        $('.add_note').closest('div').removeClass('d-none');
+        $('.add_venue').closest('div').addClass('d-none');
       }
     })
     $('.add_note').on('click', function(){
