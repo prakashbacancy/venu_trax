@@ -6,9 +6,8 @@
 					<div class="simulation-breed">
 						<h5 class="text-gray d-inline"><%= link_to "Business Management", businesses_path, class: 'text-gray' %></h5>
 						<h5 class="text-gray d-inline"> <i class="fa fa-angle-right"></i></h5>
-						<% venue = @simulation.venue %>
-						<% if @simulation.present? && venue.present? %>
-							<h5 class="text-dark d-inline"><%= link_to "#{venue&.name}", venue_path(venue.id), class: 'text-gray' %></h5> <i class="fa fa-angle-right"></i>
+						<% if @simulation.present? &&  @venue.present? %>
+							<h5 class="text-dark d-inline"><%= link_to "#{ @venue&.name}", venue_path(@venue.id), class: 'text-gray' %></h5> <i class="fa fa-angle-right"></i>
 						<% end %>
 						<h5 class="text-dark d-inline">View Simulation</h5>
 					</div>
