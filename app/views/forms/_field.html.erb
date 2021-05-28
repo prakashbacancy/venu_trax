@@ -1,6 +1,5 @@
 <%= label_tag(field_label, nil, class: ('color-red' if field.required)) unless field_label.nil?%>
 <span class="required"> <%= "*" if field.required && field_label%> </span>
-
   <%- case column_type
     when 'Text' %>
     <%= f.text_field field_name, class: "form-control #{field_name}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
@@ -79,8 +78,8 @@
   <% when 'Radio Button' %>
     <div class="radio-lbl radio-oneline">
       <% field.field_picklist_values.each do |field_picklist_value| %>
-        <label class="radio"><%= field_picklist_value.value %>
           <%= f.radio_button field.name, field_picklist_value.value, checked: (field_picklist_value.value == value), required: field.required %>
+          <label class="radio mr-1"><%= field_picklist_value.value %>
           <span class="checkround"></span>
         </label>
       <% end %>
