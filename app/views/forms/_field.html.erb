@@ -1,5 +1,6 @@
 <%= label_tag(field_label, nil, class: ('color-red' if field.required)) unless field_label.nil?%>
 <span class="required"> <%= "*" if field.required && field_label%> </span>
+<% (value = field.default_value) if value.nil? %>
   <%- case column_type
     when 'Text' %>
     <%= f.text_field field_name, class: "form-control #{field_name}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
