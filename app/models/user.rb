@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one_attached :profile_pic, dependent: :destroy
 
   has_many :notes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :attendees, as: :resourceable, class_name: 'Meetings::Attendee', dependent: :destroy
   has_many :meetings, class_name: 'Meetings::Meeting', dependent: :destroy # meeting as owner
 
