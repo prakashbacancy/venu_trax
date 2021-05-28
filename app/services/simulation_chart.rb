@@ -2,8 +2,8 @@ class SimulationChart
 	def initialize(params, simulation)
 		@params = params
     @simulation = simulation
-    @color_option = {"fill"=>false, "backgroundColor"=>["#b57715", "blue", "maroon", "green", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-    "borderColor"=>["#b57715", "blue", "maroon", "green", "rgba(54, 162, 235)", "rgba(153, 102, 255)", "rgba(201, 203, 207)"],
+    @color_option = {"fill"=>false, "backgroundColor"=>["#01d0ff", "#f95059", "#f99c4f", "#4941e9", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+    "borderColor"=>["#01d0ff", "#f95059", "#f99c4f", "#4941e9", "rgba(54, 162, 235)", "rgba(153, 102, 255)", "rgba(201, 203, 207)"],
     "borderWidth"=>2}
 	end
 
