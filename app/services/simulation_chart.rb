@@ -246,9 +246,7 @@ class SimulationChart
     year = year_data.sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        chart_data = daily_data.group_by_day(:created_at, format: "%-l %P").sum(:wifi_annual_day_total)
-        data[:wifi_revenue] =  JSON.parse([{ data: parse_vehicle_type_data(chart_data),
-                    library: background_color }].chart_json)
+        data[:wifi_revenue] =  daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_annual_day_total)
       when 'Weekly'
         data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_week_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
@@ -262,40 +260,5 @@ class SimulationChart
     data[:week_wifi_revenue] = week
     data[:month_wifi_revenue] = month
     data[:year_wifi_revenue] = year
-  end
-
-   def parse_vehicle_type_data(data)
-    vehicle_type_datasets = []
-    data.each do |key, value|
-      dataset = {}
-      dataset['name'] = key
-      dataset['data'] = { key => value }
-      vehicle_type_datasets << dataset
-    end
-  end
-
-  def background_color
-    {
-      fill: false,
-      backgroundColor: [
-        '#860f6c',
-        'blue',
-        'maroon',
-        'green',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
-      ],
-      borderColor: [
-        '#860f6c',
-        'blue',
-        'maroon',
-        'green',
-        'rgba(54, 162, 235)',
-        'rgba(153, 102, 255)',
-        'rgba(201, 203, 207)'
-      ],
-      borderWidth: 2
-    }
   end
 end
