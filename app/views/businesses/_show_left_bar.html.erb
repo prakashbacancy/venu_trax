@@ -36,43 +36,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-6">
-        <p class="fw-700 fs-16">Domain Name:</p>
-        <p class="text-gray fs-15"><%= @business.domain %></p>
-      </div>
-      <div class="col-6">
-        <p class="fw-700 fs-16">Industry:</p>
-        <p class="text-gray fs-15"><%= @business.industry %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">Type:</p>
-        <p class="text-gray fs-15"><%= @business.business_type %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">Zip Code:</p>
-        <p class="text-gray fs-15"><%= @business.zip_code %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">Address:</p>
-        <p class="text-gray fs-15"><%= @business.address %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">State:</p>
-        <p class="text-gray fs-15"><%= @business.state %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">City:</p>
-        <p class="text-gray fs-15"><%= @business.city %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">No of Employees:</p>
-        <p class="text-gray fs-15"><%= @business.no_of_employee %></p>
-      </div>
-      <div class="col-6 mt-3">
-        <p class="fw-700 fs-16">Annual Revenue:</p>
-        <p class="text-gray fs-15">$<%= display_two_digit @business.annual_revenue %></p>
-      </div>
-      <% @klass.fields.each do |field|%>
+      <% @klass.fields.visible.each do |field| %>
         <% if field.column_type == 'Text Area HTML' %>
           <div class="col-12 mt-3">
         <% else %>

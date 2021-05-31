@@ -4,6 +4,7 @@ class Field < ApplicationRecord
   has_many :field_picklist_values, dependent: :destroy
   # This is just for temporary purpose
   default_scope { order(created_at: :asc) }
+  scope :visible, -> { where(hidden: false) }
 
   # 'Skype' => 'text'
   # 'File' => 'file',
