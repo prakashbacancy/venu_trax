@@ -30,18 +30,18 @@
 
 <script>
   $(document).ready(function () {
-    $( ".fields-sortable" ).sortable({
-      stop: function(event, ui) {
-        let fieldPicklistValueIds = $(this).sortable('toArray', {attribute: "data-field-picklist-value-id"});
-        $.ajax({
-          url: "<%= change_position_field_picklist_values_url %>",
-          type: 'GET',
-          data: {
-            field_picklist_value_ids: fieldPicklistValueIds
-          },
-          dataType: "script"
-        });
-      }
-    });
+    // $( ".fields-sortable" ).sortable({
+    //   stop: function(event, ui) {
+    //     let fieldPicklistValueIds = $(this).sortable('toArray', {attribute: "data-field-picklist-value-id"});
+    //     $.ajax({
+    //       url: "<%= change_position_field_picklist_values_url %>",
+    //       type: 'GET',
+    //       data: {
+    //         field_picklist_value_ids: fieldPicklistValueIds
+    //       },
+    //       dataType: "script"
+    //     });
+    //   }
+    // });
   });
 </script>
