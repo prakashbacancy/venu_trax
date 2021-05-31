@@ -2,7 +2,7 @@
   <table class="table table-bordered w-100 mb-5" id="business_list_table">
 		<% if @simulation.present? %>
 		    <thead class="thead-dark">
-		    	<th>Events Per Week</th>
+		    	<th>No Of Event</th>
 		    	<th>Daily Seating Capacity</th>
 		    	<th>Estimated Avg Annual Attendance</th>
 		    	<th>Estimated % Visitor Wifi Login's</th>
@@ -17,9 +17,9 @@
 		    		<td><%= @simulation.daily_seating_capacity %></td>
 		    		<td><%= @simulation.annual_attendance_per %></td>
 		    		<td><%= @simulation.visitor_wifi_login %></td>
-		    		<td><%= @simulation.cost_lp_impression %></td>
+		    		<td>$<%= @simulation.cost_lp_impression %></td>
 		    		<td><%= @simulation.event_usage_impression %></td>
-		    		<td><%= @simulation.cpm_impression_cost %></td>
+		    		<td>$<%= @simulation.cpm_impression_cost %></td>
 		    		<td><%= @simulation.contract_month %></td>
 		    	</tr>
 		    </tbody>
