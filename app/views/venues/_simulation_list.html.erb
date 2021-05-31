@@ -7,11 +7,11 @@
 		    	<th>No Of Event</th>
 		    	<th>Daily Seating Capacity</th>
 		    	<th>Estimated Avg Annual Attendance</th>
-		    	<th>Estimated % Visitor Wifi Login's</th>
+		    	<!-- <th>Estimated % Visitor Wifi Login's</th>
 		    	<th>Cost LP Impression</th>
 		    	<th>Usage Impression</th>
 		    	<th>Per Day/Event</th>
-		    	<th>No Of Months</th>
+		    	<th>No Of Months</th> -->
 		    </thead>
 		    <tbody>
 		    	<tr>
@@ -20,11 +20,11 @@
 		    		<td><%= link_to @simulation.event_per_year, simulations_path(venue_id: @venue.id) %></td>
 		    		<td><%= @simulation.daily_seating_capacity %></td>
 		    		<td><%= @simulation.annual_attendance_per %></td>
-		    		<td><%= @simulation.visitor_wifi_login %></td>
-		    		<td>$<%= @simulation.cost_lp_impression %></td>
-		    		<td><%= @simulation.event_usage_impression %></td>
-		    		<td>$<%= @simulation.cpm_impression_cost %></td>
-		    		<td><%= @simulation.contract_month %></td>
+		    		<!-- <td><%#= @simulation.visitor_wifi_login %></td>
+		    		<td>$<%#= @simulation.cost_lp_impression %></td>
+		    		<td><%#= @simulation.event_usage_impression %></td>
+		    		<td>$<%#= @simulation.cpm_impression_cost %></td>
+		    		<td><%#= @simulation.contract_month %></td> -->
 		    		
 		    	</tr>
 		    </tbody>

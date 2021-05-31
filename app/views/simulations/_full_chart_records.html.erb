@@ -81,10 +81,10 @@
           %>
         </div>
         <div class="chart-labels row justify-content-around mt-4 border rounded px-0 py-3 text-gray fs-14 text-break">
-          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(@simulations[:daily_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(@simulations[:week_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(@simulations[:month_wifi_revenue].to_i, :delimiter => ',') %></b></span>
-          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(@simulations[:year_wifi_revenue].to_i, :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Daily<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:daily_wifi_revenue].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Weekly<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:week_wifi_revenue].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Monthly<br> <b>$<%= number_with_delimiter(display_two_digit(@simulations[:month_wifi_revenue].to_i), :delimiter => ',') %></b></span>
+          <span class="col-12 col-sm-6 col-xl-3">Annually<br><b>$<%= number_with_delimiter(display_two_digit(@simulations[:year_wifi_revenue].to_i), :delimiter => ',')%></b></span>
         </div>
       </div>
     </div>
