@@ -16,7 +16,8 @@ class FieldsController < ApplicationController
       end
     rescue StandardError => e
     end
-    redirect_to request.referrer
+    # Todo: Make JS response
+    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
   end
 
   def edit
@@ -32,7 +33,8 @@ class FieldsController < ApplicationController
     else
       flash[:alert] = @field.errors.full_messages.join(',')
     end
-    redirect_to request.referrer
+    # Todo: Make JS response
+    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
   end
 
   def destroy
@@ -45,7 +47,8 @@ class FieldsController < ApplicationController
       field.destroy_column if field.destroy
     rescue StandardError => e
     end
-    redirect_to request.referrer
+    # Todo: Make JS response
+    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
   end
 
   def change_position

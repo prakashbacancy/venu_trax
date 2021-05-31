@@ -54,19 +54,44 @@
   </div>
 </section>
 <script>
-  $('.header_tabs').on('click', function(){
-    if(this.id == 'user-tab'){
-      $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
-      $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-      $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-    } else if(this.id == 'business-tab'){
-      $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
-      $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-      $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-    } else {
-      $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
-      $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-      $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+  enable_users = function(){
+    $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
+    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.header_tabs').removeClass('active');
+    $('#user-tab').addClass('active');
+    $('.tab-pane').removeClass('active show')
+    $('#user-tab-body').addClass('active show');
+  }
+  enable_venues = function(){
+    $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
+    $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.header_tabs').removeClass('active');
+    $('#venue-tab').addClass('active')
+    $('.tab-pane').removeClass('active show')
+    $('#venue-tab-body').addClass('active show');
+  }
+  $(document).ready(function(){
+    if(window.location.hash.substr(1) == "venue"){
+      enable_venues();
+    } else if(window.location.hash.substr(1) == "user") {
+      enable_users();
     }
+    $('.header_tabs').on('click', function(){
+      if(this.id == 'user-tab'){
+        $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+      } else if(this.id == 'business-tab'){
+        $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+      } else {
+        $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+      }
+    })
   })
 </script>
