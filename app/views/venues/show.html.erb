@@ -32,6 +32,9 @@
     })
     $('.enable_meetings').on('click', function(){
       enable_this('meetings-tab', 'meetings-tab-body')
+      $('.sync_email').closest('li').addClass('d-none');
+      $('.web-btn').addClass('d-none');
+      $('.create_meeting').closest('div').removeClass('d-none');
     })
     $('#emails-tab, .sync-gmail').on('click', function(){
       if (email_flag){
