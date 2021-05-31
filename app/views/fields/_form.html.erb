@@ -55,6 +55,11 @@
 </div>
 <script>
   $(document).ready(function () {
+    if (["Text", "URL", "Text Area HTML"].includes($('#field_column_type').val())) {
+      $(".min-max").removeClass('d-none');
+    } else {
+      $(".min-max").addClass('d-none');
+    }
     $("#field_column_type").on('change', function () {
       if (["File"].includes($(this).val())) {
         $(".file").addClass('hidden');
