@@ -41,8 +41,8 @@
     <% set_google_token_flag = check_google_token %>
    
   </ul>
-  <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div <%= 'cursor-not-allowed' if set_google_token_flag %>">
-  <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
+  <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
+    <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
   </div>
   </div>
   <div class="tab-content" id="myTabContent">
