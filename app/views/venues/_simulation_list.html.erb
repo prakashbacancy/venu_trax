@@ -16,9 +16,9 @@
 		    <tbody>
 		    	<tr>
 		    		<td><%= link_to @simulation.event_per_year, simulations_path(venue_id: @venue.id) %></td>
-		    		<td><%= @simulation.daily_seating_capacity %></td>
 		    		<td><%= @simulation.updated_at&.strftime(Simulation::DATE_FORMAT) %></td>
 		    		<td><%= @simulation.user&.full_name %></td>
+		    		<td><%= @simulation.daily_seating_capacity %></td>
 		    		<td><%= @simulation.annual_attendance_per %></td>
 		    		<td><%= @simulation.visitor_wifi_login %></td>
 		    		<td>$<%= @simulation.cost_lp_impression %></td>
