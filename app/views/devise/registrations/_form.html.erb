@@ -29,19 +29,9 @@
       </div>
     </div>
 
-    <div class="form-group mt-4">
-      <%= f.label :full_name, class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", class: 'form-control', required: true %>
-    </div>
-
     <div class="form-group">
       <%= f.label :email_address, class: 'text-capitalize fs-17' %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', disabled: true %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :phone_number, class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :phone_no, autofocus: true, autocomplete: "phone_no", placeholder:"Phone Number", class: 'form-control', required: true, placeholder:"(xxx) xxx-xxx", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'This value is required'   %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

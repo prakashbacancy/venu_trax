@@ -51,3 +51,16 @@
     </div>
   </div>
 </section>
+<script>
+  $(document).ready(function(){
+    $('.header_tabs').on('click', function(){
+      if(this.id == 'user-tab'){
+        $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+      } else {
+        $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+      }
+    })
+  })
+</script>

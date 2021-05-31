@@ -9,7 +9,7 @@
       <div class="col-md-12 mt-3">
         <ul class="list-unstyled fields-sortable">
           <% field_picklist_values.each_with_index do |field_picklist_value, f_ind|%>
-          <li class="block-ui-box d-flex align-items-center justify-content-between mb-2"
+          <li class="block-ui-box d-flex align-items-center justify-content-between mb-2 cursor-pointer"
             data-field-picklist-value-id="<%= field_picklist_value.id %>">
             <span class="mr-auto"><%= field_picklist_value.value%></span>
             <div>
@@ -30,18 +30,18 @@
 
 <script>
   $(document).ready(function () {
-    // $( ".fields-sortable" ).sortable({
-    //   stop: function(event, ui) {
-    //     let fieldPicklistValueIds = $(this).sortable('toArray', {attribute: "data-field-picklist-value-id"});
-    //     $.ajax({
-    //       url: "<%= change_position_field_picklist_values_url %>",
-    //       type: 'GET',
-    //       data: {
-    //         field_picklist_value_ids: fieldPicklistValueIds
-    //       },
-    //       dataType: "script"
-    //     });
-    //   }
-    // });
+    $( ".fields-sortable" ).sortable({
+      stop: function(event, ui) {
+        let fieldPicklistValueIds = $(this).sortable('toArray', {attribute: "data-field-picklist-value-id"});
+        $.ajax({
+          url: "<%= change_position_field_picklist_values_url %>",
+          type: 'GET',
+          data: {
+            field_picklist_value_ids: fieldPicklistValueIds
+          },
+          dataType: "script"
+        });
+      }
+    });
   });
 </script>

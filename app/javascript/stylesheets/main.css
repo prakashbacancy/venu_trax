@@ -20024,6 +20024,9 @@ aside.main-sidebar  .main-sidebar-inner {
   background: #fff !important
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
 .web-btn{
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;

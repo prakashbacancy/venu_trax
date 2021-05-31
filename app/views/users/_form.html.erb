@@ -38,16 +38,6 @@
       <%= f.email_field :email, class:"form-control", placeholder:"Email Address", required: true  %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :full_name, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :full_name, class:"form-control", placeholder:"Full Name", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :phone_number, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_no, class:"form-control", placeholder:"Phone Number", placeholder:"(xxx) xxx-xxx", class: 'form-control phone-number', pattern: "/^([\+][0-9]{1,3}([ \.\-])?)?([\(]{1}[0-9]{3}[\)])?([0-9A-Z \.\-]{1,32})((x|ext|extension)?[0-9]{1,4}?)$/", 'data-parsley-pattern-message': 'Please enter Only Digit', 'data-parsley-trigger': 'change keyup', 'data-parsley-length': '[14,14]', 'data-parsley-length-message': 'Please enter 10 digits only', required: true, 'data-parsley-required-message': 'This value is required' %>
-    </div>
-
     <% unless (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) %>
       <div class="form-group">
         <%= f.label :change_password, class: 'text-capitalize fs-17' %><br />  
