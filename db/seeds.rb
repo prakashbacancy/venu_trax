@@ -30,3 +30,19 @@ user_prebuid_fields = {
 user_prebuid_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.user.id, custom: false, deletable: false, required: true, position: 0)
 end
+
+# To make existing Venue fields dynamic
+venue_prebuild_fields = {
+  'domain': 'URL',
+  'name': 'Text',
+  'phone_no': 'Phone',
+  'zip_code': 'Text',
+  'address': 'Text Area',
+  'city': 'Text',
+  'state': 'Text',
+  'description': 'Text Area',
+  'no_of_employee': 'Integer'
+}
+venue_prebuild_fields.each do |k, v|
+  Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.venue.id, custom: false, deletable: false, required: true, position: 0)
+end
