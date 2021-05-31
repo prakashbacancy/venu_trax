@@ -6,6 +6,7 @@ class VenuesController < ApplicationController
   before_action :set_notes, only: %i[show]
   before_action :find_meetings, only: %i[show]
   before_action :set_klass
+  before_action :find_dynamic_fields, only: %i[new edit create update]
 
   def index
     @venues = Venue.all
@@ -80,7 +81,8 @@ class VenuesController < ApplicationController
   end
 
   def venue_params
-    params.require(:venue).permit(Venue::PERMITTED_PARAM)
+    dynamic_params = Klass.venue.fields.pluck(:name)
+    params.require(:venue).permit(Venue::PERMITTED_PARAM + dynamic_params)
   end
 
   def find_business
@@ -101,5 +103,13 @@ class VenuesController < ApplicationController
 
   def find_meetings
     @meetings = @venue.meetings
+  end
+
+  def find_dynamic_fields
+    fields = @klass.fields.includes(:field_picklist_values)
+    @data = {}
+    fields.each do |field|
+      @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
+    end
   end
 end

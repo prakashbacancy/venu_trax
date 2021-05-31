@@ -4,9 +4,10 @@
       <label class="text-dark2 fw-600 fs-16">Title</label>
       <%= f.text_field :title, required: true, placeholder: 'What are you meeting about?', class: 'form-control' %>
     </div>
+    <hr>
     <div class="row">
       <div class="col-lg-3 col-md-5">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <label class="text-gray fw-600 fs-13 w-100" for="usr">Attendees</label>
           <div style="width:100%;">
             <%= select_tag :attendees, grouped_options_for_select(all_attendees, value_of_attendees_for_select(f.object)), multiple: true, required: true, title: 'Select Attendees', class: 'form-control select_picker multi_select', data: { "live-search": true } %>
@@ -14,14 +15,14 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-7 d-flex align-items-center">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <label class="text-gray fw-600 fs-13">Date</label>
           <div class="position-relative">
             <%= f.text_field :date, required: true,  placeholder: '05/25/2021', class: 'form-control datepicker picker_input', value: pretty_date(f.object.date) || Time.now.strftime("%m/%d/%Y"), autocomplete: 'off' %>
             <%= image_pack_tag 'meeting/ic_date.svg', class: 'img-fluid position-absolute picker_icon', width: '16' %>
           </div>
         </div>
-        <div class="form-group ml-2">
+        <div class="form-group ml-2 mb-0">
           <label class="text-gray fw-600 fs-13"></label>
           <div class="position-relative">
             <%= f.text_field :start_time, required: true, placeholder: '12:00 AM', class: 'form-control timepicker timestart picker_input', value: pretty_time(f.object.start_time) %>
@@ -29,18 +30,20 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="form-group">
+      <div class="col-lg-3 col-md-6 ">
+        <div class="form-group  mb-0">
           <label class="text-gray fw-600 fs-13 w-100" for="business_type">Duration</label><br>
           <%# Todo: Need to improve this %>
           <%= f.select :duration, options_for_select({ "1 Hour" => 1, "2 Hours" => 2, "3 Hours" => 3, "4 Hours" => 4, "5 Hours" => 5, "6 Hours" => 6 }, selected: 1),{ prompt: 'Select Hours' }, { required: 'true', autofocus: 'true', class: 'form-control timeend durationField duration', autocomplete: 'off'} %>
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <hr>
+    <div class="form-group attendee_description">
       <label class="text-dark2 fw-600 fs-16" for="usr">Attendee Description</label>
       <%= f.cktext_area :description, class: 'form-control',required: true, placeholder: 'Send a description to your attendees', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
     </div>
+    <hr>
     <div class="form-group">
       <label class="text-dark2 fw-600 fs-16" for="usr">Team Notes</label>
       <%= f.cktext_area :team_note, class: 'form-control',required: true, placeholder: 'Write a note for the team', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper', height: 100 }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>
@@ -56,6 +59,12 @@
   }
   .team-note .cke_bottom{
     margin-bottom: 80px !important;
+  }
+  .attendee_description .cke_bottom{
+    margin-bottom: 0px !important;
+  }
+  .attendee_description body.cke_editable{
+    margin: 20px 0 !important;
   }
 </style>
 <script>

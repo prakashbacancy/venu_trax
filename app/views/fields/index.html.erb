@@ -16,9 +16,13 @@
         <a class="nav-link active fs-20 mx-sm-4 header_tabs" id="business-tab" data-toggle="tab"
           href="#business-tab-body" role="tab" aria-controls="business-tab-body" aria-selected="true">Business</a>
       </li>
-      <li class="nav-item mt-3 mr-auto">
+      <li class="nav-item mt-3">
         <a class="nav-link fs-20 mx-sm-4 header_tabs" id="user-tab" data-toggle="tab"
           href="#user-tab-body" role="tab" aria-controls="user-tab-body" aria-selected="true">User</a>
+      </li>
+      <li class="nav-item mt-3 mr-auto">
+        <a class="nav-link fs-20 mx-sm-4 header_tabs" id="venue-tab" data-toggle="tab"
+          href="#venue-tab-body" role="tab" aria-controls="venue-tab-body" aria-selected="true">Venue</a>
       </li>
       <li class="mt-3 mt-md-0 d-flex align-items-center">
         <div class="ml-4 d-inline">
@@ -30,6 +34,11 @@
           <%= link_to "Add Field", new_field_path(klass_id: Klass.user.id), remote: true, class: 'btn btn-primary add_user_field' %>
         </div>
       </li>
+      <li class="mt-3 mt-md-0 d-none align-items-center">
+        <div class="ml-4 d-inline">
+          <%= link_to "Add Field", new_field_path(klass_id: Klass.venue.id), remote: true, class: 'btn btn-primary add_venue_field' %>
+        </div>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="business-tab-body" role="tabpanel" aria-labelledby="business-tab">
@@ -38,17 +47,51 @@
       <div class="tab-pane fade" id="user-tab-body" role="tabpanel" aria-labelledby="user-tab">
         <%= render 'fields_list', klass: Klass.user %>
       </div>
+      <div class="tab-pane fade" id="venue-tab-body" role="tabpanel" aria-labelledby="venue-tab">
+        <%= render 'fields_list', klass: Klass.venue %>
+      </div>
     </div>
   </div>
 </section>
 <script>
-  $('.header_tabs').on('click', function(){
-    if(this.id == 'user-tab'){
-      $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
-      $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-    } else {
-      $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
-      $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+  enable_users = function(){
+    $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
+    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.header_tabs').removeClass('active');
+    $('#user-tab').addClass('active');
+    $('.tab-pane').removeClass('active show')
+    $('#user-tab-body').addClass('active show');
+  }
+  enable_venues = function(){
+    $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
+    $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.header_tabs').removeClass('active');
+    $('#venue-tab').addClass('active')
+    $('.tab-pane').removeClass('active show')
+    $('#venue-tab-body').addClass('active show');
+  }
+  $(document).ready(function(){
+    if(window.location.hash.substr(1) == "venue"){
+      enable_venues();
+    } else if(window.location.hash.substr(1) == "user") {
+      enable_users();
     }
+    $('.header_tabs').on('click', function(){
+      if(this.id == 'user-tab'){
+        $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+      } else if(this.id == 'business-tab'){
+        $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
+      } else {
+        $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
+        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
+        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
+      }
+    })
   })
 </script>
