@@ -25,6 +25,6 @@ class Business < ApplicationRecord
   TYPE = %w[Prospect
             Partner
             Reseller
-            Vandor
+            Vendor
             Other].freeze
 end
