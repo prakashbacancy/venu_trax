@@ -3,6 +3,7 @@ class Klass < ApplicationRecord
 
   scope :business, -> { find_by(name: 'Business') }
   scope :user, -> { find_by(name: 'User') }
+  scope :venue, -> { find_by(name: 'Venue') }
 
   def constant
     @constant ||= self.name.constantize
