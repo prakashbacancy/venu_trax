@@ -1,7 +1,7 @@
 # Creates klass for dynamic modules
 Klass.find_or_create_by(name: 'Business', label: 'Business')
 Klass.find_or_create_by(name: 'User', label: 'User')
-# Klass.find_or_create_by(name: 'Venue', label: 'Venue')
+Klass.find_or_create_by(name: 'Venue', label: 'Venue')
 
 # To make existing Business fields dynamic
 business_prebuid_fields = {
