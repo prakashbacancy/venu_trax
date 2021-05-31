@@ -2512,7 +2512,7 @@ pre code {
   display: block;
   width: 100%;
   /* height: calc(3.25rem + 10px) !important; */
-  height: 50px!important;
+  height: 47px!important;
   padding: .375rem .75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -19974,7 +19974,7 @@ div#business_list_table_length {
 }
 
 .content-wrapper, .right-side {
-  margin-top: 63px;
+  margin-top: 55px;
 }
 
 header.main-header{
