@@ -30,6 +30,9 @@
     $('.enable_emails').on('click', function(){
       enable_this('emails-tab', 'emails-tab-body')
     })
+    $('.enable_meetings').on('click', function(){
+      enable_this('meetings-tab', 'meetings-tab-body')
+    })
     $('#emails-tab, .sync-gmail').on('click', function(){
       if (email_flag){
         email_flag = false;
