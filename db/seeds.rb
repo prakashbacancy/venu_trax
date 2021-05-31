@@ -24,7 +24,6 @@ end
 
 # To make existing User fields dynamic
 user_prebuid_fields = {
-  'email': 'Email',
   'full_name': 'Text',
   'phone_no': 'Phone'
 }
