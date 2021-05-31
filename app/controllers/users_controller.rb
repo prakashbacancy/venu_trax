@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     user.assign_attributes(user_params)
     user.skip_password_validation = true
     if user.save
-      # UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+      UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
       flash[:success] = 'User Successfully Added!'
       @user = User.new
     else

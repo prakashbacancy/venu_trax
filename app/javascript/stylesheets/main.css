@@ -6269,7 +6269,7 @@ a.close.disabled {
   margin-bottom: 0;
   line-height: 1.5;
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .modal-body {
@@ -18240,7 +18240,7 @@ table.text-center th {
 }
 
 .content-wrapper .content {
-  padding: 40px 70px
+  padding: 20px 70px
 }
 
 @media (max-width:991px) {
@@ -20095,10 +20095,10 @@ aside.main-sidebar  .main-sidebar-inner {
 .settings_page .setting-icon-main {
   width: 100%;
   height: auto;
-  padding: 15px 10px;
+  padding: 0px 10px;
   display: block;
   text-align: left;
-  min-height: 174px;
+  min-height: 144px;
   margin-bottom: 20px;
 }
 
@@ -20131,7 +20131,7 @@ aside.main-sidebar  .main-sidebar-inner {
 }
 
 .settings_page .setting-icon p {
-  max-width: 102px;
+  max-width: 115px;
   margin-bottom: 0px;
   min-height: 33px;
 }
@@ -20169,4 +20169,12 @@ aside.main-sidebar  .main-sidebar-inner {
 
 .text-capitalize{
   text-transform: capitalize !important;
+}
+
+.flex-grow-1{
+  flex-grow: 1;
+}
+
+.meeting_create_button_div{
+  margin-top: -8px !important;
 }

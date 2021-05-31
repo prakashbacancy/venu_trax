@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # end
   # for business module
   resources :businesses do
+    resources :notes, module: :business
     resources :venues
     resources :notes do
       resources :comments, module: :note

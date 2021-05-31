@@ -118,6 +118,8 @@ module ApplicationHelper
     return pretty_checkbox(object.send(field.name)) if field.column_type == 'Checkbox'
     return pretty_file_associations(object.file_manager_file_associations.where(field: field)) if field.column_type == 'File'
     return object.user.full_name if field.name == 'user_id'
+    return "$ #{display_two_digit(object.send(field.name))}" if field.column_type == 'Currency'
+
     # return pretty_reference(field, object) if field.reference?
     return object.send(field.name)
   end

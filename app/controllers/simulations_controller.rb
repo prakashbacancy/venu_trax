@@ -2,7 +2,8 @@ class SimulationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    simulation = Simulation.where(venue_id: params[:venue_id], user_id: current_user.id)
+    @venue = Venue.find_by_id(params[:venue_id])
+    simulation = Simulation.where(venue_id: params[:venue_id])
     @simulation = simulation.present? ? simulation.first : Simulation.new
     set_date_filter
     @simulations = SimulationChart.new(params, simulation).calculation
