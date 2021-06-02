@@ -6,8 +6,11 @@
 <div class="modal-body">
   <%= form_for @business, remote: true do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
+    <% if params[:group_id].present? %>
+      <%= f.hidden_field :group_id, value: @root_group_id %>
+    <% end %>
 
-    <% Klass.business.fields.each do |field| %>
+    <% group.fields.each do |field| %>
       <div class="form-group">
         <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @business.send(field.name)} %>
       </div>
@@ -16,7 +19,9 @@
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <% if params[:group_id].blank? %>
+        <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <% end %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>

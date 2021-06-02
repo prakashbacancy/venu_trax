@@ -4,6 +4,7 @@ class BusinessesController < ApplicationController
   before_action :find_venues_notes_group, only: %i[show]
   before_action :set_klass, only: %i[show new edit create update]
   before_action :find_dynamic_fields, only: %i[new edit create update]
+  before_action :find_basic_group, only: %i[new edit create update]
 
   def index
     @businesses = Business.all
@@ -22,7 +23,7 @@ class BusinessesController < ApplicationController
   def update
     if business.update(business_params)
       flash[:success] = 'Business Successfully Updated!'
-      @business = Business.new
+      (@business = Business.new) if params[:add_more].present?
     else
       flash[:alert] = 'Error Occurred While Updating A business!'
     end
@@ -69,5 +70,16 @@ class BusinessesController < ApplicationController
     fields.each do |field|
       @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
     end
+  end
+
+  def find_basic_group
+    @info_group = Group.business_basic
+    @group = if params[:group_id].present?
+               group = Group.find_by(id: params[:group_id])
+               @root_group_id = group.root.id
+               group
+             else
+               Group.business_basic
+             end
   end
 end

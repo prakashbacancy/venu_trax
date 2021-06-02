@@ -1,5 +1,5 @@
 <% if params[:add_more].present? %>
-  $('#right-modal-content').html('<%= j render(partial: 'form', locals: {data: @data, add_more: true}) %>')
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { data: @data, add_more: true, group: @group }) %>')
   $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('show');
   $('.modal-content').scrollTop(0);

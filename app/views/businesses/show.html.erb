@@ -24,7 +24,7 @@
   }
   if(window.location.hash.substr(1) == "venues-tab-body"){
     enable_venues();
-  } else {
+  } else if (window.location.hash.substr(1) == "notes-tab-body") {
     enable_notes();
   }
   $(document).ready(function(){
@@ -33,9 +33,12 @@
       if(this.id == 'venues-tab'){
         $('.add_venue').closest('div').removeClass('d-none');
         $('.add_note').closest('div').addClass('d-none');
-      } else {
+      } else if(this.id == 'notes-tab') {
         $('.add_note').closest('div').removeClass('d-none');
         $('.add_venue').closest('div').addClass('d-none');
+      } else {
+        $('.add_venue').closest('div').addClass('d-none');
+        $('.add_note').closest('div').addClass('d-none');
       }
     })
     $('.add_note').on('click', function(){

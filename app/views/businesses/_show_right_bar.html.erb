@@ -2,13 +2,16 @@
   <div class='d-flex align-items-center justify-content-between'>
     <ul class="nav nav-tabs flex-grow-1" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active fs-18 mx-sm-4 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body" role="tab" aria-controls="notes-tab-body" aria-selected="true">Notes</a>
+        <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="details-tab" data-toggle="tab" href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body" role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
       </li>
       <li class="nav-item mr-auto">
-        <a class="nav-link fs-18 mx-sm-4 header_tabs" id="venues-tab" data-toggle="tab" href="#venues-tab-body" role="tab" aria-controls="venues-tab-body" aria-selected="false">Venues</a>
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="venues-tab" data-toggle="tab" href="#venues-tab-body" role="tab" aria-controls="venues-tab-body" aria-selected="false">Venues</a>
       </li>
     </ul>
-    <div class="ml-3 text-nowrap">
+    <div class="ml-3 text-nowrap d-none">
       <%= link_to "Create Note", new_business_note_path(@business.id), remote: true, class: 'btn btn-primary add_note' %>
     </div>
     <div class="ml-3 text-nowrap d-none">
@@ -17,7 +20,10 @@
   </div>
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
+    <div class="tab-pane fade show active" id="details-tab-body" role="tabpanel" aria-labelledby="details-tab">
+      <%= render 'details_list', klass: Klass.business, business: @business %>
+    </div>
+    <div class="tab-pane fade notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
       <%= render 'notes_list', notes: @notes, notable: @business %>
     </div>
     <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">

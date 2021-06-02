@@ -1,4 +1,4 @@
-$('#right-modal-content').html('<%= j render(partial: 'form', locals: {data: @data}) %>')
+$('#right-modal-content').html('<%= j render(partial: 'form', locals: { data: @data, group: @group }) %>')
 $("#right_modal").modal('show');
 $('form').parsley();
 // $('#right_modal').on('shown.bs.modal', function() {
