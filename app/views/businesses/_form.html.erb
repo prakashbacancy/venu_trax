@@ -1,4 +1,3 @@
-<div class="modal-header">
   <% title_half = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? 'Add' : 'Edit' %>
   <h5 class="modal-title"><%= title_half %> Business</h5>
   <div id="flashMessage", class="inner_flash_message"></div>
@@ -21,3 +20,66 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  var autocomplete;
+  var address1Field;
+  var address2Field;
+  var postalField;
+
+  function initAutocomplete() {
+    address1Field = document.querySelector("#business_address");
+    address2Field = document.querySelector("#address2");
+    postalField = document.querySelector("#business_zip_code");
+    autocomplete = new google.maps.places.Autocomplete(address1Field, {
+      fields: ["address_components", "geometry"],
+      types: ["address"],
+    });
+    address1Field.focus();
+    autocomplete.addListener("place_changed", fillInAddress);
+  }
+
+  function fillInAddress() {
+    const place = autocomplete.getPlace();
+    var address1 = "";
+    var postcode = "";
+    for (const component of place.address_components) {
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case "street_number": {
+          address1 = `${component.long_name} ${address1}`;
+          break;
+        }
+
+        case "route": {
+          address1 += component.short_name;
+          break;
+        }
+
+        case "postal_code": {
+          postcode = `${component.long_name}${postcode}`;
+          break;
+        }
+
+        case "postal_code_suffix": {
+          postcode = `${postcode}-${component.long_name}`;
+          break;
+        }
+        case "locality":
+          $("#business_city").val(component.long_name)
+          break;
+
+        case "administrative_area_level_1": {
+          $("#business_state").val(component.long_name)
+          break;
+        }
+        case "country":
+          console.log("country", component.long_name)
+          break;
+      }
+    }
+    address1Field.value = address1;
+    postalField.value = postcode;
+    // address2Field.focus();
+  }
+</script>

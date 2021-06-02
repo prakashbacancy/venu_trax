@@ -4,6 +4,7 @@
   $("#right_modal").modal('show');
   $('.modal-content').scrollTop(0);
   $('form').parsley();
+  initAutocomplete();
   $('.business_list_div').html('<%= j render(partial: 'business_list', locals: {businesses: @businesses}) %>')
 <% else %>
   $(window.location.replace("<%= businesses_path %>"))

@@ -2,9 +2,10 @@
 <span class="required"> <%= "" if field.required && field_label%> </span>
 
 <% (value = field.default_value) if value.nil? %>
+  <% address_class = field.name.eql?("address") ? 'add_address' : "" %>
   <%- case column_type
     when 'Text' %>
-    <%= f.text_field field_name, class: "form-control #{field_name}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
+    <%= f.text_field field_name, class: "form-control #{field_name} #{address_class}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
   <% when 'Password' %>
     <%= f.password_field field_name, required: field.required, placeholder: field.placeholder, class: 'form-control' %>
   <% when 'Skype' %>
