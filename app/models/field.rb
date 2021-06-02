@@ -1,10 +1,14 @@
 class Field < ApplicationRecord
   belongs_to :klass
+  belongs_to :group, optional: true
 
   has_many :field_picklist_values, dependent: :destroy
   # This is just for temporary purpose
-  default_scope { order(created_at: :asc) }
+  # default_scope { order(created_at: :asc) }
+  default_scope { order(:position) }
   scope :visible, -> { where(hidden: false) }
+
+  validates_uniqueness_of :name, scope: :klass_id
 
   # 'Skype' => 'text'
   # 'File' => 'file',
@@ -36,6 +40,8 @@ class Field < ApplicationRecord
     field: '\w*',
     DateTime: '//'
   }.freeze
+
+  after_destroy :destroy_column
 
   def is_picklist?
     column_type == 'Picklist'
