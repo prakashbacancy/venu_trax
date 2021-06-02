@@ -34,7 +34,6 @@ class MeetingsController < ApplicationController
     else
       flash[:alert] = meeting.errors.full_messages.join(', ')
     end
-    redirect_to request.referrer
   end
 
   def update
