@@ -1,5 +1,6 @@
 class FieldsController < ApplicationController
   def new
+    @group = Group.find(params[:group_id])
     @klass = Klass.find(params[:klass_id])
     @field = @klass.fields.new
   end
@@ -21,6 +22,7 @@ class FieldsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:group_id])
     @field = Field.find(params[:id])
     @klass = @field.klass
   end
@@ -44,7 +46,7 @@ class FieldsController < ApplicationController
       field.klass.fields.where(klass: @klass).where('position > (?)', field.position).each do |field|
         field.update(position: field.position - 1)
       end
-      field.destroy_column if field.destroy
+      field.destroy
     rescue StandardError => e
     end
     # Todo: Make JS response
