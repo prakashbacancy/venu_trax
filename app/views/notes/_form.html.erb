@@ -11,7 +11,7 @@
       <%= image_pack_tag 'home/ic_times.svg'%>
     </button>
 </div>
-<%= form_for [@note.notable, @note] do |f| %>
+<%= form_for [@note.notable, @note], remote: true do |f| %>
   <div class="modal-body">
     <div class="form-group mb-5">
       <%= f.cktext_area :description, class: 'form-control',required: true, placeholder: 'Start typing to leave a note', ckeditor:{ uiColor: '#FFFFFF', toolbar: 'mini', toolbarLocation: 'bottom', extraPlugins: 'confighelper' }, 'data-parsley-required-message': 'Please Enter a Note', 'data-parsley-trigger': 'change keyup' %>

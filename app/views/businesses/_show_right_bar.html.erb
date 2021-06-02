@@ -17,8 +17,8 @@
   </div>
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
-      <%= render 'notes_list', notes: @notes %>
+    <div class="tab-pane fade show active notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
+      <%= render 'notes_list', notes: @notes, notable: @business %>
     </div>
     <div class="tab-pane fade" id="venues-tab-body" role="tabpanel" aria-labelledby="venues-tab">
       <%= render 'venues_list', venues: @venues %>

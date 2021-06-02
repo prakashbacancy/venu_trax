@@ -8,11 +8,12 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(notes_params)
     if @note.save
-      flash[:success] = 'Note added'
+      flash[:success] = 'Note Successfully added'
     else
       flash[:alert] = 'Can not add a Note'
     end
-    redirect_to @note.notable
+    @notable = @note.notable
+    # redirect_to @note.notable
   end
 
   def update
