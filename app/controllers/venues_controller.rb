@@ -7,6 +7,7 @@ class VenuesController < ApplicationController
   before_action :find_meetings, only: %i[show]
   before_action :set_klass
   before_action :find_dynamic_fields, only: %i[new edit create update]
+  before_action :find_basic_group, only: %i[show new edit]
 
   def index
     @venues = Venue.all
@@ -19,7 +20,7 @@ class VenuesController < ApplicationController
   def create
     if venue.update(venue_params)
       venues
-      set_new_venue
+      set_new_venue if params[:add_more].present?
       flash[:success] = 'Venue Successfully Added!'
     else
       flash[:alert] = venue.errors.full_messages.join(', ')
@@ -29,7 +30,7 @@ class VenuesController < ApplicationController
   def update
     if venue.update(venue_params)
       venues
-      set_new_venue
+      set_new_venue if params[:add_more].present?
       flash[:success] = 'Venue Successfully Updated!'
     else
       flash[:alert] = venue.errors.full_messages.join(', ')
@@ -111,5 +112,16 @@ class VenuesController < ApplicationController
     fields.each do |field|
       @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
     end
+  end
+
+  def find_basic_group
+    @info_group = Group.venue_basic
+    @group = if params[:group_id].present?
+               group = Group.find_by(id: params[:group_id])
+               @root_group_id = group.root.id
+               group
+             else
+               Group.venue_basic
+             end
   end
 end

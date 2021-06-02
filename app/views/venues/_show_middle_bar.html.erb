@@ -5,8 +5,13 @@
   <div class='d-flex align-items-center justify-content-between'>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
-        role="tab" aria-controls="notes-tab-body" aria-selected="true">Notes</a>
+      <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="details-tab" data-toggle="tab"
+        href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link fs-18 mx-sm-2 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
+        role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
     </li>
     <li class="nav-item">
       <a class="nav-link fs-18 mx-sm-2 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
@@ -39,14 +44,16 @@
       </div>
     </li>
     <% set_google_token_flag = check_google_token %>
-   
   </ul>
   <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
     <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
   </div>
   </div>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade active show" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
+    <div class="tab-pane fade active show" id="details-tab-body" role="tabpanel" aria-labelledby="details-tab">
+      <%= render 'details_list', klass: Klass.venue, venue: @venue %>
+    </div>
+    <div class="tab-pane fade" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
       <%= render 'notes_list', notes: @notes %>
     </div>
     <div class="tab-pane fade" id="emails-tab-body" role="tabpanel" aria-labelledby="emails-tab">

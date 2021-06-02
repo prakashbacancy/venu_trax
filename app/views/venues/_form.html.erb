@@ -6,15 +6,19 @@
 <div class="modal-body">
   <%= form_for [@business, @venue], remote: true do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
-    <div class="form-group">
-      <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
-      <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
-      <% not_class = disable ? 'not-allowed' : '' %>
-      <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection #{ not_class }", required: true, readonly: disable} %>
-    </div>
+    <% if params[:group_id].blank? %>
+      <div class="form-group">
+        <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
+        <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
+        <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
+        <% not_class = disable ? 'not-allowed' : '' %>
+        <%= f.select :business_id, options_for_select(Business.pluck(:name, :id).to_h, f.object.business&.id), {include_blank: 'Select Business'}, {class:"form-control product-selection #{ not_class }", required: true, readonly: disable} %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :group_id, value: @root_group_id %>
+    <% end %>
 
-    <% Klass.venue.fields.each do |field| %>
+    <% group.fields.each do |field| %>
       <div class="form-group">
         <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @venue.send(field.name)} %>
       </div>
@@ -23,7 +27,9 @@
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <% if params[:group_id].blank? %>
+        <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <% end %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>

@@ -8,8 +8,12 @@
   $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('hide');
 <% end %>
-<% if @business %>
-  $('.venue_list_div_business').html('<%= j render(partial: 'businesses/venue_table', locals: {venues: @venues}) %>')
+<% if params[:venue][:group_id] %>
+  $('#group-<%= params[:venue][:group_id] %>-tab-body').html('<%= j render(partial: 'group_fields', locals: {klass: Klass.venue, venue: @venue, group: venue_group(params[:venue][:group_id]) }) %>')
 <% else %>
-  $('.venue_list_div').html('<%= j render(partial: 'venue_list', locals: {venues: @venues}) %>')
+  <% if @business %>
+    $('.venue_list_div_business').html('<%= j render(partial: 'businesses/venue_table', locals: {venues: @venues}) %>')
+  <% else %>
+    $('.venue_list_div').html('<%= j render(partial: 'venue_list', locals: {venues: @venues}) %>')
+  <% end %>
 <% end %>

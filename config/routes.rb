@@ -30,7 +30,22 @@ Rails.application.routes.draw do
       get :field_options
     end
   end
-  resources :fields
+  resources :groups do
+    collection do
+      get :change_position
+    end
+  end
+  resources :fields do
+    collection do
+      get :change_position
+      patch :change_position_in_table
+      patch :change_header_view
+      patch :toggle_visible_in_table
+    end
+    member do
+      patch :change_properties
+    end
+  end
   resources :field_picklist_values do
     collection do
       get :change_klass
