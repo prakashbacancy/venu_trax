@@ -1,5 +1,6 @@
 $('#right-modal-content').html('<%= j render(partial: 'form', locals: {data: @data}) %>')
 $("#right_modal").modal('show');
 $('form').parsley();
+initAutocomplete();
 $('#right_modal').on('shown.bs.modal', function(){$('.modal-content').scrollTop(0);});
 
