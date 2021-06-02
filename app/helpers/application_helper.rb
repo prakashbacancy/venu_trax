@@ -113,7 +113,7 @@ module ApplicationHelper
     return pretty_date_time(object.send(field.name)) if field.column_type == 'DateTime'
     return '<p></p>'.html_safe if field.column_type == 'Label'
     return parse_multi_select(object.send(field.name)) if field.column_type == 'Multi-Select Check Box'
-    return "<a href='#{object.send(field.name)}' target='_blank'>#{object.send(field.name)}</a>".html_safe if field.column_type == 'URL'
+    return "<a href='http://#{object.send(field.name)}' target='_blank'>#{object.send(field.name)}</a>".html_safe if field.column_type == 'URL'
     return "<iframe srcdoc='#{object.send(field.name)}'></iframe>".html_safe if field.column_type == 'Text Area HTML'
     return pretty_checkbox(object.send(field.name)) if field.column_type == 'Checkbox'
     return pretty_file_associations(object.file_manager_file_associations.where(field: field)) if field.column_type == 'File'

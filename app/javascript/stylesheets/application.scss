@@ -21,16 +21,3 @@
 
 @import "./main.css";
 @import "./bootstrap-datetimepicker.css";
-
-.expanded-note-modal .modal-dialog .modal-content .modal-body .meeting-modal-data .cke_contents {
-  height: 200px !important;
-}
-.picker_input:focus{box-shadow: unset;}
-.duration:focus{box-shadow: unset;}
-select.duration {border: none;}
-button.multiselect.dropdown-toggle {
-  padding: 11px 0;
-}
-.multiselect-container>li>a>label {
-  padding: 3px 20px 3px 20px;
-}

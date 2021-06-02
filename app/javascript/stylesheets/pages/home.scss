@@ -772,7 +772,7 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 	}
 }
 
-.block-ui-box{border:1px solid #ced4da;padding:7px 15px;color:#000;position:relative;background-color: #fff;margin:0px 5px; border-radius: 3px;}
+.block-ui-box{border:1px solid rgb(214, 214, 214);padding:7px 15px;color:#000;position:relative;background-color: #fff;margin:0px 5px; border-radius: 3px;}
 .profile-circle {
 	background-color: #fff;
 	width: 25px;
@@ -788,3 +788,12 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
   left: inherit;
   top: 7px;
 }
+
+.admin-table .table .thead-dark th {
+  vertical-align: middle;
+ }
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+.business-show .tab-section .detail_box{padding: 0 !important;}
