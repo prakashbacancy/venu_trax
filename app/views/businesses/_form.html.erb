@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_n-RDApslpQKgNVA6XkWSVqGcW9KAbJg&libraries=places"></script>
 <div class="modal-header">
   <% title_half = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? 'Add' : 'Edit' %>
   <h5 class="modal-title"><%= title_half %> Business</h5>
@@ -21,3 +22,85 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  function initAutocomplete(id){
+    console.log("sad")
+  var places = new google.maps.places.Autocomplete(document.getElementById(id));
+  google.maps.event.addListener(places, 'place_changed', function() {
+    debugger
+    var place = places.getPlace();
+    var address = place.formatted_address;
+    console.log(address)
+    if(address){
+      var  address_value = address.split(",");
+      count = address_value.length;
+      country = address_value[count-1];
+      state = address_value[count-2];
+      city = address_value[count-3];
+      var street = "";
+      var j=0;
+      if (count > 4) {
+        while (j <= (count-4)) {
+          street += address_value[j];
+          j++;
+        }
+      }
+      else{
+        street = address_value[count-4];
+      }
+      var z = state.split(" ");
+      var i =z.length;
+       state  = z[1]
+      if(i>2){
+        zipcode  = z[2]
+      }else{
+        zipcode = ""
+      }
+      var formattedAddress = address.replace(state, '').replace(country, '').replace(zipcode, '').replace(city, '').split(', ')
+      var OnlyAddress = []
+      $.each(formattedAddress, function(index, element){
+        if(element.replace(' ', '').replace(' ', '').replace(' ', '').replace(',', '').replace(',', '').length != 0){
+          OnlyAddress.push(element)
+        }
+      })
+
+      $('.state').val(state)
+      $('.country').val(country);
+      $('.add_address').val(street);
+      $('.zip_code').val(zipcode);
+      $('.city').val(city)
+      // $('.atitude').val(place.geometry.location.lat())
+      $('.latitude').val(place.geometry.location.lat())
+      $('.longitude').val(place.geometry.location.lng())
+      // changes to store address lines
+      var formattedAddress = address.replace(state, '').replace(country, '').replace(zipcode, '').replace(city, '').split(', ')
+      var OnlyAddress = []
+      $.each(formattedAddress, function(index, element){
+        if(element.replace(' ', '').replace(' ', '').replace(' ', '').replace(',', '').replace(',', '').length != 0){
+          OnlyAddress.push(element)
+        }
+      })
+
+      $('.addressLine1').val(OnlyAddress[0]);
+      // if(OnlyAddress[1] === undefined){
+      //   $('.addressLine2').val(city);
+      // } else {
+        $('.addressLine2').val(OnlyAddress[1]);
+      // }
+      // if(OnlyAddress[2] === undefined && OnlyAddress[1] !== undefined){
+      //   $('.addressLine3').val(city);
+      // } else {
+        $('.addressLine3').val(OnlyAddress[2]);
+      // }
+      // end changes to store address lines
+      
+    }else{
+      alert("Please Enter valid Address");
+    }
+  });
+}
+  $('.add_address').click(function(){
+    console.log("asd")
+    initAutocomplete($(this).attr('id'))
+  })
+</script>
