@@ -1,0 +1,133 @@
+<div class="dynmic-tab-div-data shadow p-3 mt-1 bg-white rounded note_shadow_box_5" data-group-id="<%= group.id %>">
+  <div class=" d-flex flex-column">
+    <div class="d-flex p-2">
+      <div class="row mr-auto">
+        <div class="col-lg-12 md-pd-10 text-break mt-1">
+          <p class="heading m-b-10 fs-18">
+            <strong>
+              <%= group.parent_label %>
+              <% if group.parent_label %>
+                <span class="sub-menu-sitecontent m-x-10"><i class="fa fa-angle-right"></i></span>
+              <% end %>
+              <%= group.label %>
+            </strong>
+          </p>
+        </div>
+      </div>
+      <div class="action-area-buttons">
+        <%= link_to edit_group_path(group), remote: true, class: 'common-link pull-right edit-delete icon' do %>
+          <%= image_pack_tag 'home/ic_edit.svg'%>
+        <% end %>
+        <% if !group.default %>
+          <%= link_to group_path(group), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this group with all its fields?'}, class: 'common-link pull-right edit-delete icon' do %>
+            <%= image_pack_tag 'home/ic_delete.svg'%>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="row list-unstyled fields-sortable ml-3 connectedSortable<%= Klass.snakecase(klass.name) %>" data-group-id="<%= group.id %>" data-klass-id="<%= klass.id %>">
+      <% group.fields.where.not(column_type: 'Hidden').each do |field|%>
+        <li class="col-sm-12 mb-1" data-field-id="<%= field.id %>">
+          <div class="block-ui-box d-flex">
+            <div class="row mr-auto">
+              <div class="col-lg-12 md-pd-10 text-break mt-1">
+                <b class="<%= 'color-red asterisk ' if field.required? %> fs-16"><%= field.label %></b>
+                <span class="ml-1 fs-15" style="opacity:0.5;"><%= field.column_type %></span>
+              </div>
+            </div>
+            <div class="action-area-buttons">
+              <%= link_to edit_field_path(field, group_id: group.id), remote: true, class: 'common-link pull-right edit-delete icon' do %>
+                <%= image_pack_tag 'home/ic_edit.svg'%>
+              <% end %>
+              <% if field.deletable %>
+                <%= link_to field_path(field), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this field?'}, class: 'common-link pull-right edit-delete icon' do %>
+                  <%= image_pack_tag 'home/ic_delete.svg'%>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+      <% if !( (klass.name == "Invoice" || klass.name == "Inventory") && group.default) && !group.root? %>
+        <li class="col-sm-12 pin">
+          <div class="text-center block-ui-box m-t-5 m-r-5 fw-500 my-2">
+            <%= link_to  new_field_path(group_id: group.id, klass_id: klass.id), remote: true, class: 'text-right common-link ' do%>
+              Add Field
+              <i class="fa fa-plus fs-17" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+
+    $(".fields-sortable, .group-sortable").disableSelection()
+    $( ".group-sortable" ).sortable({
+      stop: function(event, ui) {
+        let klassId = $(this).attr('data-klass-id');
+        let groupIds = $(this).sortable('toArray', {attribute: "data-group-id"});
+        $.ajax({
+          url: "<%= change_position_groups_url %>",
+          type: 'GET',
+          data: {
+            klass_id: klassId,
+            group_ids: groupIds,
+          },
+          dataType: "script"
+        });
+      }
+    });
+
+    $( ".fields-sortable" ).sortable({
+      items: '> li:not(.pin)',
+      connectWith: ".connectedSortable<%= Klass.snakecase(klass.name) %>",
+      start: function(e, ui){
+        ui.placeholder.height(ui.item.height()); // Fixes placeholder not visible due to height issues
+      },
+      stop: function(event, ui) {
+        let klassId = $(this).attr('data-klass-id');
+        let groupId = $(this).attr('data-group-id');
+        let fieldIds = $(this).sortable('toArray', {attribute: "data-field-id"});
+        $.ajax({
+          url: "<%= change_position_fields_url %>",
+          type: 'GET',
+          data: {
+            klass_id: klassId,
+            group_id: groupId,
+            field_ids: fieldIds
+          },
+          dataType: "script"
+        });
+      },
+      receive: function(event, ui) {
+        let klassId = $(this).attr('data-klass-id');
+        let groupId = $(this).attr('data-group-id');
+        let fieldIds = $(this).sortable('toArray', {attribute: "data-field-id"});
+        $.ajax({
+          url: "<%= change_position_fields_url %>",
+          type: 'GET',
+          data: {
+            klass_id: klassId,
+            group_id: groupId,
+            field_ids: fieldIds
+          },
+          dataType: "script"
+        });
+      }
+    });
+
+    $('.module-link').on('click', function(){
+       $(document).ajaxStart($.blockUI()).ajaxStop($.unblockUI());
+      if ($(this).hasClass('active')){
+        $(this).removeClass('active');
+      }else{
+        $(this).addClass('active');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,3 @@
+$('#right-modal-content').html("<%= escape_javascript(render partial: 'form', locals: {group: @group, klass: @klass}) %>")
+$("#right_modal").modal('show');
+$('form').parsley();

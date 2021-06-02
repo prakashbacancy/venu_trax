@@ -44,6 +44,8 @@ gem 'google-api-client', require: ['google/apis/gmail_v1', 'google/apis/calendar
 gem 'google-apis-gmail_v1'
 # OAuth integration
 gem 'oauth2'
+# Tree structure of ActiveRecord
+gem 'ancestry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

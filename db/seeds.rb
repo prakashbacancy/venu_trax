@@ -11,7 +11,7 @@ business_prebuid_fields = {
   'business_type': 'Picklist',
   'phone_no': 'Phone',
   'zip_code': 'Text',
-  'address': 'Text Area',
+  'address': 'Text',
   'city': 'Text',
   'state': 'Text',
   'no_of_employee': 'Integer',
@@ -37,7 +37,7 @@ venue_prebuild_fields = {
   'name': 'Text',
   'phone_no': 'Phone',
   'zip_code': 'Text',
-  'address': 'Text Area',
+  'address': 'Text',
   'city': 'Text',
   'state': 'Text',
   'description': 'Text Area',
@@ -46,3 +46,19 @@ venue_prebuild_fields = {
 venue_prebuild_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.venue.id, custom: false, deletable: false, required: true, position: 0)
 end
+
+# =========================================================================
+# NOTE: Run this manually once in your console after all migrations for `Dynamic Groups Fields`
+#
+# Group.find_or_create_by(name: 'Business Details', label: 'Business Details', klass_id: Klass.business.id, default: true)
+# Group.find_or_create_by(name: 'Business Information', label: 'Business Information', klass_id: Klass.user.id, ancestry: Group.find_by(name: 'Business Details').id.to_s, default: true)
+# Klass.business.fields.update_all(group_id: Group.find_by(name: 'Business Information').id)
+#
+# Group.find_or_create_by(name: 'User Details', label: 'User Details', klass_id: Klass.user.id, default: true)
+# Group.find_or_create_by(name: 'User Information', label: 'User Information', klass_id: Klass.user.id, ancestry: Group.find_by(name: 'User Details').id.to_s, default: true)
+# Klass.user.fields.update_all(group_id: Group.find_by(name: 'User Information').id)
+#
+# Group.find_or_create_by(name: 'Venue Details', label: 'Venue Details', klass_id: Klass.venue.id, default: true)
+# Group.find_or_create_by(name: 'Venue Information', label: 'Venue Information', klass_id: Klass.venue.id, ancestry: Group.find_by(name: 'Venue Details').id.to_s, default: true)
+# Klass.venue.fields.update_all(group_id: Group.find_by(name: 'Venue Information').id)
+# =========================================================================

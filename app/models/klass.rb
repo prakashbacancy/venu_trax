@@ -1,5 +1,6 @@
 class Klass < ApplicationRecord
   has_many :fields, dependent: :destroy
+  has_many :groups, dependent: :destroy
 
   scope :business, -> { find_by(name: 'Business') }
   scope :user, -> { find_by(name: 'User') }
