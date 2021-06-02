@@ -1,0 +1,1 @@
+$("#<%= @klass.name.downcase %>-tab-body").html("<%= escape_javascript(render partial: 'fields/index', locals: {klass: @klass, groups: @groups}) %>");
