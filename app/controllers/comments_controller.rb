@@ -3,11 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    if @comment.save
-      flash[:success] = 'Comment has been added'
-    else
-      flash[:alert] = 'Can not add a comment'
-    end
+    @comment.save
   end
 
   private
