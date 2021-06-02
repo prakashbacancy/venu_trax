@@ -7,7 +7,7 @@ class VenuesController < ApplicationController
   before_action :find_meetings, only: %i[show]
   before_action :set_klass
   before_action :find_dynamic_fields, only: %i[new edit create update]
-  before_action :find_basic_group, only: %i[show new edit]
+  before_action :find_basic_group, only: %i[show new edit create update]
 
   def index
     @venues = Venue.all
