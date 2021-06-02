@@ -1,8 +1,7 @@
 class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :business, only: %i[show new edit create update]
-  before_action :find_venues, only: %i[show]
-  before_action :find_notes, only: %i[show]
+  before_action :find_venues_notes_group, only: %i[show]
   before_action :set_klass, only: %i[show new edit create update]
   before_action :find_dynamic_fields, only: %i[new edit create update]
 
@@ -54,12 +53,10 @@ class BusinessesController < ApplicationController
     params.require(:business).permit(Business::PERMITTED_PARAM + dynamic_params)
   end
 
-  def find_venues
+  def find_venues_notes_group
     @venues = @business.venues
-  end
-
-  def find_notes
     @notes = @business.notes.recent
+    @info_group = Group.find_by(name: 'Business Information')
   end
 
   def set_klass

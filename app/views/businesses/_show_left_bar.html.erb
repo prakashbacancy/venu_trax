@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="row mt-4">
-      <% @klass.fields.visible.each do |field| %>
+      <% @info_group.fields.visible.each do |field| %>
         <% if field.column_type == 'Text Area HTML' %>
           <div class="col-12 mt-3">
         <% else %>
