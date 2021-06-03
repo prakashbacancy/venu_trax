@@ -46,7 +46,7 @@
 @media (max-width:1366px) {
   .user-login .content .user-login-inner {
     max-width: 600px;
-    padding: 30px 80px
+    padding: 30px 50px
   }
 }
 
@@ -59,6 +59,12 @@
 @media (max-width:767px) {
   .user-login .content .user-login-inner {
     padding: 20px 24px
+  }
+}
+
+@media (max-width: 1199px){
+  .content-wrapper, .right-side {
+      margin-top: 65px;
   }
 }
 

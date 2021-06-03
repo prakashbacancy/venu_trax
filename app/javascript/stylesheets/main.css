@@ -20099,7 +20099,7 @@ aside.main-sidebar  .main-sidebar-inner {
   display: block;
   text-align: left;
   min-height: 144px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .setting-icon {
