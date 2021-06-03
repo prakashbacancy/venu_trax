@@ -172,7 +172,18 @@
           plugins: {
             datalabels: {
               display: true,
-              align: 'top',
+              align: function(context) {
+                console.log(context.chart.config)
+                var index = context.dataIndex;
+                xAxisMaxValue = context.chart.scales["y-axis-0"].max
+                var value = context.dataset.data[index];
+                var invert = Math.abs(value) <= 1;
+                if (context.chart.config["type"] == "line"){
+                  return ( index >= 3) ? 'left' : 'center'
+                }else{
+                  return (xAxisMaxValue == value) ? 'end' : 'center'
+                }
+              },
               anchor: 'end',
               visibility: true,
               backgroundColor: function(context) {
@@ -186,8 +197,7 @@
               formatter: function(value) {
                 return (parseInt(value)).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
               },
-              padding: 3,
-              clamp: true
+              padding: 3
             }
           },
 
@@ -272,9 +282,9 @@
                 var value = context.dataset.data[index];
                 var invert = Math.abs(value) <= 1;
                 if (context.chart.config["type"] == "line"){
-                  return ( index >= 3) ? 'left' : 'end'
+                  return ( index >= 3) ? 'left' : 'center'
                 }else{
-                  return (xAxisMaxValue == value) ? 'start' : 'end'
+                  return (xAxisMaxValue == value) ? 'end' : 'center'
                 }
               },
               visibility: true,
@@ -375,7 +385,20 @@
           plugins: {
             datalabels: {
               display: true,
-              align: 'end',
+              align: function(context) {
+                console.log(context.chart.config)
+                var index = context.dataIndex;
+                xAxisMaxValue = context.chart.scales["y-axis-0"].max
+                var value = context.dataset.data[index];
+                var invert = Math.abs(value) <= 1;
+                if (context.chart.config["type"] == "line"){
+                  if (xAxisMaxValue == value){ return 'start'}
+                  else if(index >= 3){ return 'left'}
+                  else{return 'center'}
+                }else{
+                  return (xAxisMaxValue == value) ? 'end' : 'start'
+                }
+              },
               visibility: true,
               anchor: 'end',
               backgroundColor: function(context) {

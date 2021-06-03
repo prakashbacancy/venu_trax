@@ -65,11 +65,11 @@ class SimulationChart
       today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:daily_seating_capacity))
       data[:seating_capacity] = [{ data: today_data, library: @day_color_option }]
     when 'Weekly'
-      data[:seating_capacity] = [{ data: chart_data(simulation.where(created_at: @week).group_by_day(:created_at).sum(:week_seating_capacity)), library: @week_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:week_seating_capacity)), library: @week_color_option}]
     when 'Monthly'
-      data[:seating_capacity] = [{ data: chart_data(simulation.where(created_at: @month).group_by_week(:created_at, week_start: :monday).sum(:month_seating_capacity)), library: @month_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:month_seating_capacity)), library: @month_color_option}]
     when 'Annually'
-      data[:seating_capacity] = [{ data: chart_data(simulation.where(created_at: @month).group_by_month(:created_at).sum(:annual_seating_capacity)), library: @annualy_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:annual_seating_capacity)), library: @annualy_color_option}]
     when 'Date Range'
     data[:seating_capacity] = {"#{params[:start_date]} To #{params[:end_date]}" => 15000}
     else
