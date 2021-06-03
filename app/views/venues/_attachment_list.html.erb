@@ -1,12 +1,12 @@
 <% attachments = @venue&.attachments || @attachable.attachments %>
 	<div class="card card-body border-0">
-	  <div class="row mb-2">
+	  <div class="mb-2">
 				<% if attachments.present? %>
 					<% attachments.each do |attachment| %>
-		    		<div class="col-md-12 text-gray fs-16 d-flex align-items-center">
-				      <i class="fas fa-paperclip"></i>
+		    		<div class="col-md-12 text-gray fs-16 d-flex align-items-start">
+				      <i class="fas fa-paperclip mt-1"></i>
 				      <div class="ml-2">
-				        <p class="fs-14 "><%= attachment.venue_file.filename.to_s %></p>
+				        <p class="fs-14 word-break"><%= attachment.venue_file.filename.to_s %></p>
 				      </div>
 		    		</div>
 			    <% end %>
