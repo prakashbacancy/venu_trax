@@ -33,7 +33,7 @@
   /* max-width: 860px; */
   width: 100%;
   // border: #e8e8e9 1px solid;
-  padding: 60px 216px
+  padding: 60px 200px
 }
 
 @media (max-width:1440px) {
@@ -46,7 +46,13 @@
 @media (max-width:1366px) {
   .user-login .content .user-login-inner {
     max-width: 600px;
-    padding: 30px 80px
+    padding: 30px 50px
+  }
+}
+
+@media (max-width: 1199px){
+  .content-wrapper, .right-side {
+      margin-top: 65px;
   }
 }
 
@@ -59,6 +65,15 @@
 @media (max-width:767px) {
   .user-login .content .user-login-inner {
     padding: 20px 24px
+  }
+  .signin-logo{
+    width: 240px;
+  }
+}
+
+@media (max-width:380px) {
+  .login-extra-links .fs-14{
+    font-size: 12px !important;
   }
 }
 
@@ -170,7 +185,7 @@
 }
 
 .user-login input {
-  height: calc(3.25rem + 10px);
+  // height: calc(3.25rem + 10px);
 }
 
 .login-extra-links {

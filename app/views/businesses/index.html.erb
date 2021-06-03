@@ -11,25 +11,17 @@
     </div>
   </div>
   <div class="content position-relative">
-    <div class='row search-business'>
-      <div class="col-sm-8 col-lg-4">
-        <%# <input type="text" id="searchbox" class="form-control " style="width: 50%;display: inline;"> %>
-        <div class="row">
-          <div class="col-sm-6 col-lg-8">
-            <div class="form-group has-search">
-              <span class="fa fa-search form-control-feedback"></span>
-              <input type="text" class="form-control" placeholder="Search Business" id="searchbox">
-            </div>
-          </div>
-          <div class="col-sm-4 col-lg-4">
-            <button class="btn btn-primary form-group search_btn">Search</button>
-          </div>
+    <div class="d-flex align-items-center justify-content-between mt-2 search-card flex-wrap">
+      <div class="d-flex align-items-center flex-wrap my-1">
+        <div style="width: 300px;" class="mr-2 my-1 form-group mb-0 has-search d-flex position-relative">
+          <%= image_pack_tag 'sample/search.svg', class: 'mr-3 form-control-feedback search-icon', width: '16' %>
+          <input type="text" class="form-control searchbox" placeholder="Search Business"
+            id="searchbox">
         </div>
+        <button class="btn btn-primary form-group search_btn mb-0 my-1">Search</button>
       </div>
-      <div class="col-lg-8 col-sm-4">
-        <div class="add-item-btn mb-3 d-sm-flex flex-wrap flex-row-reverse">
-          <%= link_to "Add Business", new_business_path, remote: true, class: 'btn btn-primary mb-2' %>
-        </div>
+      <div class="my-1">
+        <%= link_to "Add Business", new_business_path, remote: true, class: 'btn btn-primary mb-0 text-white' %>
       </div>
     </div>
     <div class="admin-table bg-white table-responsive mt-3 business_list_div">

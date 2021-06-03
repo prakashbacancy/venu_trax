@@ -4,7 +4,7 @@ window.custom_datatable = function(table){
     dataTable = table.DataTable();
   } else {
     dataTable = table.DataTable({
-      dom: 't<"dataTable-bottom flex-md-row flex-column"lp>',
+      dom: 't<"dataTable-bottom flex-wrap mb-3"lp>',
       language: {
         paginate: {
           previous: "< Back",

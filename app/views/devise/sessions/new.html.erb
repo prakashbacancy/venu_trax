@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-6 right-hr d-flex justify-content-center align-items-center">
         <div class='p-4'>
-          <%= image_pack_tag 'login/VenuTRAX-WH-2s.png' %>
+          <%= image_pack_tag 'login/VenuTRAX-WH-2s.png', class: 'signin-logo' %>
         </div>
       </div>
       <div class="col-lg-6 d-flex justify-content-center align-items-center">
@@ -31,7 +31,7 @@
             <span toggle="#password-field" class="fa field-icon toggle-password"></span>
           </div>
           <div class="row mt-4 login-extra-links">
-            <div class="col-lg-6 col-sm-12">
+            <div class="col-6">
               <% if devise_mapping.rememberable? %>
               <div class="form-group mt-md-3 relative">
                 <div class="checkbox-area custom-control custom-checkbox">
@@ -41,8 +41,8 @@
               </div>
               <% end %>
             </div>
-            <div class="col-lg-6 col-sm-12 text-right">
-              <div class="form-group mt-md-3 relative">
+            <div class="col-6 text-right">
+              <div class="form-group mt-md-3 relative forgot-password-group">
                 <%= link_to 'Forgot Password?', new_user_password_path, class: "forgot-password forgot-link-right text-white fs-14 text-uppercase fw-600" %>
               </div>
             </div>
@@ -60,6 +60,9 @@
 <style>
   .checkbox-area .custom-control-label::before{
     background: rgba(255,255,255,0.2);
+  }
+  .forgot-password-group{
+    line-height: 0.9;
   }
 </style>
 

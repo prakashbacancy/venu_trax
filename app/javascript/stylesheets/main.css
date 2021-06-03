@@ -19938,7 +19938,7 @@ textarea.parsley-error {
 }
 
 div#business_list_table_length {
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
 }
 
 .dataTable-bottom {
@@ -19958,7 +19958,7 @@ div#business_list_table_length {
   color: #007AFF;
 }
 
-.search-business{
+.search-card{
   padding: 26px 11px 5px 11px;
   border: 1px solid #f7f8fa;
   margin: 0;
@@ -20099,7 +20099,7 @@ aside.main-sidebar  .main-sidebar-inner {
   display: block;
   text-align: left;
   min-height: 144px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .setting-icon {

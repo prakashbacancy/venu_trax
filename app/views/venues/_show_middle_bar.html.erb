@@ -2,52 +2,51 @@
   <button class="toggle-sidebar-button pl-3 pr-3 py-2 bg-white web-btn">
     <i class="icon-box fa fa-angle-double-left"></i>
   </button>
-  <div class='d-flex align-items-center justify-content-between'>
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="details-tab" data-toggle="tab"
-        href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
-        role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
-        aria-controls="emails-tab-body" aria-selected="false">Email</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
-        role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
-    </li>
-    <li class="nav-item cursor-not-allowed">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
-        aria-controls="events-tab-body" aria-selected="false">Events</a>
-    </li>
-    <li class="nav-item cursor-not-allowed">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="venue_contacts-tab" data-toggle="tab"
-        href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
-        Contacts</a>
-    </li>
-    <li class="nav-item cursor-not-allowed">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab"
-        aria-controls="brands-tab-body" aria-selected="false">Brands</a>
-    </li>
-    <li class="nav-item mr-auto">
-      <a class="nav-link fs-18 mx-sm-2 header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
-        aria-controls="simulation-tab-body" aria-selected="false">Simulation</a>
-    </li>
-    <li class="mt-3 mt-md-0 d-none text-nowrap">
-      <div class="ml-4 d-inline">
-        <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
-      </div>
-    </li>
-    <% set_google_token_flag = check_google_token %>
-  </ul>
-  <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
-    <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
-  </div>
+  <div class='d-md-flex align-items-center justify-content-between'>
+    <ul class="nav nav-tabs my-1" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="details-tab" data-toggle="tab"
+          href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
+          role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
+          aria-controls="emails-tab-body" aria-selected="false">Email</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
+          role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
+      </li>
+      <li class="nav-item cursor-not-allowed">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
+          aria-controls="events-tab-body" aria-selected="false">Events</a>
+      </li>
+      <li class="nav-item cursor-not-allowed">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="venue_contacts-tab" data-toggle="tab"
+          href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
+          Contacts</a>
+      </li>
+      <li class="nav-item cursor-not-allowed">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs not-allowed" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab"
+          aria-controls="brands-tab-body" aria-selected="false">Brands</a>
+      </li>
+      <li class="nav-item mr-auto">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
+          aria-controls="simulation-tab-body" aria-selected="false">Simulation</a>
+      </li>
+    
+      <% set_google_token_flag = check_google_token %>
+    </ul>
+    <div class="mt-2 mt-md-0 d-none text-nowrap my-1">
+      <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
+    </div>
+    <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div my-1 <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
+      <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
+    </div>
   </div>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade active show" id="details-tab-body" role="tabpanel" aria-labelledby="details-tab">

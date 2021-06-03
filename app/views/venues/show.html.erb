@@ -10,7 +10,6 @@
   <%= render 'sidebar' %>
 </section>
 <script>
-  $('body').toggleClass('sidebar-collapse');
   $('.toggle-sidebar-button').on('click', function () {
     $('body').toggleClass('sidebar-collapse')
     $(this).find('i').toggleClass('fa-angle-double-right').toggleClass('fa-angle-double-left')
@@ -24,6 +23,11 @@
   // var email_flag = <%= current_user.google_access_token.present? %>
   var email_flag = true
   $(document).ready(function(){
+    if ($(window).width() <= 767) {  
+      $('body').removeClass('sidebar-collapse');
+    } else {
+      $('body').addClass('sidebar-collapse');
+    }
     $('.enable_notes').on('click', function(){
       enable_this('notes-tab', 'notes-tab-body')
     })
@@ -32,7 +36,7 @@
     })
     $('.enable_meetings').on('click', function(){
       enable_this('meetings-tab', 'meetings-tab-body')
-      $('.sync_email').closest('li').addClass('d-none');
+      $('.sync_email').closest('div').addClass('d-none');
       $('.web-btn').addClass('d-none');
       $('.create_meeting').closest('div').removeClass('d-none');
     })
@@ -63,15 +67,15 @@
     })
     $('.header_tabs').on('click', function(){
       if(this.id == 'emails-tab'){
-        $('.sync_email').closest('li').removeClass('d-none');
+        $('.sync_email').closest('div').removeClass('d-none');
         $('.web-btn').addClass('d-none');
         $('.create_meeting').closest('div').addClass('d-none');
       } else if(this.id == 'meetings-tab'){
-        $('.sync_email').closest('li').addClass('d-none');
+        $('.sync_email').closest('div').addClass('d-none');
         $('.web-btn').addClass('d-none');
         $('.create_meeting').closest('div').removeClass('d-none');
       } else {
-        $('.sync_email').closest('li').addClass('d-none');
+        $('.sync_email').closest('div').addClass('d-none');
         $('.web-btn').removeClass('d-none');
         $('.create_meeting').closest('div').addClass('d-none');
       }
