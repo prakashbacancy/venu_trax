@@ -1,0 +1,17 @@
+<div class="mt-2">
+  <%= form_for [@attachment.attachable, @attachment], remote: true do |f| %>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <%= f.file_field :venue_file, class:"form-control", placeholder:"Enter Comment", required: true %>
+        </div>
+      </div>
+      <%= f.hidden_field :attachable_type, value: f.object.attachable_type %>
+      <%= f.hidden_field :attachable_id, value: f.object.attachable_id %>
+      <%= f.hidden_field :venue_id, value: @attachment.attachable.id %>
+      <div class="col-md-4">
+        <%= f.submit 'Add', class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

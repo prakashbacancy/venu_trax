@@ -3,6 +3,7 @@ class Venue < ApplicationRecord
   has_one :simulation
 
   has_many :notes, as: :notable
+  has_many :attachments, as: :attachable
   has_many :meetings, as: :meetingable, class_name: 'Meetings::Meeting', dependent: :destroy
 
 
