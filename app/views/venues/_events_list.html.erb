@@ -1,0 +1,49 @@
+<div class="event-data">
+  <div class="d-flex align-items-center justify-content-between mt-2 search-card flex-wrap">
+    <div class="d-flex align-items-center flex-wrap my-1">
+      <div style="width: 300px;" class="mr-2 my-1 form-group mb-0 has-search d-flex position-relative">
+        <%= image_pack_tag 'sample/search.svg', class: 'mr-3 form-control-feedback search-icon', width: '16' %>
+        <input type="text" class="form-control searchbox" placeholder="Search Event" id="searchbox">
+      </div>
+      <button class="btn btn-primary form-group search_btn mb-0 my-1">Search</button>
+    </div>
+    <div class="my-1">
+      <%= link_to "Add Event", new_venue_event_path(venue), remote: true, class: 'btn btn-primary mb-0 text-white' %>
+    </div>
+  </div>
+
+  <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
+    <table class="table table-bordered w-100 mb-5" id="event_list_table">
+      <thead class="thead-dark">
+        <th>Event Title</th>
+        <th>Start Date/Time</th>
+        <th>End Date/Time</th>
+        <th>Brands</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% events.each do |event| %>
+          <tr>
+            <td><%= event.title %></td>
+            <td class="no-wrap"><%= event.start_date_time.strftime('%m/%d/%Y %I:%M %p') %></td>
+            <td class="no-wrap"><%= event.end_date_time.strftime('%m/%d/%Y %I:%M %p') %></td>
+            <td><%= event.brands.count %></td>
+            <td>
+              <div class="action-area-buttons">
+                <%= link_to(edit_venue_event_path(venue, event), remote: true, class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_edit.svg'%>
+                <% end %>
+                <%= link_to(venue_event_path(venue, event), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Event?' }) do %>
+                  <%= image_pack_tag 'home/ic_delete.svg'%>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  custom_datatable($('#event_list_table'));
+</script>

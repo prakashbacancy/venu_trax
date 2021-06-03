@@ -4,7 +4,7 @@ class Venue < ApplicationRecord
 
   has_many :notes, as: :notable
   has_many :meetings, as: :meetingable, class_name: 'Meetings::Meeting', dependent: :destroy
-
+  has_many :events
 
   default_scope { order(created_at: :desc) }
 

@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
   before_action :find_business, only: %i[new edit create update destroy]
   before_action :set_business, only: %i[show]
   before_action :set_notes, only: %i[show]
-  before_action :find_meetings, only: %i[show]
+  before_action :find_meetings_events, only: %i[show]
   before_action :set_klass
   before_action :find_dynamic_fields, only: %i[new edit create update]
   before_action :find_basic_group, only: %i[show new edit create update]
@@ -102,8 +102,9 @@ class VenuesController < ApplicationController
     @klass = Klass.business
   end
 
-  def find_meetings
+  def find_meetings_events
     @meetings = @venue.meetings
+    @events = @venue.events
   end
 
   def find_dynamic_fields
