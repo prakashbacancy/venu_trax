@@ -10,13 +10,14 @@
       </div>
     <% end %>
     <div class="form-group">
-      <%= label_tag :label %>
+      <%= label_tag :label, 'Label', class: 'asterisk' %>
       <%= f.text_field :label, class: 'form-control', required: true %>
     </div>
     <div class="form-group">
-      <%= label_tag :parent_group %>
+      <%= label_tag :parent_group, 'Parent Group' %>
       <%= f.select :parent_id, options_for_select(klass.groups.root_groups_except(group).pluck(:label, :id), group.parent_id), {include_blank: 'Select Parent Group'}, class: 'form-control' %>
     </div>
+    <span><small><b>Note:</b> If User does not select any Parent Group then it would create a separate Group.</small></span>
     <%= f.hidden_field :klass_id, value: klass.id %>
     <div class="modal-footer modal-footer-fixed ">
       <%= f.submit "Save", class: 'btn btn-primary' %>
