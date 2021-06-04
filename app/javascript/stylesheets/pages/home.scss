@@ -555,6 +555,9 @@ table.dataTable {
 		}
 	}
 }
+.table.table-bordered.dataTable{
+	border-right-width: 1px;
+}
 
 .simulation-form form .form-control{
 	height: calc(3.20rem + -15px) !important
