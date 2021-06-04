@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :venue
 
-  has_many :event_brands
+  has_many :event_brands, dependent: :destroy
   has_many :brands, through: :event_brands
 
   accepts_nested_attributes_for :event_brands, reject_if: :all_blank, allow_destroy: true
