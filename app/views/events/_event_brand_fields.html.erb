@@ -1,0 +1,12 @@
+<div class='nested-fields brand_nested_fields mb-3'>
+  <div class="field">
+    <%= f.label :brand_id %>
+    <div class="d-flex align-items-center">
+      <%= f.select :brand_id, options_for_select( brand_option(Brand.all), selected: f.object.brand_id), {include_blank: 'Select Brand'}, {class:"form-control brand_select", required: true}%>
+      <span class="ml-3">
+      <%= link_to_remove_association(image_pack_tag('home/ic_delete.svg'), f) %>
+      </span>
+    </div>
+  </div>
+</div>
+<script>$('form').parsley();</script>

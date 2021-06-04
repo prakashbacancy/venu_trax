@@ -1,0 +1,90 @@
+<div class="modal-header">
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? 'Add' : 'Edit' %>
+  <h5 class="modal-title"><%= title_half %> Event</h5>
+  <div id="flashMessage", class="inner_flash_message"></div>
+</div>
+<div class="modal-body">
+  <%= form_for [venue, event], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.label :title, 'Event Title', class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :title, class:"form-control", placeholder:"Enter Title", required: true  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :start_date, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :start_date, class:"form-control datepicker", placeholder:"Select Start Date", required: true , value: pretty_date(f.object.start_date), autocomplete: 'off' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :start_time, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :start_time, class:"form-control timepicker", placeholder:"Select Start Time", required: true, value: f.object.start_time.try(:strftime, "%I:%M %p") %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_date, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :end_date, class:"form-control datepicker", placeholder:"Select End Date", required: true, value: pretty_date(f.object.end_date), autocomplete: 'off'  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_time, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :end_time, class:"form-control timepicker", placeholder:"Select End Time", required: true, value: f.object.end_time.try(:strftime, "%I:%M %p") %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", required: true, rows: 4 %>
+    </div>
+    <div class="form-group event_brands_fields">
+      <%= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
+        <%= render 'event_brand_fields', f: event_brand %>
+      <% end %>
+      <div class="links font-weight-bold mt-4">
+        <%= link_to_add_association '+ Add More', f, :event_brands, class: 'fs-16 add_more_fields' %>
+      </div>
+    </div>
+    <div class="modal-footer modal-footer-fixed">
+      <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
+      <%= f.submit save_button_title, class: "btn btn-primary" %>
+      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    </div>
+  <% end %>
+</div>
+<script>
+  let brands = "<%= brand_option_js(Brand.all) %>"
+  var brands_hash = JSON.parse(brands.replace(/&quot;/g, '\"').replace(/=&gt;/g, '\:'));
+  var custom_field_html = $.parseHTML($('.add_fields').attr('data-association-insertion-template'))[0]
+  var custom_field_jquery = $(custom_field_html)
+  var selected_brands = []
+
+  updateAddMoreFieldPartial = function(){
+    let local_field_jqeury = custom_field_jquery
+    local_field_jqeury.find('select').find('option').each(function(){
+      if(selected_brands.includes($(this).val().toString())){
+        $(this).remove();
+      }
+    })
+    let local_string = local_field_jqeury[0].outerHTML;
+    $('.add_fields').attr('data-association-insertion-template', local_string);
+  }
+
+  $('.brand_nested_fields').find('select :selected').each(function(){
+    console.log($(this).val())
+  })
+
+  $('.add_more_fields').on('click', function(e){
+    if(!$('.brand_nested_fields').find('select').parsley().isValid()){
+      $('.brand_nested_fields').find('select').parsley().validate();
+      return false;
+    }
+  })
+
+  $('.brand_nested_fields').find('select').on('change', function(){
+    selected_brands = [];
+    $('.brand_nested_fields').find('select :selected').each(function(){
+      selected_brands.push($(this).val());
+    })
+    updateAddMoreFieldPartial();
+  })
+
+  $(document).on('cocoon:before-insert', '.notes', function(e, insertedItem, originalEvent) {
+    counter = $(".terminal-name").length - 1;
+    checkName();
+    insertedItem.find(".terminal-name").val("Terminal " + counter);
+  })
+</script>

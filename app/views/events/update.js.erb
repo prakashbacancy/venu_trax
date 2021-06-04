@@ -1,0 +1,12 @@
+<% if params[:add_more].present? %>
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { event: @event, venue: @venue, add_more: true }) %>')
+  $('#events-tab-body').html('<%= j render(partial: 'venues/events_list', locals: { events: @events, venue: @venue }) %>')
+  $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('show');
+  $('.modal-content').scrollTop(0);
+  $('form').parsley();
+<% else %>
+  $('#events-tab-body').html('<%= j render(partial: 'venues/events_list', locals: { events: @events, venue: @venue }) %>')
+  $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('hide');
+<% end %>
