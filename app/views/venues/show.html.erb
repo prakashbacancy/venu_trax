@@ -33,12 +33,21 @@
     })
     $('.enable_emails').on('click', function(){
       enable_this('emails-tab', 'emails-tab-body')
+      $('.sync_email').closest('div').removeClass('d-none');
+      $('.web-btn').addClass('d-none');
+      $('.create_meeting').closest('div').addClass('d-none');
     })
     $('.enable_meetings').on('click', function(){
       enable_this('meetings-tab', 'meetings-tab-body')
       $('.sync_email').closest('div').addClass('d-none');
       $('.web-btn').addClass('d-none');
       $('.create_meeting').closest('div').removeClass('d-none');
+    })
+    $('.enable_events').on('click', function(){
+      enable_this('events-tab', 'events-tab-body')
+      $('.sync_email').closest('div').addClass('d-none');
+      $('.web-btn').removeClass('d-none');
+      $('.create_meeting').closest('div').addClass('d-none');
     })
     $('#emails-tab, .sync-gmail').on('click', function(){
       if (email_flag){
