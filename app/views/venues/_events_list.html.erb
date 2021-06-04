@@ -30,6 +30,9 @@
             <td><%= event.brands.count %></td>
             <td>
               <div class="action-area-buttons">
+                <%= link_to(venue_event_path(venue, event), remote: true, class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_view.svg'%>
+                <% end %>
                 <%= link_to(edit_venue_event_path(venue, event), remote: true, class: 'fa') do %>
                   <%= image_pack_tag 'home/ic_edit.svg'%>
                 <% end %>
@@ -44,6 +47,7 @@
     </table>
   </div>
 </div>
+<div class="event-view"></div>
 <script>
   custom_datatable($('#event_list_table'));
 </script>

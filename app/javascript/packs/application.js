@@ -47,25 +47,10 @@ require("datatables.net-bs4/css/dataTables.bootstrap4.min.css")
 
 const dataTables = [];
 
-Crm.events.onLoaded(function() {
+window.update_js = () => {
   $('.timepicker').timepicker({timeFormat: 'h:i A'});
   $('.timepicker').attr('autocomplete', 'nope')
   $('.timeend, .timestart').attr('autocomplete', 'off')
-  
-  // $('.datepicker').datepicker({format: 'mm/dd/yyyy', todayHighlight: true, autoclose: true});
-  // $('.timepicker').timepicker({timeFormat: 'h:i A'});
-  // $('.timepicker').datetimepicker({
-  //   format: "h:i A",
-  //   icons: {
-  //     date: "fa fa-calendar",
-  //     up: "fa fa-arrow-up",
-  //     down: "fa fa-arrow-down",
-  //     previous: "fa fa-chevron-left",
-  //     next: "fa fa-chevron-right",
-  //     today: "fa fa-clock-o",
-  //     clear: "fa fa-trash-o"
-  //   }
-  // });
   $('.datepicker').datetimepicker({
     format: "MM/DD/YYYY",
     icons: {
@@ -89,6 +74,24 @@ Crm.events.onLoaded(function() {
       clear: "fa fa-trash-o"
     }
   })
+}
+
+Crm.events.onLoaded(function() {
+  update_js();
+  // $('.datepicker').datepicker({format: 'mm/dd/yyyy', todayHighlight: true, autoclose: true});
+  // $('.timepicker').timepicker({timeFormat: 'h:i A'});
+  // $('.timepicker').datetimepicker({
+  //   format: "h:i A",
+  //   icons: {
+  //     date: "fa fa-calendar",
+  //     up: "fa fa-arrow-up",
+  //     down: "fa fa-arrow-down",
+  //     previous: "fa fa-chevron-left",
+  //     next: "fa fa-chevron-right",
+  //     today: "fa fa-clock-o",
+  //     clear: "fa fa-trash-o"
+  //   }
+  // });
   $('.datetimepicker').on('dp.change', function(e){ 
     // debugger;
     // console.log(e.date); 

@@ -1,0 +1,3 @@
+$('.event-view').html('<%= j render(partial: 'event_show', locals: { venue: @venue, event: @event }) %>')
+$('.event-view').removeClass('d-none');
+$('.event-data').addClass('d-none');

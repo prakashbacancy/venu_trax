@@ -37,6 +37,9 @@
         <%= link_to_add_association '+ Add More', f, :event_brands, class: 'fs-16 add_more_fields' %>
       </div>
     </div>
+    <% if params[:inside].present? %>
+      <%= f.hidden_field :inside, value: true %>
+    <% end %>
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary" %>

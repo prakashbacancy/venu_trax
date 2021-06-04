@@ -84,8 +84,13 @@
       $("#bottom_modal").modal('show');
       $('.modal-backdrop').removeClass('show');
     })
+    $('.events_enable').on('click', function(){
+      $('.event-view').addClass('d-none');
+      $('.event-data').removeClass('d-none');
+    })
   })
 </script>
+<%# Put styles here as per the designer! %>
 <style>
   .sidebar-collapse .main-sidebar {
     -webkit-transform: translate(320px, 0);
