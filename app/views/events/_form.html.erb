@@ -30,6 +30,7 @@
       <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", required: true, rows: 4 %>
     </div>
     <div class="form-group event_brands_fields">
+      <%= label_tag 'Brand' %>
       <%= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
         <%= render 'event_brand_fields', f: event_brand %>
       <% end %>
