@@ -18,7 +18,10 @@ class EventsController < ApplicationController
   def create
     if event.update(event_params)
       flash[:success] = 'Event Successfully Added!'
-      (@event = @venue.events.new) if params[:add_more].present?
+      if params[:add_more].present?
+        @event_more = @venue.events.new
+        @event_more.event_brands.build
+      end
     else
       flash[:alert] = 'Error Occurred While Adding an Event!'
     end
@@ -32,7 +35,10 @@ class EventsController < ApplicationController
   def update
     if event.update(event_params)
       flash[:success] = 'Event Successfully Updated!'
-      (@event = @venue.events.new) if params[:add_more].present?
+      if params[:add_more].present?
+        @event_more = @venue.events.new
+        @event_more.event_brands.build
+      end
     else
       flash[:alert] = 'Error Occurred While Updating an event!'
     end
