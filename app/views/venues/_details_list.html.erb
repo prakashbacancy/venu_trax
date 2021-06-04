@@ -14,9 +14,9 @@
     <div class="tab-content" id="myTabContent">
       <% klass.groups.each_with_index do |group, index| %>
         <div class='tab-pane fade  <%= 'active show' if index == 0 %>' id="group-<%= group.id %>-tab-body" role="tabpanel" aria-labelledby="group-<%= group.id %>-tab">
-          <div class=" bg-white  mt-3 overflow-hidden">
+          <div class=" bg-white  mt-4 overflow-hidden">
             <% group.descendants.each do |group| %>
-              <div class="shadow p-0 mb-3 bg-white rounded mt-4 detail_box">
+              <div class="shadow p-0 mb-3 bg-white rounded detail_box">
                 <div class="box-header border-bottom px-3 py-2">
                   <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <div>
