@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     resources :simulations do
       resources :comments, module: :simulation
     end
+    resources :events
   end
   resources :meetings do
     collection do
