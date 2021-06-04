@@ -22,7 +22,7 @@ class EventsController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Adding an Event!'
     end
-    @events = Event.all
+    @events = @venue.events
   end
 
   def edit
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Updating an event!'
     end
-    @events = Event.all
+    @events = @venue.events
   end
 
   def destroy
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Deleting an Event!'
     end
-    @events = Event.all
+    @events = @venue.events
   end
 
   private
