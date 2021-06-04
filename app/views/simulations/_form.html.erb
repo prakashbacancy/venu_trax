@@ -8,15 +8,15 @@
     <p class="text-gray fs-14 mt-3">Please enter all input details to see your Revenue Analytics</p>
     <%= f.hidden_field :venue_id, value: params[:venue_id] %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label 'Venue Details', class: 'text-capitalize fs-16 fw-600' %>
       <div class="row align-items-center mt-1">
         <%#= f.label 'Events Per Week', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-6 col-md-6">No of Event
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'No of Event' %>
         </p>
-      <%= f.number_field :event_per_year, autofocus: true, placeholder: 0,  class: 'form-control col-3 col-md-2 d-inline simulation-text-field', required: true, 'data-parsley-errors-container'=> ".event_per_year_error"%>
-        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-2 col-md-3 fs-14 ml-1"}%>
+      <%= f.number_field :event_per_year, autofocus: true, placeholder: 0,  class: 'form-control col-2 col-md-2 d-inline simulation-text-field', required: true, 'data-parsley-errors-container'=> ".event_per_year_error"%>
+        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-3 col-md-3 fs-14 ml-1"}%>
         <ul class="event_per_year_error"></ul>
       </div>
       <div class="row align-items-center">
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label 'Venue Visitor Attendance', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label 'Estimated Avg Annual Attendance(%)', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label :cost_lp_impression, 'LP CPM Cost', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label :cost_lp_impression, "Cost LP Impression",class: 'text-capitalize fs-16 col-8 col-md-9 ' %>
@@ -56,7 +56,7 @@
         <%= f.text_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
       </div>
     </div>
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label :cpa_impression_cost, 'LP CPA Cost', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label :cpa_impression_cost, "Cost CPA Impression",class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
@@ -66,7 +66,7 @@
         <%= f.text_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', pattern: '\$\d+(?:\.\d+)?', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
       </div>
     </div>
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label :event_usage_impression, 'Visitor WIFI Impressions', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label 'Daily/Event Usage Impression', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label :cpm_impression_cost, 'CPM Impression Cost', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label :cpm_impression_cost, 'Per Day/Event', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
@@ -88,7 +88,7 @@
       </div>
     </div>
 
-    <div class="px-3 border py-2 border-light">
+    <div class="border py-2 border-light">
       <%= f.label 'Venue Contract Term', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center">
         <%#= f.label 'No of Months', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
