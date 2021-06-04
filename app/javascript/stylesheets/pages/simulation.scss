@@ -64,9 +64,46 @@
     display: block;
   }
 }
-  @media only screen and (max-width: 767px)  {
-    .simulation-content {
-      padding-right: 15px !important;
-      padding-left: 15px !important;
-    }
+@media only screen and (max-width: 767px)  {
+  .simulation-content {
+    padding-right: 15px !important;
+    padding-left: 15px !important;
   }
+  .content-wrapper  .simulations-content {
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+  }
+  .simulation-tab .nav-tabs{padding-bottom: 12px;}
+}
+@media only screen and (max-width: 1500px){
+  .simulation-btn-2 {
+    display: block !important;
+  }
+}
+
+
+@media only screen and (max-width: 1024px){
+  .simulations-tab {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .content-wrapper  .simulations-content {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+}
+
+.simulation-tab .nav-tabs li .nav-link {
+  white-space: nowrap;
+}
+
+.simulation-tab  .btn {
+  padding: 0.9rem 0.7rem;
+}
+
+.simulation-text-field {
+  padding: .375rem .35rem;
+}
