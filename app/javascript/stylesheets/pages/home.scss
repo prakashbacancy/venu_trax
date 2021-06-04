@@ -457,6 +457,39 @@ header {
 	}
 }
 
+@media only screen and (max-width: 768px){
+	.modal.modal-right .btn {
+		min-width: 130px;
+		padding: 11px 15px;
+		margin: 12px;
+	}
+}
+
+@media only screen and (max-width: 512px){
+	.modal.modal-right .btn {
+		min-width: 100px;
+		padding: 10px 15px;
+		margin: 12px;
+	}
+}
+
+@media only screen and (max-width: 400px){
+	.modal.modal-right .btn {
+    min-width: auto;
+    padding: 11px 19px;
+    margin: 12px 9px;
+	}
+}
+
+@media only screen and (max-width: 360px){
+	.modal.modal-right .btn {
+		min-width: auto;
+		padding: 11px 15px;
+		margin: 12px 7px;
+		font-size: 14px !important;
+	}
+}
+
 .bg-light-gray {
 	background-color: #DCDCDC;
 }
