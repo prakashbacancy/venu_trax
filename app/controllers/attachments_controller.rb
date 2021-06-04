@@ -30,7 +30,7 @@ class AttachmentsController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Deleting A Attachment!'
     end
-    redirect_to @attachable
+    @attachable = @attachment.attachable
   end
 
   private
