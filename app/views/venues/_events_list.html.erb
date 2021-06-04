@@ -23,25 +23,27 @@
       </thead>
       <tbody>
         <% events.each do |event| %>
-          <tr>
-            <td><%= event.title %></td>
-            <td class="no-wrap"><%= event.start_date_time.strftime('%m/%d/%Y %I:%M %p') %></td>
-            <td class="no-wrap"><%= event.end_date_time.strftime('%m/%d/%Y %I:%M %p') %></td>
-            <td><%= event.brands.count %></td>
-            <td>
-              <div class="action-area-buttons">
-                <%= link_to(venue_event_path(venue, event), remote: true, class: 'fa') do %>
-                  <%= image_pack_tag 'home/ic_view.svg'%>
-                <% end %>
-                <%= link_to(edit_venue_event_path(venue, event), remote: true, class: 'fa') do %>
-                  <%= image_pack_tag 'home/ic_edit.svg'%>
-                <% end %>
-                <%= link_to(venue_event_path(venue, event), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Event?' }) do %>
-                  <%= image_pack_tag 'home/ic_delete.svg'%>
-                <% end %>
-              </div>
-            </td>
-          </tr>
+          <% unless event.new_record? %>
+            <tr>
+              <td><%= event.title %></td>
+              <td class="no-wrap"><%= event.start_date_time.strftime('%m/%d/%Y %I:%M %p') if event.start_date.present? %></td>
+              <td class="no-wrap"><%= event.end_date_time.strftime('%m/%d/%Y %I:%M %p') if event.end_date.present? %></td>
+              <td><%= event.brands.count %></td>
+              <td>
+                <div class="action-area-buttons">
+                  <%= link_to(venue_event_path(venue, event), remote: true, class: 'fa') do %>
+                    <%= image_pack_tag 'home/ic_view.svg'%>
+                  <% end %>
+                  <%= link_to(edit_venue_event_path(venue, event), remote: true, class: 'fa') do %>
+                    <%= image_pack_tag 'home/ic_edit.svg'%>
+                  <% end %>
+                  <%= link_to(venue_event_path(venue, event), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Event?' }) do %>
+                    <%= image_pack_tag 'home/ic_delete.svg'%>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
