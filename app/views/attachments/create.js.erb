@@ -1,0 +1,3 @@
+$(".attachment").html('')
+$("#collapseAttach").html("<%= j render partial: 'venues/attachment_list' %>")
+$(".total-count").text("<%= @attachable.attachments.count%>")

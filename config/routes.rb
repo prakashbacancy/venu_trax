@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :credentials, only: %i[edit update]
   resources :venues do
     resources :notes, module: :venue
+    resources :attachments, module: :venue
     resources :meetings do
       resources :comments, module: :meeting
     end
