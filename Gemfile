@@ -46,6 +46,8 @@ gem 'google-apis-gmail_v1'
 gem 'oauth2'
 # Tree structure of ActiveRecord
 gem 'ancestry'
+#
+gem 'cocoon'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
