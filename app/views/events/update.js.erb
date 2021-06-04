@@ -5,8 +5,15 @@
   $("#right_modal").modal('show');
   $('.modal-content').scrollTop(0);
   $('form').parsley();
+  // NOTE: temporary fix
+  update_js();
 <% else %>
   $('#events-tab-body').html('<%= j render(partial: 'venues/events_list', locals: { events: @events, venue: @venue }) %>')
   $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('hide');
+<% end %>
+<% if params[:event][:inside].present? %>
+  $('.event-view').html('<%= j render(partial: 'event_show', locals: { venue: @venue, event: @event }) %>')
+  $('.event-view').removeClass('d-none');
+  $('.event-data').addClass('d-none');
 <% end %>
