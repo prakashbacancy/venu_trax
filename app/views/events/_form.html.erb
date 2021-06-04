@@ -11,25 +11,38 @@
     </div>
     <div class="form-group">
       <%= f.label :start_date, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :start_date, class:"form-control datepicker", placeholder:"Select Start Date", required: true , value: pretty_date(f.object.start_date), autocomplete: 'off' %>
+      <%= f.text_field :start_date, class:"form-control datepicker", placeholder:"Select Start Date", required: true , value: pretty_date(f.object.start_date), autocomplete: 'off', onkeydown: "return false;" %>
+      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+        <li class="parsley-required" id="start-date-msg" style="display: none">Start Date should be less than End Date.</li>
+      </ul>
     </div>
     <div class="form-group">
       <%= f.label :start_time, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :start_time, class:"form-control timepicker", placeholder:"Select Start Time", required: true, value: f.object.start_time.try(:strftime, "%I:%M %p") %>
+      <%= f.text_field :start_time, class:"form-control timepicker", placeholder:"Select Start Time", required: true, value: f.object.start_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
+      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+        <li class="parsley-required" id="start-time-msg" style="display: none">Start Time should be less than End Time.</li>
+      </ul>
     </div>
     <div class="form-group">
       <%= f.label :end_date, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :end_date, class:"form-control datepicker", placeholder:"Select End Date", required: true, value: pretty_date(f.object.end_date), autocomplete: 'off'  %>
+      <%= f.text_field :end_date, class:"form-control datepicker", placeholder:"Select End Date", required: true, value: pretty_date(f.object.end_date), autocomplete: 'off', onkeydown: "return false;" %>
+      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+        <li class="parsley-required" id="end-date-msg" style="display: none">End Date should be more than Start Date.</li>
+      </ul>
     </div>
     <div class="form-group">
       <%= f.label :end_time, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :end_time, class:"form-control timepicker", placeholder:"Select End Time", required: true, value: f.object.end_time.try(:strftime, "%I:%M %p") %>
+      <%= f.text_field :end_time, class:"form-control timepicker", placeholder:"Select End Time", required: true, value: f.object.end_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
+      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+        <li class="parsley-required" id="end-time-msg" style="display: none">Start Time should be less than End Time.</li>
+      </ul>
     </div>
     <div class="form-group">
       <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", required: true, rows: 4 %>
     </div>
     <div class="form-group event_brands_fields">
+      <%= label_tag 'Add Brand', 'Add Brand' %>
       <%= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
         <%= render 'event_brand_fields', f: event_brand %>
       <% end %>
@@ -42,8 +55,8 @@
     <% end %>
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
-      <%= f.submit save_button_title, class: "btn btn-primary" %>
-      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <%= f.submit save_button_title, class: "btn btn-primary add_event" %>
+      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary add_event" %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>
@@ -92,6 +105,36 @@
   })
 
   $(document).ready(function(){
+    $('.timepicker').attr('autocomplete', 'off')
     $('.event_brands_fields').find('.nested-fields').first().find('span').addClass('d-none');
+    $('.add_event').on('click', function(){
+      start_date = Date.parse($('#event_start_date').val())
+      end_date = Date.parse($('#event_end_date').val())
+      start_date_time = Date.parse($('#event_start_date').val() + ' ' + $('#event_start_time').val())
+      end_date_time = Date.parse($('#event_end_date').val() + ' ' + $('#event_end_time').val())
+      $('#start-time-msg').hide();
+      $('#end-time-msg').hide();
+      $('#start-date-msg').hide();
+      $('#end-date-msg').hide();
+      if (start_date == end_date){
+        if (start_date_time > end_date_time) {
+          $('#start-time-msg').show();
+          $('#end-time-msg').show();
+          return false;
+        } else {
+          $('#start-time-msg').hide();
+          $('#end-time-msg').hide();
+        }
+      } else {
+        if (start_date > end_date) {
+          $('#start-date-msg').show();
+          $('#end-date-msg').show();
+          return false;
+        } else {
+          $('#start-date-msg').hide();
+          $('#end-date-msg').hide();
+        }
+      }
+    })
   })
 </script>
