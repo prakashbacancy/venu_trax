@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_venue, only: %i[new edit create update destroy]
   before_action :event, only: %i[show new edit create update]
-  before_action :find_venues_notes_group, only: %i[show]
+  before_action :find_venue_group, only: %i[show]
   before_action :set_klass, only: %i[show new edit create update]
   # before_action :find_dynamic_fields, only: %i[new edit create update]
   # before_action :find_basic_group, only: %i[new edit create update]
@@ -70,9 +70,8 @@ class EventsController < ApplicationController
     @venue = Venue.find(params[:venue_id])
   end
 
-  def find_venues_notes_group
-    @venues = @event.venues
-    @notes = @event.notes.recent
+  def find_venue_group
+    @venue = @event.venue
     @info_group = Group.find_by(name: 'Event Information')
   end
 
