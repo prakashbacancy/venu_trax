@@ -20,8 +20,8 @@ module EventsHelper
   end
 
   # To find out Time difference for event details page
-  def time_diff(b_date_time, a_date_time)
-    seconds = ((a_date_time - b_date_time) * 24 * 60 * 60).to_i
+  def time_diff(start_date_time, end_date_time)
+    seconds = ((end_date_time - start_date_time) * 24 * 60 * 60).to_i
     minutes = seconds / 60
     min = minutes % 60
     hours = minutes / 60
