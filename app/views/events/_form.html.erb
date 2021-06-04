@@ -46,7 +46,7 @@
   <% end %>
 </div>
 <script>
-  let brands = "<%= brand_option_js(Brand.all) %>"
+  var brands = "<%= brand_option_js(Brand.all) %>"
   var brands_hash = JSON.parse(brands.replace(/&quot;/g, '\"').replace(/=&gt;/g, '\:'));
   var custom_field_html = $.parseHTML($('.add_fields').attr('data-association-insertion-template'))[0]
   var custom_field_jquery = $(custom_field_html)
