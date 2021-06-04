@@ -100,6 +100,7 @@ class VenuesController < ApplicationController
 
   def set_klass
     @klass = Klass.business
+    @venue_klass = Klass.venue
   end
 
   def find_meetings_events
@@ -108,7 +109,7 @@ class VenuesController < ApplicationController
   end
 
   def find_dynamic_fields
-    fields = @klass.fields.includes(:field_picklist_values)
+    fields = @venue_klass.fields.includes(:field_picklist_values)
     @data = {}
     fields.each do |field|
       @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
