@@ -4,7 +4,7 @@
 			<% if attachments.present? %>
 				<% attachments.each do |attachment| %>
 	    		<div class="col-md-10 col-sm-9 text-gray fs-16 d-flex align-items-start">
-			      <i class="fas fa-paperclip mt-1"></i>
+			      <%= link_to "<i class='fas fa-paperclip mt-1'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment') %>
 			      <div class="ml-2">
 			        <p class="fs-14 word-break"><%= attachment.venue_file.filename.to_s %></p>
 			      </div>
