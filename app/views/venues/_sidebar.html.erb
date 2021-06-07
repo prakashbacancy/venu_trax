@@ -49,7 +49,7 @@
         <div class="attachment"></div>
       </div>
       <div class="collapse show" id="collapseAttach">
-        <%= render partial: 'attachment_list' %>
+        <%= render partial: 'attachment_list', locals: {venue: @venue, attachable: @attachable} %>
       </div>
     </div>
     <div class="sidebar mb-1">
