@@ -2189,12 +2189,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #dee2e6
+  border: 1px solid #f1f1f1 !important;
 }
 
 .table-bordered td,
 .table-bordered th {
-  border: 1px solid #dee2e6
+  border: 1px solid #f1f1f1 !important;
 }
 
 .table-bordered thead td,
@@ -8633,10 +8633,10 @@ button.bg-dark:hover {
 }
 .content .shadow {
   -webkit-box-shadow: 0px 3px 25px #76767612 !important;
-  box-shadow: 0px 3px 25px #76767612 !important;
-  border: 1px solid #EDEDED;
-  border-radius: 5px !important;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0 3px 25px hsla(0,0%,46.3%,0.07058823529411765)!important;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px!important;
+  background: #fff 0% 0% no-repeat padding-box;
 }
 .shadow-lg {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
@@ -19944,6 +19944,7 @@ div#business_list_table_length {
 .dataTable-bottom {
   margin-top: 30px;
   align-items: center;
+  padding: 0px 15px !important;
 }
 
 .page-title .content{

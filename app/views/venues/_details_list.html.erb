@@ -1,7 +1,7 @@
 <div class="details-view">
   <div class="py-3 position-relative tab-section ">
-    <div class="d-flex align-items-center justify-content-between">
-      <ul class="nav nav-tabs mb-0" id="myTab" role="tablist">
+    <div class="d-flex align-items-center justify-content-between search-card border-0 px-0 p-0 sub-tab">
+      <ul class="nav nav-tabs mb-0 border-0" id="myTab" role="tablist">
         <% klass.groups.root_groups.each_with_index do |group, index| %>
           <li class="nav-item">
             <a class='nav-link fs-16 mx-sm-1 header_tabs <%= 'active' if index == 0 %>' id="group-<%= group.id %>-tab" data-toggle="tab" href="#group-<%= group.id %>-tab-body"
