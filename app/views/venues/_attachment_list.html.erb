@@ -3,13 +3,13 @@
 	  <div class="row">
 			<% if attachments.present? %>
 				<% attachments.each do |attachment| %>
-	    		<div class="col-md-10 col-sm-9 text-gray fs-16 d-flex align-items-start">
-			      <%= link_to "<i class='fas fa-paperclip mt-1'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment') %>
+	    		<div class="col-md-10 col-sm-9 text-gray fs-16 d-flex align-items-start attachment-<%=attachment.id%>">
+			      <%= link_to "<i class='fas fa-paperclip mt-1 mr-2'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment') %>
 			      <div class="ml-2">
 			        <p class="fs-14 word-break"><%= attachment.venue_file.filename.to_s %></p>
 			      </div>
 	    		</div>
-	    		<div class="col-md-2 col-sm-3">
+	    		<div class="col-md-2 col-sm-3 attachment-<%=attachment.id%>">
 		    		<%= link_to venue_attachment_path((@venue&.id || @attachable.id) ,attachment), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this Attachment?'}, class: 'common-link pull-right edit-delete icon' do %>
             	<%= image_pack_tag 'home/ic_delete.svg'%>
          	 	<% end %>
