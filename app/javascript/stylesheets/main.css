@@ -19961,7 +19961,8 @@ div#business_list_table_length {
 
 .search-card{
   padding: 16px 20px;
-  border: 1px solid #f7f8fa;
+  box-shadow: 0 3px 25px hsla(0,0%,46.3%,0.07058823529411765) !important;
+  border: 1px solid #f1f1f1;
   margin: 0;
   background-color: white;
 }
