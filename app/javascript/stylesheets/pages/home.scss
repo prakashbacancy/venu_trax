@@ -914,9 +914,9 @@ table.dataTable {
 	margin-top: 0px!important; 
 	margin-bottom: 0px!important;
 }
-.main-sidebar-right .middle_part .content .nav-tabs .nav-item .nav-link {
-	padding-top: 14px;
-	padding-bottom: 14px;
+.main-sidebar-right .middle_part .content .sub-tab .nav-item .nav-link {
+	padding-top: 13px !important;
+	padding-bottom: 13px !important;
 }
 .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
 	border-color: none;
@@ -924,4 +924,8 @@ table.dataTable {
 .nav>li>a:active, .nav>li>a:focus, .nav>li>a:hover {
 	color: #444;
 	background: unset;
+}
+.detail_box .box-header {
+	padding-left: 20px;
+	padding-right: 20px;
 }
