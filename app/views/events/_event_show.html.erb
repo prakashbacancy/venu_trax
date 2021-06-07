@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center flex-wrap justify-content-between mt-3 search-card">
+<div class="d-flex align-items-center flex-wrap justify-content-between mt-3 search-card event-top-bar">
   <div class="my-1">
     <%= link_to "Edit Event", edit_venue_event_path(venue, event, inside: true), remote: true, class: 'btn btn-primary my-1' %>
     <%= link_to "Add Event", new_venue_event_path(venue, inside: true), remote: true, class: 'btn btn-primary ml-2 my-1' %>
@@ -11,62 +11,41 @@
   <div class="d-flex align-items-center justify-content-between">
     <ul class="nav nav-tabs mb-0" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link fs-18 mx-sm-2 header_tabs active" id="event-detail-tab" data-toggle="tab"
+        <a class="nav-link fs-18 mx-sm-2 header_tabs active sub_event_tabs" id="event-detail-tab" data-toggle="tab"
           href="#event-detail-tab-body" role="tab" aria-controls="event-detail-tab-body"
           aria-selected="false">Event Details
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs sub_event_tabs" id="revenue-tab" data-toggle="tab"
+          href="#revenue-tab-body" role="tab" aria-controls="revenue-tab-body"
+          aria-selected="true">Revenue Sources
+        </a>
+      </li>
     </ul>
+    <div class="mt-2 mt-md-0 d-none text-nowrap revenue_source_create_div my-1" >
+      <%= link_to "Add Revenue Source", new_venue_revenue_source_path(venue), remote: true, class: "btn btn-primary add_revenue_source text-nowrap ml-3" %>
+    </div>
   </div>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade  active show" id="event-detail-tab-body" role="tabpanel"
       aria-labelledby="event-detail-tab">
-      <div class=" mb-3">
-        <div class="d-md-flex align-items-start mt-4 pt-2">
-          <div class="mr-5">
-            <div class="mb-3">
-              <p class="text-gray-light fs-14 text-uppercase">Start Date</p>
-              <p class="text-dark2 fw-700 fs-15"><%= event.start_date.try(:strftime, '%m/%d/%Y') %><!-- 03/26/1972 -->
-              </p>
-            </div>
-            <div class="mb-3">
-              <p class="text-gray-light fs-14 text-uppercase">Start Time</p>
-              <p class="text-dark2 fw-700 fs-15"><%= event.start_time.try(:strftime, "%I:%M %p") %>
-              </p>
-            </div>
-            <div class="mb-3">
-              <p class="text-gray-light fs-14 text-uppercase">End Date</p>
-              <p class="text-dark2 fw-700 fs-15"><%= event.end_date.try(:strftime, '%m/%d/%Y') %>
-              </p>
-            </div>
-            <div class="mb-3">
-              <p class="text-gray-light fs-14 text-uppercase">End Time</p>
-              <p class="text-dark2 fw-700 fs-15"><%= event.end_time.try(:strftime, "%I:%M %p") %>
-              </p>
-            </div>
-            <div class="mb-3">
-              <p class="text-gray-light fs-14 text-uppercase no-wrap">Total Game Time</p>
-              <p class="text-dark2 fw-700 fs-15"><%= time_diff(event.start_date_time, event.end_date_time) %>
-              </p>
-            </div>
-          </div>
-
-          <div class="event-detail-right">
-            <p class="text-dark2 fw-600 fs-19"><%= event.title %> Description</p>
-            <p class="text-light-gray mt-3 fs-14 mb-4"><%= event.description %></p>
-
-            <p class="text-dark2 fw-600 fs-19 mb-4">Brands Participating
-            </p>
-
-            <% event.brands.each do |brand| %>
-              <div class="mb-3">
-                <%= image_pack_tag "sample/#{brand_logo(brand)}", class: 'img-fluid', width: '36' %>
-                <span class="text-dark2 fw-600 fs-16 ml-2"><%= brand.name %></span>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render 'event_details_tab', event: event %>
+    </div>
+    <div class="tab-pane fade" id="revenue-tab-body" role="tabpanel" aria-labelledby="revenue-tab">
+      <% revenue_brands = Brand.all %>
+      <%= render partial: 'revenue_sources/revenue_brand', collection: revenue_brands, locals: { event: event, venue: venue } %>
     </div>
   </div>
 </div>
+<script>
+  $('.sub_event_tabs').on('click', function(){
+    if($(this).attr('id') == 'revenue-tab'){
+      $('.event-top-bar').addClass('d-none').removeClass('d-flex');
+      $('.revenue_source_create_div').removeClass('d-none').addClass('d-flex');
+    } else {
+      $('.event-top-bar').addClass('d-flex').removeClass('d-none');
+      $('.revenue_source_create_div').removeClass('d-flex').addClass('d-none');
+    }
+  })
+</script>
