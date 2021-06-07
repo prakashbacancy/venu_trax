@@ -24,10 +24,10 @@ class SimulationChart
 		set_date_filter
 		simulation =  @simulation
 
-    daily_data = simulation.where(created_at: @today)
-    week_data = simulation.where(created_at: @week)
-    month_data = simulation.where(created_at: @month)
-    year_data = simulation.where(created_at: @year)
+    daily_data = simulation.where(updated_at: @today)
+    week_data = simulation.where(updated_at: @week)
+    month_data = simulation.where(updated_at: @month)
+    year_data = simulation.where(updated_at: @year)
 		seating_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
     vistior_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
     wifilp_login_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)
@@ -62,14 +62,14 @@ class SimulationChart
     year = year_data.sum(:annual_seating_capacity)
     @date_range = case params[:option]
     when 'Today'
-      today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:daily_seating_capacity))
+      today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:daily_seating_capacity))
       data[:seating_capacity] = [{ data: today_data, library: @day_color_option }]
     when 'Weekly'
-      data[:seating_capacity] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:week_seating_capacity)), library: @week_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:week_seating_capacity)), library: @week_color_option}]
     when 'Monthly'
-      data[:seating_capacity] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:month_seating_capacity)), library: @month_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:month_seating_capacity)), library: @month_color_option}]
     when 'Annually'
-      data[:seating_capacity] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:annual_seating_capacity)), library: @annualy_color_option}]
+      data[:seating_capacity] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:annual_seating_capacity)), library: @annualy_color_option}]
     when 'Date Range'
     data[:seating_capacity] = {"#{params[:start_date]} To #{params[:end_date]}" => 15000}
     else
@@ -92,14 +92,14 @@ class SimulationChart
     year_visitor = year_data.sum(:avg_attendance_annual_event)
       @date_range = case params[:option]
       when 'Today'
-        today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:avg_attendance_event))
+        today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:avg_attendance_event))
         data[:visitor_attendance] = [{ data: today_data, library: @day_color_option }]
       when 'Weekly'
-        data[:visitor_attendance] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:week_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h), library: @week_color_option}]
+        data[:visitor_attendance] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:week_attendance_event).collect{|k,v| [k.to_s + '_', v]}.to_h), library: @week_color_option}]
       when 'Monthly'
-        data[:visitor_attendance] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:month_attendance_event)), library: @month_color_option}]
+        data[:visitor_attendance] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:month_attendance_event)), library: @month_color_option}]
       when 'Annually'
-        data[:visitor_attendance] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:avg_attendance_annual_event)), library: @annualy_color_option}]
+        data[:visitor_attendance] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:avg_attendance_annual_event)), library: @annualy_color_option}]
       else
         data[:visitor_attendance] =  [{"data"=>[["Daily", daily_visitor], ["Weekly", week_visitor], ["Monthly", month_visitor], ["Annually", year_visitor]],
       "library"=> @color_option }]
@@ -121,14 +121,14 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_lp_per_day_login))
+        today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:wifi_lp_per_day_login))
         data[:wifi_lp_login] = [{ data: today_data, library: @day_color_option }]
       when 'Weekly'
-        data[:wifi_lp_login] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:wifi_lp_week_login)), library: @week_color_option}]
+        data[:wifi_lp_login] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:wifi_lp_week_login)), library: @week_color_option}]
       when 'Monthly'
-        data[:wifi_lp_login] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_lp_month_login)), library: @month_color_option}]
+        data[:wifi_lp_login] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:wifi_lp_month_login)), library: @month_color_option}]
       when 'Annually'
-        data[:wifi_lp_login] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:wifi_lp_annual_login)), library: @annualy_color_option}]
+        data[:wifi_lp_login] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:wifi_lp_annual_login)), library: @annualy_color_option}]
       else
         data[:wifi_lp_login] = [{"data"=>[["Daily", daily_wifi_lp_login], ["Weekly", week_wifi_lp_login], ["Monthly", month_wifi_lp_login], ["Annually", year_wifi_lp_login]],
       "library"=> @color_option}]
@@ -151,14 +151,14 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:lp_rev_per_day_total))
+        today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:lp_rev_per_day_total))
         data[:lp_impression] = [{ data: today_data, library: @day_color_option }]
       when 'Weekly'
-        data[:lp_impression] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:lp_rev_week_total)), library: @week_color_option}]
+        data[:lp_impression] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:lp_rev_week_total)), library: @week_color_option}]
       when 'Monthly'
-        data[:lp_impression] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:lp_rev_month_total)), library: @month_color_option}]
+        data[:lp_impression] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:lp_rev_month_total)), library: @month_color_option}]
       when 'Annually'
-        data[:lp_impression] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:lp_rev_annual_total)), library: @annualy_color_option}]
+        data[:lp_impression] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:lp_rev_annual_total)), library: @annualy_color_option}]
       else
         data[:lp_impression] = [{"data"=>[["Daily", daily_lp_impression], ["Weekly", week_lp_impression], ["Monthly", month_lp_impression], ["Annually", year_lp_impression]],
       "library"=> @color_option}]
@@ -182,14 +182,14 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        today_data = chart_data(daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:user_impression_per_day))
+        today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:user_impression_per_day))
         data[:user_impression] = [{ data: today_data, library: @day_color_option }]
       when 'Weekly'
-        data[:user_impression] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:user_impression_per_day)), library: @week_color_option}]
+        data[:user_impression] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:user_impression_per_day)), library: @week_color_option}]
       when 'Monthly'
-        data[:user_impression] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:user_impression_per_day)), library: @month_color_option}]
+        data[:user_impression] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:user_impression_per_day)), library: @month_color_option}]
       when 'Annually'
-        data[:user_impression] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:user_impression_per_day)), library: @annualy_color_option}]
+        data[:user_impression] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:user_impression_per_day)), library: @annualy_color_option}]
       else
         data[:user_impression] = [{"data"=>[["Daily", daily_user_impression], ["Weekly", week_user_impression], ["Monthly", month_user_impression], ["Annually", year_user_impression]],
       "library"=> @color_option }]
@@ -212,14 +212,14 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        today_data = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:cpm_impression_per_day)
+        today_data = daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:cpm_impression_per_day)
         data[:cpm_impression] = [{ data: today_data, library: @day_color_option }]
       when 'Weekly'
-        data[:cpm_impression] = [{ data: chart_data(week_data.group_by_day(:created_at).sum(:cpm_impression_week)), library: @week_color_option}]
+        data[:cpm_impression] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:cpm_impression_week)), library: @week_color_option}]
       when 'Monthly'
-        data[:cpm_impression] = [{ data: chart_data(month_data.group_by_week(:created_at, week_start: :monday).sum(:cpm_impression_month)), library: @month_color_option}]
+        data[:cpm_impression] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:cpm_impression_month)), library: @month_color_option}]
       when 'Annually'
-        data[:cpm_impression] = [{ data: chart_data(year_data.group_by_month(:created_at).sum(:cpm_impression_annual)), library: @annualy_color_option}]
+        data[:cpm_impression] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:cpm_impression_annual)), library: @annualy_color_option}]
       else
         data[:cpm_impression] = [{"data"=>[["Daily", daily_cpm_impression], ["Weekly", week_cpm_impression], ["Monthly", month_cpm_impression], ["Annually", year_cpm_impression]],
       "library"=> @color_option}]
@@ -242,13 +242,13 @@ class SimulationChart
 
     @date_range = case params[:option]
       when 'Today'
-        data[:cpa_impression] = daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:cpa_day_login)
+        data[:cpa_impression] = daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:cpa_day_login)
       when 'Weekly'
-        data[:cpa_impression] = week_data.group_by_day(:created_at).sum(:cpa_week_login)
+        data[:cpa_impression] = week_data.group_by_day(:updated_at).sum(:cpa_week_login)
       when 'Monthly'
-        data[:cpa_impression] = month_data.group_by_week(:created_at, week_start: :monday).sum(:cpa_month_login)
+        data[:cpa_impression] = month_data.group_by_week(:updated_at, week_start: :monday).sum(:cpa_month_login)
       when 'Annually'
-        data[:cpa_impression] = year_data.group_by_month(:created_at).sum(:cpa_annual_login)
+        data[:cpa_impression] = year_data.group_by_month(:updated_at).sum(:cpa_annual_login)
       else
         data[:cpa_impression] = {'Daily' => daily_cpa_impression, 'Weekly'=> week_cpa_impression, 'Monthly' => month_cpa_impression, 'Annually' => year_cpa_impression }
       end
@@ -266,13 +266,13 @@ class SimulationChart
     year = year_data.sum(:wifi_annual_total)
      @date_range = case params[:option]
       when 'Today'
-        data[:wifi_revenue] =  daily_data.group_by_hour_of_day(:created_at, format: "%-l %P").sum(:wifi_annual_day_total)
+        data[:wifi_revenue] =  daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:wifi_annual_day_total)
       when 'Weekly'
-        data[:wifi_revenue] = week_data.group_by_day(:created_at).sum(:wifi_annual_week_total).collect{|k,v| [k.to_s + '_', v]}.to_h
+        data[:wifi_revenue] = week_data.group_by_day(:updated_at).sum(:wifi_annual_week_total).collect{|k,v| [k.to_s + '_', v]}.to_h
       when 'Monthly'
-        data[:wifi_revenue] = month_data.group_by_week(:created_at, week_start: :monday).sum(:wifi_annual_month_total)
+        data[:wifi_revenue] = month_data.group_by_week(:updated_at, week_start: :monday).sum(:wifi_annual_month_total)
       when 'Annually'
-        data[:wifi_revenue] = year_data.group_by_month(:created_at).sum(:wifi_annual_total)
+        data[:wifi_revenue] = year_data.group_by_month(:updated_at).sum(:wifi_annual_total)
       else
         data[:wifi_revenue] = {'Daily' => daily, 'Weekly'=> week, 'Monthly' => month, 'Annually' => year }
       end
