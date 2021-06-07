@@ -1,0 +1,46 @@
+<div class=" mb-3">
+  <div class="d-md-flex align-items-start mt-4 pt-2">
+    <div class="mr-5">
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">Start Date</p>
+        <p class="text-dark2 fw-700 fs-15"><%= event.start_date.try(:strftime, '%m/%d/%Y') %><!-- 03/26/1972 -->
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">Start Time</p>
+        <p class="text-dark2 fw-700 fs-15"><%= event.start_time.try(:strftime, "%I:%M %p") %>
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">End Date</p>
+        <p class="text-dark2 fw-700 fs-15"><%= event.end_date.try(:strftime, '%m/%d/%Y') %>
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">End Time</p>
+        <p class="text-dark2 fw-700 fs-15"><%= event.end_time.try(:strftime, "%I:%M %p") %>
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase text-nowrap">Total Game Time</p>
+        <p class="text-dark2 fw-700 fs-15"><%= time_diff(event.start_date_time, event.end_date_time) %>
+        </p>
+      </div>
+    </div>
+
+    <div class="event-detail-right">
+      <p class="text-dark2 fw-600 fs-19"><%= event.title %> Description</p>
+      <p class="text-light-gray mt-3 fs-14 mb-4"><%= event.description %></p>
+
+      <p class="text-dark2 fw-600 fs-19 mb-4">Brands Participating
+      </p>
+
+      <% event.brands.each do |brand| %>
+        <div class="mb-3">
+          <%= image_pack_tag "sample/#{brand_logo(brand)}", class: 'img-fluid', width: '36' %>
+          <span class="text-dark2 fw-600 fs-16 ml-2"><%= brand.name %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

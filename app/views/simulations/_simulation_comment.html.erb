@@ -6,12 +6,12 @@
           Comments <i class="fa fa-chevron-down"></i>
         </a>
       <div class="add_comment_for_simulation_<%= @simulation.id %> main_comment_form_div"></div>
-      <div class="collapse show" id="simulation_comment_partial_<%= @simulation.id %>">
+      <div class="collapse show comments_list_div" id="simulation_comment_partial_<%= @simulation.id %>">
         <% if @simulation.comments.present? %>
           <% @simulation.comments.each do |comment| %>
             <div class="card card-body mt-2">
-              <p class="fs-18"><%= comment.description.html_safe %></p>
-              <p class="text-gray mt-3 fs-16"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
+              <p class="fs-16"><%= comment.description.html_safe %></p>
+              <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
             </div>
           <% end %>
         <% else %>

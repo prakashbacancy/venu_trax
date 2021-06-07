@@ -118,6 +118,7 @@ header {
 .dataTable-bottom {
 	display: flex;
 	justify-content: space-between;
+	padding: 0px 15px !important;
 }
 
 .has-search {
@@ -637,7 +638,7 @@ div.dataTables_wrapper div.dataTables_length select{
 	
 }
 .business-show .tab-section .shadow{
-	padding: 32px !important;
+	padding: 22px !important;
 }
 
 @media only screen and (max-width: 991px){
@@ -907,4 +908,31 @@ li.pin .block-ui-box {
 .word-break{
 	word-break: break-word;
 	white-space: initial;
+}
+table.dataTable {
+	clear: both;
+	margin-top: 0px!important; 
+	margin-bottom: 0px!important;
+}
+.main-sidebar-right .middle_part .content .sub-tab .nav-item .nav-link {
+	padding-top: 13px !important;
+	padding-bottom: 13px !important;
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+	border-color: none;
+}
+.nav>li>a:active, .nav>li>a:focus, .nav>li>a:hover {
+	color: #444;
+	background: unset;
+}
+.detail_box .box-header {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.comments_list_div .card {
+	border: 1px solid rgb(134 124 124 / 13%);
+}
+.comments_list_div .card-body {
+	padding: 0.9rem 1.25rem;
+	margin-top: .7rem!important;
 }
