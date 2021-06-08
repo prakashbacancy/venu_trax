@@ -1,0 +1,2 @@
+$('#revenue-tab-body').html('<%= j render(partial: 'revenue_brand', collection: @brands, locals: { venue: @venue, event: @event }) %>')
+$('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");

@@ -31,10 +31,8 @@
     <div class="event-detail-right">
       <p class="text-dark2 fw-600 fs-19"><%= event.title %> Description</p>
       <p class="text-light-gray mt-3 fs-14 mb-4"><%= event.description %></p>
-
       <p class="text-dark2 fw-600 fs-19 mb-4">Brands Participating
       </p>
-
       <% event.brands.each do |brand| %>
         <div class="mb-3">
           <%= image_pack_tag "sample/#{brand_logo(brand)}", class: 'img-fluid', width: '36' %>

@@ -40,4 +40,8 @@ module EventsHelper
     }
     brand_name[brand.name.to_sym]
   end
+
+  def no_data_available
+    '<tr><td colspan="6" class="text-center text-gray">No Data Available</td></tr>'.html_safe
+  end
 end

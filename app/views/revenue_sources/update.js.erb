@@ -1,0 +1,12 @@
+<% if params[:add_more].present? %>
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { revenue_source: @revenue_sources_more, venue: @venue, add_more: true, event: @event }) %>')
+  $('#revenue-tab-body').html('<%= j render(partial: 'revenue_brand', collection: @brands, locals: { venue: @venue, event: @event }) %>')
+  $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('show');
+  $('.modal-content').scrollTop(0);
+  $('form').parsley();
+<% else %>
+  $('#revenue-tab-body').html('<%= j render(partial: 'revenue_brand', collection: @brands, locals: { venue: @venue, event: @event }) %>')
+  $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('hide');
+<% end %>
