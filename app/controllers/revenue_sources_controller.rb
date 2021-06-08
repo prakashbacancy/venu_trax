@@ -2,6 +2,7 @@ class RevenueSourcesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_venue, only: %i[new edit create update destroy]
   before_action :revenue_source, only: %i[show new edit create update]
+  before_action :event, only: %i[new edit create update destroy]
   # before_action :find_venue_group, only: %i[show]
   # before_action :set_klass, only: %i[show new edit create update]
   # before_action :find_dynamic_fields, only: %i[new edit create update]
@@ -16,7 +17,7 @@ class RevenueSourcesController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Adding an RevenueSource!'
     end
-    @brands = Brand.all
+    @brands = @event.brands
   end
 
   def update
@@ -28,7 +29,7 @@ class RevenueSourcesController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Updating an revenue_source!'
     end
-    @brands = Brand.all
+    @brands = @event.brands
   end
 
   def destroy
@@ -37,7 +38,7 @@ class RevenueSourcesController < ApplicationController
     else
       flash[:alert] = 'Error Occurred While Deleting an RevenueSource!'
     end
-    @brands = Brand.all
+    @brands = @event.brands
   end
 
   private
@@ -90,5 +91,9 @@ class RevenueSourcesController < ApplicationController
              else
                Group.event_basic
              end
+  end
+
+  def event
+    @event ||= Event.find_by(id: params[:event_id])
   end
 end
