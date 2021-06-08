@@ -1,0 +1,19 @@
+<tr class="">
+  <td class="d-flex align-items-center"><%= revenue_source.name %></td>
+  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpc) %></td>
+  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpm) %></td>
+  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpa) %></td>
+  <td>
+    <div class="action-area-buttons">
+      <%#= link_to(venue_event_path(venue, venue), remote: true, class: 'fa') do %>
+        <%#= image_pack_tag 'home/ic_view.svg'%>
+      <%# end %>
+      <%= link_to(edit_venue_revenue_source_path(venue, revenue_source, event_id: event.id), remote: true, class: 'fa') do %>
+        <%= image_pack_tag 'home/ic_edit.svg'%>
+      <% end %>
+      <%= link_to(venue_revenue_source_path(venue, revenue_source, event_id: event.id), remote: true, method: :delete, class: 'fa', data: { confirm: 'Revenue Source is not Event Specific. This will be deleted globally. Are you sure want to delete this Revenue Source?' }) do %>
+        <%= image_pack_tag 'home/ic_delete.svg'%>
+      <% end %>
+    </div>
+  </td>
+</tr>

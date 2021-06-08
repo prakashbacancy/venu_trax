@@ -24,7 +24,7 @@
       </li>
     </ul>
     <div class="mt-2 mt-md-0 d-none text-nowrap revenue_source_create_div my-1" >
-      <%= link_to "Add Revenue Source", new_venue_revenue_source_path(venue), remote: true, class: "btn btn-primary add_revenue_source text-nowrap ml-3" %>
+      <%= link_to "Add Revenue Source", new_venue_revenue_source_path(venue, event_id: event.id), remote: true, class: "btn btn-primary add_revenue_source text-nowrap ml-3" %>
     </div>
   </div>
   <div class="tab-content" id="myTabContent">
@@ -33,7 +33,7 @@
       <%= render 'event_details_tab', event: event %>
     </div>
     <div class="tab-pane fade" id="revenue-tab-body" role="tabpanel" aria-labelledby="revenue-tab">
-      <% revenue_brands = Brand.all %>
+      <% revenue_brands = event.brands %>
       <%= render partial: 'revenue_sources/revenue_brand', collection: revenue_brands, locals: { event: event, venue: venue } %>
     </div>
   </div>

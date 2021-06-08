@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <% title_half = (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) ? 'Add' : 'Edit' %>
+  <h5 class="modal-title"><%= title_half %> Revenue Source</h5>
+  <div id="flashMessage", class="inner_flash_message"></div>
+</div>
+<div class="modal-body">
+  <small class="text-gray">(<b>Note:</b> This will affect globally into our system)</small>
+  <%= form_for [venue, revenue_source], remote: true, class: "form-inline" do |f| %>
+    <div class="form-group">
+      <%= label_tag :select_brand, 'Select Brand', class: 'asterisk' %>
+      <%= f.select :brand_id, options_for_select( brand_option(Brand.all), selected: f.object.brand_id), {include_blank: 'Select Brand'}, {class:"form-control brand_select", required: true}%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name, 'Revenue Source Name', class: 'asterisk' %>
+      <%= f.text_field :name, class: 'form-control', required: true, placeholder: 'Enter Revenue Source Name' %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :cpc, 'CPC Rate ( Cost Per Click )', class: 'asterisk' %>
+      <%= f.text_field :cpc, value: "$#{display_two_digit(f.object.cpc)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPC Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cpm, 'CPM Rate ( Cost Per Thousand )', class: 'asterisk' %>
+      <%= f.text_field :cpm, value: "$#{display_two_digit(f.object.cpm)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPM Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cpa, 'CPA Rate ( Cost Per Acquisition)', class: 'asterisk' %>
+      <%= f.text_field :cpa, value: "$#{display_two_digit(f.object.cpa)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPA Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description, 'Revenue Source Description', class: '' %>
+      <%= f.text_area :description, class: 'form-control h-auto', placeholder: 'Enter Revenue Source Description', rows: 8 %>
+    </div>
+
+    <%= hidden_field_tag 'event_id', event.id %>
+
+    <div class="modal-footer modal-footer-fixed ">
+      <%= f.submit "Save", class: 'btn btn-primary' %>
+      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary" %>
+      <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
+    </div>
+  <% end %>
+</div>
