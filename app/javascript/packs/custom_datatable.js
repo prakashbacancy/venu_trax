@@ -1,4 +1,4 @@
-window.custom_datatable = function(table){
+window.custom_datatable = function(table, searchbox_id="searchbox"){
   let dataTable;
   if($.fn.dataTable.isDataTable('#'+table.attr('id'))) {
     dataTable = table.DataTable();
@@ -22,6 +22,6 @@ window.custom_datatable = function(table){
     });
   }
   $('.search_btn').on('click', function(){
-    dataTable.search($('#searchbox').val()).draw();
+    dataTable.search($('#'+searchbox_id).val()).draw();
   })
 }
