@@ -19,6 +19,7 @@
     $('.tab-pane').removeClass('active show');
     $('#' + tab).addClass('active');
     $('#' + tab_body).addClass('active show');
+    document.getElementById(tab).scrollIntoView();
   }
   // var email_flag = <%= current_user.google_access_token.present? %>
   var email_flag = true
