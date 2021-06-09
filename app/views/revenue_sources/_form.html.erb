@@ -15,20 +15,20 @@
       <%= f.label :name, 'Revenue Source Name', class: 'asterisk' %>
       <%= f.text_field :name, class: 'form-control', required: true, placeholder: 'Enter Revenue Source Name' %>
     </div>
-    
+    <% existing_record = !f.object.new_record? %>
     <div class="form-group">
       <%= f.label :cpc, 'CPC Rate ( Cost Per Click )', class: 'asterisk' %>
-      <%= f.text_field :cpc, value: "$#{display_two_digit(f.object.cpc)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPC Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+      <%= f.text_field :cpc, value: existing_record ? "$#{display_two_digit(f.object.cpc)}" : '', autofocus: true, autocomplete: "", placeholder: 'Enter CPC Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :cpm, 'CPM Rate ( Cost Per Thousand )', class: 'asterisk' %>
-      <%= f.text_field :cpm, value: "$#{display_two_digit(f.object.cpm)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPM Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+      <%= f.text_field :cpm, value: existing_record ? "$#{display_two_digit(f.object.cpm)}" : '', autofocus: true, autocomplete: "", placeholder: 'Enter CPM Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
     </div>
 
     <div class="form-group">
       <%= f.label :cpa, 'CPA Rate ( Cost Per Acquisition)', class: 'asterisk' %>
-      <%= f.text_field :cpa, value: "$#{display_two_digit(f.object.cpa)}", autofocus: true, autocomplete: "", placeholder: 'Enter CPA Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
+      <%= f.text_field :cpa, value: existing_record ? "$#{display_two_digit(f.object.cpa)}" : '', autofocus: true, autocomplete: "", placeholder: 'Enter CPA Rate', class: 'form-control percentageField', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
     </div>
 
     <div class="form-group">
