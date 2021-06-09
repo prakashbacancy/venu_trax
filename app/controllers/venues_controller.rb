@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
   before_action :venue, only: %i[show new edit create update destroy]
   before_action :find_business, only: %i[new edit create update destroy]
   before_action :set_business, only: %i[show]
-  before_action :set_brands, only: %i[show]
+  # before_action :set_brands, only: %i[show]
   before_action :set_notes, only: %i[show]
   before_action :find_meetings_events, only: %i[show]
   before_action :set_klass

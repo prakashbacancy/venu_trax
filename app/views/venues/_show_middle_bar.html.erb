@@ -30,9 +30,9 @@
           href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
           Contacts</a>
       </li>
-      <li class="nav-item">
+<!--       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-1 header_tabs brands_enable" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab" aria-controls="brands-tab-body" aria-selected="false">Brands</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-1 header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
           aria-controls="simulation-tab-body" aria-selected="false">Simulation</a>
@@ -69,11 +69,6 @@
     </div>
     <div class="tab-pane fade" id="venue_contacts-tab-body" role="tabpanel" aria-labelledby="venue_contacts-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-      </div>
-    </div>
-    <div class="tab-pane fade" id="brands-tab-body" role="tabpanel" aria-labelledby="brands-tab">
-      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-        <%= render 'brands_list', brands: @brands, venue: @venue %>
       </div>
     </div>
     <div class="tab-pane fade" id="simulation-tab-body" role="tabpanel" aria-labelledby="simulation-tab">
