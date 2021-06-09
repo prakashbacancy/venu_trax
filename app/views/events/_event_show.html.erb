@@ -17,6 +17,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link fs-18 mx-sm-2 header_tabs sub_event_tabs" id="extra-details-tab" data-toggle="tab"
+          href="#extra-details-tab-body" role="tab" aria-controls="extra-details-tab-body"
+          aria-selected="true">Extra Details
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link fs-18 mx-sm-2 header_tabs sub_event_tabs" id="revenue-tab" data-toggle="tab"
           href="#revenue-tab-body" role="tab" aria-controls="revenue-tab-body"
           aria-selected="true">Revenue Sources
@@ -28,9 +34,11 @@
     </div>
   </div>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade  active show" id="event-detail-tab-body" role="tabpanel"
-      aria-labelledby="event-detail-tab">
+    <div class="tab-pane fade  active show" id="event-detail-tab-body" role="tabpanel" aria-labelledby="event-detail-tab">
       <%= render 'event_details_tab', event: event %>
+    </div>
+    <div class="tab-pane fade" id="extra-details-tab-body" role="tabpanel" aria-labelledby="extra-details-tab">
+      <%= render 'extra_details_tab', klass: Klass.event, event: event, venue: venue %>
     </div>
     <div class="tab-pane fade" id="revenue-tab-body" role="tabpanel" aria-labelledby="revenue-tab">
       <% revenue_brands = event.brands %>
