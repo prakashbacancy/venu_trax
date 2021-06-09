@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
   before_action :brand, only: %i[show edit update]
-  before_action :load_brands, only: %i[show edit update]
+  before_action :load_brands, only: %i[create update]
 
 	def index
     @brands = Brand.all
@@ -14,7 +14,7 @@ class BrandsController < ApplicationController
   	@brand = Brand.new(brand_params)
     if @brand.save
       if params[:add_more].present?
-        @brand_more = @venue.brands.new
+        @brand_more = Brand.new
       end
       flash[:success] = 'Brand Successfully Added!'
     else
@@ -28,7 +28,7 @@ class BrandsController < ApplicationController
   def update
     if brand.update(brand_params)
       if params[:add_more].present?
-        @brand_more = @venue.brands.new
+        @brand_more = Brand.new
       end
     else
       flash[:alert] = brand.errors.full_messages.join(', ')

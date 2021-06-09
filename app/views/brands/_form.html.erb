@@ -6,7 +6,24 @@
 <div class="modal-body">
   <%= form_for [venue, brand], remote: true do |f| %>
     <%= f.hidden_field :venue_id, value: params[:id]  %>
-    <div class="form-group">
+    <% if brand.brand_pic.attached? %>
+      <%= image_tag brand.brand_pic, class: 'img-boundary image-profile-pic' %>
+    <% else %>
+      <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary image-profile-pic' %>
+    <% end %>
+    <div class="content-profile-info d-inline badge badge-edit">
+      <label class="btn-avatar">
+        <i class="fa fa-pencil-alt fs-16 text-white"></i>
+        <span style="display:none;">
+          <%= f.file_field :brand_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+        </span>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
+          </li>
+        </ul>
+      </label>
+    </div>
+    <div class="form-group mt-2">
       <%= f.label :domain_name, 'Brand Domain Name', class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.text_field :domain_name, class:"form-control", placeholder:"Enter Brand Domain Name", required: true  %>
     </div>
@@ -17,8 +34,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :phone_number, 'Phone Number', class: 'text-capitalize fs-17 asterisk phone_number' %><br />
-      <%= f.text_field :phone_number, class:"form-control", placeholder:"Enter Phone Number", required: true  %>
+      <%= f.label :phone_number, 'Phone Number', class: 'text-capitalize fs-17 asterisk' %><br />
+      <%= f.text_field :phone_number, class:"form-control phone-number", placeholder:"Enter Phone Number", required: true, pattern: '((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}', maxlength: 14 %>
     </div>
 
      <div class="form-group">
@@ -53,7 +70,7 @@
 
     <div class="form-group">
       <%= f.label :no_of_employee, 'No Of Employee', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :no_of_employee, class:"form-control", placeholder:"Enter No Of Employee", required: true  %>
+      <%= f.number_field :no_of_employee, class:"form-control", placeholder:"Enter No Of Employee", required: true  %>
     </div>
 
     <div class="form-group">
@@ -67,8 +84,8 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", required: true, rows: 4 %>
+      <%= f.label :description, class: 'text-capitalize fs-17' %><br />
+      <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", rows: 4 %>
     </div>
 
     <div class="modal-footer modal-footer-fixed">
@@ -79,3 +96,85 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+   function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.image-profile-pic').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#avatar-upload1").change(function() {
+    var val = $(this).val();
+    if (!val.match(/(?:gif|jpg|png|bmp|jpeg|svg)$/)) {
+      $("#image-val-msg").css('display', 'block');
+      return false
+    }
+    $('#img_prev1').removeClass('hidden');
+    readURL(this);
+  });
+
+  var autocomplete;
+  var address1Field;
+  var address2Field;
+  var postalField;
+
+  function initAutocomplete() {
+    address1Field = document.querySelector("#brand_street_address");
+    address2Field = document.querySelector("#address2");
+    postalField = document.querySelector("#brand_zip_code");
+    autocomplete = new google.maps.places.Autocomplete(address1Field, {
+      fields: ["address_components", "geometry"],
+      types: ["address"],
+    });
+    address1Field.focus();
+    autocomplete.addListener("place_changed", fillInAddress);
+  }
+
+  function fillInAddress() {
+    const place = autocomplete.getPlace();
+    var address1 = "";
+    var postcode = "";
+    for (const component of place.address_components) {
+      const componentType = component.types[0];
+
+      switch (componentType) {
+        case "street_number": {
+          address1 = `${component.long_name} ${address1}`;
+          break;
+        }
+
+        case "route": {
+          address1 += component.short_name;
+          break;
+        }
+
+        case "postal_code": {
+          postcode = `${component.long_name}${postcode}`;
+          break;
+        }
+
+        case "postal_code_suffix": {
+          postcode = `${postcode}-${component.long_name}`;
+          break;
+        }
+        case "locality":
+          $("#brand_city").val(component.long_name)
+          break;
+
+        case "administrative_area_level_1": {
+          $("#brand_state").val(component.long_name)
+          break;
+        }
+        case "country":
+          $("#brand_country").val(component.long_name)
+          break;
+      }
+    }
+    address1Field.value = address1;
+    postalField.value = postcode;
+    // address2Field.focus();
+  }
+</script>
