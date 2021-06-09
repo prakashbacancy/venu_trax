@@ -1,5 +1,6 @@
 <div class="mb-3">
-  <h5 class="mt-4 mb-0  py-2"><%= image_tag brand.brand_pic, class: "mr-2 img-fluid", width: "47", height: "47" %><%= brand.name&.capitalize%>
+  <h5 class="mt-4 mb-0  py-2">
+    <%= image_tag brand&.brand_pic, class: "mr-2 img-fluid", width: "47", height: "47" if brand.brand_pic.attached? %><%= brand.name&.capitalize%>
   </h5>
   <div class="d-md-flex align-items-start mt-4 pt-2">
     <div class="mr-5">
