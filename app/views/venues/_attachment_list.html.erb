@@ -1,22 +1,22 @@
 <% attachments = venue&.attachments || attachable.attachments %>
-	<div class="card card-body border-0">
-	  <div class="row">
-			<% if attachments.present? %>
-				<% attachments.each do |attachment| %>
-	    		<div class="col-md-10 col-sm-9 text-gray fs-16 d-flex align-items-start attachment-<%=attachment.id%>">
-			      <%= link_to "<i class='fas fa-download mt-1 mr-2'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment'), title: 'Download' %>
+<div class="card card-body border-0">
+		<% if attachments.present? %>
+			<% attachments.each do |attachment| %>
+  			<div class="d-flex align-items-center justify-content-between mb-2">
+	    		<div class="text-gray fs-16 d-flex align-items-start attachment-file attachment-<%=attachment.id%>">
 			      <div class="ml-2">
 			        <p class="fs-14 word-break"><%= attachment.venue_file.filename.to_s %></p>
 			      </div>
 	    		</div>
-	    		<div class="col-md-2 col-sm-3 attachment-<%=attachment.id%>">
-		    		<%= link_to venue_attachment_path((venue&.id || attachable.id) ,attachment), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this Attachment?'}, class: 'common-link pull-right edit-delete icon', title: 'Delete' do %>
-            	<%= image_pack_tag 'home/ic_delete.svg'%>
-         	 	<% end %>
-         	</div>
-		    <% end %>
-			<% else %>
-				<span class="col-md-10 col-sm-9 text-gray fs-16 d-flex align-items-start"> No Attachment found. </span>
-			<% end %>
-	  </div>
-	</div>
+	    		<div class="d-flex align-items-center attachment-<%=attachment.id%>">
+	    			<%= link_to "<i class='fas fa-download mr-2 fs-14'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment'), title: 'Download' %>
+		    		<%= link_to venue_attachment_path((venue&.id || attachable.id) ,attachment), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this Attachment?'}, class: 'common-link pull-right edit-delete', title: 'Delete' do %>
+	          	<%= image_pack_tag 'home/ic_delete.svg', width: '15', height: '15'%>
+	       	 	<% end %>
+	       	</div>
+  			</div>
+	    <% end %>
+		<% else %>
+			<span class="text-gray fs-16 d-flex align-items-start"> No Attachment found. </span>
+		<% end %>
+</div>

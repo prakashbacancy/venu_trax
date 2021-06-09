@@ -20087,7 +20087,7 @@ aside.main-sidebar  .main-sidebar-inner {
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
-  tranform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .arrow.top:after {
@@ -20199,3 +20199,6 @@ aside.main-sidebar  .main-sidebar-inner {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
+.attachment-table tr:nth-child(even) {background-color: #f2f2f2;}
+.attachment-table th {background-color: #f2f2f2 !important;}
+.attachment-file { flex: 1 0 70%; }

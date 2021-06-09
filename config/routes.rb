@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :comments, module: :note
     end
   end
+  resources :brands
   resources :settings do
     collection do
       get :field_options
