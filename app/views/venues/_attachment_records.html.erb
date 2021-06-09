@@ -1,0 +1,30 @@
+<% attachments = venue&.attachments || attachable.attachments %>
+<div class="admin-table bg-white table-responsive">
+  <table class="table table-bordered w-100 mb-5 attachment-table">
+    <thead class="thead-dark">
+      <th>ID</th>
+      <th>File Name</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% if attachments.present? %>
+        <% attachments.each_with_index do |attachment, ind| %>
+          <tr>
+            <td><%= ind += 1 %>
+            <td><%= attachment.venue_file.filename.to_s %></td>
+            <td>
+              <div class="action-area-buttons">
+                <%= link_to "<i class='fas fa-download'></i>".html_safe, rails_blob_path(attachment.venue_file, disposition: 'attachment'), title: 'Download' %>
+                <%= link_to venue_attachment_path((venue&.id || attachable.id) ,attachment), method: :delete, remote: true, data: {confirm: 'Do you want to Delete this Attachment?'}, class: 'common-link pull-right edit-delete icon', title: 'Delete' do %>
+                <%= image_pack_tag 'home/ic_delete.svg'%>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr><td> No Attachment Found </td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

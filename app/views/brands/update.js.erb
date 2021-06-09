@@ -1,0 +1,14 @@
+<% if params[:add_more].present? %>
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { brand: @brand_more, venue: @venue, add_more: true }) %>')
+  $('#brands-tab-body').html("<%= j render(partial: 'venues/brands_list', locals: { brands: @brands, venue: @venue }) %>")
+  $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('show');
+  $('.modal-content').scrollTop(0);
+  $('form').parsley();
+  // NOTE: temporary fix
+  update_js();
+<% else %>
+  $('#brands-tab-body').html("<%= j render(partial: 'venues/brands_list', locals: { brands: @brands, venue: @venue }) %>")
+  $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+  $("#right_modal").modal('hide');
+<% end %>

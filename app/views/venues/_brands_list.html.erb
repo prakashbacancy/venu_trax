@@ -1,0 +1,53 @@
+<div class="brand-data">
+  <div class="d-flex align-items-center justify-content-between mt-2 search-card flex-wrap">
+    <div class="d-flex align-items-center flex-wrap my-1">
+      <div style="width: 300px;" class="mr-2 my-1 form-group mb-0 has-search d-flex position-relative">
+        <%= image_pack_tag 'sample/search.svg', class: 'mr-3 form-control-feedback search-icon', width: '16' %>
+        <input type="text" class="form-control searchbox" placeholder="Search Brand" id="searchboxBrand">
+      </div>
+      <button class="btn btn-primary form-group search_btn mb-0 my-1">Search</button>
+    </div>
+    <div class="my-1">
+      <%= link_to "Add Brand", new_brand_path(venue), remote: true, class: 'btn btn-primary mb-0 text-white' %>
+    </div>
+  </div>
+
+  <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
+    <table class="table table-bordered w-100 mb-5" id="brand_list_table">
+      <thead class="thead-dark">
+        <th>Brand Name</th>
+        <th>Email Address</th>
+        <th>Mobile Number</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% brands.each do |brand| %>
+          <% unless brand.new_record? %>
+            <tr class="brand-<%=brand.id%>">
+              <td><%= brand.name %></td>
+              <td class="no-wrap"><%= current_user.email %></td>
+              <td class="no-wrap"><%= brand.phone_number %></td>
+              <td>
+                <div class="action-area-buttons">
+                  <%= link_to(brand_path(brand), remote: true, class: 'fa') do %>
+                    <%= image_pack_tag 'home/ic_view.svg'%>
+                  <% end %>
+                  <%= link_to(edit_brand_path(brand), remote: true, class: 'fa') do %>
+                    <%= image_pack_tag 'home/ic_edit.svg'%>
+                  <% end %>
+                  <%= link_to(brand_path(brand), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Brand?' }) do %>
+                    <%= image_pack_tag 'home/ic_delete.svg'%>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="brand-view"></div>
+<script>
+  custom_datatable($('#brand_list_table'), 'searchboxBrand');
+</script>
