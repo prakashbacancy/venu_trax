@@ -49,6 +49,12 @@
       $('.web-btn').removeClass('d-none');
       $('.create_meeting').closest('div').addClass('d-none');
     })
+    $('.enable_brands').on('click', function(){
+      enable_this('brands-tab', 'brands-tab-body')
+      $('.sync_email').closest('div').addClass('d-none');
+      $('.web-btn').removeClass('d-none');
+      $('.create_meeting').closest('div').addClass('d-none');
+    })
     $('#emails-tab, .sync-gmail').on('click', function(){
       if (email_flag){
         email_flag = false;
@@ -96,6 +102,10 @@
     $('.events_enable').on('click', function(){
       $('.event-view').addClass('d-none');
       $('.event-data').removeClass('d-none');
+    })
+    $('.brands_enable').on('click', function(){
+      $('.brand-view').addClass('d-none');
+      $('.brand-data').removeClass('d-none');
     })
   })
 </script>
