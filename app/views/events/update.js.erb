@@ -1,5 +1,5 @@
 <% if params[:add_more].present? %>
-  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { event: @event_more, venue: @venue, add_more: true }) %>')
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { event: @event_more, venue: @venue, add_more: true, group: @info_group, data: @data }) %>')
   $('#events-tab-body').html('<%= j render(partial: 'venues/events_list', locals: { events: @events, venue: @venue }) %>')
   $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('show');
@@ -16,4 +16,18 @@
   $('.event-view').html('<%= j render(partial: 'event_show', locals: { venue: @venue, event: @event }) %>')
   $('.event-view').removeClass('d-none');
   $('.event-data').addClass('d-none');
+<% end %>
+// For the details screen. NOTE: Can be improved by dividing tasks in different partials
+<% if params[:event][:group_id].present? %>
+  $('.event-view').html('<%= j render(partial: 'event_show', locals: { venue: @venue, event: @event }) %>')
+  $("#right_modal").modal('hide');
+  $('.event-view').removeClass('d-none');
+  $('.event-data').addClass('d-none');
+  $('.sub_event_tabs').removeClass('active');
+  $('#extra-details-tab').addClass('active');
+  $('.event-view').find('.tab-pane').removeClass('active show');
+  $('#extra-details-tab-body').addClass('active show');
+  $('.event-details-view').find('.header_tabs').removeClass('active');
+  $('#group-<%= params[:event][:group_id] %>-tab-body').addClass('active show');
+  $('#group-<%= params[:event][:group_id] %>-tab').addClass('active');
 <% end %>
