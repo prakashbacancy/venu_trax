@@ -15,12 +15,14 @@
     $('.tab-pane').removeClass('active show');
     $('#notes-tab').addClass('active');
     $('#notes-tab-body').addClass('active show');
+    document.getElementById('notes-tab').scrollIntoView();
   }
   enable_venues = function(){
     $('.header_tabs').removeClass('active');
     $('.tab-pane').removeClass('active show');
     $('#venues-tab').addClass('active');
     $('#venues-tab-body').addClass('active show');
+    document.getElementById('venues-tab').scrollIntoView();
   }
   if(window.location.hash.substr(1) == "venues-tab-body"){
     enable_venues();
