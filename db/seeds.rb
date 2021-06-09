@@ -2,6 +2,7 @@
 Klass.find_or_create_by(name: 'Business', label: 'Business')
 Klass.find_or_create_by(name: 'User', label: 'User')
 Klass.find_or_create_by(name: 'Venue', label: 'Venue')
+Klass.find_or_create_by(name: 'Event', label: 'Event')
 
 # To make existing Business fields dynamic
 business_prebuid_fields = {
@@ -47,6 +48,19 @@ venue_prebuild_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.venue.id, custom: false, deletable: false, required: true, position: 0)
 end
 
+# To make existing Event fields dynamic
+event_prebuild_fields = {
+  # 'title': 'Text',
+  # 'start_date': 'Date',
+  # 'start_time': 'Time',
+  # 'end_date': 'Date',
+  # 'end_time': 'Time',
+  'description': 'Text Area'
+}
+event_prebuild_fields.each do |k, v|
+  Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.event.id, custom: false, deletable: false, required: true, position: 0)
+end
+
 # # ===============================START===============================
 # # NOTE: Run this manually once in your console after all migrations for `Dynamic Groups Fields` (Required for the first time)
 # # ===================================================================
@@ -62,6 +76,10 @@ end
 # Group.find_or_create_by(name: 'Venue Details', label: 'Venue Details', klass_id: Klass.venue.id, default: true)
 # Group.find_or_create_by(name: 'Venue Information', label: 'Venue Information', klass_id: Klass.venue.id, ancestry: Group.find_by(name: 'Venue Details').id.to_s, default: true)
 # Klass.venue.fields.update_all(group_id: Group.find_by(name: 'Venue Information').id)
+#
+# Group.find_or_create_by(name: 'Event Details', label: 'Event Details', klass_id: Klass.event.id, default: true)
+# Group.find_or_create_by(name: 'Event Information', label: 'Event Information', klass_id: Klass.event.id, ancestry: Group.find_by(name: 'Event Details').id.to_s, default: true)
+# Klass.event.fields.update_all(group_id: Group.find_by(name: 'Event Information').id)
 # # ===============================END=================================
 
 # # ===============================START===============================
