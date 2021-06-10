@@ -1,8 +1,8 @@
 <tr class="">
-  <td class="d-flex align-items-center"><%= revenue_source.name %></td>
-  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpc) %></td>
-  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpm) %></td>
-  <td class="no-wrap">$<%= display_two_digit(revenue_source.cpa) %></td>
+  <td class="text-nowrap"><%= revenue_source.name %></td>
+  <td class="text-nowrap">$<%= display_two_digit(revenue_source.cpc) %></td>
+  <td class="text-nowrap">$<%= display_two_digit(revenue_source.cpm) %></td>
+  <td class="text-nowrap">$<%= display_two_digit(revenue_source.cpa) %></td>
   <td>
     <div class="action-area-buttons">
       <%#= link_to(venue_event_path(venue, venue), remote: true, class: 'fa') do %>
