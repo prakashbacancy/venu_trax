@@ -1,0 +1,76 @@
+<div class="content position-relative p-4">
+  <%= link_to brands_path, class: 'fs-14 text-blue1 fw-600' do %>
+    <i class="fa fa-chevron-left mr-2"></i>All Brands
+  <% end %>
+  <div class="d-flex mt-3">
+    <div class="mr-3">
+      <%= image_pack_tag 'home/ic_profile_pic.svg', class: "img-fluid" %>
+    </div>
+    <div class="">
+      <h3 class="fw-400 text-break text-dark2 fs-20"><%= @brand.name %></h3>
+      <h6 class="fs-14  text-dark2"><%= @brand.phone_number %></h6>
+      <div class="mt-3">
+        <ul id="mylist" class="text-center d-flex">
+          <li class="m-0 mr-3">
+            <a class="btn sharp fs-12 enable_notes" data-toggle="tab" href="#notes-tab-body" role="tab" aria-controls="notes-tab-body" aria-selected="true">
+              <i><%= image_pack_tag 'home/ic_note.svg' %></i>Notes
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row border p-4">
+    <div class="col-md-12">
+      <a class="text-dark fw-500 d-block d-flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <span class="mr-auto fs-16">About Brand</span><i class="fa fa-chevron-down fs-15"></i>
+      </a>
+    </div>
+  </div>
+<div class="collapse show " id="collapseExample">
+  <div class="card card-body border-0">
+    <div class="row">
+      <div class="col-md-12 text-gray fs-15">
+        <%= @brand.description %>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">Domain Name</p>
+        <p class="text-gray fs-15"><%= @brand.domain_name %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">Website URL</p>
+        <p class="text-gray fs-15"><%= @brand.website_url %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">City</p>
+        <p class="text-gray fs-15"><%= @brand.city %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">State</p>
+        <p class="text-gray fs-15"><%= @brand.state %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">Phone Number</p>
+        <p class="text-gray fs-15"><%= @brand.phone_number %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">No of Employee </p>
+        <p class="text-gray fs-15"><%= @brand.no_of_employee %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">Annual Revenue</p>
+        <p class="text-gray fs-15"><%= @brand.annual_revenue %></p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p class="fw-700 fs-16">Brand Owner</p>
+        <p class="text-gray fs-15"><%= @brand.brand_owner %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- "domain_name", "phone_number", "website_url", "city", "state", "zip_code", "no_of_employee", "annual_revenue", "brand_owner", "country", "street_address", "description", "venue_id"] 
+3.0.0 :003 > ^C -->

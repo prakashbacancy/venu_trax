@@ -19,6 +19,7 @@
     $('.tab-pane').removeClass('active show');
     $('#' + tab).addClass('active');
     $('#' + tab_body).addClass('active show');
+    document.getElementById(tab).scrollIntoView();
   }
   // var email_flag = <%= current_user.google_access_token.present? %>
   var email_flag = true
@@ -45,6 +46,12 @@
     })
     $('.enable_events').on('click', function(){
       enable_this('events-tab', 'events-tab-body')
+      $('.sync_email').closest('div').addClass('d-none');
+      $('.web-btn').removeClass('d-none');
+      $('.create_meeting').closest('div').addClass('d-none');
+    })
+    $('.enable_brands').on('click', function(){
+      enable_this('brands-tab', 'brands-tab-body')
       $('.sync_email').closest('div').addClass('d-none');
       $('.web-btn').removeClass('d-none');
       $('.create_meeting').closest('div').addClass('d-none');
@@ -96,6 +103,10 @@
     $('.events_enable').on('click', function(){
       $('.event-view').addClass('d-none');
       $('.event-data').removeClass('d-none');
+    })
+    $('.brands_enable').on('click', function(){
+      $('.brand-view').addClass('d-none');
+      $('.brand-data').removeClass('d-none');
     })
   })
 </script>

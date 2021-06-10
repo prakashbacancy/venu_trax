@@ -5,61 +5,70 @@
 </div>
 <div class="modal-body">
   <%= form_for [venue, event], remote: true do |f| %>
-    <div class="form-group">
-      <%= f.label :title, 'Event Title', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :title, class:"form-control", placeholder:"Enter Title", required: true  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :start_date, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :start_date, class:"form-control datepicker", placeholder:"Select Start Date", required: true , value: pretty_date(f.object.start_date), autocomplete: 'off', onkeydown: "return false;" %>
-      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-        <li class="parsley-required" id="start-date-msg" style="display: none">Start Date should be less than End Date.</li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <%= f.label :start_time, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :start_time, class:"form-control timepicker", placeholder:"Select Start Time", required: true, value: f.object.start_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
-      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-        <li class="parsley-required" id="start-time-msg" style="display: none">Start Time should be less than End Time.</li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_date, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :end_date, class:"form-control datepicker", placeholder:"Select End Date", required: true, value: pretty_date(f.object.end_date), autocomplete: 'off', onkeydown: "return false;" %>
-      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-        <li class="parsley-required" id="end-date-msg" style="display: none">End Date should be greater than Start Date.</li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_time, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :end_time, class:"form-control timepicker", placeholder:"Select End Time", required: true, value: f.object.end_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
-      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-        <li class="parsley-required" id="end-time-msg" style="display: none">End Time should be greater than Start Time.</li>
-      </ul>
-    </div>
-    <div class="form-group">
-      <%= f.label :description, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", required: true, rows: 4 %>
-    </div>
-    <div class="form-group event_brands_fields">
-      <%= label_tag 'Add Brand', 'Add Brand' %>
-      <%= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
-        <%= render 'event_brand_fields', f: event_brand %>
-      <% end %>
-      <div class="links font-weight-bold mt-4">
-        <%= link_to_add_association '+ Add More', f, :event_brands, class: 'fs-16 add_more_fields' %>
+    <% if params[:group_id].present? %>
+      <%= f.hidden_field :group_id, value: @root_group_id %>
+    <% else %>
+      <div class="form-group">
+        <%= f.label :title, 'Event Title', class: 'text-capitalize fs-17 asterisk' %><br />
+        <%= f.text_field :title, class:"form-control", placeholder:"Enter Title", required: true  %>
       </div>
-      <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-        <li class="parsley-required" id="brand-msg" style="display: none">Please select unique brands.</li>
-      </ul>
-    </div>
+      <div class="form-group">
+        <%= f.label :start_date, class: 'text-capitalize fs-17 asterisk' %><br />
+        <%= f.text_field :start_date, class:"form-control datepicker", placeholder:"Select Start Date", required: true , value: pretty_date(f.object.start_date), autocomplete: 'off', onkeydown: "return false;" %>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="start-date-msg" style="display: none">Start Date should be less than End Date.</li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <%= f.label :start_time, class: 'text-capitalize fs-17 asterisk' %><br />
+        <%= f.text_field :start_time, class:"form-control timepicker", placeholder:"Select Start Time", required: true, value: f.object.start_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="start-time-msg" style="display: none">Start Time should be less than End Time.</li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_date, class: 'text-capitalize fs-17 asterisk' %><br />
+        <%= f.text_field :end_date, class:"form-control datepicker", placeholder:"Select End Date", required: true, value: pretty_date(f.object.end_date), autocomplete: 'off', onkeydown: "return false;" %>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="end-date-msg" style="display: none">End Date should be greater than Start Date.</li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_time, class: 'text-capitalize fs-17 asterisk' %><br />
+        <%= f.text_field :end_time, class:"form-control timepicker", placeholder:"Select End Time", required: true, value: f.object.end_time.try(:strftime, "%I:%M %p"), autocomplete: 'off', onkeydown: "return false;" %>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="end-time-msg" style="display: none">End Time should be greater than Start Time.</li>
+        </ul>
+      </div>
+    <% end %>
+    <% group.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : event.send(field.name)} %>
+      </div>
+    <% end %>
+    <% unless params[:group_id].present? %>
+      <div class="form-group event_brands_fields">
+        <%= label_tag 'Add Brand', 'Add Brand' %>
+        <%= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
+          <%= render 'event_brand_fields', f: event_brand %>
+        <% end %>
+        <div class="links font-weight-bold mt-4">
+          <%= link_to_add_association '+ Add More', f, :event_brands, class: 'fs-16 add_more_fields' %>
+        </div>
+        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+          <li class="parsley-required" id="brand-msg" style="display: none">Please select unique brands.</li>
+        </ul>
+      </div>
+    <% end %>
     <% if params[:inside].present? %>
       <%= f.hidden_field :inside, value: true %>
     <% end %>
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary add_event" %>
-      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary add_event" %>
+      <% unless params[:group_id].present? %>
+        <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary add_event" %>
+      <% end %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>

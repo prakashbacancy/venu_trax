@@ -44,4 +44,8 @@ module EventsHelper
   def no_data_available
     '<tr><td colspan="6" class="text-center text-gray">No Data Available</td></tr>'.html_safe
   end
+
+  def event_group(group_id)
+    Group.find_by(id: group_id)
+  end
 end

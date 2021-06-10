@@ -4,8 +4,8 @@ class EventsController < ApplicationController
   before_action :event, only: %i[show new edit create update]
   before_action :find_venue_group, only: %i[show]
   before_action :set_klass, only: %i[show new edit create update]
-  # before_action :find_dynamic_fields, only: %i[new edit create update]
-  # before_action :find_basic_group, only: %i[new edit create update]
+  before_action :find_dynamic_fields, only: %i[new edit create update]
+  before_action :find_basic_group, only: %i[new edit create update]
 
   def index
     @events = Event.all
@@ -65,11 +65,10 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    # dynamic_params = Klass.event.fields.pluck(:name)
-    # params.require(:event).permit(Event::PERMITTED_PARAM + dynamic_params)
     params[:event][:start_date] = DateTime.strptime(params[:event][:start_date], '%m/%d/%Y') if params[:event][:start_date].present?
     params[:event][:end_date] = DateTime.strptime(params[:event][:end_date], '%m/%d/%Y') if params[:event][:end_date].present?
-    params.require(:event).permit(Event::PERMITTED_PARAM)
+    dynamic_params = Klass.event.fields.pluck(:name)
+    params.require(:event).permit(Event::PERMITTED_PARAM + dynamic_params)
   end
 
   def find_venue
@@ -100,7 +99,7 @@ class EventsController < ApplicationController
                @root_group_id = group.root.id
                group
              else
-               Group.event_basic
+               @info_group
              end
   end
 end

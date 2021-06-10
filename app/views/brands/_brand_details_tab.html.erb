@@ -1,0 +1,29 @@
+<div class="mb-3">
+  <h5 class="mt-4 mb-0  py-2">
+    <%= image_tag brand&.brand_pic, class: "mr-2 img-fluid", width: "47", height: "47" if brand.brand_pic.attached? %><%= brand.name&.capitalize%>
+  </h5>
+  <div class="d-md-flex align-items-start mt-4 pt-2">
+    <div class="mr-5">
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">Email Address</p>
+        <p class="text-dark2 fw-700 fs-15"><%= current_user.email %><!-- 03/26/1972 -->
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">Mobile Number</p>
+        <p class="text-dark2 fw-700 fs-15"><%= brand.phone_number %>
+        </p>
+      </div>
+      <div class="mb-3">
+        <p class="text-gray-light fs-14 text-uppercase">Website URL</p>
+        <p class="text-dark2 fw-700 fs-15"><%= brand.website_url %>
+        </p>
+      </div>
+    </div>
+
+      <div class="event-detail-right">
+        <p class="text-dark2 fw-600 fs-19">Description</p>
+        <p class="text-light-gray mt-3 fs-14 mb-4"><%= brand.description %></p>
+    </div>
+  </div>
+</div>

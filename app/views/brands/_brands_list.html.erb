@@ -1,0 +1,41 @@
+<div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
+  <table class="table table-bordered w-100 mb-5" id="brand_list_table">
+    <thead class="thead-dark">
+      <th>Brand Name</th>
+      <th>Address</th>
+      <th>Email Address</th>
+      <th>Mobile Number</th>
+      <th>No Of Employee</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <% brands.each do |brand| %>
+        <% unless brand.new_record? %>
+          <tr class="brand-<%=brand.id%>">
+            <td><%= brand.name %></td>
+            <td class="no-wrap"><%= current_user.email %></td>
+            <td class="no-wrap"><%= brand.street_address %></td>
+            <td class="no-wrap"><%= brand.phone_number %></td>
+            <td class="no-wrap"><%= brand.no_of_employee %></td>
+            <td>
+              <div class="action-area-buttons">
+                <%= link_to(brand_path(brand), class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_view.svg'%>
+                <% end %>
+                <%= link_to(edit_brand_path(brand), remote: true, class: 'fa') do %>
+                  <%= image_pack_tag 'home/ic_edit.svg'%>
+                <% end %>
+                <%= link_to(brand_path(brand), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Brand?' }) do %>
+                  <%= image_pack_tag 'home/ic_delete.svg'%>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  custom_datatable($('#brand_list_table'), 'searchboxBrand');
+</script>
