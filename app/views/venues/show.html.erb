@@ -118,6 +118,12 @@
       $('.brand-view').addClass('d-none');
       $('.brand-data').removeClass('d-none');
     })
+    $('.details_enable').on('click', function(){
+      $('.details-view .header_tabs').removeClass('active');
+      $('.details-view .header_tabs').first().addClass('active');
+      $('.details-view .tab-content .tab-pane').removeClass('active show')
+      $('.details-view .tab-content .tab-pane').first().addClass('active show')
+    })
   })
 </script>
 <%# Put styles here as per the designer! %>
