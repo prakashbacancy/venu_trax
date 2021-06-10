@@ -1,7 +1,7 @@
 <% attachments = venue&.attachments || attachable.attachments %>
 <div class="card card-body border-0">
 		<% if attachments.present? %>
-			<% attachments.each do |attachment| %>
+			<% attachments&.first(5).each do |attachment| %>
   			<div class="d-flex align-items-center justify-content-between mb-2">
 	    		<div class="text-gray fs-16 d-flex align-items-start attachment-file attachment-<%=attachment.id%>">
 			      <div class="ml-2">
@@ -16,6 +16,7 @@
 	       	</div>
   			</div>
 	    <% end %>
+	    <div class="fs-14 fw-700 d-flex align-items-start mt-1"><%= link_to 'Load More...', "#{venue_path(venue)}#attachment-tab-body"%></div>
 		<% else %>
 			<span class="text-gray fs-16 d-flex align-items-start"> No Attachment found. </span>
 		<% end %>

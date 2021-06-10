@@ -8,3 +8,20 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.header_tabs').on('click', function(){
+			console.log(this.id)
+      if(this.id == 'venues-tab'){
+        $('.add_venue').closest('div').removeClass('d-none');
+        $('.add_note').closest('div').addClass('d-none');
+      } else if(this.id == 'notes-tab') {
+        $('.add_note').closest('div').removeClass('d-none');
+        $('.add_venue').closest('div').addClass('d-none');
+      } else {
+        $('.add_venue').closest('div').addClass('d-none');
+        $('.add_note').closest('div').addClass('d-none');
+      }
+	  })
+	})
+</script>

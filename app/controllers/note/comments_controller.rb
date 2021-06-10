@@ -18,8 +18,10 @@ class Note::CommentsController < CommentsController
   def set_module
     @module = if params[:business_id].present?
                 Business.find(params[:business_id])
-              else
+              elsif params[:venue_id].present?
                 Venue.find(params[:venue_id])
+              else
+                Brand.find(params[:brand_id])
               end
   end
 end

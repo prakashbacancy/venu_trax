@@ -10,6 +10,16 @@
   <%= render 'sidebar' %>
 </section>
 <script>
+  enable_attachments = function(){
+    $('.header_tabs').removeClass('active');
+    $('.tab-pane').removeClass('active show');
+    $('#attachment-tab').addClass('active');
+    $('#attachment-tab-body').addClass('active show');
+    // document.getElementById('myTab').scrollIntoView();
+  }
+  if(window.location.hash.substr(1) == "attachment-tab-body"){
+    enable_attachments();
+  }
   $('.toggle-sidebar-button').on('click', function () {
     $('body').toggleClass('sidebar-collapse')
     $(this).find('i').toggleClass('fa-angle-double-right').toggleClass('fa-angle-double-left')
