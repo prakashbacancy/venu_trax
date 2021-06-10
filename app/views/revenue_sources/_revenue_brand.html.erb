@@ -1,5 +1,9 @@
 <h5 class="mt-4 mb-0  py-2"> 
-  <%= image_pack_tag "sample/#{brand_logo(revenue_brand)}", class: 'mr-2 img-fluid', width: '47', height: '47' %>
+  <% if revenue_brand.brand_pic.attached? %>
+    <%= image_tag revenue_brand.brand_pic, class: 'mr-2 img-fluid', width: '47', height: '47' %>
+  <% else %>
+    <%= image_pack_tag 'sample/ic_placeholder.svg', class: 'mr-2 img-fluid', width: '47', height: '47' %>
+  <% end %>
   <%= "#{revenue_brand.name} Revenue Source" %>
 </h5>
 <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">

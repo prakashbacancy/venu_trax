@@ -35,7 +35,11 @@
       </p>
       <% event.brands.each do |brand| %>
         <div class="mb-3">
-          <%= image_pack_tag "sample/#{brand_logo(brand)}", class: 'img-fluid', width: '36' %>
+          <% if brand.brand_pic.attached? %>
+            <%= image_tag brand.brand_pic, class: 'img-fluid', width: '36' %>
+          <% else %>
+            <%= image_pack_tag 'sample/ic_placeholder.svg', class: 'img-fluid', width: '36' %>
+          <% end %>
           <span class="text-dark2 fw-600 fs-16 ml-2"><%= brand.name %></span>
         </div>
       <% end %>
