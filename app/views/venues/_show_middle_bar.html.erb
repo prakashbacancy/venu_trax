@@ -78,13 +78,11 @@
     <div class="tab-pane fade" id="venue_contacts-tab-body" role="tabpanel" aria-labelledby="venue_contacts-tab">
       <%= render 'venue_contacts/list', venue: @venue, venue_contacts: @venue_contacts %>   
     </div>
-    <% unless venue_contact?(current_user) %>
-      <div class="tab-pane fade" id="brands-tab-body" role="tabpanel" aria-labelledby="brands-tab">
-        <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-          <%= render 'brands_list', brands: @brands, venue: @venue %>
-        </div>
-      </div>
-    <% end %>
+    <%# <div class="tab-pane fade" id="brands-tab-body" role="tabpanel" aria-labelledby="brands-tab">
+      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden"> %>
+        <%#= render 'brands_list', brands: @brands, venue: @venue %>
+      <%# </div>
+    </div> %>
     <div class="tab-pane fade" id="simulation-tab-body" role="tabpanel" aria-labelledby="simulation-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
         <%= render 'simulation_list' %>
