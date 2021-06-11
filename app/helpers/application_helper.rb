@@ -128,4 +128,8 @@ module ApplicationHelper
     value = render_field(field, object)
     return value.present? ? value : 'N/A'
   end
+
+  def venue_contact?(user)
+    user.try(:contact) == 'venue_contact'
+  end
 end
