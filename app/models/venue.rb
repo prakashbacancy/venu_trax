@@ -8,6 +8,7 @@ class Venue < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :revenue_sources, dependent: :destroy
   has_many :brands, dependent: :destroy
+  has_many :venue_contacts, dependent: :destroy
 
   default_scope { order(created_at: :desc) }
 

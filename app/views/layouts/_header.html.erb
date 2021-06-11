@@ -12,28 +12,33 @@
 
     <div class="collapse navbar-collapse header-custom" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown px-md-2">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Business Management
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View Business", businesses_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "Add Business", new_business_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
-            <%#= link_to "View Simulation", simulations_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "View Venue", venues_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "View Brand", brands_path, class: 'dropdown-item fw-600 fs-14' %>
-            <!-- <div class="dropdown-divider"></div> -->
-          </div>
-        </li>
-        <li class="nav-item dropdown px-md-2">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User Management
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "View User", users_path, class: 'dropdown-item fw-600 fs-14' %>
-            <%= link_to "Add User", new_user_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
-          </div>
-        </li>
+        <% unless venue_contact?(current_user) %>
+          <li class="nav-item dropdown px-md-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Business Management
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "View Business", businesses_path, class: 'dropdown-item fw-600 fs-14' %>
+              <%= link_to "Add Business", new_business_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
+              <%#= link_to "View Simulation", simulations_path, class: 'dropdown-item fw-600 fs-14' %>
+              <%= link_to "View Venue", venues_path, class: 'dropdown-item fw-600 fs-14' %>
+              <%= link_to "View Brand", brands_path, class: 'dropdown-item fw-600 fs-14' %>
+              <!-- <div class="dropdown-divider"></div> -->
+            </div>
+          </li>
+        <% end %>
+        <%# NOTE: Just for now conditional show and hide. It will be changed once User Role Management id implemented %>
+        <% unless venue_contact?(current_user) %>
+          <li class="nav-item dropdown px-md-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              User Management
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "View User", users_path, class: 'dropdown-item fw-600 fs-14' %>
+              <%= link_to "Add User", new_user_path, remote: true, class: 'dropdown-item fw-600 fs-14' %>
+            </div>
+          </li>
+        <% end %>
         <%# <li class="nav-item dropdown px-md-2">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Reports
@@ -55,11 +60,13 @@
               <span class="badge badge-notify">0</span>
             </a>
           </li>
-          <li class="nav-item">
-            <%= link_to settings_path, class: 'nav-link' do %>
-              <i class="fa fa-cog"></i>
-            <% end %>
-          </li>
+          <% unless venue_contact?(current_user) %>
+            <li class="nav-item">
+              <%= link_to settings_path, class: 'nav-link' do %>
+                <i class="fa fa-cog"></i>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div class="my-2 my-lg-0">

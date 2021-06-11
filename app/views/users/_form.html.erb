@@ -35,7 +35,7 @@
 
     <div class="form-group mt-4">
       <%= f.label :email_address, class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.email_field :email, class:"form-control", placeholder:"Email Address", required: true  %>
+      <%= f.email_field :email, class:"form-control", placeholder:"Email Address", required: true, disabled: !f.object.new_record?  %>
     </div>
 
     <% unless (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) %>

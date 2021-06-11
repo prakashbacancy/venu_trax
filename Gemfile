@@ -46,7 +46,7 @@ gem 'google-apis-gmail_v1'
 gem 'oauth2'
 # Tree structure of ActiveRecord
 gem 'ancestry'
-#
+# For nested fields
 gem 'cocoon'
 # gem 'select2-rails'
 

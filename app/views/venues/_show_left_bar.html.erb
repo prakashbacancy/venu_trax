@@ -1,6 +1,8 @@
 <div class="content position-relative p-4">
-  <%= link_to business_path(@business, anchor: 'venues-tab-body'), class: 'fs-14 text-blue1 fw-600' do %>
-    <i class="fa fa-chevron-left mr-2"></i>All Venues
+  <% unless venue_contact?(current_user) %>
+    <%= link_to business_path(@business, anchor: 'venues-tab-body'), class: 'fs-14 text-blue1 fw-600' do %>
+      <i class="fa fa-chevron-left mr-2"></i>All Venues
+    <% end %>
   <% end %>
   <div class="d-flex mt-3">
     <div class="mr-3">
