@@ -940,3 +940,9 @@ table.dataTable {
 	padding: 0.9rem 1.25rem;
 	margin-top: .7rem!important;
 }
+.select2-container .select2-search--inline .select2-search__field{
+  height: 34px !important;
+}
+.select2-container{
+  line-height: 2;
+}

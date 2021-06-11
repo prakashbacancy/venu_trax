@@ -26,6 +26,7 @@ import 'chartjs-plugin-datalabels'
 import 'custom';
 import 'simulation';
 require("packs/jquery-ui.js")
+require('select2')
 require("@nathanvda/cocoon")
 require("packs/crm.js")
 // import "../stylesheets/application";

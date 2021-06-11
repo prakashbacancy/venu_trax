@@ -48,4 +48,8 @@ module EventsHelper
   def event_group(group_id)
     Group.find_by(id: group_id)
   end
+
+  def value_of_brands_for_select(event)
+    event.brand_ids
+  end
 end

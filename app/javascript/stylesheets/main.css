@@ -20202,3 +20202,6 @@ aside.main-sidebar  .main-sidebar-inner {
 .attachment-table tr:nth-child(even) {background-color: #f2f2f2;}
 .attachment-table th {background-color: #f2f2f2 !important;}
 .attachment-file { flex: 1 0 70%; }
+.select2-selection__choice__display{ color: #434141;}
+.select2-container{width: 100% !important}
+.select2-container--default .select2-selection--multiple{border: 1px lightgray;}
