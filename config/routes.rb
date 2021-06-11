@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       resources :comments, module: :simulation
     end
     resources :events
+    resources :venue_contacts
     resources :revenue_sources
   end
   resources :meetings do
