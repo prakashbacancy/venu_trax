@@ -9,14 +9,16 @@
           href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
-          role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
-          aria-controls="emails-tab-body" aria-selected="false">Email</a>
-      </li>
+      <% unless venue_contact?(current_user) %>
+        <li class="nav-item">
+          <a class="nav-link fs-16 mx-sm-1 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
+            role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-16 mx-sm-1 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
+            aria-controls="emails-tab-body" aria-selected="false">Email</a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-1 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
           role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
@@ -25,14 +27,16 @@
         <a class="nav-link fs-16 mx-sm-1 header_tabs events_enable" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
           aria-controls="events-tab-body" aria-selected="false">Events</a>
       </li>
-      <li class="nav-item cursor-not-allowed">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs not-allowed" id="venue_contacts-tab" data-toggle="tab"
+      <li class="nav-item">
+        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="venue_contacts-tab" data-toggle="tab"
           href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
           Contacts</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs brands_enable" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab" aria-controls="brands-tab-body" aria-selected="false">Brands</a>
-      </li>
+      <% unless venue_contact?(current_user) %>
+        <li class="nav-item">
+          <a class="nav-link fs-16 mx-sm-1 header_tabs brands_enable" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab" aria-controls="brands-tab-body" aria-selected="false">Brands</a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-1 header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
           aria-controls="simulation-tab-body" aria-selected="false">Simulation</a>
@@ -44,23 +48,27 @@
     
       <% set_google_token_flag = check_google_token %>
     </ul>
-    <div class="mt-2 mt-md-0 d-none text-nowrap my-1">
-      <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
-    </div>
-    <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div my-1 <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
-      <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
-    </div>
+    <% unless venue_contact?(current_user) %>
+      <div class="mt-2 mt-md-0 d-none text-nowrap my-1">
+        <%= link_to "Sync Email", emails_url, remote: true, class: 'btn btn-primary sync_email' %>
+      </div>
+      <div class="mt-2 mt-md-0 d-none text-nowrap meeting_create_button_div my-1 <%= 'cursor-not-allowed' if set_google_token_flag %>" title="<%= 'Please link your email to create meeting' if set_google_token_flag %>">
+        <%= link_to "Create Meeting", new_meeting_path(meetingable: @venue.to_polymorphic), remote: true, class: "btn btn-primary add_note text-nowrap ml-3 create_meeting #{'not-allowed' if set_google_token_flag}", title: "#{'Please relogin in Gmail' if set_google_token_flag}" %>
+      </div>
+    <% end %>
   </div>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade active show" id="details-tab-body" role="tabpanel" aria-labelledby="details-tab">
       <%= render 'details_list', klass: Klass.venue, venue: @venue %>
     </div>
-    <div class="tab-pane fade notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
-      <%= render 'notes_list', notes: @notes, notable: @venue %>
-    </div>
-    <div class="tab-pane fade" id="emails-tab-body" role="tabpanel" aria-labelledby="emails-tab">
-      <%= render 'emails_list', emails: @emails %>
-    </div>
+    <% unless venue_contact?(current_user) %>
+      <div class="tab-pane fade notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
+        <%= render 'notes_list', notes: @notes, notable: @venue %>
+      </div>
+      <div class="tab-pane fade" id="emails-tab-body" role="tabpanel" aria-labelledby="emails-tab">
+        <%= render 'emails_list', emails: @emails %>
+      </div>
+    <% end %>
     <div class="tab-pane fade" id="meetings-tab-body" role="tabpanel" aria-labelledby="meetings-tab">
       <%= render 'meetings_list', meetings: @meetings, venue: @venue %>
     </div>
@@ -68,14 +76,15 @@
       <%= render 'events_list', events: @events, venue: @venue %>   
     </div>
     <div class="tab-pane fade" id="venue_contacts-tab-body" role="tabpanel" aria-labelledby="venue_contacts-tab">
-      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-      </div>
+      <%= render 'venue_contacts/list', venue: @venue, venue_contacts: @venue_contacts %>   
     </div>
-    <div class="tab-pane fade" id="brands-tab-body" role="tabpanel" aria-labelledby="brands-tab">
-      <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
-        <%= render 'brands_list', brands: @brands, venue: @venue %>
+    <% unless venue_contact?(current_user) %>
+      <div class="tab-pane fade" id="brands-tab-body" role="tabpanel" aria-labelledby="brands-tab">
+        <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
+          <%= render 'brands_list', brands: @brands, venue: @venue %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="tab-pane fade" id="simulation-tab-body" role="tabpanel" aria-labelledby="simulation-tab">
       <div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
         <%= render 'simulation_list' %>
