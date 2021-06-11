@@ -111,7 +111,8 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 												cpa_annual_login: cpa_annual_login,
 												cpa_week_login: cpa_week_login,
 												cpa_month_login: cpa_month_login,
-												cpa_day_login: cpa_day_login
+												cpa_day_login: cpa_day_login,
+												updated_at: DateTime.now
 												)
 
 	end
