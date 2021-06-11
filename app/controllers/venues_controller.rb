@@ -2,9 +2,7 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!
   before_action :venue, only: %i[show new edit create update destroy]
   before_action :find_business, only: %i[new edit create update destroy]
-  before_action :set_business, only: %i[show]
-  before_action :set_brands, only: %i[show]
-  before_action :set_notes, only: %i[show]
+  before_action :set_business_notes_brands_contacts, only: %i[show]
   before_action :find_meetings_events, only: %i[show]
   before_action :set_klass
   before_action :find_dynamic_fields, only: %i[new edit create update]
@@ -91,16 +89,11 @@ class VenuesController < ApplicationController
     @business = Business.find_by(id: params[:business_id])
   end
 
-  def set_business
+  def set_business_notes_brands_contacts
     @business = @venue.business
-  end
-
-  def set_notes
     @notes = @venue.notes
-  end
-
-  def set_brands
     @brands = Brand.all
+    @venue_contacts = @venue.venue_contacts
   end
 
   def set_klass
@@ -109,7 +102,13 @@ class VenuesController < ApplicationController
   end
 
   def find_meetings_events
-    @meetings = @venue.meetings
+    @meetings = if current_user.try(:contact) == 'venue_contact'
+                  meeting_ids = @venue.meeting_ids
+                  local_meeting_ids = current_user.attendees.where(meeting_id: meeting_ids).pluck(:meeting_id)
+                  Meetings::Meeting.where(id: local_meeting_ids)
+                else
+                  @venue.meetings
+                end
     @events = @venue.events
   end
 
