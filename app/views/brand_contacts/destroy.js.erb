@@ -1,0 +1,3 @@
+$('.brand-contacts-data').html("<%= j render(partial: 'brand_contacts/list', locals: { brand_contacts: @brand_contacts, brand: @brand }) %>")
+$('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+$("#right_modal").modal('hide');

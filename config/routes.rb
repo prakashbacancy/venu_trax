@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :brands do
+    resources :brand_contacts
     resources :notes, module: :brand
     resources :notes do
       resources :comments, module: :note

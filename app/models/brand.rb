@@ -1,6 +1,7 @@
 class Brand < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   has_many :event_brands, dependent: :destroy
+  has_many :brand_contacts, dependent: :destroy
   has_many :notes, as: :notable
   has_many :events, through: :event_brands
   has_many :revenue_sources, dependent: :destroy

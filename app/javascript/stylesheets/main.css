@@ -20088,3 +20088,4 @@ aside.main-sidebar  .main-sidebar-inner {
 .select2-selection__choice__display{ color: #434141;}
 .select2-container{width: 100% !important}
 .select2-container--default .select2-selection--multiple{border: 1px solid lightgray !important; font-size: 16px;}
+.logo-img {width: 55px; height: auto; border-radius: 50%; object-fit: contain;}
