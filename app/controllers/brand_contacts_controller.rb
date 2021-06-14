@@ -1,6 +1,6 @@
 class BrandContactsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :load_brand, only: %i[show create edit update destroy]
+	before_action :load_brand, only: %i[new show create edit update destroy]
   before_action :brand_contact, only: %i[show edit update destroy]
 
   def new
