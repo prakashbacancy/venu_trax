@@ -7,6 +7,9 @@
       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-2 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body" role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link fs-16 mx-sm-2 header_tabs" id="contacts-tab" data-toggle="tab" href="#contacts-tab-body" role="tab" aria-controls="contacts-tab-body" aria-selected="false">Brand Contact</a>
+      </li>
     </ul>
     <div class="ml-3 text-nowrap my-1 d-none">
       <%= link_to "Create Note", new_brand_note_path(@brand.id), remote: true, class: 'btn btn-primary add_note' %>
@@ -19,6 +22,9 @@
     </div>
     <div class="tab-pane fade notes-list" id="notes-tab-body" role="tabpanel" aria-labelledby="notes-tab">
       <%= render 'notes_list', notes: @notes, notable: @brand %>
+    </div>
+    <div class="tab-pane fade contacts-list" id="contacts-tab-body" role="tabpanel" aria-labelledby="contacts-tab">
+      <%= render 'brand_contacts/list', brand: @brand, brand_contacts: @brand_contacts %>   
     </div>
   </div>
 </div>
