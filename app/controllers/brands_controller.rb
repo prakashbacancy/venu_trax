@@ -1,7 +1,7 @@
 class BrandsController < ApplicationController
   before_action :brand, only: %i[show edit update]
   before_action :load_brands, only: %i[create update]
-  before_action :load_notes, only: %i[show]
+  before_action :load_data, only: %i[show]
 
 	def index
     @brands = Brand.all
@@ -65,8 +65,10 @@ class BrandsController < ApplicationController
                end
   end
 
-  def load_notes
+  def load_data
     @notes = @brand.notes
+    @brand_contacts = @brand.brand_contacts
+
   end
 
   def load_brands

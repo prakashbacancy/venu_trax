@@ -7,6 +7,8 @@ class Klass < ApplicationRecord
   scope :venue, -> { find_by(name: 'Venue') }
   scope :event, -> { find_by(name: 'Event') }
 
+  validates :name, uniqueness: { case_sensitive: false, message: 'Entered klass name is already in use' }, allow_nil: false
+
   def constant
     @constant ||= self.name.constantize
   end

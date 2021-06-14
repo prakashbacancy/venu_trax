@@ -244,6 +244,11 @@ header {
 	.modal-header {
 		padding-top: 20px !important;
 		padding-bottom: 20px !important;
+		position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99999;
 	}
 	.modal-dialog {
 		-webkit-transform: translate3d(0%, 0, 0);
@@ -266,6 +271,7 @@ header {
 
 	.modal-body {
 		padding: 15px 30px 120px;
+		margin-top: 71px;
 	}
 
 	.modal-dialog.modal-sm {

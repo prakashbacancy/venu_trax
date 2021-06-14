@@ -1,0 +1,3 @@
+$('#right-modal-content').html('<%= j render(partial: 'form', locals: {brand_contact: @brand_contact, brand: @brand}) %>')
+$("#right_modal").modal('show');
+$('form').parsley();

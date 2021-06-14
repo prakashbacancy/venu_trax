@@ -1,8 +1,8 @@
-<div class=" px-3 pt-4 mt-1">
+<div class=" px-3 pt-3">
   <div class="">
     <div class="d-block d-flex align-items-center justify-content-between venue-contact venue-contact-header" >
       <div class="text-dark fw-500" data-toggle="collapse"
-      href="#collapseContact" role="button" aria-expanded="true" aria-controls="collapseExample"><span class="mr-auto fs-17 fw-700 text-dark2 ">Venue Contacts(<%= venue_contacts.count %>)</span></span>
+      href="#collapseContact" role="button" aria-expanded="true" aria-controls="collapseExample"><span class="mr-auto fs-16 fw-700 text-dark2 ">Venue Contacts(<%= venue_contacts.count %>)</span></span>
         <i class="fa fa-chevron-down fs-14 ml-2"></i></div>
       <% unless venue_contact?(current_user) %>
         <%= link_to "+ Add", new_venue_venue_contact_path(venue), class: "text-blue1 fw-600 fs-14 add_btn", remote: true %>

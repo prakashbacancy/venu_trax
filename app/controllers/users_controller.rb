@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   before_action :user, only: %i[show new edit]
   before_action :set_klass, only: %i[show new edit create update]
   before_action :find_dynamic_fields, only: %i[new edit create update]
-
-  def index
-    @users = User.all
-  end
+  before_action :users, only: %i[index create update]
 
   def create
     link_raw = set_reset_password_token
@@ -19,7 +16,6 @@ class UsersController < ApplicationController
     else
       flash[:alert] = user.errors.full_messages.join(', ')
     end
-    @users = User.all
   end
 
   def update
@@ -29,7 +25,6 @@ class UsersController < ApplicationController
     else
       flash[:alert] = user.errors.full_messages.join(', ')
     end
-    @users = User.all
   end
 
   def destroy
@@ -65,6 +60,10 @@ class UsersController < ApplicationController
 
   def set_klass
     @klass = Klass.user
+  end
+
+  def users
+    @users ||= User.normal_users
   end
 
   def find_dynamic_fields

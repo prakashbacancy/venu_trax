@@ -4,7 +4,7 @@
 			<% attachments&.first(5).each do |attachment| %>
   			<div class="d-flex align-items-center justify-content-between mb-2">
 	    		<div class="text-gray fs-16 d-flex align-items-start attachment-file attachment-<%=attachment.id%>">
-			      <div class="ml-2">
+			      <div class="">
 			        <p class="fs-14 word-break"><%= attachment.venue_file.filename.to_s %></p>
 			      </div>
 	    		</div>

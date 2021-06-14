@@ -8,6 +8,27 @@
     <%#= render "devise/shared/error_messages", resource: resource %>
     <% if params[:group_id].blank? %>
       <div class="form-group">
+        <div class="">
+          <% if f.object.logo.attached? %>
+            <%= image_tag f.object.logo, class: 'img-boundary image-profile-pic' %>
+          <% else %>
+            <%= image_pack_tag 'sample/ic_placeholder.svg', class: 'img-boundary image-profile-pic' %>
+          <% end %>
+          <div class="content-profile-info d-inline badge badge-edit">
+            <label class="btn-avatar">
+              <i class="fa fa-pencil-alt fs-16 text-white"></i>
+              <span style="display:none;">
+                <%= f.file_field :logo, class: "avatar", id: "logo-upload1", onchange: "readURL(this)", accept: "image/*" %>
+              </span>
+              <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+                <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
+                </li>
+              </ul>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <%= f.label :business, class: 'text-capitalize fs-17 asterisk' %><br />
         <%#= f.text_field :business_id, class:"form-control", placeholder: "Enter State", required: true  %>
         <% disable = (f.object.new_record? && f.object.business_id.present?) ? true : false %>
@@ -35,6 +56,25 @@
   <% end %>
 </div>
 <script type="text/javascript">
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $('.image-profile-pic').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#logo-upload1").change(function() {
+    var val = $(this).val();
+    if (!val.match(/(?:gif|jpg|png|bmp|jpeg|svg)$/)) {
+      $("#image-val-msg").css('display', 'block');
+      return false
+    }
+    $('#img_prev1').removeClass('hidden');
+    readURL(this);
+  });
+
   var autocomplete;
   var address1Field;
   var address2Field;
