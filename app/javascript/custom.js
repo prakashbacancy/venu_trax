@@ -23,3 +23,25 @@ $(document).on('keyup keypress', '.phone-number', function(e){
     $(this).attr('maxlength', '14');
   }
 });
+
+window.show_more_less_venue_contacts = () =>{
+  $(".venue_contacts_card").find(".venue_contact_row").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").hide();
+  if($(".venue_contacts_card").find(".venue_contact_row").length <= 5){
+    $('.load_more_venue_contacts').removeClass('d-flex')
+    $('.load_more_venue_contacts').hide();
+  } else {
+    $('.load_more_venue_contacts').addClass('d-flex')
+    $('.load_more_venue_contacts').show();
+  }
+  $('.load_more_venue_contacts').on('click', function(){
+    if($('.venue_contacts_card').hasClass('venue_contacts_more')){
+      $(".venue_contacts_card").find(".venue_contact_row").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").hide();
+      $('.venue_contacts_card').removeClass('venue_contacts_more')
+      $('.venue_contact_show_lable').text('See More...');
+    } else {
+      $('.venue_contacts_card').addClass('venue_contacts_more')
+      $(".venue_contacts_card").find(".venue_contact_row").show();
+      $('.venue_contact_show_lable').text('See Less...');
+    }
+  })
+}
