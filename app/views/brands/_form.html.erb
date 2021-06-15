@@ -6,92 +6,40 @@
 <div class="modal-body">
   <%= form_for [venue, brand], remote: true do |f| %>
     <%= f.hidden_field :venue_id, value: params[:id]  %>
-    <% if brand.brand_pic.attached? %>
-      <%= image_tag brand.brand_pic, class: 'img-boundary image-profile-pic' %>
+    <% if params[:group_id].blank? %>
+      <% if brand.brand_pic.attached? %>
+        <%= image_tag brand.brand_pic, class: 'img-boundary image-profile-pic mb-4' %>
+      <% else %>
+        <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary image-profile-pic mb-4' %>
+      <% end %>
+      <div class="content-profile-info d-inline badge badge-edit">
+        <label class="btn-avatar">
+          <i class="fa fa-pencil-alt fs-16 text-white"></i>
+          <span style="display:none;">
+            <%= f.file_field :brand_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
+          </span>
+          <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
+            <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
+            </li>
+          </ul>
+        </label>
+      </div>
     <% else %>
-      <%= image_pack_tag 'home/profile_placeholder.svg', class: 'img-boundary image-profile-pic' %>
+      <%= f.hidden_field :group_id, value: @root_group_id %>
     <% end %>
-    <div class="content-profile-info d-inline badge badge-edit">
-      <label class="btn-avatar">
-        <i class="fa fa-pencil-alt fs-16 text-white"></i>
-        <span style="display:none;">
-          <%= f.file_field :brand_pic, class: "avatar", id: "avatar-upload1", onchange: "readURL(this)", accept: "image/*" %>
-        </span>
-        <ul class="parsley-errors-list filled" id="parsley-id-5" aria-hidden="false">
-          <li class="parsley-required" id="image-val-msg1" style="display: none">Please upload only image.
-          </li>
-        </ul>
-      </label>
-    </div>
-    <div class="form-group mt-2">
-      <%= f.label :domain_name, 'Brand Domain Name', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :domain_name, class:"form-control", placeholder:"Enter Brand Domain Name", required: true  %>
-    </div>
 
-    <div class="form-group">
-      <%= f.label :name, 'Brand Name', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :name, class:"form-control", placeholder:"Enter Brand Name", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :phone_number, 'Phone Number', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_number, class:"form-control phone-number", placeholder:"Enter Phone Number", required: true, pattern: '((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}', maxlength: 14 %>
-    </div>
-
-     <div class="form-group">
-      <%= f.label :website_url, 'Website URL', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :website_url, class:"form-control", placeholder:"Enter Website URL", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :street_address, 'Street Address', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :street_address, class:"form-control", placeholder:"Enter Street Address", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :city, 'City', class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :city, class:"form-control", placeholder:"Enter City" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :state, 'State', class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :state, class:"form-control", placeholder:"Enter State"%>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :country, 'Country', class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :country, class:"form-control", placeholder:"Enter Country" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :zip_code, 'Zip Code', class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :zip_code, class:"form-control", placeholder:"Enter Zip Code" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :no_of_employee, 'No Of Employee', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.number_field :no_of_employee, class:"form-control", placeholder:"Enter No Of Employee", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :annual_revenue, 'Annual Revenue', class: 'text-capitalize fs-17' %><br />
-      <%= f.text_field :annual_revenue, class:"form-control", placeholder:"Enter Annual Revenue" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :brand_owner, 'Brand Owner', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :brand_owner, class:"form-control", placeholder:"Enter Brand Owner", required: true  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :description, class: 'text-capitalize fs-17' %><br />
-      <%= f.text_area :description, class:"form-control h-auto", placeholder:"Enter Description", rows: 4 %>
-    </div>
+    <% group.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : brand.send(field.name)} %>
+      </div>
+    <% end %>
 
     <div class="modal-footer modal-footer-fixed">
       <% save_button_title = f.object.new_record? ? 'Add' : 'Save' %>
       <%= f.submit save_button_title, class: "btn btn-primary add_event" %>
-      <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary add_event" %>
+      <% if params[:group_id].blank? %>
+        <%= f.submit 'Add More', name: 'add_more', value: 'Add More', class: "btn btn-primary add_event" %>
+      <% end %>
       <button type="button" class="btn btn-light bg-light-gray text-dark" data-dismiss="modal">Close</button>
     </div>
   <% end %>
