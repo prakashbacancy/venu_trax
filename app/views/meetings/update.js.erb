@@ -1,5 +1,5 @@
-$("#flash_message").html("<%= escape_javascript(render partial: 'layouts/flash') %>");
+$('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
 <% if @meeting.errors.blank? %>
-  $("#meetings").html("<%= escape_javascript(render partial: 'index', locals: { meetingable: @meeting.meetingable }) %>");
-  $("#modal").modal('hide');
+  $("#meetings-tab-body").html("<%= escape_javascript(render partial: 'venues/meetings_list', locals: { meetings: @meeting.meetingable.meetings, venue: @meeting.meetingable }) %>");
+  $("#bottom_modal").modal('hide');
 <% end %>

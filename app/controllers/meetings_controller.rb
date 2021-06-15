@@ -3,8 +3,9 @@ class MeetingsController < ApplicationController
 
   include AuthHelper
 
-  before_action :meetingable, only: [:new, :edit, :create, :update, :destroy_all]
+  before_action :meetingable, only: [:new, :create, :destroy_all]
   before_action :rebuild_attendees, only: [:create, :update]
+  before_action :meeting,  only: [:edit, :update, :destroy]
 
   def new
     # location: meetingable.full_address
@@ -12,7 +13,7 @@ class MeetingsController < ApplicationController
   end
 
   def edit
-    @meeting = meetingable.meetings.find(params[:id])
+    @meeting = Meetings::Meeting.find(params[:id])
   end
 
   def create
@@ -37,6 +38,7 @@ class MeetingsController < ApplicationController
   end
 
   def update
+    meeting = @meeting
     if meeting.update(meeting_params)
       flash[:success] = 'Meeting Successfully Updated!'
       token = get_google_access_token
@@ -55,22 +57,22 @@ class MeetingsController < ApplicationController
     else
       flash[:alert] = meeting.errors.full_messages.join(', ')
     end
-    redirect_to request.referrer
+    # redirect_to request.referrer
   end
 
   def destroy
-    if meeting.destroy
+    if @meeting.destroy
       flash[:success] = 'Meeting Successfully Deleted!'
       token = get_google_access_token
       # SimpleWorker.execute do
         CalendarManager::GoogleCalendar.new(token).destroy_event(
-          id: meeting.google_event_id
+          id: @meeting.google_event_id
         )
       # end
     else
-      flash[:alert] = meeting.errors.full_messages.join(', ')
+      flash[:alert] = @meeting.errors.full_messages.join(', ')
     end
-    redirect_to request.referrer
+    # redirect_to request.referrer
   end
 
   def destroy_all

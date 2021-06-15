@@ -27,7 +27,15 @@
               <p class="text-dark2 fw-600 fs-16">Meet By: <%= meeting.title %>
               </p>
             </div>
-            <p class="text-gray fs-14"><%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
+            <p class="text-gray fs-14 ml-auto mr-3"><%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
+            <div class="action-area-buttons">
+              <%= link_to(edit_meeting_path(meeting), remote: true, class: 'fa') do %>
+                <%= image_pack_tag 'home/ic_edit.svg'%>
+              <% end %>
+              <%= link_to(meeting_path(meeting), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this Meeting?' }) do %>
+                <%= image_pack_tag 'home/ic_delete.svg'%>
+              <% end %>
+            </div>
           </div>
           <p>
           </p>
