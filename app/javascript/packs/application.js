@@ -68,6 +68,7 @@ window.update_js = () => {
   $('.datetimepicker').datetimepicker({
     icons: {
       date: "fa fa-calendar",
+      time: 'fa fa-clock',
       up: "fa fa-arrow-up",
       down: "fa fa-arrow-down",
       previous: "fa fa-chevron-left",

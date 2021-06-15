@@ -20089,3 +20089,19 @@ aside.main-sidebar  .main-sidebar-inner {
 .select2-container{width: 100% !important}
 .select2-container--default .select2-selection--multiple{border: 1px solid lightgray !important; font-size: 16px;}
 .logo-img {width: 55px; height: auto; border-radius: 50%; object-fit: contain;}
+
+/* Bootstrap DateTimePicker */
+.timepicker-picker .table-condensed  .btn {
+  min-width: auto !important;
+  padding: unset !important;
+  margin: 12px !important;
+}
+.timepicker-picker .table-condensed  button.btn.btn-primary {
+  margin: 12px !important;
+  min-width: auto !important;
+  padding: 6px 12px !important;
+}
+.bootstrap-datetimepicker-widget table thead tr:first-child th {
+  cursor: pointer !important;
+  padding: 12px 0 15px 0 !important;
+}
