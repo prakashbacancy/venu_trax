@@ -9,6 +9,7 @@ class Group < ApplicationRecord
   scope :venue_basic, -> { find_by(name: 'Venue Information', klass_id: Klass.venue.id) }
   scope :business_basic, -> { find_by(name: 'Business Information', klass_id: Klass.business.id) }
   scope :event_basic, -> { find_by(name: 'Event Information', klass_id: Klass.event.id) }
+  scope :brand_basic, -> { find_by(name: 'Brand Information', klass_id: Klass.brand.id) }
 
   # has_many :role_resources, as: :resource, dependent: :destroy
   # before_create :create_role_resources

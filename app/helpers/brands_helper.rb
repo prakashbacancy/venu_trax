@@ -6,4 +6,8 @@ module BrandsHelper
   def no_data_available_for_table
     '<tr><td colspan="5" class="text-center text-gray">No Data Available</td></tr>'.html_safe
   end
+
+  def brand_group(group_id)
+    Group.find_by(id: group_id)
+  end
 end
