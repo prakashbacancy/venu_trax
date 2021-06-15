@@ -152,4 +152,11 @@
 	    }
 	  })
 	})
+	$(document).ready(function(){
+		var SearchInput = $('#simulation_event_per_year');
+		SearchInput.val(SearchInput.val());
+		var strLength= SearchInput.val().length;
+		SearchInput.focus();
+		SearchInput[0].setSelectionRange(strLength, strLength);
+	})
 </script>

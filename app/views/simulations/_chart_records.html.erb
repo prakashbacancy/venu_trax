@@ -81,7 +81,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">Seating Capacity </h3>
+        <h5 class="chart-main-title mb-0">Seating Capacity </h5S>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= column_chart(@simulations[:seating_capacity], id: 'seating_capacity') %>
@@ -98,7 +98,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">Visitor Attendance</h3>
+        <h5 class="chart-main-title mb-0">Visitor Attendance</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= line_chart(@simulations[:visitor_attendance], id: 'vistior_chart') %>
@@ -204,6 +204,7 @@
           scales: {
             yAxes: [{
               ticks: {
+                maxTicksLimit: 8,
                 callback: function(value) {
                   return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                 }
@@ -307,6 +308,7 @@
           scales: {
             yAxes: [{
               ticks: {
+                maxTicksLimit: 8,
                 callback: function(value) {
                   return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                 }
@@ -418,6 +420,7 @@
           scales: {
             yAxes: [{
               ticks: {
+                maxTicksLimit: 8,
                 callback: function(value) {
                   return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                 }

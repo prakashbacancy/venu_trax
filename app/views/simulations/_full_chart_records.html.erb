@@ -2,7 +2,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">WIFILP</h3>
+        <h5 class="chart-main-title mb-0">WIFILP</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
           <%= column_chart(@simulations[:wifi_lp_login], id: 'wifi_lp') %>
@@ -19,7 +19,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">CPM LP Revenue</h3>
+        <h5 class="chart-main-title mb-0">CPM LP Revenue</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= column_chart(@simulations[:lp_impression], id: 'cpm_lp') %>
@@ -38,7 +38,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">User Impression</h3>
+        <h5 class="chart-main-title mb-0">User Impression</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= column_chart(@simulations[:user_impression], id: 'user_impression') %>
@@ -55,7 +55,7 @@
   <div class="col-md-6 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">CPM Impression Revenue</h3>
+        <h5 class="chart-main-title mb-0">CPM Impression Revenue</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
   				<%= column_chart(@simulations[:cpm_impression], id: 'cpm_impression') %>
@@ -74,7 +74,7 @@
   <div class="col-md-12 mb-4">
     <div class="box-body admin-box bg-white p-4 h-100 rounded-10 table-bordered border-radius-5">
       <div class="chart-header">
-        <h3 class="chart-main-title mb-0">WIFI Revenue</h3>
+        <h5 class="chart-main-title mb-0">WIFI Revenue</h5>
         <p class="chart-sub-title text-blue3 mb-3"></p>
         <div>
           <%= area_chart(@simulations[:wifi_revenue], id: 'wifi_revenue') 
