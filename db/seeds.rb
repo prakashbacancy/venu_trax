@@ -3,6 +3,7 @@ Klass.find_or_create_by(name: 'Business', label: 'Business')
 Klass.find_or_create_by(name: 'User', label: 'User')
 Klass.find_or_create_by(name: 'Venue', label: 'Venue')
 Klass.find_or_create_by(name: 'Event', label: 'Event')
+Klass.find_or_create_by(name: 'Brand', label: 'Brand')
 
 # To make existing Business fields dynamic
 business_prebuid_fields = {
@@ -61,6 +62,25 @@ event_prebuild_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.event.id, custom: false, deletable: false, required: true, position: 0)
 end
 
+# To make existing Brand fields dynamic
+brand_prebuid_fields = {
+  'domain_name': 'URL',
+  'name': 'Text',
+  'phone_number': 'Phone',
+  'website_url': 'URL',
+  'street_address': 'Text',
+  'city': 'Text',
+  'state': 'Text',
+  'country': 'Text',
+  'zip_code': 'Text',
+  'no_of_employee': 'Integer',
+  'brand_owner': 'Text',
+  'description': 'Text Area'
+}
+brand_prebuid_fields.each do |k, v|
+  Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.brand.id, custom: false, deletable: false, required: true, position: 0)
+end
+
 # # ===============================START===============================
 # # NOTE: Run this manually once in your console after all migrations for `Dynamic Groups Fields` (Required for the first time)
 # # ===================================================================
@@ -80,6 +100,10 @@ end
 # Group.find_or_create_by(name: 'Event Details', label: 'Event Details', klass_id: Klass.event.id, default: true)
 # Group.find_or_create_by(name: 'Event Information', label: 'Event Information', klass_id: Klass.event.id, ancestry: Group.find_by(name: 'Event Details').id.to_s, default: true)
 # Klass.event.fields.update_all(group_id: Group.find_by(name: 'Event Information').id)
+#
+# Group.find_or_create_by(name: 'Brand Details', label: 'Brand Details', klass_id: Klass.brand.id, default: true)
+# Group.find_or_create_by(name: 'Brand Information', label: 'Brand Information', klass_id: Klass.brand.id, ancestry: Group.find_by(name: 'Brand Details').id.to_s, default: true)
+# Klass.brand.fields.update_all(group_id: Group.find_by(name: 'Brand Information').id)
 # # ===============================END=================================
 
 # # ===============================START===============================
