@@ -1,48 +1,48 @@
-<div class="content position-relative tab-section ">
+<div class="content position-relative tab-section venue-middle-screen">
   <button class="toggle-sidebar-button pl-3 pr-3 py-2 bg-white web-btn">
     <i class="icon-box fa fa-angle-double-left"></i>
   </button>
   <div class='d-md-flex align-items-center justify-content-between'>
     <ul class="nav nav-tabs my-1" id="myTab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs active details_enable" id="details-tab" data-toggle="tab"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs active details_enable" id="details-tab" data-toggle="tab"
           href="#details-tab-body" role="tab" aria-controls="details-tab-body" aria-selected="true">Details
         </a>
       </li>
       <% unless venue_contact?(current_user) %>
         <li class="nav-item">
-          <a class="nav-link fs-16 mx-sm-1 header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
+          <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="notes-tab" data-toggle="tab" href="#notes-tab-body"
             role="tab" aria-controls="notes-tab-body" aria-selected="false">Notes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-16 mx-sm-1 header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
+          <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="emails-tab" data-toggle="tab" href="#emails-tab-body" role="tab"
             aria-controls="emails-tab-body" aria-selected="false">Email</a>
         </li>
       <% end %>
       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="meetings-tab" data-toggle="tab" href="#meetings-tab-body"
           role="tab" aria-controls="meetings-tab-body" aria-selected="false">Meetings</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs events_enable" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs events_enable" id="events-tab" data-toggle="tab" href="#events-tab-body" role="tab"
           aria-controls="events-tab-body" aria-selected="false">Events</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="venue_contacts-tab" data-toggle="tab"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="venue_contacts-tab" data-toggle="tab"
           href="#venue_contacts-tab-body" role="tab" aria-controls="venue_contacts-tab-body" aria-selected="false">Venue
           Contacts</a>
       </li>
       <% unless venue_contact?(current_user) %>
 <!--       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs brands_enable" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab" aria-controls="brands-tab-body" aria-selected="false">Brands</a>
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs brands_enable" id="brands-tab" data-toggle="tab" href="#brands-tab-body" role="tab" aria-controls="brands-tab-body" aria-selected="false">Brands</a>
       </li> -->
       <% end %>
       <li class="nav-item">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="simulation-tab" data-toggle="tab" href="#simulation-tab-body" role="tab"
           aria-controls="simulation-tab-body" aria-selected="false">Simulation</a>
       </li>
       <li class="nav-item mr-auto">
-        <a class="nav-link fs-16 mx-sm-1 header_tabs" id="attachment-tab" data-toggle="tab" href="#attachment-tab-body" role="tab"
+        <a class="nav-link fs-16 mx-sm-1 header_tabs main_header_tabs" id="attachment-tab" data-toggle="tab" href="#attachment-tab-body" role="tab"
           aria-controls="attachment-tab-body" aria-selected="false">Attachments</a>
       </li>
     
