@@ -1,5 +1,5 @@
 <% if params[:add_more].present? %>
-  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { brand: @brand_more, venue: @venue, add_more: true }) %>')
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { brand: @brand_more, venue: @venue, add_more: true, group: @group, data: @data }) %>')
   $('.brand_list_div').html("<%= j render(partial: 'brands_list', locals: { brands: @brands, venue: @venue }) %>")
   $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('show');
@@ -9,5 +9,8 @@
   $('.brand_list_div').html("<%= j render(partial: 'brands_list', locals: { brands: @brands, venue: @venue }) %>")
   $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('hide');
+<% end %>
+<% if params[:brand][:group_id] %>
+  $('#group-<%= params[:brand][:group_id] %>-tab-body').html('<%= j render(partial: 'group_fields', locals: {klass: Klass.brand, brand: @brand, group: brand_group(params[:brand][:group_id]) }) %>')
 <% end %>
 initAutocomplete();
