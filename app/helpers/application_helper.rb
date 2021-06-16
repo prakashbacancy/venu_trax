@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def dynamic_display_two_digit(val)
-    return nil if val.nil?
+    return nil if val.blank?
 
     val = val.to_f
     val = (val < 0) ? 0 : val
