@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 
   def new
     # location: meetingable.full_address
-    @meeting = meetingable.meetings.build(title: meetingable.name)
+    @meeting = meetingable.meetings.build
   end
 
   def edit
