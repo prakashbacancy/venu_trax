@@ -92,11 +92,11 @@
       <%= f.label 'Venue Contract Term', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center">
         <%#= f.label 'No of Months', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-6 col-md-6">No of Months
+        <p class="text-capitalize fs-14 col-8 col-md-9">No of Months
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "No of Months" %>
         </p>
-        <%= f.number_field :contract_month, autofocus: true, autocomplete: "", placeholder: '0', class: 'form-control col-4 col-md-2 d-inline simulation-text-field', required: true %>
-        <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-3 col-md-3 fs-14 ml-1"}%>
+        <%= f.number_field :contract_month, autofocus: true, autocomplete: "", placeholder: '0', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', required: true %>
+        <%#= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-3 col-md-3 fs-14 ml-1"}%>
       </div>
     </div>
 
