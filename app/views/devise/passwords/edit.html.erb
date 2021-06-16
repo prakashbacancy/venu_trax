@@ -40,7 +40,7 @@
           <label class="fs-14 fw-600 d-block"> Please reset your password and make secure your account. </label>
           <% if resource.errors.any? %>
             <div class="alert-message-top">
-              <div class="alert alert-alert" id="flashMessage"> <%= resource.errors.full_messages.join(', ') %></div>
+              <div class="alert alert-alert" id="flashMessage"> <%= resource.errors.full_messages.join(', ').gsub('password', 'Password') %></div>
             </div>
           <% end %>
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
