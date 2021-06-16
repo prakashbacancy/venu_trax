@@ -1,5 +1,7 @@
 class Business < ApplicationRecord
+  default_scope -> { order(created_at: :desc) }
   has_one_attached :logo, dependent: :destroy
+  validates :logo,  blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..10.megabytes}
 
   has_many :notes, as: :notable
   has_many :venues, dependent: :destroy
