@@ -8,12 +8,13 @@ class CredentialsController < ApplicationController
         sign_in(user, bypass: true) if current_user == user
         flash[:notice] = 'Password Changed Successfully!'
       else
-        flash[:alert] = user.errors.full_messages
+        flash[:alert] = user.errors.full_messages&.first
       end
     else
+      @user.errors[:base] << 'You have entered wrong current password!'
       flash[:alert] = 'You have entered wrong current password!'
     end
-    redirect_to request.referrer
+    # redirect_to request.referrer
   end
 
   private
