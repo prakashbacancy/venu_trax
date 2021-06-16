@@ -155,6 +155,9 @@
         alert('Please sync your email first, only then you will be able to create the Meeting.')
       }
     })
+    $('.meeting_attendees_btn').on('click', function(){
+      $('.modal-backdrop').removeClass('modal-backdrop')
+    })
   })
 </script>
 <%# Put styles here as per the designer! %>

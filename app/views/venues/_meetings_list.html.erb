@@ -54,8 +54,8 @@
             <span class="mr-5" data-html="true" title="<%= meeting_attendees(meeting) %>">
               <p class="text-blue1  fw-600 fs-15">Attendees
               </p>
-              <p class="text-darkgray1  fw-600  fs-16 mt-1"><%= meeting.attendees.count %> Attendees
-              </p>
+              <a class="text-darkgray1  fw-600  fs-16 mt-1 meeting_attendees_btn"  data-toggle= 'modal' data-target= "#meetingAttendeesModal_<%= "#{ meeting.id if meeting.attendees.count > 0 }" %> "><%= meeting.attendees.count %> Attendees
+              </a>
             </span>
             <span class="mr-5">
               <p class="text-blue1  fw-600 fs-15">Duration
@@ -104,6 +104,7 @@
         <% end %>
       </div>
     </div>
+    <%= render 'venues/meeting_modal', meeting: meeting %>
   <% end %>
   </div>
 <% else %>
@@ -111,3 +112,8 @@
     <p class="fs-18 text-center text-gray">No Data Available</p>
   </div>
 <% end %>
+<script>
+  $('.meetingAttendeesModal').on('shown.bs.modal', function (){
+    $('.modal-backdrop').removeClass('modal-backdrop')
+  })
+</script>

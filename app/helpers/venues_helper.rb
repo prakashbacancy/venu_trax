@@ -10,4 +10,8 @@ module VenuesHelper
   def venue_group(group_id)
     Group.find_by(id: group_id)
   end
+
+  def meeting_attendees_for_modal(meeting)
+    User.where(id: meeting.attendees.pluck(:resourceable_id))
+  end
 end
