@@ -150,6 +150,11 @@
       $('.details-view .tab-content .tab-pane').removeClass('active show')
       $('.details-view .tab-content .tab-pane').first().addClass('active show')
     })
+    $('.create_meeting').on('click', function(){
+      if($(this).hasClass('cursor-not-allowed')){
+        alert('Please sync your email first, only then you will be able to create the Meeting.')
+      }
+    })
   })
 </script>
 <%# Put styles here as per the designer! %>
