@@ -1,4 +1,4 @@
-<div class="box-body shadow mb-4 mt-4">
+<div class="box-body shadow mt-4">
   <div class="row align-items-center admin-form">
     <div class="col-lg-12 col-btn">
       <%= link_to "Create Note", new_venue_note_path(notable.id), remote: true, class: 'btn btn-primary add_note' %>
@@ -8,7 +8,7 @@
 
 <% if notes.present? %>
   <% notes.each do |note| %>
-    <div class="shadow p-3 mb-5 bg-white rounded mt-4 note_shadow_box_<%= note.id %>">
+    <div class="shadow p-3 bg-white rounded mt-4 note_shadow_box_<%= note.id %>">
       <p class="fs-18"></p>
       <p class="text-dark2 fw-500"><%= note.description.html_safe %></p>
       <p></p>
@@ -39,7 +39,7 @@
     </div>
   <% end %>
 <% else %>
-  <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+  <div class="shadow p-3 bg-white rounded mt-4">
     <p class="fs-18 text-center text-gray">No Data Available</p>
   </div>
 <% end %>

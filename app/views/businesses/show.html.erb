@@ -38,9 +38,12 @@
       } else if(this.id == 'notes-tab') {
         $('.add_note').closest('div').removeClass('d-none');
         $('.add_venue').closest('div').addClass('d-none');
-      } else {
+      } else if(this.id == 'details-tab') {
         $('.add_venue').closest('div').addClass('d-none');
         $('.add_note').closest('div').addClass('d-none');
+        $('.sub_header_tabs').first().addClass('active');
+        $('#businessDetailsSubTabs.tab-pane').removeClass('active show');
+        $('#businessDetailsSubTabs .tab-pane').first().addClass('active show');
       }
     })
     $('.add_note').on('click', function(){

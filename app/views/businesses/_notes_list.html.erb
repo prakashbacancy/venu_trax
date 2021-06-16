@@ -1,7 +1,7 @@
 
 <% if notes.present? %>
   <% notes.each do |note| %>
-    <div class="shadow p-3 mb-5 bg-white rounded mt-4 note_shadow_box_<%= note.id %>">
+    <div class="shadow p-3 bg-white rounded mt-4 note_shadow_box_<%= note.id %>">
       <p class="fs-18"><%= note.description.html_safe %></p>
       <p class="text-gray mt-3 fs-16"> -- <%= "#{note.user.full_name} | #{note.created_at.strftime('%b %d, %Y %l:%M %p')}" %> </p>
       <div class="mt-3">
@@ -30,7 +30,7 @@
     </div>
   <% end %>
 <% else %>
-  <div class="shadow p-3 mb-5 bg-white rounded mt-4">
+  <div class="shadow p-3 bg-white rounded mt-4">
     <p class="fs-18 text-center text-gray">No Data Available</p>
   </div>
 <% end %>
