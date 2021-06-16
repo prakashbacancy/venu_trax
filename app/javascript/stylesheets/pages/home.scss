@@ -776,6 +776,39 @@ body.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders {
 	}
 }
 
+.custom-modal .meeting-modal .cke_bottom {
+	margin-bottom: 50px!important;
+}
+.custom-modal .meeting-modal  body {
+	margin: 20px 0;
+}
+@media only screen and (max-width: 767px){
+	.custom-modal .meeting-modal .cke_bottom {
+		margin-bottom: 50px!important;
+	}
+}
+.custom-modal .meeting-modal  .form-control:focus {
+	box-shadow: unset;
+}
+.custom-modal .meeting-modal .close {
+	opacity: 1 !important;
+}
+.custom-modal .meeting-modal  ::-webkit-input-placeholder { /* Edge */
+  font-size:13px;
+}
+
+.custom-modal .meeting-modal  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+ font-size:13px;
+}
+
+.custom-modal .meeting-modal  ::placeholder {
+  font-size:13px;
+}
+.custom-modal .meeting-modal .modal-header img {
+	width: 22px;
+	height: 22px;
+}
+
 .expanded-note-modal{
 	right: 0px!important;
  & .modal-dialog {

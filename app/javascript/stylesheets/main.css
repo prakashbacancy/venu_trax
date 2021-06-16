@@ -20105,3 +20105,12 @@ aside.main-sidebar  .main-sidebar-inner {
   cursor: pointer !important;
   padding: 12px 0 15px 0 !important;
 }
+
+.filter-middle-main .message h4{font-size: 16px;}
+.filter-middle-main .message span{font-size: 14px;}
+.filter-middle-main .message p{font-size: 15px;}
+
+ul.multiselect-container.dropdown-menu.show {
+  height: 190px;
+  overflow-y: auto;
+}
