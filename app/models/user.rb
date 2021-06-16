@@ -16,6 +16,7 @@ class User < ApplicationRecord
   scope :active, -> { where.not(encrypted_password: '') }
   scope :ordered, -> { order(:full_name) }
   scope :normal_users, -> { where(contact: 0) }
+  scope :not_contacts, -> { User.where(contact: 0).where.not(encrypted_password: '') }
   # validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
 
   attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
@@ -38,8 +39,8 @@ class User < ApplicationRecord
     InvitationWorker.perform_async(:user_account_setup_instructions, user_id: id, token: token, current_user_id: current_user.id)
   end
 
-  def all_user_of_related_company
-    User.all.active.ordered
+  def all_without_contact_user
+    User.not_contacts.ordered
   end
 
   def self.all_active_users
