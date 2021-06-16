@@ -70,11 +70,13 @@
               </p>
             </span>
           </div>
-          <hr>
-          <p class="text-dark2 fw-600 fs-16 mt-2">Team Notes
-          </p>
-          <p class="text-gray mt-2 fs-16"> <%= meeting.team_note.html_safe %>
-          </p>
+          <% unless meeting.team_note.html_safe.blank? %>
+            <hr>
+            <p class="text-dark2 fw-600 fs-16 mt-2">Team Notes
+            </p>
+            <p class="text-gray mt-2 fs-16"> <%= meeting.team_note.html_safe %>
+            </p>
+          <% end %>
         </div>
       </div>
       <hr>

@@ -10,7 +10,7 @@
         <div class="form-group mb-0">
           <label class="text-gray fw-600 fs-13 w-100" for="usr">Attendees</label>
           <div style="width:100%;">
-            <%= select_tag :attendees, grouped_options_for_select(all_attendees, value_of_attendees_for_select(f.object)), multiple: true, required: true, title: 'Select Attendees', class: 'form-control select_picker multi_select', data: { "live-search": true } %>
+            <%= select_tag :attendees, grouped_options_for_select(all_attendees, value_of_attendees_for_select(f.object)), multiple: true, title: 'Select Attendees', class: 'form-control select_picker multi_select', data: { "live-search": true } %>
           </div>
         </div>
       </div>
@@ -65,6 +65,10 @@
   }
   .attendee_description body.cke_editable{
     margin: 20px 0 !important;
+  }
+  .parsley-errors-list {
+    position: relative !important;
+    padding-left: 0 !important;
   }
 </style>
 <script>

@@ -18,6 +18,14 @@ module ApplicationHelper
     '%.2f' % val.to_f
   end
 
+  def dynamic_display_two_digit(val)
+    return nil if val.nil?
+
+    val = val.to_f
+    val = (val < 0) ? 0 : val
+    '%.2f' % val.to_f
+  end
+
   def error_message(object, field, options = {})
     content_tag(:div, object.errors.full_message(field, object.errors[field].join('')), class: options) if (object.errors.present? && object.errors[field].present?)
   end
@@ -32,12 +40,6 @@ module ApplicationHelper
     else
       date.to_date == Time.now.to_date ? date.strftime('%l:%M %P') : date.strftime('%b %d')
     end
-  end
-
-  def display_two_digit(amount)
-    amount = amount.kind_of?(Float) ? amount : amount.to_f
-    amount = (amount < 0) ? 0 : amount
-    '%.2f' % amount
   end
 
   def pretty_days_from_float(days)

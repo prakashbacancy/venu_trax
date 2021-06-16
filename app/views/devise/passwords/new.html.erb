@@ -17,7 +17,7 @@
       </div>
       <div class="col-lg-6 d-flex justify-content-center align-items-center">
         <div class="user-login-inner mx-auto text-white">
-          <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Forgot your password?</h2>
+          <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Forgot Your Password?</h2>
           <label class="fs-14 fw-600 d-block"> No Worries! </label>
           <label class="fs-14 fw-600 d-block"> Please enter your registered email address and we will </label>
           <label class="fs-14 fw-600 d-block"> send you the link to reset your password </label>
@@ -29,7 +29,7 @@
                 </div>
               <% end %>
               <label for="user_email" class="fs-14 text-uppercase fw-600">Email</label>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', 'data-parsley-required': 'true', 'data-parsley-required-message': 'Please enter Email', 'data-parsley-trigger': 'keyup' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Enter Email', class: 'form-control textbox-blur-bg mt-2', data: { parsley_required: 'true', parsley_required_message: 'Please enter Email', parsley_trigger: 'keyup', parsley_type_message: 'Please enter valid Email' } %>
             </div>
           <%#= link_to 'Forgot Password?' , new_user_password_path, class: "forgot-password text-blue1"%>
           <%= f.submit "Submit", class: 'btn btn-primary border-radius-3 mb-4 mt-5' %>

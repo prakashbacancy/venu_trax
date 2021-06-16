@@ -17,7 +17,9 @@ class Users::PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     set_flash_message! :notice, :send_instructions if successfully_sent?(resource)
-    render :new
+    # To keep email as it is in the textbox field.
+    # render :new
+    redirect_to new_user_password_path
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
