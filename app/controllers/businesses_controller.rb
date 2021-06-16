@@ -15,7 +15,7 @@ class BusinessesController < ApplicationController
       flash[:success] = 'Business Successfully Added!'
       @business = Business.new
     else
-      flash[:alert] = 'Error Occurred While Adding A Business!'
+      flash[:alert] = @business.errors.full_messages.join(",")
     end
     @businesses = Business.all
   end
@@ -25,7 +25,7 @@ class BusinessesController < ApplicationController
       flash[:success] = 'Business Successfully Updated!'
       (@business = Business.new) if params[:add_more].present?
     else
-      flash[:alert] = 'Error Occurred While Updating A business!'
+      flash[:alert] = business.errors.full_messages.join(",")
     end
     @businesses = Business.all
   end
@@ -34,7 +34,7 @@ class BusinessesController < ApplicationController
     if business.destroy
       flash[:success] = 'Business Successfully Deleted!'
     else
-      flash[:alert] = 'Error Occurred While Deleting A Business!'
+      flash[:alert] = business.errors.full_messages.join(",")
     end
     redirect_to businesses_path
   end
