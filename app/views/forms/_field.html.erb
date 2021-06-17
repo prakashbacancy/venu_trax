@@ -5,7 +5,7 @@
   <% address_class = field.name.eql?("address") ? 'add_address' : "" %>
   <%- case column_type
     when 'Text' %>
-    <%= f.text_field field_name, class: "form-control #{field_name} #{address_class}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value %>
+    <%= f.text_field field_name, class: "form-control #{field_name} #{address_class}", required: field.required, pattern: Field::PATTERNS["Text".to_sym], placeholder: field.placeholder, value: value, minlength: field.min_length, maxlength: field.max_length %>
   <% when 'Password' %>
     <%= f.password_field field_name, required: field.required, placeholder: field.placeholder, class: 'form-control' %>
   <% when 'Skype' %>
@@ -27,7 +27,7 @@
   <% when 'Phone' %>
     <%= f.text_field field_name, class: 'form-control phone-validation phone-number', required: field.required, pattern: Field::PATTERNS["Phone".to_sym], maxlength: 14, placeholder: field.placeholder, value: value %>
   <% when 'URL' %>
-    <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["URL".to_sym], placeholder: field.placeholder, value: value %>
+    <%= f.text_field field_name, class: 'form-control', required: field.required, pattern: Field::PATTERNS["URL".to_sym], placeholder: field.placeholder, value: value, minlength: field.min_length, maxlength: field.max_length %>
   <% when  'Picklist' %>
     <% select_data = data[field_name.to_sym] %>
     <%= f.select field_name, options_for_select(select_data, value || field.default_value), {prompt: field.placeholder}, {class: 'form-control', required: field.required} %>
