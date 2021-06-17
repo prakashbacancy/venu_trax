@@ -9,7 +9,7 @@
       </thead>
       <tbody>
         <% messages.each_with_index do |message, ind| %>
-          <tr class="radio-lbl email-checkbox message_id_<%#= message.id %> position-relative ">
+          <tr class="radio-lbl email-checkbox message_id_<%= message.id %> position-relative ">
             <%= render partial: 'emails/list_message', locals: { message: message, ind: ind } %>
           </tr>
         <% end %>

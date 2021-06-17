@@ -3,7 +3,7 @@
     <%= link_to 'javascript:void(0)', class: 'common-link back-messages m-l-5' do%>
       <i class="fa fa-arrow-left" aria-hidden="true"></i>
     <% end %>
-    <%= link_to email_path(message.id), data: {id: message.id}, method: :delete, remote: true,  class: 'common-link delete-message ml-3' do%>
+    <%= link_to email_path(message.id), data: { id: message.id, confirm: 'Do you want to delete this Email?' }, method: :delete, remote: true,  class: 'common-link delete-message ml-3' do %>
       <i class='fa fa-trash' aria-hidden='true'></i>
     <% end %>
   </div>
@@ -48,5 +48,4 @@
     $('iframe').addClass('w-100');
     this.style.height = (this.contentWindow.document.body.scrollHeight+50) + 'px';
   });
-
 </script>
