@@ -38,7 +38,7 @@ module ApplicationHelper
     if date.year > Time.now.year
       date.strftime('%d/%m/%y')
     else
-      date.to_date == Time.now.to_date ? date.strftime('%l:%M %P') : date.strftime('%b %d')
+      date.to_date == Time.now.to_date ? date.strftime('%l:%M %p') : date.strftime('%b %d')
     end
   end
 

@@ -6,7 +6,7 @@
   <% end %>
   <%= "#{revenue_brand.name} Revenue Source" %>
 </h5>
-<div class="admin-table bg-white table-responsive mt-3 overflow-hidden">
+<div class="admin-table bg-white table-responsive mt-3">
   <table class="table table-bordered w-100 " id="revenue_list_table">
     <thead class="thead-dark">
       <th class="no-wrap">Revenue Source Name</th>
@@ -22,7 +22,7 @@
       <th class="align-middle text-center">Action</th>
     </thead>
     <tbody>
-      <%= render(partial: 'revenue_sources/revenue_source', collection: revenue_brand.revenue_sources, locals: { venue: venue, event: event }) || no_data_available %>
+      <%= render(partial: 'revenue_sources/revenue_source', collection: revenue_brand.revenue_sources, locals: { venue: venue, event: event }) || no_data_available_for_table %>
     </tbody>
   </table>
 </div>

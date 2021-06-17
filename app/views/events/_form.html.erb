@@ -47,8 +47,8 @@
       </div>
     <% end %>
     <% unless params[:group_id].present? %>
-      <div class="form-group event_brands_fields">
-        <%= label_tag 'Add Brand', 'Add Brand', class: 'text-capitalize fs-17 asterisk' %><br />
+      <div class="form-group event_brands_fields d-flex flex-column">
+        <%= label_tag 'Add Brand', 'Add Brand', class: 'text-capitalize fs-17 asterisk' %>
         <%= f.select :brand_ids, options_for_select(brand_option(Brand.all), value_of_brands_for_select(f.object)), {},multiple: true, required: true, title: 'Select Brands', class: 'form-control select_picker select2_picker multi_select', data: { "live-search": true } %>
         <%#= f.fields_for :event_brands, f.object.event_brands do |event_brand| %>
           <%#= render 'event_brand_fields', f: event_brand %>

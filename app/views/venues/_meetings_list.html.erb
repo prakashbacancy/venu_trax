@@ -51,7 +51,7 @@
               <p class="text-darkgray1  fw-600 fs-16 mt-1">Scheduled
               </p>
             </span>
-            <span class="mr-5" data-html="true" title="<%= meeting_attendees(meeting) %>">
+            <span class="mr-5" data-html="true">
               <p class="text-blue1  fw-600 fs-15">Attendees
               </p>
               <a class="text-darkgray1  fw-600  fs-16 mt-1 meeting_attendees_btn"  data-toggle= 'modal' data-target= "#meetingAttendeesModal_<%= "#{ meeting.id if meeting.attendees.count > 0 }" %> "><%= meeting.attendees.count %> Attendees
