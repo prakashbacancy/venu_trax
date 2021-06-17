@@ -75,16 +75,19 @@
   $(document).ready(function(){
     setupDurationField()
     $('.multi_select').multiselect();
-    c_date = new Date();
-    let min = c_date.getMinutes();
-    min = (Math.ceil(c_date/30) * 30) % 60;
-    let hours = c_date.getHours();
-    if (min == 0){
-      hours = hours + 1
-    }
-    let ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    $('.timestart').val(String(hours).padStart(2, '0') + ':' + String(min).padStart(2, '0') + ' ' + ampm)
+    <% if f.object.new_record? %>
+      c_date = new Date();
+      let min = c_date.getMinutes();
+      min = (Math.ceil(min/30) * 30) % 60;
+      let hours = c_date.getHours();
+      if (min == 0){
+        hours = hours + 1
+      }
+      let ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      console.log(min);
+      $('.timestart').val(String(hours).padStart(2, '0') + ':' + String(min).padStart(2, '0') + ' ' + ampm)
+    <% end %>
   })
   function setupDurationField() {
     // $('input.durationField').each(function(){
