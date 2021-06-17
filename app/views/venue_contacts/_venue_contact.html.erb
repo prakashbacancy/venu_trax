@@ -1,9 +1,9 @@
 <% unless venue_contact.new_record? %>
   <tr>
-    <td><%= venue_contact.full_name %></td>
-    <td><%= venue_contact.job_title %></td>
-    <td><%= venue_contact.email %></td>
-    <td><%= venue_contact.phone_no %></td>
+    <td class="text-nowrap"><%= venue_contact.full_name %></td>
+    <td class="text-nowrap"><%= venue_contact.job_title %></td>
+    <td class="text-nowrap"><%= venue_contact.email %></td>
+    <td class="text-nowrap"><%= venue_contact.phone_no %></td>
     <td>
       <div class="action-area-buttons">
         <%= link_to(edit_venue_venue_contact_path(venue, venue_contact), remote: true, class: 'fa') do %>
