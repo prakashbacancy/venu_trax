@@ -9,7 +9,9 @@
   <% message_path = message.mailbox == :draft ? new_email_path(message_id: message.id, mailbox: message.mailbox, ind: ind) : email_path(message.id, mailbox: message.mailbox, msg_id: 'msg-'+ind.to_s)%>
   <td width="20%">
     <a href="<%= message_path %>" class="message-data" data-remote="true">
-      <p class="text-dark2 fs-15 text-nowrap"><%= message.from_name %></p>
+      <p class="text-dark2 fs-15 text-nowrap">
+        <%= message.from_name.blank? ? message.from_email_address.split('@').first : message.from_name %>
+      </p>
     </a>
   </td>
   <td class="subject-email" width="65%">
@@ -23,7 +25,7 @@
   </td>
   <td width="5%">
     <div class="action-icon ">
-      <%= link_to message.mailbox == :draft ? destroy_draft_emails_path(message.id) : email_path(message.id), data: {id: message.id}, method: :delete, remote: true do %>
+      <%= link_to message.mailbox == :draft ? destroy_draft_emails_path(message.id) : email_path(message.id), data: { id: message.id, confirm: 'Do you want to delete this Email?' }, method: :delete, remote: true do %>
         <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
       <%#= link_to '', email_path(message.id), data: {id: message.id}, class: 'fa fa-trash', method: :delete, remote: true %>

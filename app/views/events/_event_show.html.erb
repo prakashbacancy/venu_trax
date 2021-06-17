@@ -1,14 +1,14 @@
 <div class="d-flex align-items-center flex-wrap justify-content-between mt-3 search-card event-top-bar">
   <div class="my-1">
     <%= link_to "Edit Event", edit_venue_event_path(venue, event, inside: true), remote: true, class: 'btn btn-primary my-1' %>
-    <%= link_to "Add Event", new_venue_event_path(venue, inside: true), remote: true, class: 'btn btn-primary ml-2 my-1' %>
+    <%= link_to "Add Event", new_venue_event_path(venue, inside: true), remote: true, class: 'btn btn-primary ml-2 mr-2 my-1' %>
   </div>
   <div class="cursor-not-allowed">
     <a class="btn btn-primary text-white btn-black my-1 not-allowed"> View Analytics</a>
   </div>
 </div>
 <div class="py-3 position-relative tab-section shadow mb-3 bg-white rounded mt-2">
-  <div class="d-flex align-items-center justify-content-between">
+  <div class="d-sm-flex align-items-center justify-content-between">
     <ul class="nav nav-tabs mb-0" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link fs-16 mx-sm-2 header_tabs active sub_event_tabs" id="event-detail-tab" data-toggle="tab"

@@ -10,19 +10,19 @@ class RevenueSourcesController < ApplicationController
 
   def create
     if revenue_source.update(revenue_source_params)
-      flash[:success] = 'RevenueSource Successfully Added!'
+      flash[:success] = 'Revenue Source Successfully Added!'
       if params[:add_more].present?
         @revenue_sources_more = @venue.revenue_sources.new
       end
     else
-      flash[:alert] = 'Error Occurred While Adding an RevenueSource!'
+      flash[:alert] = 'Error Occurred While Adding an Revenue Source!'
     end
     @brands = @event.brands
   end
 
   def update
     if revenue_source.update(revenue_source_params)
-      flash[:success] = 'RevenueSource Successfully Updated!'
+      flash[:success] = 'Revenue Source Successfully Updated!'
       if params[:add_more].present?
         @revenue_sources_more = @venue.revenue_sources.new
       end
@@ -34,9 +34,9 @@ class RevenueSourcesController < ApplicationController
 
   def destroy
     if revenue_source.destroy
-      flash[:success] = 'RevenueSource Successfully Deleted!'
+      flash[:success] = 'Revenue Source Successfully Deleted!'
     else
-      flash[:alert] = 'Error Occurred While Deleting an RevenueSource!'
+      flash[:alert] = 'Error Occurred While Deleting an Revenue Source!'
     end
     @brands = @event.brands
   end
