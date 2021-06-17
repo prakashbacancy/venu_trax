@@ -41,7 +41,7 @@ class VenueContactsController < ApplicationController
   def update_venue_contact(msg)
     if venue_contact.update(venue_contact_params)
       flash[:success] = "VenueContact Successfully #{msg}!"
-      (@venue_contact_more = @venue.venue_contacts.new) if params[:add_more].present?
+      (@venue_contact_more = VenueContact.new) if params[:add_more].present?
     else
       flash[:alert] = venue_contact.errors.full_messages.join(', ')
     end
