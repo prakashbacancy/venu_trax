@@ -19,8 +19,7 @@
         <div class="user-login-inner mx-auto text-white">
           <h2 class="admin-main-title user-login-main-title mb-3 font-weight-bold fw-600">Forgot Your Password?</h2>
           <label class="fs-14 fw-600 d-block"> No Worries! </label>
-          <label class="fs-14 fw-600 d-block"> Please enter your registered email address and we will </label>
-          <label class="fs-14 fw-600 d-block"> send you the link to reset your password </label>
+          <label class="fs-14 fw-600 d-block"> Please enter your registered email address and we will  send you the link to reset your password </label>
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
             <div class="form-group relative mt-5">
               <% if resource.errors.any? %>
