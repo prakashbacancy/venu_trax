@@ -18,4 +18,8 @@ class Venue < ApplicationRecord
   def to_polymorphic
     "Venue:#{id}"
   end
+
+  def full_address
+    "#{address} #{city} #{state} #{zip_code}"
+  end
 end
