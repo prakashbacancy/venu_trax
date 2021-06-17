@@ -20114,3 +20114,6 @@ ul.multiselect-container.dropdown-menu.show {
   height: 190px;
   overflow-y: auto;
 }
+
+.event_brands_fields .parsley-errors-list.filled{order: 2;}
+.event_brands_fields .select2-container{order:1;}
