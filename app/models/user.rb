@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_pic, dependent: :destroy
+  validates :profile_pic, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..10.megabytes }
 
   has_many :notes, dependent: :destroy
   has_many :comments, dependent: :destroy
