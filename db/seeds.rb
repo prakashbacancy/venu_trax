@@ -4,6 +4,7 @@ Klass.find_or_create_by(name: 'User', label: 'User')
 Klass.find_or_create_by(name: 'Venue', label: 'Venue')
 Klass.find_or_create_by(name: 'Event', label: 'Event')
 Klass.find_or_create_by(name: 'Brand', label: 'Brand')
+Klass.find_or_create_by(name: 'BrandContact', label: 'BrandContact')
 
 # To make existing Business fields dynamic
 business_prebuid_fields = {
@@ -81,6 +82,16 @@ brand_prebuid_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.brand.id, custom: false, deletable: false, required: true, position: 0)
 end
 
+# To make existing BrandContact fields dynamic
+brand_contact_prebuid_fields = {
+  'full_name': 'Text',
+  'phone_no': 'Phone',
+  'job_title': 'Text'
+}
+brand_contact_prebuid_fields.each do |k, v|
+  Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.brand_contact.id, custom: false, deletable: false, required: true, position: 0)
+end
+
 # # ===============================START===============================
 # # NOTE: Run this manually once in your console after all migrations for `Dynamic Groups Fields` (Required for the first time)
 # # ===================================================================
@@ -104,6 +115,10 @@ end
 # Group.find_or_create_by(name: 'Brand Details', label: 'Brand Details', klass_id: Klass.brand.id, default: true)
 # Group.find_or_create_by(name: 'Brand Information', label: 'Brand Information', klass_id: Klass.brand.id, ancestry: Group.find_by(name: 'Brand Details').id.to_s, default: true)
 # Klass.brand.fields.update_all(group_id: Group.find_by(name: 'Brand Information').id)
+#
+# Group.find_or_create_by(name: 'Brand Contact Details', label: 'Brand Contact Details', klass_id: Klass.brand_contact.id, default: true)
+# Group.find_or_create_by(name: 'Brand Contact Information', label: 'Brand Contact Information', klass_id: Klass.brand_contact.id, ancestry: Group.find_by(name: 'Brand Contact Details').id.to_s, default: true)
+# Klass.brand_contact.fields.update_all(group_id: Group.find_by(name: 'Brand Contact Information').id)
 # # ===============================END=================================
 
 # # ===============================START===============================
