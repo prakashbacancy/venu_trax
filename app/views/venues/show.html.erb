@@ -17,8 +17,18 @@
     $('#attachment-tab-body').addClass('active show');
     // document.getElementById('myTab').scrollIntoView();
   }
+  enable_venue_contacts = function(){
+    $('.header_tabs').removeClass('active');
+    $('.tab-pane').removeClass('active show');
+    $('#venue_contacts-tab').addClass('active');
+    $('#venue_contacts-tab-body').addClass('active show');
+    if (!($(window).width() < 960)){ $('.wrapper').scrollTop(0); }
+    // document.getElementById('myTab').scrollIntoView();
+  }
   if(window.location.hash.substr(1) == "attachment-tab-body"){
     enable_attachments();
+  } else if(window.location.hash.substr(1) == "venue_contacts-tab-body"){
+    enable_venue_contacts()
   }
   $('.toggle-sidebar-button').on('click', function () {
     $('body').toggleClass('sidebar-collapse')
