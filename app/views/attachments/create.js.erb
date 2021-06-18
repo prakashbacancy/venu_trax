@@ -1,6 +1,6 @@
 $(".attachment").html('')
-$("#collapseAttach").html("<%= j render partial: 'venues/attachment_list', locals: {venue: @venue, attachable: @attachable} %>")
-$('.attachment-tab-div').html("<%= j render partial: 'venues/attachment_records', locals: {venue: @venue, attachable: @attachable} %>")
+$("#collapseAttach").html("<%= j render partial: 'venues/attachment_list', locals: {venue: @attachment.venue, attachable: @attachable} %>")
+$('.attachment-tab-div').html("<%= j render partial: 'venues/attachment_records', locals: {venue: @attachment.venue, attachable: @attachable} %>")
 $(".total-count").text("<%= @attachable.attachments.count%>")
 $(".venue-contact").click()
 $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
