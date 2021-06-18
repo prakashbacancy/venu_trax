@@ -12,83 +12,29 @@
   </div>
   <div class="content position-relative tab-section bg-light pt-0">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item mt-3">
-        <a class="nav-link active fs-16 mx-sm-2 header_tabs" id="business-tab" data-toggle="tab"
-          href="#business-tab-body" role="tab" aria-controls="business-tab-body" aria-selected="true">Business</a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link fs-16 mx-sm-2 header_tabs" id="user-tab" data-toggle="tab"
-          href="#user-tab-body" role="tab" aria-controls="user-tab-body" aria-selected="true">User</a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link fs-16 mx-sm-2 header_tabs" id="venue-tab" data-toggle="tab"
-          href="#venue-tab-body" role="tab" aria-controls="venue-tab-body" aria-selected="true">Venue</a>
-      </li>
-      <li class="nav-item mt-3">
-        <a class="nav-link fs-16 mx-sm-2 header_tabs" id="event-tab" data-toggle="tab"
-          href="#event-tab-body" role="tab" aria-controls="event-tab-body" aria-selected="true">Event</a>
-      </li>
-      <li class="nav-item mt-3 mr-auto">
-        <a class="nav-link fs-16 mx-sm-2 header_tabs" id="brand-tab" data-toggle="tab"
-          href="#brand-tab-body" role="tab" aria-controls="brand-tab-body" aria-selected="true">Brand</a>
-      </li>
-      <li class="mt-3 mt-md-0 d-flex align-items-center">
-        <div class="ml-4 d-inline">
-          <%#= link_to "Add Field", new_field_path(klass_id: Klass.business.id), remote: true, class: 'btn btn-primary add_business_field' %>
-          <%= link_to "Add Group", new_group_path(klass_id: Klass.business.id), remote: true, class: 'btn btn-primary add_business_field' %>
-        </div>
-      </li>
-      <li class="mt-3 mt-md-0 d-none align-items-center">
-        <div class="ml-4 d-inline">
-          <%= link_to "Add Group", new_group_path(klass_id: Klass.user.id), remote: true, class: 'btn btn-primary add_user_field' %>
-        </div>
-      </li>
-      <li class="mt-3 mt-md-0 d-none align-items-center">
-        <div class="ml-4 d-inline">
-          <%= link_to "Add Group", new_group_path(klass_id: Klass.venue.id), remote: true, class: 'btn btn-primary add_venue_field' %>
-        </div>
-      </li>
-      <li class="mt-3 mt-md-0 d-none align-items-center">
-        <div class="ml-4 d-inline">
-          <%= link_to "Add Group", new_group_path(klass_id: Klass.event.id), remote: true, class: 'btn btn-primary add_event_field' %>
-        </div>
-      </li>
-      <li class="mt-3 mt-md-0 d-none align-items-center">
-        <div class="ml-4 d-inline">
-          <%= link_to "Add Group", new_group_path(klass_id: Klass.brand.id), remote: true, class: 'btn btn-primary add_brand_field' %>
-        </div>
-      </li>
+      <% Klass::DYNAMIC_KLASSES.each_with_index do |dynamic_klass, index| %>
+        <li class="nav-item mt-3 <%= 'mr-auto' if Klass::DYNAMIC_KLASSES.last.equal? dynamic_klass %>">
+          <a class="nav-link <%= "active" if index == 0 %> fs-16 mx-sm-2 header_tabs" id="<%= dynamic_klass[:ts_name] %>-tab" data-toggle="tab"
+            href="#<%= dynamic_klass[:ts_name] %>-tab-body" role="tab" aria-controls="<%= dynamic_klass[:ts_name] %>-tab-body" aria-selected="true"><%= dynamic_klass[:name] %></a>
+        </li>
+      <% end %>
+      <% Klass::DYNAMIC_KLASSES.each_with_index do |dynamic_klass, index| %>
+        <li class="mt-3 mt-md-0 <%= index == 0 ? 'd-flex' : 'd-none' %> align-items-center">
+          <div class="ml-4 d-inline">
+            <%= link_to "Add Group", new_group_path(klass_id: Klass.send(dynamic_klass[:ts_name]).id), remote: true, class: "btn btn-primary add_#{ dynamic_klass[:ts_name] }_field" %>
+          </div>
+        </li>
+      <% end %>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="business-tab-body" role="tabpanel" aria-labelledby="business-tab">
-        <%#= render 'fields_list', klass: Klass.business, groups: @groups %>
-        <div class="group-sortable" data-klass-id="<%= Klass.business.id %>">
-          <%= render partial: 'groups/group', collection: Klass.business.groups, locals: { klass: Klass.business } %>
+      <% Klass::DYNAMIC_KLASSES.each_with_index do |dynamic_klass, index| %>
+        <div class="tab-pane fade <%= "show active" if index == 0 %>" id="<%= dynamic_klass[:ts_name] %>-tab-body" role="tabpanel" aria-labelledby="<%= dynamic_klass[:ts_name] %>-tab">
+          <% specific_klass = Klass.send(dynamic_klass[:ts_name]) %>
+          <div class="group-sortable" data-klass-id="<%= specific_klass.id %>">
+            <%= render partial: 'groups/group', collection: specific_klass.groups, locals: { klass: specific_klass } %>
+          </div>
         </div>
-      </div>
-      <div class="tab-pane fade" id="user-tab-body" role="tabpanel" aria-labelledby="user-tab">
-        <%#= render 'fields_list', klass: Klass.user, groups: @groups %>
-        <div class="group-sortable" data-klass-id="<%= Klass.user.id %>">
-          <%= render partial: 'groups/group', collection: Klass.user.groups, locals: { klass: Klass.user } %>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="venue-tab-body" role="tabpanel" aria-labelledby="venue-tab">
-        <%#= render 'fields_list', klass: Klass.venue, groups: @groups %>
-        <div class="group-sortable" data-klass-id="<%= Klass.venue.id %>">
-          <%= render partial: 'groups/group', collection: Klass.venue.groups, locals: { klass: Klass.venue } %>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="event-tab-body" role="tabpanel" aria-labelledby="event-tab">
-        <%#= render 'fields_list', klass: Klass.event, groups: @groups %>
-        <div class="group-sortable" data-klass-id="<%= Klass.event.id %>">
-          <%= render partial: 'groups/group', collection: Klass.event.groups, locals: { klass: Klass.event } %>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="brand-tab-body" role="tabpanel" aria-labelledby="brand-tab">
-        <div class="group-sortable" data-klass-id="<%= Klass.brand.id %>">
-          <%= render partial: 'groups/group', collection: Klass.brand.groups, locals: { klass: Klass.brand } %>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </section>
