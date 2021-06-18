@@ -63,6 +63,11 @@ Rails.application.routes.draw do
     end
   end
   resources :simulations
+  resources :tickets do
+    member do
+      put :update_status
+    end
+  end
   resources :credentials, only: %i[edit update]
   resources :venues do
     resources :notes, module: :venue
