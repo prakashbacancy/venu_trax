@@ -2,6 +2,7 @@
 Klass.find_or_create_by(name: 'Business', label: 'Business')
 Klass.find_or_create_by(name: 'User', label: 'User')
 Klass.find_or_create_by(name: 'Venue', label: 'Venue')
+Klass.find_or_create_by(name: 'VenueContact', label: 'VenueContact')
 Klass.find_or_create_by(name: 'Event', label: 'Event')
 Klass.find_or_create_by(name: 'Brand', label: 'Brand')
 Klass.find_or_create_by(name: 'BrandContact', label: 'BrandContact')
@@ -92,33 +93,55 @@ brand_contact_prebuid_fields.each do |k, v|
   Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.brand_contact.id, custom: false, deletable: false, required: true, position: 0)
 end
 
+# To make existing VenueContact fields dynamic
+venue_contact_prebuid_fields = {
+  'full_name': 'Text',
+  'phone_no': 'Phone',
+  'job_title': 'Text'
+}
+venue_contact_prebuid_fields.each do |k, v|
+  Field.find_or_create_by(name: k, label: k, column_type: v, klass_id: Klass.venue_contact.id, custom: false, deletable: false, required: true, position: 0)
+end
+
 # # ===============================START===============================
 # # NOTE: Run this manually once in your console after all migrations for `Dynamic Groups Fields` (Required for the first time)
 # # ===================================================================
-#
+
+# # To make `Business` static fields to dynamic
 # Group.find_or_create_by(name: 'Business Details', label: 'Business Details', klass_id: Klass.business.id, default: true)
 # Group.find_or_create_by(name: 'Business Information', label: 'Business Information', klass_id: Klass.user.id, ancestry: Group.find_by(name: 'Business Details').id.to_s, default: true)
 # Klass.business.fields.update_all(group_id: Group.find_by(name: 'Business Information').id)
-#
+
+# # To make `User` static fields to dynamic
 # Group.find_or_create_by(name: 'User Details', label: 'User Details', klass_id: Klass.user.id, default: true)
 # Group.find_or_create_by(name: 'User Information', label: 'User Information', klass_id: Klass.user.id, ancestry: Group.find_by(name: 'User Details').id.to_s, default: true)
 # Klass.user.fields.update_all(group_id: Group.find_by(name: 'User Information').id)
-#
+
+# # To make `Venue` static fields to dynamic
 # Group.find_or_create_by(name: 'Venue Details', label: 'Venue Details', klass_id: Klass.venue.id, default: true)
 # Group.find_or_create_by(name: 'Venue Information', label: 'Venue Information', klass_id: Klass.venue.id, ancestry: Group.find_by(name: 'Venue Details').id.to_s, default: true)
 # Klass.venue.fields.update_all(group_id: Group.find_by(name: 'Venue Information').id)
-#
+
+# # To make `Event` static fields to dynamic
 # Group.find_or_create_by(name: 'Event Details', label: 'Event Details', klass_id: Klass.event.id, default: true)
 # Group.find_or_create_by(name: 'Event Information', label: 'Event Information', klass_id: Klass.event.id, ancestry: Group.find_by(name: 'Event Details').id.to_s, default: true)
 # Klass.event.fields.update_all(group_id: Group.find_by(name: 'Event Information').id)
-#
+
+# # To make `Brand` static fields to dynamic
 # Group.find_or_create_by(name: 'Brand Details', label: 'Brand Details', klass_id: Klass.brand.id, default: true)
 # Group.find_or_create_by(name: 'Brand Information', label: 'Brand Information', klass_id: Klass.brand.id, ancestry: Group.find_by(name: 'Brand Details').id.to_s, default: true)
 # Klass.brand.fields.update_all(group_id: Group.find_by(name: 'Brand Information').id)
-#
+
+# # To make `BrandContact` static fields to dynamic
 # Group.find_or_create_by(name: 'Brand Contact Details', label: 'Brand Contact Details', klass_id: Klass.brand_contact.id, default: true)
 # Group.find_or_create_by(name: 'Brand Contact Information', label: 'Brand Contact Information', klass_id: Klass.brand_contact.id, ancestry: Group.find_by(name: 'Brand Contact Details').id.to_s, default: true)
 # Klass.brand_contact.fields.update_all(group_id: Group.find_by(name: 'Brand Contact Information').id)
+
+# # To make `VenueContact` static fields to dynamic
+# Group.find_or_create_by(name: 'Venue Contact Details', label: 'Venue Contact Details', klass_id: Klass.venue_contact.id, default: true)
+# Group.find_or_create_by(name: 'Venue Contact Information', label: 'Venue Contact Information', klass_id: Klass.venue_contact.id, ancestry: Group.find_by(name: 'Venue Contact Details').id.to_s, default: true)
+# Klass.venue_contact.fields.update_all(group_id: Group.find_by(name: 'Venue Contact Information').id)
+
 # # ===============================END=================================
 
 # # ===============================START===============================
