@@ -2,7 +2,7 @@ $('.venue-contacts-data').html('<%= j render(partial: 'venue_contacts/list', loc
 $('.sidebar_venue_contacts').html('<%= j render(partial: 'venue_contacts/sidebar_venue_contacts', locals: { venue_contacts: @venue_contacts, venue: @venue }) %>')
 
 <% if params[:add_more].present? %>
-  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { venue_contact: @venue_contact_more, venue: @venue, add_more: true }) %>')
+  $('#right-modal-content').html('<%= j render(partial: 'form', locals: { venue_contact: @venue_contact_more, venue: @venue, add_more: true, data: @data }) %>')
   $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('show');
   $('.modal-content').scrollTop(0);

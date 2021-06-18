@@ -5,6 +5,7 @@ class Klass < ApplicationRecord
   scope :business, -> { find_by(name: 'Business') }
   scope :user, -> { find_by(name: 'User') }
   scope :venue, -> { find_by(name: 'Venue') }
+  scope :venue_contact, -> { find_by(name: 'VenueContact') }
   scope :event, -> { find_by(name: 'Event') }
   scope :brand, -> { find_by(name: 'Brand') }
   scope :brand_contact, -> { find_by(name: 'BrandContact') }
@@ -16,6 +17,7 @@ class Klass < ApplicationRecord
   DYNAMIC_KLASSES = [{ name: 'Business', ts_name: 'business' },
                      { name: 'User', ts_name: 'user' },
                      { name: 'Venue', ts_name: 'venue' },
+                     { name: 'Venue Contact', ts_name: 'venue_contact' },
                      { name: 'Event', ts_name: 'event' },
                      { name: 'Brand', ts_name: 'brand' },
                      { name: 'Brand Contact', ts_name: 'brand_contact' }].freeze

@@ -2,6 +2,7 @@ class VenueContactsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_venue, only: %i[new edit create update destroy]
   before_action :venue_contact, only: %i[show new edit create update]
+  before_action :find_dynamic_fields, only: %i[new edit create update]
 
   def create
     check_and_update_user
@@ -35,7 +36,8 @@ class VenueContactsController < ApplicationController
   end
 
   def venue_contact_params
-    params.require(:venue_contact).permit(VenueContact::PERMITTED_PARAM)
+    dynamic_params = Klass.venue_contact.fields.pluck(:name)
+    params.require(:venue_contact).permit(VenueContact::PERMITTED_PARAM + dynamic_params)
   end
 
   def update_venue_contact(msg)
@@ -68,6 +70,15 @@ class VenueContactsController < ApplicationController
       update_venue_contact :Added
       link_raw = set_reset_password_token(user)
       UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+    end
+  end
+
+  def find_dynamic_fields
+    @klass = Klass.venue_contact
+    fields = @klass.fields.includes(:field_picklist_values)
+    @data = {}
+    fields.each do |field|
+      @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
     end
   end
 end
