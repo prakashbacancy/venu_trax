@@ -3,7 +3,7 @@ class Meetings::Meeting < ApplicationRecord
 
   enum category: [:publicity, :technology, :finance, :sales_and_marketing]
 
-  default_scope -> { order(date: :desc) }
+  default_scope -> { order(created_at: :desc) }
 
   scope :last_30_days, -> { select{|meeting| (meeting.start_date_time > 31.days.ago) && (meeting.start_date_time < 1.seconds.ago)} }
 
