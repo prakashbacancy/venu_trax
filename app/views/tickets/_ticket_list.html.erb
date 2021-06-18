@@ -14,7 +14,7 @@
         <td><%= ind +=1 %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.description %></td>
-        <td id="<%=ticket.id%>"><%= select_tag :status, options_for_select(Ticket::STATUS,  ticket.status), { prompt: 'Select Status', class: 'form-control status_select', required: true} %></td>
+        <td id="<%=ticket.id%>" width="13%"><%= select_tag :status, options_for_select(Ticket::STATUS,  ticket.status), { prompt: 'Select Status', class: 'form-control status_select', required: true} %></td>
         <td><%= ticket.created_by %></td>
         <td><%= ticket.created_at&.strftime(Simulation::DATE_FORMAT) %></td>
         <td>
