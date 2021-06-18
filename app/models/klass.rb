@@ -7,6 +7,7 @@ class Klass < ApplicationRecord
   scope :venue, -> { find_by(name: 'Venue') }
   scope :event, -> { find_by(name: 'Event') }
   scope :brand, -> { find_by(name: 'Brand') }
+  scope :brand_contact, -> { find_by(name: 'BrandContact') }
 
   validates :name, uniqueness: { case_sensitive: false, message: 'Entered klass name is already in use' },
                    allow_nil: false
@@ -16,7 +17,8 @@ class Klass < ApplicationRecord
                      { name: 'User', ts_name: 'user' },
                      { name: 'Venue', ts_name: 'venue' },
                      { name: 'Event', ts_name: 'event' },
-                     { name: 'Brand', ts_name: 'brand' }].freeze
+                     { name: 'Brand', ts_name: 'brand' },
+                     { name: 'Brand Contact', ts_name: 'brand_contact' }].freeze
 
   def constant
     @constant ||= name.constantize

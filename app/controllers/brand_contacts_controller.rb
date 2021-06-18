@@ -2,6 +2,7 @@ class BrandContactsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :load_brand, only: %i[new show create edit update destroy]
   before_action :brand_contact, only: %i[show edit update destroy]
+  before_action :find_dynamic_fields, only: %i[new edit create update]
 
   def new
   	@brand_contact = BrandContact.new
@@ -64,6 +65,16 @@ class BrandContactsController < ApplicationController
   end
 
   def contacts_params
-    params.require(:brand_contact).permit(BrandContact::PERMITTED_PARAM)
+    dynamic_params = Klass.brand_contact.fields.pluck(:name)
+    params.require(:brand_contact).permit(BrandContact::PERMITTED_PARAM + dynamic_params)
+  end
+
+  def find_dynamic_fields
+    @klass = Klass.brand_contact
+    fields = @klass.fields.includes(:field_picklist_values)
+    @data = {}
+    fields.each do |field|
+      @data[field.name.to_sym] = field.field_picklist_values.pluck(:value)
+    end
   end
 end

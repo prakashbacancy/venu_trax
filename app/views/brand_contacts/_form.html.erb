@@ -10,19 +10,13 @@
       <%= f.label :email, 'Email Address', class: 'text-capitalize fs-17 asterisk' %><br />
       <%= f.email_field :email, class: 'form-control', required: true, pattern: Field::PATTERNS["Email".to_sym], placeholder: 'Enter Email Address', disabled: !f.object.new_record? %>
     </div>
-    <div class="form-group">
-      <%= f.label :full_name, 'Full Name', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :full_name, class:"form-control", placeholder: 'Enter Full Name', required: true, maxlength: 40 %>
-    </div>
-    <div class="form-group">
-      <%= f.label :job_title, 'Job Title', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%#= f.select :job_title, options_for_select(VenueContact::JOB_TITLE,  f.object.job_title), { prompt: 'Select Job Title' }, { class: 'form-control', required: true} %>
-       <%= f.text_field :job_title, class:"form-control", placeholder: 'Enter Job Title', required: true, maxlength: 40 %>
-    </div>
-    <div class="form-group">
-      <%= f.label :phone_no, 'Phone Number', class: 'text-capitalize fs-17 asterisk' %><br />
-      <%= f.text_field :phone_no, class: 'form-control phone-validation phone-number', required: true, pattern: Field::PATTERNS["Phone".to_sym], maxlength: 14, placeholder: 'Enter Phone Number' %>
-    </div>
+    <% brand_contact_klass = Klass.brand_contact %>
+    <% brand_contact_klass.fields.each do |field| %>
+      <div class="form-group">
+        <%= render partial: 'forms/field', locals: { f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : brand_contact.send(field.name) } %>
+      </div>
+    <% end %>
+
     <% if params[:inside].present? %>
       <%= f.hidden_field :inside, value: true %>
     <% end %>

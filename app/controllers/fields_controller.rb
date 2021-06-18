@@ -18,7 +18,7 @@ class FieldsController < ApplicationController
     rescue StandardError => e
     end
     # Todo: Make JS response
-    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
+    redirect_to "#{request.referrer}##{@klass&.name&.underscore}"
   end
 
   def edit
@@ -36,7 +36,7 @@ class FieldsController < ApplicationController
       flash[:alert] = @field.errors.full_messages.join(',')
     end
     # Todo: Make JS response
-    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
+    redirect_to "#{request.referrer}##{@klass&.name&.underscore}"
   end
 
   def destroy
@@ -50,7 +50,7 @@ class FieldsController < ApplicationController
     rescue StandardError => e
     end
     # Todo: Make JS response
-    redirect_to "#{request.referrer}##{@klass&.name&.downcase}"
+    redirect_to "#{request.referrer}##{@klass&.name&.underscore}"
   end
 
   def change_position
