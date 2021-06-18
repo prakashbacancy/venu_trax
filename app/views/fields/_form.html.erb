@@ -27,13 +27,15 @@
     </div>
     
     <div class="form-group min-max hidden file">
+      <% min_length = f.object.min_length %>
       <%= label_tag :min_length, 'Min Length', class: 'text-capitalize' %>
-      <%= f.number_field :min_length, value: 0, class: 'form-control' %>
+      <%= f.number_field :min_length, value: min_length.blank? ? 0 : min_length, class: 'form-control' %>
     </div>
 
     <div class="form-group min-max hidden file">
+      <% max_length = f.object.max_length %>
       <%= label_tag :max_length, 'Max Length', class: 'text-capitalize' %>
-      <%= f.number_field :max_length, value: 255, class: 'form-control' %>
+      <%= f.number_field :max_length, value: max_length.blank? ? 255 : max_length, class: 'form-control' %>
     </div>
 
     <div class="form-group">
@@ -56,7 +58,8 @@
 </div>
 <script>
   $(document).ready(function () {
-    if (["Text", "URL", "Text Area HTML"].includes($('#field_column_type').val())) {
+    //  "Text Area HTML"
+    if (["Text", "URL"].includes($('#field_column_type').val())) {
       $(".min-max").removeClass('d-none');
     } else {
       $(".min-max").addClass('d-none');

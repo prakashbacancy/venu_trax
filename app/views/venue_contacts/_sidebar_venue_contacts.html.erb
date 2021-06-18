@@ -12,12 +12,13 @@
 </div>
 <div class="collapse show" id="collapseContact">
   <div class="card card-body border-0 venue_contacts_card ">
-    <%= render(partial: 'venue_contacts/sidebar_venue_contact', collection: venue_contacts) || no_data_available %>
-    <div class="fs-14 fw-700 d-flex align-items-start mt-1 load_more_venue_contacts"><a href="javascript:(0);" class="venue_contact_show_lable">See More...</a></div>
+    <%= render(partial: 'venue_contacts/sidebar_venue_contact', collection: venue_contacts.first(5)) || no_data_available %>
+    <%# <a href="javascript:(0);" class="venue_contact_show_lable">See More...</a> %>
+    <div class="fs-14 fw-700 d-flex align-items-start mt-1 load_more_venue_contacts"><%= link_to 'See More...', "#{venue_path(venue)}#venue_contacts-tab-body"%></div>
   </div>
 </div>
 <script>
   $(document).ready(function(){
-    show_more_less_venue_contacts();
+    // show_more_less_venue_contacts();
   })
 </script>
