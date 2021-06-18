@@ -1,0 +1,3 @@
+$('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
+$('.ticket_list_div').html("<%= j render 'ticket_list', tickets: @tickets %>")
+$("#right_modal").modal('hide');

@@ -1,0 +1,36 @@
+<table class="table table-bordered w-100 mb-5" id="business_list_table">
+  <thead class="thead-dark">
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Created By</th>
+    <th>Created At</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <% tickets.each_with_index do |ticket, ind| %>
+      <tr>
+        <td><%= ind +=1 %></td>
+        <td><%= ticket.title %></td>
+        <td><%= ticket.description %></td>
+        <td id="<%=ticket.id%>"><%= select_tag :status, options_for_select(Ticket::STATUS,  ticket.status), { prompt: 'Select Status', class: 'form-control status_select', required: true} %></td>
+        <td><%= ticket.created_by %></td>
+        <td><%= ticket.created_at&.strftime(Simulation::DATE_FORMAT) %></td>
+        <td>
+          <div class="action-area-buttons">
+            <%= link_to(edit_ticket_path(ticket), remote: true, class: 'fa') do %>
+              <%= image_pack_tag 'home/ic_edit.svg'%>
+            <% end %>
+            <%= link_to(ticket_path(ticket), method: :delete, remote: true, class: 'fa', data: { confirm: 'Are you sure want to delete this Ticket?' }) do %>
+              <%= image_pack_tag 'home/ic_delete.svg'%>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+  custom_datatable($('#business_list_table'));
+</script>
