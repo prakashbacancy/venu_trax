@@ -21,7 +21,7 @@
       <% Klass::DYNAMIC_KLASSES.each_with_index do |dynamic_klass, index| %>
         <li class="mt-3 mt-md-0 <%= index == 0 ? 'd-flex' : 'd-none' %> align-items-center">
           <div class="ml-4 d-inline">
-            <%= link_to "Add Group", new_group_path(klass_id: Klass.send(dynamic_klass[:ts_name]).id), remote: true, class: "btn btn-primary add_#{ dynamic_klass[:ts_name] }_field" %>
+            <%= link_to "Add Group", new_group_path(klass_id: Klass.send(dynamic_klass[:ts_name]).id), remote: true, class: "btn btn-primary add_group_btn add_#{ dynamic_klass[:ts_name] }_field" %>
           </div>
         </li>
       <% end %>
@@ -39,92 +39,21 @@
   </div>
 </section>
 <script>
-  enable_users = function(){
-    $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
-    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
+  enable_this = (module_name) => {
+    if(module_name == "") return;
+    $('.add_group_btn').closest('li').removeClass('d-flex').addClass('d-none');
+    $('.add_' + module_name + '_field').closest('li').removeClass('d-none').addClass('d-flex');
     $('.header_tabs').removeClass('active');
-    $('#user-tab').addClass('active');
+    $('#' + module_name + '-tab').addClass('active');
     $('.tab-pane').removeClass('active show')
-    $('#user-tab-body').addClass('active show');
+    $('#' + module_name + '-tab-body').addClass('active show');
   }
-  enable_venues = function(){
-    $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
-    $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.header_tabs').removeClass('active');
-    $('#venue-tab').addClass('active')
-    $('.tab-pane').removeClass('active show')
-    $('#venue-tab-body').addClass('active show');
-  }
-  enable_events = function(){
-    $('.add_event_field').closest('li').removeClass('d-none').addClass('d-flex');
-    $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.header_tabs').removeClass('active');
-    $('#event-tab').addClass('active')
-    $('.tab-pane').removeClass('active show')
-    $('#event-tab-body').addClass('active show');
-  }
-  enable_brands = function(){
-    $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-    $('.add_brand_field').closest('li').removeClass('d-none').addClass('d-flex');
-    $('.header_tabs').removeClass('active');
-    $('#brand-tab').addClass('active')
-    $('.tab-pane').removeClass('active show')
-    $('#brand-tab-body').addClass('active show');
-  }
+
   $(document).ready(function(){
-    if(window.location.hash.substr(1) == "venue"){
-      enable_venues();
-    } else if(window.location.hash.substr(1) == "user") {
-      enable_users();
-    } else if(window.location.hash.substr(1) == "event") {
-      enable_events();
-    } else if(window.location.hash.substr(1) == "brand") {
-      enable_brands();
-    }
+    enable_this(window.location.hash.substr(1));
+    
     $('.header_tabs').on('click', function(){
-      if(this.id == 'user-tab'){
-        $('.add_user_field').closest('li').removeClass('d-none').addClass('d-flex');
-        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-      } else if(this.id == 'business-tab'){
-        $('.add_business_field').closest('li').removeClass('d-none').addClass('d-flex');
-        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-      } else if(this.id == 'event-tab'){
-        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_event_field').closest('li').removeClass('d-none').addClass('d-flex');
-        $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-      } else if(this.id == 'brand-tab'){
-        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_venue_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_brand_field').closest('li').removeClass('d-none').addClass('d-flex');
-      } else {
-        $('.add_venue_field').closest('li').removeClass('d-none').addClass('d-flex');
-        $('.add_user_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_business_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_event_field').closest('li').removeClass('d-flex').addClass('d-none');
-        $('.add_brand_field').closest('li').removeClass('d-flex').addClass('d-none');
-      }
+      enable_this(this.id.split('-')[0]);
     })
   })
 </script>
