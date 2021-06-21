@@ -21,6 +21,21 @@ class VenueContactsController < ApplicationController
     @venue_contacts = @venue.venue_contacts
   end
 
+  def resend_invitation
+    user = venue_contact.user
+    if user.present?
+      link_raw = set_reset_password_token(user)
+      if user.save
+        UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+        flash[:success] = 'Invitation has been sent to the Venue Contact!'
+      else
+        flash[:alert] = user.errors.full_messages.join(', ')
+      end
+    else
+      flash[:alert] = 'Something went wrong!'
+    end
+  end
+
   private
 
   def venue_contact
