@@ -60,10 +60,12 @@ class BusinessesController < ApplicationController
     @info_group = Group.find_by(name: 'Business Information')
   end
 
+  # Find `Klass` for `Dynamic Fields and Groups`
   def set_klass
     @klass = Klass.business
   end
 
+  # Find `Column Names` for `Dynamic Fields` of Particular `Klass`
   def find_dynamic_fields
     fields = @klass.fields.includes(:field_picklist_values)
     @data = {}
@@ -72,6 +74,7 @@ class BusinessesController < ApplicationController
     end
   end
 
+  # Find `Group` for `Add More` and `Main form`
   def find_basic_group
     @info_group = Group.business_basic
     @group = if params[:group_id].present?
