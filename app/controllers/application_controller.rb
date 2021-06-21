@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :venue_contact_permissions, if: :user_venue_contact?
   layout :layout_by_resource
 
+  # Separate layout for pages `before login` and pages `after login`
   def layout_by_resource
     if devise_controller?
       'registration'
@@ -12,6 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Conditional URL after login
   def after_sign_in_path_for(_resource)
     if user_signed_in? && (current_user.try(:contact) == 'venue_contact')
       venue_path(current_user.venue_contacts.first.venue)
@@ -22,6 +24,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Check `current_user` contact to apply or revoke permissions
+  def user_venue_contact?
+    current_user.try(:contact) == 'venue_contact'
+  end
+
+  # TODO: Use better way for Venue Contacts permissions
   def venue_contact_permissions
     if controller_name == 'venues'
       return unless %w[index].include?(action_name)
@@ -32,10 +40,7 @@ class ApplicationController < ActionController::Base
     redirect_to venue_path(current_user.venue_contacts.first.venue)
   end
 
-  def user_venue_contact?
-    current_user.try(:contact) == 'venue_contact'
-  end
-
+  # Modify existing Devise Parameters
   def configure_permitted_parameters
     dynamic_params = Klass.user.fields.pluck(:name)
     devise_parameter_sanitizer.permit(:account_update, keys: [:full_name, :phone_no, :profile_pic] + dynamic_params)
