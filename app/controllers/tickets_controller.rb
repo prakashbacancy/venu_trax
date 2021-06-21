@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-  before_action :load_ticket, only: [:destroy, :edit, :update, :update_status]
+  before_action :load_ticket, only: [:destroy, :edit, :update, :update_status, :show]
   before_action :load_tickets, only: [:create, :update, :destroy]
 
 	def index

@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   end
   resources :simulations
   resources :tickets do
+    resources :comments, module: :ticket
     member do
       put :update_status
     end

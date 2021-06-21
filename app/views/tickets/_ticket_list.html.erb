@@ -14,11 +14,14 @@
         <td><%= ind +=1 %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.description %></td>
-        <td id="<%=ticket.id%>" width="13%"><%= select_tag :status, options_for_select(Ticket::STATUS,  ticket.status), { prompt: 'Select Status', class: 'form-control status_select', required: true} %></td>
+        <td id="<%=ticket.id%>" width="15%"><%= select_tag :status, options_for_select(Ticket::STATUS,  ticket.status), { prompt: 'Select Status', class: 'form-control status_select', required: true} %></td>
         <td><%= ticket.created_by %></td>
         <td><%= ticket.created_at&.strftime(Simulation::DATE_FORMAT) %></td>
         <td>
           <div class="action-area-buttons">
+            <%#= link_to(ticket_path(ticket), class: 'fa') do %>
+              <%#= image_pack_tag 'home/ic_view.svg'%>
+            <%# end %>
             <%= link_to(edit_ticket_path(ticket), remote: true, class: 'fa') do %>
               <%= image_pack_tag 'home/ic_edit.svg'%>
             <% end %>

@@ -18,6 +18,10 @@ module ApplicationHelper
     '%.2f' % val.to_f
   end
 
+  def time_zone_options
+    ActiveSupport::TimeZone.all.collect{|tz| [tz.to_s, tz.name]}
+  end
+
   def dynamic_display_two_digit(val)
     return nil if val.blank?
 
