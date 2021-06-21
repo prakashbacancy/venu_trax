@@ -9,13 +9,15 @@
         <%= link_to(edit_venue_venue_contact_path(venue, venue_contact), remote: true, class: 'fa') do %>
           <%= image_pack_tag 'home/ic_edit.svg'%>
         <% end %>
-        <%= link_to(venue_venue_contact_path(venue, venue_contact), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this VenueContact?' }) do %>
-          <%= image_pack_tag 'home/ic_delete.svg'%>
-        <% end %>
-        <% user = venue_contact.user %>
-        <% if user.encrypted_password == "" %>
-          <%= link_to(resend_invitation_venue_venue_contact_path(venue, venue_contact), remote: true, method: :post, data: { confirm: 'Are you sure want to resend invitation to this Venue Contact?' }, class: 'fa', title: 'Resend Invitation') do %>
-            <i class="fa fa-user-plus fa-lg"></i>
+        <% unless venue_contact?(current_user) %>
+          <%= link_to(venue_venue_contact_path(venue, venue_contact), remote: true, method: :delete, class: 'fa', data: { confirm: 'Are you sure want to delete this VenueContact?' }) do %>
+            <%= image_pack_tag 'home/ic_delete.svg'%>
+          <% end %>
+          <% user = venue_contact.user %>
+          <% if user.encrypted_password == "" %>
+            <%= link_to(resend_invitation_venue_venue_contact_path(venue, venue_contact), remote: true, method: :post, data: { confirm: 'Are you sure want to resend invitation to this Venue Contact?' }, class: 'fa', title: 'Resend Invitation') do %>
+              <i class="fa fa-user-plus fa-lg"></i>
+            <% end %>
           <% end %>
         <% end %>
       </div>
