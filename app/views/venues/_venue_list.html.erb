@@ -13,8 +13,8 @@
       <td><%= link_to venue.name, venue_path(venue) %></td>
       <td><%= venue.business.name %></td>
       <td><%= venue.address %></td>
-      <td><%= venue.no_of_employee %></td>
-      <td><%= venue.phone_no %></td>
+      <td class="text-nowrap"><%= venue.no_of_employee %></td>
+      <td class="text-nowrap"><%= venue.phone_no %></td>
       <td>
         <div class="action-area-buttons">
           <%= link_to(edit_venue_path(venue), remote: true, class: 'fa') do %>

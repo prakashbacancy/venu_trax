@@ -20,7 +20,7 @@
         <% else %>
           <td><%= link_to business.venues.count, 'javascript:(0);', data: {toggle: 'modal', target: "#venueModal_#{business.id}"} %></td>
         <% end %>
-        <td><%= business.phone_no %></td>
+        <td class="text-nowrap"><%= business.phone_no %></td>
         <td>
           <div class="action-area-buttons">
             <%= link_to(edit_business_path(business), remote: true, class: 'fa') do %>

@@ -3,7 +3,7 @@
     <td><%= brand_contact.full_name %></td>
     <td><%= brand_contact.job_title %></td>
     <td><%= brand_contact.email %></td>
-    <td><%= brand_contact.phone_no %></td>
+    <td class="text-nowrap"><%= brand_contact.phone_no %></td>
     <td>
       <div class="action-area-buttons">
         <%= link_to(edit_brand_brand_contact_path(brand, brand_contact), remote: true, class: 'fa') do %>
