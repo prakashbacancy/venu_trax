@@ -17,7 +17,7 @@ class User < ApplicationRecord
   scope :active, -> { where.not(encrypted_password: '') }
   scope :ordered, -> { order(:full_name) }
   scope :normal_users, -> { where(contact: 0) }
-  scope :not_contacts, -> { User.where(contact: 0).where.not(encrypted_password: '') }
+  scope :not_contacts, -> { User.where(contact: 0) }
   # validates :email, uniqueness: { case_sensitive: false, message: "enter email has already been taken" }, allow_nil: true
 
   attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
