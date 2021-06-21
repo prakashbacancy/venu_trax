@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     sessions: 'users/sessions'
   }
-  resources :users, path: '/manage/users'
+  resources :users, path: '/manage/users' do
+    member do
+      post :resend_invitation
+    end
+  end
   # devise_scope :user do
   #   get 'users/password' => 'users/passwords#index'
   # end

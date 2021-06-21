@@ -36,6 +36,16 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def resend_invitation
+    link_raw = set_reset_password_token
+    if user.save
+      UserMailer.new_user_password_confirmation(user, link_raw).deliver_now
+      flash[:success] = 'Invitation has been sent to the User!'
+    else
+      flash[:alert] = user.errors.full_messages.join(', ')
+    end
+  end
+
   private
 
   def user

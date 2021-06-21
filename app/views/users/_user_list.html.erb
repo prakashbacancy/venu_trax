@@ -23,6 +23,11 @@
                 <%= image_pack_tag 'home/ic_delete.svg'%>
               <% end %>
             <% end %>
+            <% if user.encrypted_password == "" %>
+              <%= link_to(resend_invitation_user_path(user), remote: true, method: :post, data: { confirm: 'Are you sure want to resend invitation to this User?' }, class: 'fa', title: 'Resend Invitation') do %>
+                <i class="fa fa-user-plus fa-lg"></i>
+              <% end %>
+            <% end %>
           </div>
         </td>
       </tr>
