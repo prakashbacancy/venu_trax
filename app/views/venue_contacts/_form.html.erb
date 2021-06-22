@@ -31,6 +31,18 @@
       <%= f.email_field :email, class: 'form-control', required: true, pattern: Field::PATTERNS["Email".to_sym], placeholder: 'Enter Email Address', disabled: !f.object.new_record? %>
     </div>
 
+    <% unless f.object.new_record? %>
+      <% status_invited = f.object.user.status == User::STATUS_INVITED %>
+      <div class="form-group">
+        <%= f.label :user_status, class: 'text-capitalize fs-17' %><br />  
+        <% if status_invited || f.object.user == current_user %>
+          <%= text_field_tag :status, f.object.user.status.capitalize, disabled: true, class: 'form-control' %>
+        <% else %>
+          <%= select_tag :status, options_for_select(user_status_option(User::STATUS), f.object.user.status), { include_blank: false, class: 'form-control user_status_select' } %>
+        <% end %>
+      </div>
+    <% end %>
+
     <% venue_contact_klass = Klass.venue_contact %>
     <% venue_contact_klass.fields.each do |field| %>
       <div class="form-group">

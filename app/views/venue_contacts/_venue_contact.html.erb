@@ -5,6 +5,19 @@
     <td class="text-nowrap"><%= venue_contact.email %></td>
     <td class="text-nowrap"><%= venue_contact.phone_no %></td>
     <td>
+      <span class="<%= 'cursor-not-allowed' if venue_contact.user == current_user || venue_contact.user.status == User::STATUS_INVITED %>">
+        <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(venue_contact.user.status.to_sym)}" %> <%= 'not-allowed' if venue_contact.user == current_user || venue_contact.user.status == User::STATUS_INVITED %>"><%= venue_contact.user.status.capitalize %></span>
+      </span>
+      <% unless venue_contact.user.status == User::STATUS_INVITED || venue_contact.user == current_user %>
+        <div class="switch-checkbox-button d-none">
+          <label class="switch">
+            <%= check_box_tag "user_status_checkbox_#{venue_contact.user.id}", '', venue_contact.user.account_active?, class: 'user_status_checkbox', data: { id: venue_contact.user.id } %>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      <% end %>
+    </td>
+    <td>
       <div class="action-area-buttons">
         <%= link_to(edit_venue_venue_contact_path(venue, venue_contact), remote: true, class: 'fa', title: 'Edit') do %>
           <%= image_pack_tag 'home/ic_edit.svg' %>
