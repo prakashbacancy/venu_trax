@@ -2,7 +2,7 @@
   <% notes.each do |note| %>
     <div class="shadow p-3 mb-5 bg-white rounded mt-4 note_shadow_box_<%= note.id %>">
       <p class="fs-18"><%= note.description.html_safe %></p>
-      <p class="text-gray mt-3 fs-16"> -- <%= "#{note.user.full_name} | #{note.created_at.strftime('%b %d, %Y %l:%M %p')}" %> </p>
+      <p class="text-gray mt-3 fs-16"> -- <%= "#{note.user.full_name} | #{convert_into_time_zone(note.created_at).strftime('%b %d, %Y %l:%M %p')}" %> </p>
       <div class="mt-3">
         <%= link_to new_brand_note_comment_path(notable.id, note.id), remote: true, class: 'text-primary fs-16 fw-600 add_comment mr-2' do %>
           <%= image_pack_tag 'home/ic_comment.svg', class: 'mr-3' %> Add Comment
@@ -17,7 +17,7 @@
           <% note.comments.each do |comment| %>
             <div class="card card-body mt-2">
               <p class="fs-16"><%= comment.description.html_safe %></p>
-              <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
+              <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{convert_into_time_zone(comment.created_at).strftime('%b %d, %Y %l:%M %p')}" %></p>
             </div>
           <% end %>
         <% else %>

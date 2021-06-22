@@ -26,8 +26,8 @@
           <% unless event.new_record? %>
             <tr>
               <td><%= event.title %></td>
-              <td class="no-wrap"><%= event.start_date_time.strftime('%m/%d/%Y %I:%M %p') if event.start_date.present? %></td>
-              <td class="no-wrap"><%= event.end_date_time.strftime('%m/%d/%Y %I:%M %p') if event.end_date.present? %></td>
+              <td class="no-wrap"><%= convert_into_time_zone(event.created_at).strftime('%m/%d/%Y %I:%M %p') if event.start_date.present? %></td>
+              <td class="no-wrap"><%= convert_into_time_zone(event.end_date_time).strftime('%m/%d/%Y %I:%M %p') if event.end_date.present? %></td>
               <td><%= event.brands.count %></td>
               <td>
                 <div class="action-area-buttons">
