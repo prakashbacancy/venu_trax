@@ -3,7 +3,7 @@
     <th>Name</th>
     <th>Email Address</th>
     <th>Phone Number</th>
-    <th>Assigned Role</th>
+    <th>Status</th>
     <th>Action</th>
   </thead>
   <tbody>
@@ -12,7 +12,19 @@
         <td><%= user.full_name %></td>
         <td><%= user.email %></td>
         <td class="text-nowrap"><%= user.phone_no %></td>
-        <td>-</td>
+        <td>
+          <span class="<%= 'cursor-not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>">
+            <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(user.status.to_sym)}" %> <%= 'not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>"><%= user.status.capitalize %></span>
+          </span>
+          <% unless user.status == User::STATUS_INVITED || user == current_user %>
+            <div class="switch-checkbox-button d-none">
+              <label class="switch">
+                <%= check_box_tag "user_status_checkbox_#{user.id}", '', user.account_active?, class: 'user_status_checkbox', data: { id: user.id } %>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          <% end %>
+        </td>
         <td>
           <div class="action-area-buttons">
             <%= link_to(edit_user_path(user), remote: true, class: 'fa', title: 'Edit') do %>
@@ -37,5 +49,40 @@
 <script>
   $(document).ready(function(){
     custom_datatable($('#user_list_table'));
+    $('td .status_user').on('click', function(){
+      $('.status_user').removeClass('d-none');
+      $('.switch-checkbox-button').addClass('d-none');
+      $(this).addClass('d-none')
+      $(this).closest('td').find('.switch-checkbox-button').removeClass('d-none');
+    })
+    // $('td').on('click', function(e){
+    //   if(!$(e.target).hasClass('status_user') && !$(e.target).hasClass('slider') && !$(e.target).hasClass('user_status_checkbox')){
+    //     $('.status_user').removeClass('d-none');
+    //     $('.switch-checkbox-button').addClass('d-none');
+    //   }
+    // })
+    $('.user_status_checkbox').on('click', function(){
+      let current_element = $(this);
+      let user_id = $(this).attr('data-id');
+      let status = $(this).prop('checked');
+      let button_bg_class = status == true ? 'bg-green' : 'bg-red'
+      let button_text = status == true ? 'Active' : 'Inactive'
+      $.ajax({
+        url: "<%= update_status_users_path %>",
+        type: 'POST',
+        data: {
+          id: user_id,
+          status: status
+        },
+        dataType: "script",
+        success: function(result){
+          closest_status_user = current_element.closest('td').find('.status_user')
+          current_element.closest('.switch-checkbox-button').addClass('d-none');
+          closest_status_user.text(button_text)
+          closest_status_user.removeClass().addClass('d-none status_user');
+          closest_status_user.addClass('status_user p-0 px-2 border-radius-2 btn ' + button_bg_class).removeClass('d-none');
+        }
+      });
+    })
   })
 </script>

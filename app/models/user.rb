@@ -24,7 +24,11 @@ class User < ApplicationRecord
 
   enum contact: %w[user venue_contact brand_contact]
 
-  PERMITTED_PARAM = %w[id full_name email phone_no profile_pic].freeze
+  STATUS = %w[active inactive].freeze
+  STATUS_ACTIVE = 'active'.freeze
+  STATUS_INACTIVE = 'inactive'.freeze
+  STATUS_INVITED = 'invited'.freeze
+  PERMITTED_PARAM = %w[id full_name email phone_no profile_pic status].freeze
   PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
 
   def google_token_expired?
@@ -51,7 +55,23 @@ class User < ApplicationRecord
   def to_polymorphic
     "User:#{id}"
   end
-  
+
+  def capitalize_status
+    status.split('_').collect(&:capitalize).join(' ')
+  end
+
+  def active_for_authentication?
+    super && account_active?
+  end
+
+  def inactive_message
+    account_active? ? super : :account_inactive
+  end
+
+  def account_active?
+    status == User::STATUS_ACTIVE
+  end
+
   protected
 
   def password_required?

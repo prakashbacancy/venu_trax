@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     member do
       post :resend_invitation
     end
+    collection do
+      post :update_status
+    end
   end
   # devise_scope :user do
   #   get 'users/password' => 'users/passwords#index'

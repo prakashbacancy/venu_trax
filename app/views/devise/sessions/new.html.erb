@@ -14,11 +14,11 @@
           <label class="fs-14 fw-600">Let's Login and join the network of VenuTrax.</label>
           </div>
           <% flash.each do |key, value| %>
-          <% if key == "alert" and value == "Invalid Email or Password." %>
-          <div class="alert-message-top">
-            <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
-          </div>
-          <% end %>
+            <% if key == "alert" and (value == 'Invalid Email or Password.' || value == 'Your account is not active.') %>
+              <div class="alert-message-top">
+                <div class="alert alert-<%= key %>" id="flashMessage"> <%= value %></div>
+              </div>
+            <% end %>
           <% end %>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: ''}) do |f| %>
           <div class="form-group relative mt-md-4">

@@ -21,6 +21,7 @@
         <th>Job Title</th>
         <th>Email Address</th>
         <th>Mobile Number</th>
+        <th>Status</th>
         <th>Action</th>
       </thead>
       <tbody>
@@ -31,4 +32,39 @@
 </div>
 <script>
   custom_datatable($('#venue_contact_list_table'), 'searchbox_venue_contact');
+  $('td .status_user').on('click', function(){
+    $('.status_user').removeClass('d-none');
+    $('.switch-checkbox-button').addClass('d-none');
+    $(this).addClass('d-none')
+    $(this).closest('td').find('.switch-checkbox-button').removeClass('d-none');
+  })
+  // $('td').on('click', function(e){
+  //   if(!$(e.target).hasClass('status_user') && !$(e.target).hasClass('slider') && !$(e.target).hasClass('user_status_checkbox')){
+  //     $('.status_user').removeClass('d-none');
+  //     $('.switch-checkbox-button').addClass('d-none');
+  //   }
+  // })
+  $('.user_status_checkbox').on('click', function(){
+    let current_element = $(this);
+    let user_id = $(this).attr('data-id');
+    let status = $(this).prop('checked');
+    let button_bg_class = status == true ? 'bg-green' : 'bg-red'
+    let button_text = status == true ? 'Active' : 'Inactive'
+    $.ajax({
+      url: "<%= update_status_users_path %>",
+      type: 'POST',
+      data: {
+        id: user_id,
+        status: status
+      },
+      dataType: "script",
+      success: function(result){
+        closest_status_user = current_element.closest('td').find('.status_user')
+        current_element.closest('.switch-checkbox-button').addClass('d-none');
+        closest_status_user.text(button_text)
+        closest_status_user.removeClass().addClass('d-none status_user');
+        closest_status_user.addClass('status_user p-0 px-2 border-radius-2 btn ' + button_bg_class).removeClass('d-none');
+      }
+    });
+  })
 </script>
