@@ -50,6 +50,18 @@
       </div>
     <% end %>
 
+    <% unless f.object.new_record? %>
+      <% status_invited = f.object.status == User::STATUS_INVITED %>
+      <div class="form-group">
+        <%= f.label :user_status, class: 'text-capitalize fs-17' %><br />  
+        <% if status_invited || f.object == current_user %>
+          <%= f.text_field :status, value: f.object.status.capitalize, disabled: true, class: 'form-control' %>
+        <% else %>
+          <%= f.select :status, options_for_select(user_status_option(User::STATUS), selected: f.object.status), { include_blank: false }, { class: 'form-control user_status_select' } %>
+        <% end %>
+      </div>
+    <% end %>
+
     <% Klass.user.fields.each do |field| %>
       <div class="form-group">
         <%= render partial: 'forms/field', locals: {f: f, field_name: field.name, field_label: field.label, column_type: field.column_type, data: @data, custom: field.custom, field: field, value: field.column_type == 'File' ? '' : @user.send(field.name)} %>
