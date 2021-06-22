@@ -38,6 +38,11 @@
       <%= f.email_field :email, class:"form-control", placeholder:"Email Address", required: true, disabled: !f.object.new_record?  %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :time_zone, "Time Zone" %>
+      <%= f.select :time_zone, options_for_select(time_zone_options, f.object.time_zone), {},class: 'form-control' %>
+    </div>
+
     <% unless (params[:action] == 'new' or params[:action] == 'create' or params[:add_more].present?) %>
       <div class="form-group">
         <%= f.label :change_password, class: 'text-capitalize fs-17' %><br />  

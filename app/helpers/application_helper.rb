@@ -90,6 +90,11 @@ module ApplicationHelper
     time.try(:strftime, '%l:%M %p')
   end
 
+  def convert_into_time_zone(date)
+    time_zone = current_user.active_support_timezone
+    date.in_time_zone(time_zone)
+  end
+
   # def pretty_reference(field, object)
   #   if (id = object.send(field.name))
   #     field.reference_klass.constantize.find(id).send(field.reference_key)

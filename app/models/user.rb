@@ -28,7 +28,7 @@ class User < ApplicationRecord
   STATUS_ACTIVE = 'active'.freeze
   STATUS_INACTIVE = 'inactive'.freeze
   STATUS_INVITED = 'invited'.freeze
-  PERMITTED_PARAM = %w[id full_name email phone_no profile_pic status].freeze
+  PERMITTED_PARAM = %w[id full_name email phone_no profile_pic status time_zone].freeze
   PERMITTED_PASSWORD_PARAM = %w[id current_password password password_confirmation].freeze
 
   def google_token_expired?
@@ -72,6 +72,10 @@ class User < ApplicationRecord
     status == User::STATUS_ACTIVE
   end
 
+  def active_support_timezone
+    (ActiveSupport::TimeZone[time_zone] || Time.zone) rescue Time.zone
+  end
+  
   protected
 
   def password_required?

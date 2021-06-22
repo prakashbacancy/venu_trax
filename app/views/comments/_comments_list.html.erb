@@ -2,7 +2,7 @@
   <% comments.each do |comment| %>
     <div class="card card-body mt-2">
       <p class="fs-16"><%= comment.description.html_safe %></p>
-      <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
+      <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{convert_into_time_zone(comment.created_at).strftime('%b %d, %Y %l:%M %p')}" %></p>
     </div>
   <% end %>
 <% else %>
