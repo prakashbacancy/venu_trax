@@ -22,7 +22,7 @@
       <th class="align-middle text-center">Action</th>
     </thead>
     <tbody>
-      <%= render(partial: 'revenue_sources/revenue_source', collection: revenue_brand.revenue_sources, locals: { venue: venue, event: event }) || no_data_available_for_table %>
+      <%= render(partial: 'revenue_sources/revenue_source', collection: revenue_brand.revenue_sources.where(event_id: event), locals: { venue: venue, event: event }) || no_data_available_for_table %>
     </tbody>
   </table>
 </div>

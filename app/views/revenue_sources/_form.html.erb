@@ -4,7 +4,7 @@
   <div id="flashMessage", class="inner_flash_message"></div>
 </div>
 <div class="modal-body">
-  <small class="text-gray">(<b>Note:</b> This will affect globally into our system)</small>
+  <!-- <small class="text-gray">(<b>Note:</b> This will affect globally into our system)</small> -->
   <%= form_for [venue, revenue_source], remote: true, class: "form-inline" do |f| %>
     <div class="form-group">
       <%= label_tag :select_brand, 'Select Brand', class: 'asterisk' %>
@@ -36,6 +36,7 @@
       <%= f.text_area :description, class: 'form-control h-auto', placeholder: 'Enter Revenue Source Description', rows: 8 %>
     </div>
 
+    <%= f.hidden_field :event_id, value: event.id %>
     <%= hidden_field_tag 'event_id', event.id %>
 
     <div class="modal-footer modal-footer-fixed ">
