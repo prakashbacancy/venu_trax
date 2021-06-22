@@ -55,9 +55,11 @@
       $(this).addClass('d-none')
       $(this).closest('td').find('.switch-checkbox-button').removeClass('d-none');
     })
-    // $('td').on('click', function(){
-    //   $('.status_user').removeClass('d-none');
-    //   $('.switch-checkbox-button').addClass('d-none');
+    // $('td').on('click', function(e){
+    //   if(!$(e.target).hasClass('status_user') && !$(e.target).hasClass('slider') && !$(e.target).hasClass('user_status_checkbox')){
+    //     $('.status_user').removeClass('d-none');
+    //     $('.switch-checkbox-button').addClass('d-none');
+    //   }
     // })
     $('.user_status_checkbox').on('click', function(){
       let current_element = $(this);
@@ -76,9 +78,9 @@
         success: function(result){
           closest_status_user = current_element.closest('td').find('.status_user')
           current_element.closest('.switch-checkbox-button').addClass('d-none');
-          closest_status_user.removeClass().addClass('status_user');
-          closest_status_user.addClass('status_user p-0 px-2 border-radius-2 btn ' + button_bg_class)
           closest_status_user.text(button_text)
+          closest_status_user.removeClass().addClass('d-none status_user');
+          closest_status_user.addClass('status_user p-0 px-2 border-radius-2 btn ' + button_bg_class).removeClass('d-none');
         }
       });
     })
