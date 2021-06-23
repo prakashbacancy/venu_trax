@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :venue_contact_permissions, if: :user_venue_contact?
+  around_action :set_time_zone
   layout :layout_by_resource
 
   # Separate layout for pages `before login` and pages `after login`
@@ -10,6 +11,16 @@ class ApplicationController < ActionController::Base
       'registration'
     else
       'application'
+    end
+  end
+
+
+
+  def set_time_zone
+    if user_signed_in?
+      Time.use_zone(current_user.time_zone) { yield }
+    else
+      yield
     end
   end
 
