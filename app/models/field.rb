@@ -91,7 +91,7 @@ class Field < ApplicationRecord
   end
 
   def snakecase(custom_string)
-    custom_string.downcase.gsub(/[^a-z0-9]+/, '_')
+    custom_string.downcase.gsub(/[^a-z0-9]+/, '_').first(60)
   end
 
   def user_preference(user:)
