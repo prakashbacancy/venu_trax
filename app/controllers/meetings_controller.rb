@@ -22,7 +22,7 @@ class MeetingsController < ApplicationController
       token = get_google_access_token
       attendees_emails = meeting.emails_of_attendees
       # SimpleWorker.execute do
-        event = CalendarManager::GoogleCalendar.new(token).insert_event(
+        event = CalendarManager::GoogleCalendar.new(token, current_user).insert_event(
           summary: meeting.title,
           location: meeting.location || '',
           description: meeting.description,
@@ -44,7 +44,7 @@ class MeetingsController < ApplicationController
       token = get_google_access_token
       attendees_emails = meeting.emails_of_attendees
       # SimpleWorker.execute do
-        CalendarManager::GoogleCalendar.new(token).update_event(
+        CalendarManager::GoogleCalendar.new(token, current_user).update_event(
           id: meeting.google_event_id,
           summary: meeting.title,
           location: meeting.location,
@@ -65,7 +65,7 @@ class MeetingsController < ApplicationController
       flash[:success] = 'Meeting Successfully Deleted!'
       token = get_google_access_token
       # SimpleWorker.execute do
-        CalendarManager::GoogleCalendar.new(token).destroy_event(
+        CalendarManager::GoogleCalendar.new(token, current_user).destroy_event(
           id: @meeting.google_event_id
         )
       # end
@@ -78,7 +78,7 @@ class MeetingsController < ApplicationController
   def destroy_all
     meetings = Meetings::Meeting.where(id: params[:ids]).destroy_all
     token = get_google_access_token
-    service = CalendarManager::GoogleCalendar.new(token)
+    service = CalendarManager::GoogleCalendar.new(token, current_user)
     # SimpleWorker.execute do
       meetings.each do |meeting|
         service.destroy_event(id: meeting.google_event_id)
