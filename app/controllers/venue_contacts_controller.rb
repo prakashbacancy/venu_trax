@@ -81,6 +81,7 @@ class VenueContactsController < ApplicationController
                        contact: 1, skip_password_validation: true)
     if user.errors.any?
       flash[:alert] = user.errors.full_messages.join(', ')
+      @venue_contacts = @venue.venue_contacts
     else
       params[:venue_contact][:user_id] = user.id
       update_venue_contact :Added
