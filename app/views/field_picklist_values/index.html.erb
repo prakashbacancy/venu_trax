@@ -23,7 +23,7 @@
                   <div class="shadow p-4 mb-5 bg-white rounde">
                     <div class="form-group mb-4 ">
                       <%= label_tag "Select Module", "Select Module", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600' %>
-                      <%= select_tag "klasses", options_for_select(@klasses, @field&.klass_id), { class: 'form-control', prompt: "Select Module"}%>
+                      <%= select_tag 'klasses', options_for_select(klass_option(@klasses), @field&.klass_id), { class: 'form-control', prompt: 'Select Module' } %>
                     </div>
                     <div class='form-group mb10' id='select_field'>
                       <%= label_tag "Select Field", "Select Field", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600'  %>
