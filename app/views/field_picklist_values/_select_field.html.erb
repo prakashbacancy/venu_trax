@@ -1,8 +1,8 @@
 <%= form_tag field_picklist_values_path, method: :post do %>
   <%= label_tag "Select Field","Select Field", class:'select-module-set text-left text-capitalize fs-17 m-0 mb-1 fw-600'  %>
-  <%= select_tag :field_id, options_for_select(Klass.find_by(id: klass.id).field_picklist_valuable_fields.pluck(:name, :id)), { class: ' form-control', include_blank: 'Select Field' } %>
+  <%= select_tag :field_id, options_for_select(field_option(Klass.find_by(id: klass.id).field_picklist_valuable_fields)), { class: ' form-control', include_blank: 'Select Field' } %>
   <%#= grouped_collection_select nil, :field_id, Klass.where(id: klass.id), :field_picklist_valuable_fields, :label, :id, :label, {include_blank: "Select Field"}, class: 'form-control' %>
-<%end%>
+<% end %>
 <script>
   $(document).ready(function(){
     $("#field_id").on('change', function(){
