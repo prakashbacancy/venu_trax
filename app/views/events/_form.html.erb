@@ -151,7 +151,7 @@
       $('#end-date-msg').hide();
       $('#brand-msg').hide();
       if (start_date == end_date){
-        if (start_date_time > end_date_time) {
+        if (start_date_time >= end_date_time) {
           $('#start-time-msg').show();
           $('#end-time-msg').show();
           return false;
