@@ -2,7 +2,7 @@ class FieldPicklistValuesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @klasses = Klass.pluck(:label, :id)
+    @klasses = Klass.all
     @field_names = []
     if params[:field_id].present?
       @field = Field.find(params[:field_id])
