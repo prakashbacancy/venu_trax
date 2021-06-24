@@ -62,11 +62,13 @@
       <% @info_group.fields.visible.each do |field| %>
         <% if field.column_type == Field::TYPE_TEXT_AREA_HTML || field.column_type == Field::TYPE_LABEL %>
           <div class="col-12 mt-3">
+          <p class="fw-400 text-gray fs-16"><%= field.label %></p>
+          <p class="text-gray fs-15"><%= pretty_value(field, @venue) %></p>
         <% else %>
           <div class="col-sm-6 mt-3">
-        <% end %>
           <p class="fw-700 fs-16"><%= field.label %></p>
           <p class="text-gray fs-15"><%= pretty_value(field, @venue) %></p>
+        <% end %>
         </div>
       <% end %>
     </div>
