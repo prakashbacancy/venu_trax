@@ -30,7 +30,7 @@
                     <div class="row ">
                       <% if field.column_type == Field::TYPE_LABEL %>
                         <div class="col-12">
-                          <span class="fw-600 fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
+                          <span class="fw-400 text-dark fs-14 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
                         </div>
                       <% else %>
                         <div class="col-md-4">
