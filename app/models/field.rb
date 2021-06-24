@@ -40,6 +40,8 @@ class Field < ApplicationRecord
     field: '\w*',
     DateTime: '//'
   }.freeze
+  TYPE_LABEL = 'Label'.freeze
+  TYPE_TEXT_AREA_HTML = 'Text Area HTML'.freeze
 
   after_destroy :destroy_column
 
