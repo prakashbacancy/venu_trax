@@ -1,4 +1,4 @@
-<%= label_tag(field_label, field_label, class: "text-capitalize fs-17 #{'asterisk' if field.required}") unless field_label.nil?%>
+<%= label_tag(field_label, field_label, class: "#{ 'text-capitalize' unless field.column_type == Field::TYPE_LABEL } #{ 'text-gray fw-400' if field.column_type == Field::TYPE_LABEL } fs-17 #{'asterisk' if field.required}") unless field_label.nil?%>
 <span class="required"> <%= "" if field.required && field_label%> </span>
 
 <% (value = field.default_value) if value.nil? %>
