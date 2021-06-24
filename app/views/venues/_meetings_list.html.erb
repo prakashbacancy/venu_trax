@@ -27,7 +27,8 @@
               <p class="text-dark2 fw-600 fs-16">Meet By: <%= meeting.title %>
               </p>
             </div>
-            <p class="text-gray fs-14 ml-auto mr-3"><%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
+            <p class="text-gray fs-14 ml-auto mr-3">
+              <%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
             <div class="action-area-buttons">
               <%= link_to(edit_meeting_path(meeting), remote: true, class: 'fa') do %>
                 <%= image_pack_tag 'home/ic_edit.svg'%>
@@ -66,7 +67,7 @@
             <span class="mr-5">
               <p class="text-blue1  fw-600 fs-15">Date
               </p>
-              <p class="text-darkgray1  fw-600  fs-15 mt-1"><%= meeting.date.strftime('%b %d, %Y') %>
+              <p class="text-darkgray1  fw-600  fs-15 mt-1"><%= convert_into_time_zone(meeting.date).strftime('%b %d, %Y') %>
               </p>
             </span>
           </div>
@@ -94,7 +95,7 @@
           <% meeting.comments.each do |comment| %>
             <div class="card card-body mt-2">
               <p class="fs-16"><%= comment.description.html_safe %></p>
-              <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{comment.created_at.strftime('%b %d, %Y %l:%M %p')}" %></p>
+              <p class="text-gray mt-2 fs-14"> -- <%= "#{comment.user.full_name} | #{convert_into_time_zone(comment.created_at).strftime('%b %d, %Y %l:%M %p')}" %></p>
             </div>
           <% end %>
         <% else %>

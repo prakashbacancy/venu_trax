@@ -13,17 +13,17 @@
         <td><%= user.email %></td>
         <td class="text-nowrap"><%= user.phone_no %></td>
         <td>
-          <span class="<%= 'cursor-not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>">
-            <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(user.status.to_sym)}" %> <%= 'not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>"><%= user.status.capitalize %></span>
+          <span class="<%#= 'cursor-not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>">
+            <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(user.status.to_sym)}" %> not-allowed <%#= 'not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>"><%= user.status.capitalize %></span>
           </span>
-          <% unless user.status == User::STATUS_INVITED || user == current_user %>
-            <div class="switch-checkbox-button d-none">
-              <label class="switch">
-                <%= check_box_tag "user_status_checkbox_#{user.id}", '', user.account_active?, class: 'user_status_checkbox', data: { id: user.id } %>
-                <span class="slider round"></span>
+          <%# unless user.status == User::STATUS_INVITED || user == current_user %>
+            <%# <div class="switch-checkbox-button d-none">
+              <label class="switch"> %>
+                <%#= check_box_tag "user_status_checkbox_#{user.id}", '', user.account_active?, class: 'user_status_checkbox', data: { id: user.id } %>
+                <%# <span class="slider round"></span>
               </label>
-            </div>
-          <% end %>
+            </div> %>
+          <%# end %>
         </td>
         <td>
           <div class="action-area-buttons">
@@ -49,12 +49,12 @@
 <script>
   $(document).ready(function(){
     custom_datatable($('#user_list_table'));
-    $('td .status_user').on('click', function(){
-      $('.status_user').removeClass('d-none');
-      $('.switch-checkbox-button').addClass('d-none');
-      $(this).addClass('d-none')
-      $(this).closest('td').find('.switch-checkbox-button').removeClass('d-none');
-    })
+    // $('td .status_user').on('click', function(){
+    //   $('.status_user').removeClass('d-none');
+    //   $('.switch-checkbox-button').addClass('d-none');
+    //   $(this).addClass('d-none')
+    //   $(this).closest('td').find('.switch-checkbox-button').removeClass('d-none');
+    // })
     // $('td').on('click', function(e){
     //   if(!$(e.target).hasClass('status_user') && !$(e.target).hasClass('slider') && !$(e.target).hasClass('user_status_checkbox')){
     //     $('.status_user').removeClass('d-none');
