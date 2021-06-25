@@ -6,6 +6,8 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :event_brands, reject_if: :all_blank, allow_destroy: true
 
+  default_scope { order(created_at: :desc) }
+
   PERMITTED_PARAM = [:id, :title, :start_date, :start_time, :end_date, :end_time, :description,
                      { event_brands_attributes: %i[id brand_id event_id _destroy] }, { brand_ids: [] }].freeze
 
