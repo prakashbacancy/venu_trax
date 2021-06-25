@@ -33,10 +33,10 @@
                           <span class="fw-400 text-dark fs-14 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
                         </div>
                       <% else %>
-                        <div class="col-md-4">
-                          <span class="fw-600 fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %>:</span>
+                        <div class="col-md-8">
+                          <span class="fw-600 fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <span class="text-gray fs-14">
                             <%= pretty_value(field, brand) %>
                           </span>
