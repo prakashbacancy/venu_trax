@@ -56,6 +56,10 @@ document.addEventListener("turbolinks:load", function () {
     categories: [{
         listLocation: "businesses",
         header: "<div class='search-option-header'>Businesses</div>",
+      },
+      {
+        listLocation: "venues",
+        header: "<div class='search-option-header'>Venues</div>",
       }
     ],
     list: {
