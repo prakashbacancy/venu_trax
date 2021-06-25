@@ -12,7 +12,7 @@
           <div class="search-store position-relative d-flex align-items-center nav-link px-1">
               <a class="search-input-icon"><i class="fa fa-search search-icon">
               </i></a>
-              <input id="search-box1" type="text" class="form-control" placeholder="Search" data-behavior='autocomplete'>
+              <input id="search-box1" type="text" class="form-control header-search-box" placeholder="Search" data-behavior='autocomplete'>
               <a class="search-close d-none"><i class="fa fa-times "></i></a>
           </div>
           <div id="suggesstion-box" style="display: none;"></div>
@@ -107,7 +107,7 @@
             <div class="search-store position-relative d-flex align-items-center nav-link px-1">
                 <a class="search-input-icon"><i class="fa fa-search search-icon">
                 </i></a>
-                <input id="search-box" data-behavior='autocomplete' type="text" class="form-control" placeholder="Search">
+                <input id="search-box" data-behavior='autocomplete' type="text" class="form-control header-search-box" placeholder="Search">
                 <a class="search-close d-none"><i class="fa fa-times "></i></a>
             </div>
             <div id="suggesstion-box" style="display: none;"></div>
@@ -177,6 +177,8 @@
   });
 
   $(".search-close").click(function () {
+    $('.header-search-box').val('');
+    $('.easy-autocomplete-container ul').hide();
     $(".search-store").removeClass("active");
     $(".search-close").addClass("d-none");
   });
