@@ -116,4 +116,9 @@ Rails.application.routes.draw do
       delete 'destroy_draft/:id', to: 'emails#destroy_draft', as: 'destroy_draft'
     end
   end
+  resources :homes do
+    collection do
+      get :search
+    end
+  end
 end

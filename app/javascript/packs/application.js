@@ -29,6 +29,8 @@ require("packs/jquery-ui.js")
 require('packs/select2.min')
 require("@nathanvda/cocoon")
 require("packs/crm.js")
+require('easy-autocomplete')
+
 // import "../stylesheets/application";
 document.addEventListener("turbolinks:load", function() {
     $(function () {

@@ -24,7 +24,7 @@ $(document).on('keyup keypress', '.phone-number', function(e){
   }
 });
 
-window.show_more_less_venue_contacts = () =>{
+window.show_more_less_venue_contacts = () => {
   $(".venue_contacts_card").find(".venue_contact_row").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").not(":eq(0)").hide();
   if($(".venue_contacts_card").find(".venue_contact_row").length <= 5){
     $('.load_more_venue_contacts').removeClass('d-flex')
@@ -45,3 +45,40 @@ window.show_more_less_venue_contacts = () =>{
     }
   })
 }
+
+document.addEventListener("turbolinks:load", function () {
+  $input = $("[data-behavior='autocomplete']")
+  var options = {
+    getValue: "name",
+    url: function (phrase) {
+      return "/homes/search.json?search=" + phrase;
+    },
+    categories: [{
+        listLocation: "businesses",
+        header: "<div class='search-option-header'>Businesses</div>",
+      },
+      {
+        listLocation: "venues",
+        header: "<div class='search-option-header'>Venues</div>",
+      }
+    ],
+    list: {
+      onChooseEvent: function (e) {
+        var url = $input.first().getSelectedItemData().url
+        if(url == undefined){
+          url = $input.last().getSelectedItemData().url
+        }
+        $input.val("")
+        Turbolinks.visit(url)
+        console.log(url)
+      }
+    },
+    template: {
+      type: "iconLeft",
+      fields: {
+        iconSrc: "icon"
+      }
+    }
+  }
+  $input.easyAutocomplete(options)
+});
