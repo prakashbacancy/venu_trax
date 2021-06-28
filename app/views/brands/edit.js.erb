@@ -1,4 +1,3 @@
 $('#right-modal-content').html("<%= j render partial: 'form', locals: { brand: @brand, venue: @venue, group: @group, data: @data } %>")
 $("#right_modal").modal('show');
-$('.modal-content').scrollTop(0);
 $('form').parsley();

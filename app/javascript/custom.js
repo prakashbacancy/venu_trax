@@ -93,4 +93,8 @@ document.addEventListener("turbolinks:load", function () {
         $('.scrolltop').stop(true, true).fadeOut();
     }
   });
+
+  $('.modal').on('hide.bs.modal', function () {
+    $('.modal-content').scrollTop(0);
+  })
 });
