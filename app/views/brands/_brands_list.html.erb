@@ -3,7 +3,7 @@
     <thead class="thead-dark">
       <th>Brand Name</th>
       <th>Address</th>
-      <th>Email Address</th>
+      <th>Domain Name</th>
       <th>Mobile Number</th>
       <th>No Of Employee</th>
       <th>Action</th>
@@ -14,7 +14,7 @@
           <tr class="brand-<%=brand.id%>">
             <td><%= brand.name %></td>
             <td class="no-wrap"><%= brand.full_address %></td>
-            <td class="no-wrap"><%= current_user.email %></td>
+            <td class="no-wrap"><%= brand.domain_name %></td>
             <td class="no-wrap"><%= brand.phone_number %></td>
             <td class="no-wrap"><%= brand.no_of_employee %></td>
             <td>
