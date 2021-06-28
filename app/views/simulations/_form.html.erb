@@ -13,7 +13,7 @@
       <div class="row align-items-center mt-1">
         <%#= f.label 'Events Per Week', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-6 col-md-6">No of Event
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'No of Event' %>
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Activity Days annually' %>
         </p>
       <%= f.text_field :event_per_year, autofocus: true, placeholder: 0,  class: 'form-control col-2 col-md-2 d-inline simulation-text-field', required: true, 'data-parsley-errors-container'=> ".event_per_year_error", "data-parsley-trigger"=>"keyup" ,"data-parsley-type" => "number"%>
         <%= f.select :event_type, options_for_select(Simulation::SELECT_OPTIONS, selected: f.object.event_type), {include_blank: 'Type'}, {class: "form-control product-selection col-3 col-md-3 fs-14 ml-1"}%>
@@ -22,74 +22,81 @@
       <div class="row align-items-center">
         <%#= f.label :daily_seating_capacity, class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-8 col-md-9">Daily Seating Capacity
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Daily Seating Capacity.' %>
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Max Venue Seating Capacity without visitors.' %>
         </p>
         <%= f.number_field :daily_seating_capacity, autofocus: true, placeholder: 0, class: 'form-control col-3 col-md-2 d-inline simulation-text-field mt-1', required: true %>
       </div>
     </div>
 
     <div class="border py-2 border-light">
-      <%= f.label 'Venue Visitor Attendance', class: 'text-capitalize fs-16 fw-600' %>
+      <%= f.label 'Estimated Venue Physical Visitor Attendance', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label 'Estimated Avg Annual Attendance(%)', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Estimated Avg Annual Attendance(%)
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Estimated Avg Annual Attendance(%)' %>
+        <p class="text-capitalize fs-14 col-8 col-md-9">Estimated visitor %
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Estimated future Attendance by %' %>
         </p>
         <%= f.number_field :annual_attendance_per, autofocus: true, placeholder: '0%', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', required: true,'data-parsley-required-message' => 'This value is required.', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
       </div>
       <div class=" row align-items-center ">
         <%#= f.label "Estimated % Visitor Wifi Login's ", class: 'text-capitalize fs-14 col-8 col-md-9' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Estimated % Visitor Wifi Login's
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Estimated % Visitor Wifi Login's." %>
+        <p class="text-capitalize fs-14 col-8 col-md-9">Estimated wifi landing Page Login %
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Estimated Wifi Landing Page  LogIn attendance only." %>
         </p>
         <%= f.number_field :visitor_wifi_login, autofocus: true, autocomplete: "", placeholder: '0%', class: 'form-control col-3 col-md-2 d-inline simulation-text-field mt-1','data-parsley-required-message' => 'This value is required.', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
       </div>
     </div>
 
     <div class="border py-2 border-light">
-      <%= f.label :cost_lp_impression, 'LP CPM Cost', class: 'text-capitalize fs-16 fw-600' %>
+      <%#= f.label :cost_lp_impression, 'Cost per WIFI LP visitor Fee', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label :cost_lp_impression, "Cost LP Impression",class: 'text-capitalize fs-16 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Cost LP Impression
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost LP Impression" %>
+        <p class="text-capitalize fs-14 col-8 col-md-9"> Cost per WIFI LP visitor Fee
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "WIFI Landing Page Only Log-in " %>
         </p>
         <%= f.text_field :cost_lp_impression, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', 'data-parsley-type-message' => 'Only digits are allowed', pattern: '\$\d+(?:\.\d+)?', required: true %>
       </div>
     </div>
-    <div class="border py-2 border-light">
-      <%= f.label :cpa_impression_cost, 'LP CPA Cost', class: 'text-capitalize fs-16 fw-600' %>
+  <!--   <div class="border py-2 border-light">
+      <%#= f.label :cpa_impression_cost, 'LP CPA Cost', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label :cpa_impression_cost, "Cost CPA Impression",class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-8 col-md-9">Cost CPA Impression
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost CPA Impression" %>
-        </p>
-        <%= f.text_field :cpa_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', pattern: '\$\d+(?:\.\d+)?', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
-      </div>
-    </div>
+        <%#= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Cost CPA Impression" %>
+        </p>-->
+        <%= f.hidden_field :cpa_impression_cost, value: 1, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField','data-parsley-required-message' => 'Please enter Cost LP Impression', pattern: '\$\d+(?:\.\d+)?', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
+      <!-- </div>
+    </div>  -->
     <div class="border py-2 border-light">
-      <%= f.label :event_usage_impression, 'Visitor WIFI Impressions', class: 'text-capitalize fs-16 fw-600' %>
+      <%#= f.label :event_usage_impression, 'Visitor WIFI Impressions', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center ">
         <%#= f.label 'Daily/Event Usage Impression', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Daily/Event Usage Impression
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Daily/Event Usage Impression" %>
+        <p class="text-capitalize fs-14 col-8 col-md-9">Visitor multiple page view  average %
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Visitor WIFI  Multiple page Views Average Assumptions" %>
         </p>
         <%= f.number_field :event_usage_impression, autofocus: true, autocomplete: "", placeholder: '0', class: 'form-control col-3 col-md-2 d-inline simulation-text-field','data-parsley-required-message' => 'Please enter Daily/Event Usage Impression', 'data-parsley-type' => "number",step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true, min: 0 %>
       </div>
     </div>
 
     <div class="border py-2 border-light">
-      <%= f.label :cpm_impression_cost, 'CPM Impression Cost', class: 'text-capitalize fs-16 fw-600' %>
-      <div class=" row align-items-center ">
+      <%#= f.label :cpm_impression_cost, 'CPM Impression Cost', class: 'text-capitalize fs-16 fw-600' %>
+      <div class="row align-items-center">
         <%#= f.label :cpm_impression_cost, 'Per Day/Event', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
-        <p class="text-capitalize fs-14 col-8 col-md-9">Per Day/Event
-        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Per Day/Event" %>
+        <p class="text-capitalize fs-14 col-8 col-md-9">Daily Event Page views avg
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Visitor Multiple Page Views average Assumptions" %>
         </p>
-        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', pattern: '\$\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
+        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', pattern: '\$\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
+      </div>
+      <div class="row align-items-center mt-2">
+        <%#= f.label :cpm_impression_cost, 'Per Day/Event', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
+        <p class="text-capitalize fs-14 col-8 col-md-9">Daily Event Page View Fee
+        <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Visitor Multiple Page view impression fee" %>
+        </p>
+        <%= f.text_field :page_view_fee, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field percentageField', 'data-parsley-required-message' => 'Please enter Visitor Multiple Page view  impression fee', pattern: '\$\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
       </div>
     </div>
 
     <div class="border py-2 border-light">
-      <%= f.label 'Venue Contract Term', class: 'text-capitalize fs-16 fw-600' %>
+      <%= f.label 'Venue WIFI Contract Term', class: 'text-capitalize fs-16 fw-600' %>
       <div class=" row align-items-center">
         <%#= f.label 'No of Months', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
         <p class="text-capitalize fs-14 col-8 col-md-9">No of Months

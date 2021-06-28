@@ -4,7 +4,7 @@ class Simulation < ApplicationRecord
   has_many :comments, as: :commentable
   DATE_FORMAT = "%m-%d-%Y %I:%M %p"
 	PERMITTED_PARAM = %w[event_per_year daily_seating_capacity annual_attendance_per visitor_wifi_login
-cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa_impression_cost venue_id event_type user_id]
+cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa_impression_cost venue_id event_type user_id page_view_fee]
 	CHART_OPTIONS = %W[All Today Weekly Monthly Annually]
 	SELECT_OPTIONS = %W[Daily Weekly Monthly Annually]
 
@@ -50,18 +50,22 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 		lp_rev_week_total = (lp_rev_annual_total.to_f / weeks)
 		lp_rev_day_total = (lp_rev_per_day_total.to_f / days)
 
-		cpa_per_day_login = wifi_lp_per_day_login * cpa_impression_cost
-		cpa_annual_login = wifi_lp_annual_login * cpa_impression_cost
-		cpa_week_login = (cpa_annual_login.to_f / weeks)
-		cpa_month_login = (cpa_annual_login.to_f / months)
-		cpa_day_login = (cpa_per_day_login.to_f / days)
+		# cpa_per_day_login = wifi_lp_per_day_login * cpa_impression_cost
+		# cpa_annual_login = wifi_lp_annual_login * cpa_impression_cost
+		# cpa_week_login = (cpa_annual_login.to_f / weeks)
+		# cpa_month_login = (cpa_annual_login.to_f / months)
+		# cpa_day_login = (cpa_per_day_login.to_f / days)
 
-
-		user_impression_per_day = wifi_lp_per_day_login * event_usage_impression
-		user_impression_annual = wifi_lp_annual_login * event_usage_impression
+		user_impression_per_day = wifi_lp_per_day_login * (event_usage_impression.to_f/100) * cpm_impression_cost 
+		user_impression_annual = wifi_lp_annual_login *	(event_usage_impression.to_f/100) * cpm_impression_cost 
 		user_impression_month = (user_impression_annual.to_f / months)
 		user_impression_week = (user_impression_annual.to_f  / weeks)
 		user_impression_day = (user_impression_per_day.to_f / days)
+
+		annual_page_view_fee = user_impression_annual * page_view_fee
+		month_page_view_fee = (annual_page_view_fee.to_f / months)
+		week_page_view_fee = (annual_page_view_fee.to_f  / weeks)
+		day_page_view_fee = (user_impression_per_day.to_f * page_view_fee)
 
 		cpm_impression_per_day = user_impression_per_day * cpm_impression_cost
 		cpm_impression_annual = cpm_impression_per_day * total_event
@@ -69,10 +73,38 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 		cpm_impression_week = (cpm_impression_annual.to_f / weeks)
 		cpm_impression_day = cpm_impression_per_day / days
 
-		wifi_annual_total = cpm_impression_annual * contract_month
-		wifi_annual_month_total = (wifi_annual_total.to_f / months)
-		wifi_annual_week_total = (wifi_annual_total.to_f / weeks)
-		wifi_annual_day_total = (wifi_annual_total.to_f / days)
+		# wifi_annual_total = cpm_impression_annual * contract_month
+		# wifi_annual_month_total = (wifi_annual_total.to_f / months)
+		# wifi_annual_week_total = (wifi_annual_total.to_f / weeks)
+		# wifi_annual_day_total = (wifi_annual_total.to_f / days)
+
+		total_single_event_lp_revenue = wifi_lp_per_day_login
+		total_annual_lp_revenue = event_per_year * wifi_lp_per_day_login
+		contract_term_years = lp_rev_annual_total * contract_month
+
+		multiple_page_single = day_page_view_fee
+		multiple_page_annual = day_page_view_fee * event_per_year
+
+		contract_term_rev = multiple_page_annual * contract_month
+		
+		total_wifi_lp_single = multiple_page_single + total_single_event_lp_revenue
+		total_wifi_lp_annual = multiple_page_annual + total_annual_lp_revenue
+		total_wifi_lp_month = total_wifi_lp_annual / months
+		total_wifi_lp_week = total_wifi_lp_annual / weeks
+
+		term_of_contract_value = total_wifi_lp_single + total_wifi_lp_annual * contract_month
+
+		wifi_annual_total = term_of_contract_value
+		wifi_annual_month_total = (term_of_contract_value.to_f / months)
+		wifi_annual_week_total = (term_of_contract_value.to_f / weeks)
+		wifi_annual_day_total = (term_of_contract_value.to_f / days)
+
+		cpa_per_day_login = wifi_lp_per_day_login * cpa_impression_cost
+		cpa_annual_login = contract_term_rev
+		cpa_week_login = (contract_term_rev.to_f / weeks)
+		cpa_month_login = (contract_term_rev.to_f / months)
+		cpa_day_login = (contract_term_rev.to_f / days)
+
 		self.update_columns(
 												wifi_annual_total: wifi_annual_total,
 												cpm_impression_annual: cpm_impression_annual,
@@ -112,6 +144,14 @@ cost_lp_impression event_usage_impression cpm_impression_cost contract_month cpa
 												cpa_week_login: cpa_week_login,
 												cpa_month_login: cpa_month_login,
 												cpa_day_login: cpa_day_login,
+												day_page_view_fee: day_page_view_fee,
+												week_page_view_fee: week_page_view_fee,
+												month_page_view_fee: month_page_view_fee,
+												annual_page_view_fee: annual_page_view_fee,
+												total_wifi_lp_single: total_wifi_lp_single,
+												total_wifi_lp_annual: total_wifi_lp_annual,
+												total_wifi_lp_month: total_wifi_lp_month,
+												total_wifi_lp_week: total_wifi_lp_week,
 												updated_at: DateTime.now
 												)
 

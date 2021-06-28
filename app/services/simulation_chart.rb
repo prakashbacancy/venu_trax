@@ -36,6 +36,8 @@ class SimulationChart
     cpm_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     cpa_impression(@params, simulation, data, daily_data, week_data, month_data, year_data)
     wifi_revenue_chart(@params, simulation, data, daily_data, week_data, month_data, year_data)		
+    page_view_fee(@params, simulation, data, daily_data, week_data, month_data, year_data)   
+    
     data[:input_annual_att_per] = simulation.pluck(:annual_attendance_per).join(",")
     data[:input_visitor_wifi_login] = simulation.pluck(:visitor_wifi_login).join(",")
     data[:input_cost_lp_impression] = simulation.pluck(:cost_lp_impression).join(",")
@@ -43,7 +45,8 @@ class SimulationChart
     data[:input_cpm_impression_cost] = simulation.pluck(:cpm_impression_cost).join(",")
     data[:input_cpa_impression_cost] = simulation.pluck(:cpa_impression_cost).join(",")
     data[:input_contract_month] = simulation.pluck(:contract_month).join(",")
-  
+    data[:page_view_fee] = simulation.pluck(:page_view_fee).join(",")
+    
     
     data
 	end
@@ -54,6 +57,48 @@ class SimulationChart
     @month = Date.today.beginning_of_month.beginning_of_day..Date.today.end_of_month.end_of_day
     @year = Date.today.beginning_of_year.beginning_of_day..Date.today.end_of_year.end_of_day
   end
+
+  def page_view_fee(params, simulation, data, daily_data, week_data, month_data, year_data)
+    daily_page_view_fee = daily_data.sum(:page_view_fee)
+    day_page_view_fee = daily_data.sum(:day_page_view_fee)
+    week_page_view_fee = week_data.sum(:week_page_view_fee)
+    month_page_view_fee = month_data.sum(:month_page_view_fee)
+    year_page_view_fee = year_data.sum(:annual_page_view_fee)
+
+     @date_range = case params[:option]
+      when 'Today'
+        today_data = chart_data(daily_data.group_by_hour_of_day(:updated_at, format: "%-l %P").sum(:page_view_fee))
+        data[:page_view_impression] = [{ data: today_data, library: @day_color_option }]
+      when 'Weekly'
+        data[:page_view_impression] = [{ data: chart_data(week_data.group_by_day(:updated_at).sum(:week_page_view_fee).collect{|k,v| [k.to_s + '_', v]}.to_h), library: @week_color_option}]
+      when 'Monthly'
+        data[:page_view_impression] = [{ data: chart_data(month_data.group_by_week(:updated_at, week_start: :monday).sum(:month_page_view_fee)), library: @month_color_option}]
+      when 'Annually'
+        data[:page_view_impression] = [{ data: chart_data(year_data.group_by_month(:updated_at).sum(:annual_page_view_fee)), library: @annualy_color_option}]
+      else
+        data[:page_view_impression] =  [{"data"=>[["Daily", day_page_view_fee], ["Weekly", week_page_view_fee], ["Monthly", month_page_view_fee], ["Annually", year_page_view_fee]],
+      "library"=> @color_option }]
+        #{'Daily' => daily_page_view_fee, 'Weekly'=> week_page_view_fee, 'Monthly' => month_page_view_fee, 'Annually' => year_page_view_fee}
+      end
+
+    data[:daily_page_view_fee] = daily_page_view_fee
+    data[:day_page_view_fee] = day_page_view_fee
+    data[:week_page_view_fee] = week_page_view_fee
+    data[:month_page_view_fee] = month_page_view_fee
+    data[:year_page_view_fee] = year_page_view_fee
+
+    day_total_wifi_lp = daily_data.sum(:total_wifi_lp_single)
+    week_total_wifi_lp = year_data.sum(:total_wifi_lp_week)
+    month_total_wifi_lp = month_data.sum(:total_wifi_lp_month)
+    year_total_wifi_lp = week_data.sum(:total_wifi_lp_annual)
+
+    data[:total_wifi_lp_single] = day_total_wifi_lp
+    data[:total_wifi_lp_week] = week_total_wifi_lp
+    data[:total_wifi_lp_month] = month_total_wifi_lp
+    data[:total_wifi_lp_annual] = year_total_wifi_lp
+
+  end
+
   def seating_chart(params, simulation, data, daily_data, week_data, month_data, year_data)
     daily = daily_data.sum(:daily_seating_capacity)
     day_data = daily_data.sum(:day_seating_capacity)
