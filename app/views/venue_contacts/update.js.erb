@@ -7,6 +7,7 @@ $('.sidebar_venue_contacts').html('<%= j render(partial: 'venue_contacts/sidebar
   $("#right_modal").modal('show');
   $('.modal-content').scrollTop(0);
   $('form').parsley();
+  initAutocomplete();
 <% else %>
   $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('hide');
