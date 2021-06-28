@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def update_status
-    status = params[:status] == 'true' ? 'active' : 'inactive'
+    status = params[:status]
     if user.update(status: status)
       flash[:success] = 'User status has been updated!'
     else

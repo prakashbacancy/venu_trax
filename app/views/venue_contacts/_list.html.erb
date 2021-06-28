@@ -44,6 +44,33 @@
   //     $('.switch-checkbox-button').addClass('d-none');
   //   }
   // })
+
+  $('td .status_user').on('click', function(){
+    let current_element = $(this);
+    let user_id = $(this).attr('data-id');
+    let status = $(this).attr('data-user-status');
+    let button_text = status == 'inactive' ? 'Active' : 'Inactive'
+    var result = confirm("Do you want to change the status of this user to " + button_text + "?");
+    if (result == true) {
+      let button_bg_class = status == 'inactive' ? 'bg-green' : 'bg-red'
+      let new_status = status =='inactive' ? 'active' : 'inactive';
+      $.ajax({
+        url: "<%= update_status_users_path %>",
+        type: 'POST',
+        data: {
+          id: user_id,
+          status: new_status
+        },
+        dataType: "script",
+        success: function(result){
+          current_element.text(button_text)
+          current_element.removeClass().addClass('status_user p-0 px-2 border-radius-2 btn ' + button_bg_class);
+          current_element.attr('data-user-status', new_status);
+        }
+      });
+    }
+  })
+
   $('.user_status_checkbox').on('click', function(){
     let current_element = $(this);
     let user_id = $(this).attr('data-id');

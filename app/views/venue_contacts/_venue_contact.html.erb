@@ -1,17 +1,18 @@
 <% unless venue_contact.new_record? %>
+  <% user = venue_contact.user %>
   <tr>
     <td class="text-nowrap"><%= venue_contact.full_name %></td>
     <td class="text-nowrap"><%= venue_contact.job_title %></td>
     <td class="text-nowrap"><%= venue_contact.email %></td>
     <td class="text-nowrap"><%= venue_contact.phone_no %></td>
     <td>
-      <span class="<%#= 'cursor-not-allowed' if venue_contact.user == current_user || venue_contact.user.status == User::STATUS_INVITED %>">
-        <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(venue_contact.user.status.to_sym)}" %> not-allowed <%#= 'not-allowed' if venue_contact.user == current_user || venue_contact.user.status == User::STATUS_INVITED %>"><%= venue_contact.user.status.capitalize %></span>
+      <span class="<%= 'cursor-not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>">
+        <span class="status_user p-0 px-2 border-radius-2 btn <%= "#{status_class(user.status.to_sym)}" %> <%= 'not-allowed' if user == current_user || user.status == User::STATUS_INVITED %>" data-user-status="<%= user.status %>" data-id="<%= user.id %>"><%= user.status.capitalize %></span>
       </span>
-      <%# unless venue_contact.user.status == User::STATUS_INVITED || venue_contact.user == current_user %>
+      <%# unless user.status == User::STATUS_INVITED || user == current_user %>
         <%# <div class="switch-checkbox-button d-none">
           <label class="switch"> %>
-            <%#= check_box_tag "user_status_checkbox_#{venue_contact.user.id}", '', venue_contact.user.account_active?, class: 'user_status_checkbox', data: { id: venue_contact.user.id } %>
+            <%#= check_box_tag "user_status_checkbox_#{user.id}", '', user.account_active?, class: 'user_status_checkbox', data: { id: user.id } %>
             <%# <span class="slider round"></span>
           </label>
         </div> %>
@@ -27,7 +28,7 @@
             <%= image_pack_tag 'home/ic_delete.svg' %>
           <% end %>
         <% end %>
-        <% user = venue_contact.user %>
+        <% user = user %>
         <%# if user.encrypted_password == "" %>
           <%= link_to(resend_invitation_venue_venue_contact_path(venue, venue_contact), remote: true, method: :post, data: { confirm: 'Are you sure want to resend invitation to this Venue Contact?' }, class: 'fa', title: 'Resend Invitation') do %>
             <%= image_pack_tag 'home/ic_resend_email.svg' %>
