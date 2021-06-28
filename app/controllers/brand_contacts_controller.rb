@@ -16,7 +16,7 @@ class BrandContactsController < ApplicationController
     @brand_contact = BrandContact.new(contacts_params)
     if @brand_contact.save
       set_new_brand_contacts if params[:add_more].present?
-      flash[:success] = 'Brand Contact Successfully added'
+      flash[:success] = 'Brand Contact Successfully Added!'
     else
       flash[:alert] = 'Can not add a Note'
     end
@@ -26,7 +26,7 @@ class BrandContactsController < ApplicationController
   def update
     if brand_contact.update(contacts_params)
       set_new_brand_contacts if params[:add_more].present?
-      flash[:success] = 'Brand Contact updated'
+      flash[:success] = 'Brand Contact Successfully Updated!'
     else
       flash[:alert] = 'Can not update a Brand Contact'
     end
