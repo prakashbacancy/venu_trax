@@ -61,7 +61,7 @@ class SimulationsController < ApplicationController
     params[:simulation][:cost_lp_impression] = params[:simulation][:cost_lp_impression].gsub("$", "")
     params[:simulation][:cpa_impression_cost] = params[:simulation][:cpa_impression_cost].gsub("$", "")
     params[:simulation][:cpm_impression_cost] = params[:simulation][:cpm_impression_cost].gsub("$", "")
-    
+    params[:simulation][:page_view_fee] = params[:simulation][:page_view_fee].gsub("$", "")
     params.require(:simulation).permit(Simulation::PERMITTED_PARAM)
   end
 
