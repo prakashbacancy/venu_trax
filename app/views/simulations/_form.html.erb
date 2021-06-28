@@ -84,7 +84,7 @@
         <p class="text-capitalize fs-14 col-8 col-md-9">Daily Event Page views avg
         <%= image_pack_tag "simulation/ic_info.svg", class: "ml-1 widht-13", alt: '', 'data-toggle': 'tooltip', 'data-placement': 'right', title: "Visitor Multiple Page Views average Assumptions" %>
         </p>
-        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', pattern: '\$\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
+        <%= f.text_field :cpm_impression_cost, autofocus: true, autocomplete: "", placeholder: '$0.00', class: 'form-control col-3 col-md-2 d-inline simulation-text-field', 'data-parsley-required-message' => 'Please enter CPM Impression Cost', pattern: '\d+(?:\.\d+)?', step: '0.01', 'data-parsley-type-message' => 'Only digits are allowed', required: true %>
       </div>
       <div class="row align-items-center mt-2">
         <%#= f.label :cpm_impression_cost, 'Per Day/Event', class: 'text-capitalize fs-14 col-8 col-md-9 ' %>
