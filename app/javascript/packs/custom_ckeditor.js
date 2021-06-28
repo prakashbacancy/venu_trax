@@ -10,6 +10,8 @@ window.custom_ckeditor = function(ckeditor_textbox_id){
         }
       });
     });
+    $($('.meeting-modal-data .cke_inner').find('iframe').contents()[0]).find('body').css('margin', '20px 0');
+    $($('.meeting-modal-data .cke_inner').find('iframe').contents()[1]).find('body').css('margin', '20px 0');
   });
 }
 
