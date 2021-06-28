@@ -50,8 +50,8 @@
         <td class="<%#= hide_table(params[:option], 'Annually')%>">$<%#= number_with_delimiter(display_two_digit(@simulations[:year_cpa_impression]), :delimiter => ',') %></td>
       </tr> -->
       <tr>
-        <td>Visitor WIFI  Multiple page view  assumptions </td>
-        <td><%= @simulations[:input_event_usage_impression].to_i %></td>
+        <td>Visitor WIFI  Multiple Page View Assumptions</td>
+        <td><%= @simulations[:input_event_usage_impression].to_i %>%</td>
         <td class="<%= hide_table(params[:option], 'Today')%>"><%= number_with_delimiter(@simulations[:daily_user_impression].to_i, :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Weekly')%>"><%= number_with_delimiter(@simulations[:week_user_impression].to_i, :delimiter => ',') %></td>
         <td class="<%= hide_table(params[:option], 'Monthly')%>"><%= number_with_delimiter(@simulations[:month_user_impression].to_i, :delimiter => ',') %></td>
