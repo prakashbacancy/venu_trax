@@ -81,4 +81,16 @@ document.addEventListener("turbolinks:load", function () {
     }
   }
   $input.easyAutocomplete(options)
+  $('.scrolltop').on('click', function(){
+    // $('.wrapper').scrollTop(0);
+    $('.wrapper').stop().animate({ scrollTop: 0 }, 15, 'linear');
+  })
+  $('.scrolltop').stop(true, true).fadeOut();
+  $('.wrapper').scroll(function() {
+    if ($(this).scrollTop()) {
+        $('.scrolltop').stop(true, true).fadeIn();
+    } else {
+        $('.scrolltop').stop(true, true).fadeOut();
+    }
+  });
 });

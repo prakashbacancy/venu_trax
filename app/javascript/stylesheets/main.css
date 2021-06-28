@@ -20119,3 +20119,18 @@ ul.multiselect-container.dropdown-menu.show {
 .event_brands_fields .select2-container{order:1;}
 .ticket-comment-header{ background-color: #f2f2f2; padding: 10px; border-radius: 5px; }
 .status_user{ width: 77px; }
+.scrolltop .icon {
+  text-align: center;
+  margin-top: 10px;
+}
+.scrolltop {
+  position: fixed;
+  bottom: 50px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(13, 110, 253, 0.35);
+  z-index: 9999;
+  cursor: pointer;  
+}
