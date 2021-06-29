@@ -26,24 +26,36 @@
                   </div>
                 </div>
                 <div class="box-body">
-                  <% group.fields.each do |field|%>
-                    <div class="row ">
-                      <% if field.column_type == Field::TYPE_LABEL %>
-                        <div class="col-md-8">
-                          <span class="fw-400 text-dark fs-14 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
-                        </div>
-                      <% else %>
-                        <div class="col-md-8">
-                          <span class="fw-600 fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></span>
-                        </div>
-                        <div class="col-md-4">
-                          <span class="text-gray fs-14">
-                            <%= pretty_value(field, business) %>
-                          </span>
-                        </div>
-                      <% end %>
-                    </div>
-                  <% end %>
+                  <% count = 0 %>
+                  <div class="admin-table bg-white table-responsive">
+                    <table class="table table-bordered w-100 mb-0 attachment-table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>#</th>
+                          <th>Field Name</th>
+                          <th>Field Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if group.fields.present? %>
+                          <% group.fields.each do |field|%>
+                            <tr>
+                              <td><%= count = count + 1 %></td>
+                              <td width="70%">
+                                <div class="fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></div>
+                                <div class="fw-400 text-gray mt-2 fs-14"><%= field.info %></div>
+                              </td>
+                              <td><div class="text-gray fs-14"><%= pretty_value(field, business) %></div></td>
+                            </tr>
+                          <% end %>
+                        <% else %>
+                          <tr>
+                            <td colspan='3' class="text-center text-gray">Please Add Field from the Settings.</td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             <% end %>
