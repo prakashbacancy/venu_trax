@@ -22,15 +22,17 @@ class Meetings::Meeting < ApplicationRecord
   def start_date_time
     time_zone = self.user.active_support_timezone
     date_rec = DateTime.new(date.year, date.month, date.day, start_time.hour, start_time.min, start_time.sec, time_zone.now.zone)
-    date_rec.in_time_zone(time_zone)
+    start_date = date_rec.in_time_zone(time_zone)
     # DateTime.new(date.year, date.month, date.day, start_time.hour, start_time.min, start_time.sec, start_time.zone)
+    start_date
   end
 
   def end_date_time
     time_zone = self.user.active_support_timezone
     date_rec  = DateTime.new(date.year, date.month, date.day, end_time.hour, end_time.min, end_time.sec, time_zone.now.zone)
-    date_rec.in_time_zone(time_zone)
+    end_date = date_rec.in_time_zone(time_zone)
     # DateTime.new(date.year, date.month, date.day, end_time.hour, end_time.min, end_time.sec, end_time.zone)
+    end_date
   end
 
   # TODO: This `pretty_*` method are used only inside `WorkFlow` 's mustache template

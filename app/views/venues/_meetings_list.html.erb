@@ -28,7 +28,7 @@
               </p>
             </div>
             <p class="text-gray fs-14 ml-auto mr-3">
-              <%= meeting.start_date_time.strftime('%b %d, %Y %I:%M %p') %></p>
+              <%= meeting.start_date_time&.strftime('%b %d, %Y %I:%M %p') %></p>
             <div class="action-area-buttons">
               <%= link_to(edit_meeting_path(meeting), remote: true, class: 'fa') do %>
                 <%= image_pack_tag 'home/ic_edit.svg'%>
