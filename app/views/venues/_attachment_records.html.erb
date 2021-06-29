@@ -1,6 +1,6 @@
 <% attachments = venue&.attachments || attachable.attachments %>
 <div class="admin-table bg-white table-responsive">
-  <table class="table table-bordered w-100 mb-5 attachment-table">
+  <table class="table table-bordered w-100 mb-5 attachment-table" id="attachment_list_table">
     <thead class="thead-dark">
       <th>ID</th>
       <th>File Name</th>
@@ -28,3 +28,6 @@
     </tbody>
   </table>
 </div>
+<script>
+  custom_datatable($('#attachment_list_table'));
+</script>
