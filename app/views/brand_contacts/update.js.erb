@@ -1,5 +1,4 @@
 $('.brand-contacts-data').html("<%= j render(partial: 'brand_contacts/list', locals: { brand_contacts: @brand_contacts, brand: @brand }) %>")
-
 <% if params[:add_more].present? %>
   $('#right-modal-content').html('<%= j render(partial: 'form', locals: { brand_contact: @brand_contact_more, brand: @brand, add_more: true, data: @data }) %>')
   $('#flashMessage').html("<%= j render 'layouts/flash_messages' %>");
@@ -10,3 +9,4 @@ $('.brand-contacts-data').html("<%= j render(partial: 'brand_contacts/list', loc
   $('.header_flash_message').html("<%= j render 'layouts/flash_messages' %>");
   $("#right_modal").modal('hide');
 <% end %>
+custom_datatable($('#brand_contact_list_table'), 'searchbox_brand_contact');
