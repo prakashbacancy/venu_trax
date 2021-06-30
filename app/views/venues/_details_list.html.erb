@@ -40,7 +40,7 @@
                         <% if group.fields.present? %>
                           <% group.fields.each do |field|%>
                             <tr>
-                              <td><%= count = count + 1 %></td>
+                              <td width="2%"><%= count = count + 1 %></td>
                               <td width="70%">
                                 <div class="fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></div>
                                 <div class="fw-400 text-gray mt-2 fs-14"><%= field.info %></div>
