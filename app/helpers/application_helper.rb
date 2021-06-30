@@ -143,4 +143,8 @@ module ApplicationHelper
   def venue_contact?(user)
     user.try(:contact) == 'venue_contact'
   end
+
+  def field_info(info)
+    info.gsub(/\n/, '<br/>').html_safe
+  end
 end
