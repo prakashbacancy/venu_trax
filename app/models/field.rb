@@ -1,4 +1,5 @@
 class Field < ApplicationRecord
+  default_scope -> { where(is_active: true) }
   belongs_to :klass
   belongs_to :group, optional: true
 

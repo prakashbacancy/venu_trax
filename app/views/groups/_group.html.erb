@@ -27,7 +27,7 @@
     </div>
 
     <ul class="row list-unstyled fields-sortable mx-3 connectedSortable<%= Klass.snakecase(klass.name) %>" data-group-id="<%= group.id %>" data-klass-id="<%= klass.id %>">
-      <% group.fields.where.not(column_type: 'Hidden').each do |field|%>
+      <% group.fields.unscope(where: :is_active).where.not(column_type: 'Hidden').each do |field|%>
         <li class="col-sm-12 mb-1" data-field-id="<%= field.id %>">
           <div class="block-ui-box d-flex">
             <div class="row mr-auto">

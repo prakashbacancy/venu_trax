@@ -50,6 +50,13 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <div class="checkbox-area custom-control custom-checkbox">
+        <%= f.check_box :is_active, class: 'custom-control-input' %>
+        <%= f.label :is_active, 'Active', class: 'custom-control-label' %>
+      </div>
+    </div>
+
     <%= f.hidden_field :klass_id, value: klass.id %>
     <%= f.hidden_field :group_id, value: group.id %>
     <%= f.hidden_field :custom, value: true %>

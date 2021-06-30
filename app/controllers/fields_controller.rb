@@ -23,12 +23,12 @@ class FieldsController < ApplicationController
 
   def edit
     @group = Group.find(params[:group_id])
-    @field = Field.find(params[:id])
+    @field = Field.unscoped.find(params[:id])
     @klass = @field.klass
   end
 
   def update
-    @field = Field.find(params[:id])
+    @field = Field.unscoped.find(params[:id])
     @klass = @field.klass
     if @field.update(field_params)
       flash[:notice] = 'Field Successfully updated.'
@@ -41,7 +41,7 @@ class FieldsController < ApplicationController
 
   def destroy
     ActiveRecord::Base.transaction do
-      field = Field.find(params[:id])
+      field = Field.unscoped.find(params[:id])
       @klass = field.klass
       field.klass.fields.where(klass: @klass).where('position > (?)', field.position).each do |field|
         field.update(position: field.position - 1)
@@ -58,7 +58,7 @@ class FieldsController < ApplicationController
       @klass = Klass.find(params[:klass_id])
       group = Group.find(params[:group_id])
       params[:field_ids].each_with_index do |field_id, position|
-        Field.find(field_id).update(position: position, group: group)
+        Field.unscoped.find(field_id).update(position: position, group: group)
       end
     rescue StandardError => e
     end
@@ -68,7 +68,7 @@ class FieldsController < ApplicationController
   def change_position_in_table
     ActiveRecord::Base.transaction do
       klass = Klass.find(params[:klass_id])
-      field = Field.find(params[:field_id])
+      field = Field.unscoped.find(params[:field_id])
       details = params[:details]
       from = details[:from].to_i
       to = details[:to].to_i
@@ -92,7 +92,7 @@ class FieldsController < ApplicationController
 
   def toggle_visible_in_table
     @klass = Klass.find(params[:klass_id])
-    @field = Field.find(params[:field_id])
+    @field = Field.unscoped.find(params[:field_id])
     if params[:visible_in_table] == 'true'
       @field.user_preference(user: current_user).make_visible_in_table
     else
@@ -104,7 +104,7 @@ class FieldsController < ApplicationController
   def change_header_view; end
 
   def change_properties
-    @field = Field.find(params[:id])
+    @field = Field.unscoped.find(params[:id])
     @field.update_attribute(params[:property_name], !@field.send(params[:property_name]))
     flash[:alert] = "Field #{@field.name}'s property was changed"
   end
@@ -113,6 +113,6 @@ class FieldsController < ApplicationController
 
   def field_params
     params.require(:field).permit(:name, :label, :column_type, :klass_id, :position, :placeholder, :min_length,
-                                  :max_length, :default_value, :info, :required, :quick_create, :key_field_view, :visible_in_table, :mass_edit, :group_id, :custom)
+                                  :max_length, :default_value, :info, :required, :quick_create, :key_field_view, :visible_in_table, :mass_edit, :group_id, :custom, :is_active)
   end
 end
