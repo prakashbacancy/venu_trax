@@ -81,12 +81,16 @@
   <% when 'Radio Button' %>
     <div class="radio-lbl radio-oneline">
       <% field.field_picklist_values.each do |field_picklist_value| %>
-          <%= f.radio_button field.name, field_picklist_value.value, checked: (field_picklist_value.value == value), required: field.required %>
-          <label class="radio mr-1"><%= field_picklist_value.value %>
-          <span class="checkround"></span>
+        <%= f.radio_button field.name, field_picklist_value.value, checked: (field_picklist_value.value == value), required: field.required %>
+        <label class="radio mr-1"><%= field_picklist_value.value %>
+        <span class="checkround"></span>
         </label>
       <% end %>
     </div>
-  <%else%>
+  <% else %>
+    <% not_field = true %>
     <strong> Not a field</strong>
-  <% end%>
+  <% end %>
+  <% if !not_field && field.info.present? %>
+    <div class="fw-400 text-gray mt-2 fs-14"><%= field_info(field.info) %></div>
+  <% end %>

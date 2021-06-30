@@ -113,6 +113,6 @@ class FieldsController < ApplicationController
 
   def field_params
     params.require(:field).permit(:name, :label, :column_type, :klass_id, :position, :placeholder, :min_length,
-                                  :max_length, :default_value, :required, :quick_create, :key_field_view, :visible_in_table, :mass_edit, :group_id, :custom)
+                                  :max_length, :default_value, :info, :required, :quick_create, :key_field_view, :visible_in_table, :mass_edit, :group_id, :custom)
   end
 end

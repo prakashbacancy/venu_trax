@@ -39,6 +39,11 @@
     </div>
 
     <div class="form-group">
+      <%= label_tag :info, 'Field Info', class: 'text-capitalize' %>
+      <%= f.text_area :info, class: 'form-control h-auto', rows: 5 %>
+    </div>
+
+    <div class="form-group">
       <div class="checkbox-area custom-control custom-checkbox">
         <%= f.check_box :required, class: 'custom-control-input' %>
         <%= f.label :required, class: 'custom-control-label' %>
