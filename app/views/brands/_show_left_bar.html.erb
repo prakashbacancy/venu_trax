@@ -38,27 +38,27 @@
     <div class="row mt-4">
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">Domain Name</p>
-        <p class="text-gray fs-15"><%= @brand.domain_name %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.domain_name) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">Website URL</p>
-        <p class="text-gray fs-15"><%= @brand.website_url %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.website_url) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">City</p>
-        <p class="text-gray fs-15"><%= @brand.city %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.city) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">State</p>
-        <p class="text-gray fs-15"><%= @brand.state %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.state) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">Phone Number</p>
-        <p class="text-gray fs-15"><%= @brand.phone_number %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.phone_number) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">No of Employee </p>
-        <p class="text-gray fs-15"><%= @brand.no_of_employee %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.no_of_employee) %></p>
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">Annual Revenue</p>
@@ -66,7 +66,7 @@
       </div>
       <div class="col-sm-6 mt-3">
         <p class="fw-700 fs-16">Brand Owner</p>
-        <p class="text-gray fs-15"><%= @brand.brand_owner %></p>
+        <p class="text-gray fs-15"><%= brand_pretty_value(@brand.brand_owner) %></p>
       </div>
     </div>
   </div>

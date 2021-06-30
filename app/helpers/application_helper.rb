@@ -140,6 +140,10 @@ module ApplicationHelper
     return value.present? ? value : 'N/A'
   end
 
+  def brand_pretty_value(value)
+    return value.present? ? value : 'N/A'
+  end
+
   def venue_contact?(user)
     user.try(:contact) == 'venue_contact'
   end
