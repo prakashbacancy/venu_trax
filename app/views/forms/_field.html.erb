@@ -92,5 +92,5 @@
     <strong> Not a field</strong>
   <% end %>
   <% if !not_field && field.info.present? %>
-    <div class="fw-400 text-gray mt-2 fs-14"><%= field.info %></div>
+    <div class="fw-400 text-gray mt-2 fs-14"><%= field_info(field.info) %></div>
   <% end %>

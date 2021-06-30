@@ -27,7 +27,7 @@
                     <td width="2%"><%= count = count + 1 %></td>
                     <td width="70%">
                       <div class="fs-15 <%= 'asterisk' if field.required? %>"><%= field.label %></div>
-                      <div class="fw-400 text-gray mt-2 fs-14"><%= field.info %></div>
+                      <div class="fw-400 text-gray mt-2 fs-14"><%= field_info(field.info) %></div>
                     </td>
                     <td><div class="text-gray fs-14"><%= pretty_value(field, brand) %></div></td>
                   </tr>
